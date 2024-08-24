@@ -1,0 +1,997 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>3. 评估输入-分类 Classification · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="4.-检查输入-监督-Moderation.html" />
+    
+    
+    <link rel="prev" href="2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../前言.html">
+            
+                <a href="../前言.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../环境配置.html">
+            
+                <a href="../环境配置.html">
+            
+                    
+                    环境配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第一部分 面向开发者的提示工程</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../C1/readme.html">
+            
+                <a href="../C1/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../C1/1.-简介-Introduction.html">
+            
+                <a href="../C1/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../C1/2.-提示原则-Guidelines.html">
+            
+                <a href="../C1/2.-提示原则-Guidelines.html">
+            
+                    
+                    2. 提示原则 Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../C1/3.-迭代优化-Iterative.html">
+            
+                <a href="../C1/3.-迭代优化-Iterative.html">
+            
+                    
+                    3. 迭代优化 Iterative
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../C1/4.-文本概括-Summarizing.html">
+            
+                <a href="../C1/4.-文本概括-Summarizing.html">
+            
+                    
+                    4. 文本概括 Summarizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../C1/5.-推断-Inferring.html">
+            
+                <a href="../C1/5.-推断-Inferring.html">
+            
+                    
+                    5. 推断 Inferring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../C1/6.-文本转换-Transforming.html">
+            
+                <a href="../C1/6.-文本转换-Transforming.html">
+            
+                    
+                    6. 文本转换 Transforming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../C1/7.-文本扩展-Expanding.html">
+            
+                <a href="../C1/7.-文本扩展-Expanding.html">
+            
+                    
+                    7. 文本扩展 Expanding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="../C1/8.-聊天机器人-Chatbot.html">
+            
+                <a href="../C1/8.-聊天机器人-Chatbot.html">
+            
+                    
+                    8. 聊天机器人 Chatbot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="../C1/9.-总结-Summary.html">
+            
+                <a href="../C1/9.-总结-Summary.html">
+            
+                    
+                    9. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第二部分 搭建基于 ChatGPT 的问答系统</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="1.-简介-Introduction.html">
+            
+                <a href="1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                <a href="2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                    
+                    2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.4" data-path="3.-评估输入-分类-Classification.html">
+            
+                <a href="3.-评估输入-分类-Classification.html">
+            
+                    
+                    3. 评估输入-分类 Classification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="4.-检查输入-监督-Moderation.html">
+            
+                <a href="4.-检查输入-监督-Moderation.html">
+            
+                    
+                    4. 检查输入-监督 Moderation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                <a href="5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                    
+                    5. 思维链推理 Chain of Thought Reasoning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                <a href="6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                    
+                    6. Prompt 链 Chaining Prompts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="7.-检查结果-Check-Outputs.html">
+            
+                <a href="7.-检查结果-Check-Outputs.html">
+            
+                    
+                    7. 检查结果 Check Outputs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                <a href="8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                    
+                    8. 搭建一个带评估的端到端系统 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="9.-评估（上）-Evaluation-part1.html">
+            
+                <a href="9.-评估（上）-Evaluation-part1.html">
+            
+                    
+                    9. 评估（上）Evaluation-part1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="10.-评估（下）Evaluation-part2.html">
+            
+                <a href="10.-评估（下）Evaluation-part2.html">
+            
+                    
+                    10. 评估（下）Evaluation-part2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="11.总结-conclusion.html">
+            
+                <a href="11.总结-conclusion.html">
+            
+                    
+                    11. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第三部分 使用 LangChain 开发应用程序</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../C3/readme.html">
+            
+                <a href="../C3/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../C3/1.-简介-Introduction.html">
+            
+                <a href="../C3/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                <a href="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                    
+                    2. 模型、提示和解析器 Models, Prompts and Parsers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../C3/3.-储存-Memory.html">
+            
+                <a href="../C3/3.-储存-Memory.html">
+            
+                    
+                    3. 储存 Memory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../C3/4.-模型链-Chains.html">
+            
+                <a href="../C3/4.-模型链-Chains.html">
+            
+                    
+                    4. 模型链 Chains
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                <a href="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                    
+                    5. 基于文档的问答 Question and Answer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="../C3/6.-评估-Evaluation.html">
+            
+                <a href="../C3/6.-评估-Evaluation.html">
+            
+                    
+                    6. 评估 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="../C3/7.-代理-Agent.html">
+            
+                <a href="../C3/7.-代理-Agent.html">
+            
+                    
+                    7. 代理 Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="../C3/8.-总结-Conclusion.html">
+            
+                <a href="../C3/8.-总结-Conclusion.html">
+            
+                    
+                    8. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第四部分 使用 LangChain 访问个人数据</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../C4/readme.html">
+            
+                <a href="../C4/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../C4/1.-简介-Introduction.html">
+            
+                <a href="../C4/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../C4/2.-文档加载-Document-Loading.html">
+            
+                <a href="../C4/2.-文档加载-Document-Loading.html">
+            
+                    
+                    2. 文档加载 Document Loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../C4/3.-文档分割-Splitting.html">
+            
+                <a href="../C4/3.-文档分割-Splitting.html">
+            
+                    
+                    3. 文档分割 Splitting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                <a href="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                    
+                    4. 向量数据库与词向量 Vectorstores and Embeddings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../C4/5.-检索-Retrieval.html">
+            
+                <a href="../C4/5.-检索-Retrieval.html">
+            
+                    
+                    5. 检索 Retrieval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="../C4/6.-问答-Question-Answering.html">
+            
+                <a href="../C4/6.-问答-Question-Answering.html">
+            
+                    
+                    6. 问答 Question ANswering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="../C4/7.-聊天-Chat.html">
+            
+                <a href="../C4/7.-聊天-Chat.html">
+            
+                    
+                    7. 聊天 Chat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="../C4/8.-总结-Summary.html">
+            
+                <a href="../C4/8.-总结-Summary.html">
+            
+                    
+                    8. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3. 评估输入-分类 Classification</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第三章-评估输入——分类">第三章 评估输入——分类</h1>
+<p>在本章中，我们将重点探讨评估输入任务的重要性，这关乎到整个系统的质量和安全性。</p>
+<p>在处理不同情况下的多个独立指令集的任务时，首先对查询类型进行分类，并以此为基础确定要使用哪些指令，具有诸多优势。这可以通过定义固定类别和硬编码与处理特定类别任务相关的指令来实现。例如，在构建客户服务助手时，对查询类型进行分类并根据分类确定要使用的指令可能非常关键。具体来说，如果用户要求关闭其账户，那么二级指令可能是添加有关如何关闭账户的额外说明；如果用户询问特定产品信息，则二级指令可能会提供更多的产品信息。</p>
+<pre><code class="lang-python">delimiter = <span class="hljs-string">"####"</span>
+</code></pre>
+<p>在这个例子中，我们使用系统消息（system_message）作为整个系统的全局指导，并选择使用 “#” 作为分隔符。<code>分隔符是用来区分指令或输出中不同部分的工具</code>，它可以帮助模型更好地识别各个部分，从而提高系统在执行特定任务时的准确性和效率。 “#” 也是一个理想的分隔符，因为它可以被视为一个单独的 token 。</p>
+<p>这是我们定义的系统消息，我们正在以下面的方式询问模型。</p>
+<pre><code class="lang-python">system_message = <span class="hljs-string">f"""
+你将获得客户服务查询。
+每个客户服务查询都将用<span class="hljs-subst">{delimiter}</span>字符分隔。
+将每个查询分类到一个主要类别和一个次要类别中。
+以 JSON 格式提供你的输出，包含以下键：primary 和 secondary。
+
+主要类别：计费（Billing）、技术支持（Technical Support）、账户管理（Account Management）或一般咨询（General Inquiry）。
+
+计费次要类别：
+取消订阅或升级（Unsubscribe or upgrade）
+添加付款方式（Add a payment method）
+收费解释（Explanation for charge）
+争议费用（Dispute a charge）
+
+技术支持次要类别：
+常规故障排除（General troubleshooting）
+设备兼容性（Device compatibility）
+软件更新（Software updates）
+
+账户管理次要类别：
+重置密码（Password reset）
+更新个人信息（Update personal information）
+关闭账户（Close account）
+账户安全（Account security）
+
+一般咨询次要类别：
+产品信息（Product information）
+定价（Pricing）
+反馈（Feedback）
+与人工对话（Speak to a human）
+
+"""</span>
+</code></pre>
+<p>了解了系统消息后，现在让我们来看一个用户消息（user message）的例子。</p>
+<pre><code class="lang-python">user_message = <span class="hljs-string">f"""\ 
+我希望你删除我的个人资料和所有用户数据。"""</span>
+</code></pre>
+<p>首先，将这个用户消息格式化为一个消息列表，并将系统消息和用户消息之间使用 "####" 进行分隔。</p>
+<pre><code class="lang-python">messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, 
+ <span class="hljs-string">'content'</span>: system_message},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, 
+ <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
+]
+</code></pre>
+<p>如果让你来判断，下面这句话属于哪个类别："我想让您删除我的个人资料。我们思考一下，这句话似乎看上去属于“账户管理（Account Management）”或者属于“关闭账户（Close account）”。 </p>
+<p>让我们看看模型是如何思考的：</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> tool <span class="hljs-keyword">import</span> get_completion_from_messages
+
+response = get_completion_from_messages(messages)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>{
+  "primary": "账户管理",
+  "secondary": "关闭账户"
+}
+</code></pre><p>模型的分类是将“账户管理”作为 “primary” ，“关闭账户”作为 “secondary” 。</p>
+<p>请求结构化输出（如 JSON ）的好处是，您可以轻松地将其读入某个对象中，例如 Python 中的字典。如果您使用其他语言，也可以转换为其他对象，然后输入到后续步骤中。</p>
+<p>下面让我们再看一个例子：</p>
+<pre><code>用户消息: “告诉我更多关于你们的平板电脑的信息”
+</code></pre><p>我们运用相同的消息列表来获取模型的响应，然后打印出来。</p>
+<pre><code class="lang-python">user_message = <span class="hljs-string">f"""\
+告诉我更多有关你们的平板电脑的信息"""</span>
+messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, 
+ <span class="hljs-string">'content'</span>: system_message},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, 
+ <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
+] 
+response = get_completion_from_messages(messages)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>{
+  "primary": "一般咨询",
+  "secondary": "产品信息"
+}
+</code></pre><p>这里返回了另一个分类结果，并且看起来似乎是正确的。因此，根据客户咨询的分类，我们现在可以提供一套更具体的指令来处理后续步骤。在这种情况下，我们可能会添加关于平板电脑的额外信息，而在其他情况下，我们可能希望提供关闭账户的链接或类似的内容。这里返回了另一个分类结果，并且看起来应该是正确的。</p>
+<p>在下一章中，我们将探讨更多关于评估输入的方法，特别是如何确保用户以负责任的方式使用系统。</p>
+<h2 id="英文版">英文版</h2>
+<pre><code class="lang-python">system_message = <span class="hljs-string">f"""
+You will be provided with customer service queries. \
+The customer service query will be delimited with \
+<span class="hljs-subst">{delimiter}</span> characters.
+Classify each query into a primary category \
+and a secondary category. 
+Provide your output in json format with the \
+keys: primary and secondary.
+
+Primary categories: Billing, Technical Support, \
+Account Management, or General Inquiry.
+
+Billing secondary categories:
+Unsubscribe or upgrade
+Add a payment method
+Explanation for charge
+Dispute a charge
+
+Technical Support secondary categories:
+General troubleshooting
+Device compatibility
+Software updates
+
+Account Management secondary categories:
+Password reset
+Update personal information
+Close account
+Account security
+
+General Inquiry secondary categories:
+Product information
+Pricing
+Feedback
+Speak to a human
+
+"""</span>
+</code></pre>
+<pre><code class="lang-python">user_message = <span class="hljs-string">f"""\ 
+I want you to delete my profile and all of my user data"""</span>
+</code></pre>
+<pre><code class="lang-python">messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, 
+ <span class="hljs-string">'content'</span>: system_message},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, 
+ <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
+]
+</code></pre>
+<pre><code class="lang-python">response = get_completion_from_messages(messages)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>{
+  "primary": "Account Management",
+  "secondary": "Close account"
+}
+</code></pre><pre><code class="lang-python">user_message = <span class="hljs-string">f"""\
+Tell me more about your flat screen tvs"""</span>
+messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, 
+ <span class="hljs-string">'content'</span>: system_message},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, 
+ <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
+] 
+response = get_completion_from_messages(messages)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>{
+  "primary": "General Inquiry",
+  "secondary": "Product information"
+}
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html" class="navigation navigation-prev " aria-label="Previous page: 2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="4.-检查输入-监督-Moderation.html" class="navigation navigation-next " aria-label="Next page: 4. 检查输入-监督 Moderation">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3. 评估输入-分类 Classification","level":"3.4","depth":1,"next":{"title":"4. 检查输入-监督 Moderation","level":"3.5","depth":1,"path":"C2/4.-检查输入-监督-Moderation.md","ref":"C2/4.-检查输入-监督-Moderation.md","articles":[]},"previous":{"title":"2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens","level":"3.3","depth":1,"path":"C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.md","ref":"C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/3.-评估输入-分类-Classification.md","mtime":"2024-08-23T21:42:59.782Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-08-23T22:20:29.853Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

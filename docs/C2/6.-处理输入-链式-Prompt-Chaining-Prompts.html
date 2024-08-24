@@ -1,0 +1,1696 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>6. Prompt 链 Chaining Prompts · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="7.-检查结果-Check-Outputs.html" />
+    
+    
+    <link rel="prev" href="5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../前言.html">
+            
+                <a href="../前言.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../环境配置.html">
+            
+                <a href="../环境配置.html">
+            
+                    
+                    环境配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第一部分 面向开发者的提示工程</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../C1/readme.html">
+            
+                <a href="../C1/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../C1/1.-简介-Introduction.html">
+            
+                <a href="../C1/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../C1/2.-提示原则-Guidelines.html">
+            
+                <a href="../C1/2.-提示原则-Guidelines.html">
+            
+                    
+                    2. 提示原则 Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../C1/3.-迭代优化-Iterative.html">
+            
+                <a href="../C1/3.-迭代优化-Iterative.html">
+            
+                    
+                    3. 迭代优化 Iterative
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../C1/4.-文本概括-Summarizing.html">
+            
+                <a href="../C1/4.-文本概括-Summarizing.html">
+            
+                    
+                    4. 文本概括 Summarizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../C1/5.-推断-Inferring.html">
+            
+                <a href="../C1/5.-推断-Inferring.html">
+            
+                    
+                    5. 推断 Inferring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../C1/6.-文本转换-Transforming.html">
+            
+                <a href="../C1/6.-文本转换-Transforming.html">
+            
+                    
+                    6. 文本转换 Transforming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../C1/7.-文本扩展-Expanding.html">
+            
+                <a href="../C1/7.-文本扩展-Expanding.html">
+            
+                    
+                    7. 文本扩展 Expanding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="../C1/8.-聊天机器人-Chatbot.html">
+            
+                <a href="../C1/8.-聊天机器人-Chatbot.html">
+            
+                    
+                    8. 聊天机器人 Chatbot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="../C1/9.-总结-Summary.html">
+            
+                <a href="../C1/9.-总结-Summary.html">
+            
+                    
+                    9. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第二部分 搭建基于 ChatGPT 的问答系统</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="1.-简介-Introduction.html">
+            
+                <a href="1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                <a href="2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                    
+                    2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="3.-评估输入-分类-Classification.html">
+            
+                <a href="3.-评估输入-分类-Classification.html">
+            
+                    
+                    3. 评估输入-分类 Classification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="4.-检查输入-监督-Moderation.html">
+            
+                <a href="4.-检查输入-监督-Moderation.html">
+            
+                    
+                    4. 检查输入-监督 Moderation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                <a href="5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                    
+                    5. 思维链推理 Chain of Thought Reasoning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.7" data-path="6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                <a href="6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                    
+                    6. Prompt 链 Chaining Prompts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="7.-检查结果-Check-Outputs.html">
+            
+                <a href="7.-检查结果-Check-Outputs.html">
+            
+                    
+                    7. 检查结果 Check Outputs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                <a href="8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                    
+                    8. 搭建一个带评估的端到端系统 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="9.-评估（上）-Evaluation-part1.html">
+            
+                <a href="9.-评估（上）-Evaluation-part1.html">
+            
+                    
+                    9. 评估（上）Evaluation-part1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="10.-评估（下）Evaluation-part2.html">
+            
+                <a href="10.-评估（下）Evaluation-part2.html">
+            
+                    
+                    10. 评估（下）Evaluation-part2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="11.总结-conclusion.html">
+            
+                <a href="11.总结-conclusion.html">
+            
+                    
+                    11. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第三部分 使用 LangChain 开发应用程序</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../C3/readme.html">
+            
+                <a href="../C3/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../C3/1.-简介-Introduction.html">
+            
+                <a href="../C3/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                <a href="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                    
+                    2. 模型、提示和解析器 Models, Prompts and Parsers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../C3/3.-储存-Memory.html">
+            
+                <a href="../C3/3.-储存-Memory.html">
+            
+                    
+                    3. 储存 Memory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../C3/4.-模型链-Chains.html">
+            
+                <a href="../C3/4.-模型链-Chains.html">
+            
+                    
+                    4. 模型链 Chains
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                <a href="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                    
+                    5. 基于文档的问答 Question and Answer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="../C3/6.-评估-Evaluation.html">
+            
+                <a href="../C3/6.-评估-Evaluation.html">
+            
+                    
+                    6. 评估 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="../C3/7.-代理-Agent.html">
+            
+                <a href="../C3/7.-代理-Agent.html">
+            
+                    
+                    7. 代理 Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="../C3/8.-总结-Conclusion.html">
+            
+                <a href="../C3/8.-总结-Conclusion.html">
+            
+                    
+                    8. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第四部分 使用 LangChain 访问个人数据</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../C4/readme.html">
+            
+                <a href="../C4/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../C4/1.-简介-Introduction.html">
+            
+                <a href="../C4/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../C4/2.-文档加载-Document-Loading.html">
+            
+                <a href="../C4/2.-文档加载-Document-Loading.html">
+            
+                    
+                    2. 文档加载 Document Loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../C4/3.-文档分割-Splitting.html">
+            
+                <a href="../C4/3.-文档分割-Splitting.html">
+            
+                    
+                    3. 文档分割 Splitting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                <a href="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                    
+                    4. 向量数据库与词向量 Vectorstores and Embeddings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../C4/5.-检索-Retrieval.html">
+            
+                <a href="../C4/5.-检索-Retrieval.html">
+            
+                    
+                    5. 检索 Retrieval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="../C4/6.-问答-Question-Answering.html">
+            
+                <a href="../C4/6.-问答-Question-Answering.html">
+            
+                    
+                    6. 问答 Question ANswering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="../C4/7.-聊天-Chat.html">
+            
+                <a href="../C4/7.-聊天-Chat.html">
+            
+                    
+                    7. 聊天 Chat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="../C4/8.-总结-Summary.html">
+            
+                <a href="../C4/8.-总结-Summary.html">
+            
+                    
+                    8. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >6. Prompt 链 Chaining Prompts</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第六章-处理输入-链式">第六章 处理输入-链式</h1>
+<p>链式提示是将复杂任务分解为多个简单Prompt的策略。在本章中，我们将学习如何通过使用链式 Prompt 将复杂任务拆分为一系列简单的子任务。你可能会想，如果我们可以通过思维链推理一次性完成，那为什么要将任务拆分为多个 Prompt 呢？</p>
+<p>主要是因为链式提示它具有以下优点:</p>
+<ol>
+<li><p>分解复杂度，每个 Prompt 仅处理一个具体子任务，避免过于宽泛的要求，提高成功率。这类似于分阶段烹饪，而不是试图一次完成全部。</p>
+</li>
+<li><p>降低计算成本。过长的 Prompt 使用更多 tokens ，增加成本。拆分 Prompt 可以避免不必要的计算。</p>
+</li>
+<li><p>更容易测试和调试。可以逐步分析每个环节的性能。</p>
+</li>
+<li><p>融入外部工具。不同 Prompt 可以调用 API 、数据库等外部资源。</p>
+</li>
+<li><p>更灵活的工作流程。根据不同情况可以进行不同操作。</p>
+</li>
+</ol>
+<p>综上，链式提示通过将复杂任务进行科学拆分，实现了更高效、可靠的提示设计。它使语言模型集中处理单一子任务，减少认知负荷，同时保留了多步骤任务的能力。随着经验增长，开发者可以逐渐掌握运用链式提示的精髓。</p>
+<h2 id="一、-提取产品和类别">一、 提取产品和类别</h2>
+<p>我们所拆解的第一个子任务是，要求 LLM 从用户查询中提取产品和类别。</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> tool <span class="hljs-keyword">import</span> get_completion_from_messages
+
+delimiter = <span class="hljs-string">"####"</span>
+
+system_message = <span class="hljs-string">f"""
+您将获得客户服务查询。
+客户服务查询将使用<span class="hljs-subst">{delimiter}</span>字符作为分隔符。
+请仅输出一个可解析的Python列表，列表每一个元素是一个JSON对象，每个对象具有以下格式：
+'category': &lt;包括以下几个类别：Computers and Laptops、Smartphones and Accessories、Televisions and Home Theater Systems、Gaming Consoles and Accessories、Audio Equipment、Cameras and Camcorders&gt;,
+以及
+'products': &lt;必须是下面的允许产品列表中找到的产品列表&gt;
+
+类别和产品必须在客户服务查询中找到。
+如果提到了某个产品，它必须与允许产品列表中的正确类别关联。
+如果未找到任何产品或类别，则输出一个空列表。
+除了列表外，不要输出其他任何信息！
+
+允许的产品：
+
+Computers and Laptops category:
+TechPro Ultrabook
+BlueWave Gaming Laptop
+PowerLite Convertible
+TechPro Desktop
+BlueWave Chromebook
+
+Smartphones and Accessories category:
+SmartX ProPhone
+MobiTech PowerCase
+SmartX MiniPhone
+MobiTech Wireless Charger
+SmartX EarBuds
+
+Televisions and Home Theater Systems category:
+CineView 4K TV
+SoundMax Home Theater
+CineView 8K TV
+SoundMax Soundbar
+CineView OLED TV
+
+Gaming Consoles and Accessories category:
+GameSphere X
+ProGamer Controller
+GameSphere Y
+ProGamer Racing Wheel
+GameSphere VR Headset
+
+Audio Equipment category:
+AudioPhonic Noise-Canceling Headphones
+WaveSound Bluetooth Speaker
+AudioPhonic True Wireless Earbuds
+WaveSound Soundbar
+AudioPhonic Turntable
+
+Cameras and Camcorders category:
+FotoSnap DSLR Camera
+ActionCam 4K
+FotoSnap Mirrorless Camera
+ZoomMaster Camcorder
+FotoSnap Instant Camera
+
+只输出对象列表，不包含其他内容。
+"""</span>
+
+user_message_1 = <span class="hljs-string">f"""
+ 请告诉我关于 smartx pro phone 和 the fotosnap camera 的信息。
+ 另外，请告诉我关于你们的tvs的情况。 """</span>
+
+messages =  [{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},    
+             {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message_1}</span><span class="hljs-subst">{delimiter}</span>"</span>}] 
+
+category_and_product_response_1 = get_completion_from_messages(messages)
+
+<span class="hljs-built_in">print</span>(category_and_product_response_1)
+</code></pre>
+<pre><code>[{'category': 'Smartphones and Accessories', 'products': ['SmartX ProPhone']}, {'category': 'Cameras and Camcorders', 'products': ['FotoSnap DSLR Camera', 'FotoSnap Mirrorless Camera', 'FotoSnap Instant Camera']}, {'category': 'Televisions and Home Theater Systems', 'products': ['CineView 4K TV', 'CineView 8K TV', 'CineView OLED TV', 'SoundMax Home Theater', 'SoundMax Soundbar']}]
+</code></pre><p>可以看到，输出是一个对象列表，每个对象都有一个类别和一些产品。如 "SmartX ProPhone" 和 "Fotosnap DSLR Camera" 、"CineView 4K TV"。</p>
+<p>我们再来看一个例子。</p>
+<pre><code class="lang-python">user_message_2 = <span class="hljs-string">f"""我的路由器不工作了"""</span>
+messages =  [{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>,<span class="hljs-string">'content'</span>: system_message},
+             {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>,<span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message_2}</span><span class="hljs-subst">{delimiter}</span>"</span>}] 
+response = get_completion_from_messages(messages)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>[]
+</code></pre><h2 id="二、检索详细信息">二、检索详细信息</h2>
+<p>我们提供大量的产品信息作为示例，要求模型提取产品和对应的详细信息。限于篇幅，我们产品信息存储在 products.json 中。</p>
+<p>首先，让我们通过 Python 代码读取产品信息。</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> json
+<span class="hljs-comment"># 读取产品信息</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">"products_zh.json"</span>, <span class="hljs-string">"r"</span>) <span class="hljs-keyword">as</span> file:
+    products = json.load(file)
+</code></pre>
+<p>接下来，定义 get_product_by_name 函数，是我们能够根据产品名称获取产品：</p>
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_product_by_name</span>(<span class="hljs-params">name</span>):
+    <span class="hljs-string">"""
+    根据产品名称获取产品
+
+    参数:
+    name: 产品名称
+    """</span>
+    <span class="hljs-keyword">return</span> products.get(name, <span class="hljs-literal">None</span>)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">get_products_by_category</span>(<span class="hljs-params">category</span>):
+    <span class="hljs-string">"""
+    根据类别获取产品
+
+    参数:
+    category: 产品类别
+    """</span>
+    <span class="hljs-keyword">return</span> [product <span class="hljs-keyword">for</span> product <span class="hljs-keyword">in</span> products.values() <span class="hljs-keyword">if</span> product[<span class="hljs-string">"类别"</span>] == category]
+</code></pre>
+<p>调用 get_product_by_name 函数，输入产品名称 “TechPro Ultrabook”： </p>
+<pre><code class="lang-python">get_product_by_name(<span class="hljs-string">"TechPro Ultrabook"</span>)
+</code></pre>
+<pre><code>{'名称': 'TechPro 超极本',
+ '类别': '电脑和笔记本',
+ '品牌': 'TechPro',
+ '型号': 'TP-UB100',
+ '保修期': '1 year',
+ '评分': 4.5,
+ '特色': ['13.3-inch display', '8GB RAM', '256GB SSD', 'Intel Core i5 处理器'],
+ '描述': '一款时尚轻便的超极本，适合日常使用。',
+ '价格': 799.99}
+</code></pre><p>接下来，我们再看一个例子，调用 get_product_by_name 函数，输入产品名称 “电脑和笔记本”： </p>
+<pre><code class="lang-python">get_products_by_category(<span class="hljs-string">"电脑和笔记本"</span>)
+</code></pre>
+<pre><code>[{'名称': 'TechPro 超极本',
+  '类别': '电脑和笔记本',
+  '品牌': 'TechPro',
+  '型号': 'TP-UB100',
+  '保修期': '1 year',
+  '评分': 4.5,
+  '特色': ['13.3-inch display', '8GB RAM', '256GB SSD', 'Intel Core i5 处理器'],
+  '描述': '一款时尚轻便的超极本，适合日常使用。',
+  '价格': 799.99},
+ {'名称': 'BlueWave 游戏本',
+  '类别': '电脑和笔记本',
+  '品牌': 'BlueWave',
+  '型号': 'BW-GL200',
+  '保修期': '2 years',
+  '评分': 4.7,
+  '特色': ['15.6-inch display',
+   '16GB RAM',
+   '512GB SSD',
+   'NVIDIA GeForce RTX 3060'],
+  '描述': '一款高性能的游戏笔记本电脑，提供沉浸式体验。',
+  '价格': 1199.99},
+ {'名称': 'PowerLite Convertible',
+  '类别': '电脑和笔记本',
+  '品牌': 'PowerLite',
+  '型号': 'PL-CV300',
+  '保修期': '1 year',
+  '评分': 4.3,
+  '特色': ['14-inch touchscreen', '8GB RAM', '256GB SSD', '360-degree hinge'],
+  '描述': '一款多功能的可转换笔记本电脑，具有灵敏的触摸屏。',
+  '价格': 699.99},
+ {'名称': 'TechPro Desktop',
+  '类别': '电脑和笔记本',
+  '品牌': 'TechPro',
+  '型号': 'TP-DT500',
+  '保修期': '1 year',
+  '评分': 4.4,
+  '特色': ['Intel Core i7 processor',
+   '16GB RAM',
+   '1TB HDD',
+   'NVIDIA GeForce GTX 1660'],
+  '描述': '一款功能强大的台式电脑，适用于工作和娱乐。',
+  '价格': 999.99},
+ {'名称': 'BlueWave Chromebook',
+  '类别': '电脑和笔记本',
+  '品牌': 'BlueWave',
+  '型号': 'BW-CB100',
+  '保修期': '1 year',
+  '评分': 4.1,
+  '特色': ['11.6-inch display', '4GB RAM', '32GB eMMC', 'Chrome OS'],
+  '描述': '一款紧凑而价格实惠的Chromebook，适用于日常任务。',
+  '价格': 249.99}]
+</code></pre><h2 id="三、生成查询答案">三、生成查询答案</h2>
+<h3 id="31-解析输入字符串">3.1 解析输入字符串</h3>
+<p>定义一个 read_string_to_list 函数，将输入的字符串转换为 Python 列表</p>
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_string_to_list</span>(<span class="hljs-params">input_string</span>):
+    <span class="hljs-string">"""
+    将输入的字符串转换为 Python 列表。
+
+    参数:
+    input_string: 输入的字符串，应为有效的 JSON 格式。
+
+    返回:
+    list 或 None: 如果输入字符串有效，则返回对应的 Python 列表，否则返回 None。
+    """</span>
+    <span class="hljs-keyword">if</span> input_string <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
+
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-comment"># 将输入字符串中的单引号替换为双引号，以满足 JSON 格式的要求</span>
+        input_string = input_string.replace(<span class="hljs-string">"'"</span>, <span class="hljs-string">"\""</span>)  
+        data = json.loads(input_string)
+        <span class="hljs-keyword">return</span> data
+    <span class="hljs-keyword">except</span> json.JSONDecodeError:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"Error: Invalid JSON string"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>   
+
+category_and_product_list = read_string_to_list(category_and_product_response_1)
+<span class="hljs-built_in">print</span>(category_and_product_list)
+</code></pre>
+<pre><code>[{'category': 'Smartphones and Accessories', 'products': ['SmartX ProPhone']}, {'category': 'Cameras and Camcorders', 'products': ['FotoSnap DSLR Camera', 'FotoSnap Mirrorless Camera', 'FotoSnap Instant Camera']}, {'category': 'Televisions and Home Theater Systems', 'products': ['CineView 4K TV', 'CineView 8K TV', 'CineView OLED TV', 'SoundMax Home Theater', 'SoundMax Soundbar']}]
+</code></pre><h3 id="32-进行检索">3.2 进行检索</h3>
+<p>定义函数 generate_output_string 函数，根据输入的数据列表生成包含产品或类别信息的字符串：</p>
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_output_string</span>(<span class="hljs-params">data_list</span>):
+    <span class="hljs-string">"""
+    根据输入的数据列表生成包含产品或类别信息的字符串。
+
+    参数:
+    data_list: 包含字典的列表，每个字典都应包含 "products" 或 "category" 的键。
+
+    返回:
+    output_string: 包含产品或类别信息的字符串。
+    """</span>
+    output_string = <span class="hljs-string">""</span>
+    <span class="hljs-keyword">if</span> data_list <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+        <span class="hljs-keyword">return</span> output_string
+
+    <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> data_list:
+        <span class="hljs-keyword">try</span>:
+            <span class="hljs-keyword">if</span> <span class="hljs-string">"products"</span> <span class="hljs-keyword">in</span> data <span class="hljs-keyword">and</span> data[<span class="hljs-string">"products"</span>]:
+                products_list = data[<span class="hljs-string">"products"</span>]
+                <span class="hljs-keyword">for</span> product_name <span class="hljs-keyword">in</span> products_list:
+                    product = get_product_by_name(product_name)
+                    <span class="hljs-keyword">if</span> product:
+                        output_string += json.dumps(product, indent=<span class="hljs-number">4</span>, ensure_ascii=<span class="hljs-literal">False</span>) + <span class="hljs-string">"\n"</span>
+                    <span class="hljs-keyword">else</span>:
+                        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: Product '<span class="hljs-subst">{product_name}</span>' not found"</span>)
+            <span class="hljs-keyword">elif</span> <span class="hljs-string">"category"</span> <span class="hljs-keyword">in</span> data:
+                category_name = data[<span class="hljs-string">"category"</span>]
+                category_products = get_products_by_category(category_name)
+                <span class="hljs-keyword">for</span> product <span class="hljs-keyword">in</span> category_products:
+                    output_string += json.dumps(product, indent=<span class="hljs-number">4</span>, ensure_ascii=<span class="hljs-literal">False</span>) + <span class="hljs-string">"\n"</span>
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"Error: Invalid object format"</span>)
+        <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: <span class="hljs-subst">{e}</span>"</span>)
+
+    <span class="hljs-keyword">return</span> output_string 
+
+product_information_for_user_message_1 = generate_output_string(category_and_product_list)
+<span class="hljs-built_in">print</span>(product_information_for_user_message_1)
+</code></pre>
+<pre><code>{
+    "名称": "SmartX ProPhone",
+    "类别": "智能手机和配件",
+    "品牌": "SmartX",
+    "型号": "SX-PP10",
+    "保修期": "1 year",
+    "评分": 4.6,
+    "特色": [
+        "6.1-inch display",
+        "128GB storage",
+        "12MP dual camera",
+        "5G"
+    ],
+    "描述": "一款拥有先进摄像功能的强大智能手机。",
+    "价格": 899.99
+}
+{
+    "名称": "FotoSnap DSLR Camera",
+    "类别": "相机和摄像机",
+    "品牌": "FotoSnap",
+    "型号": "FS-DSLR200",
+    "保修期": "1 year",
+    "评分": 4.7,
+    "特色": [
+        "24.2MP sensor",
+        "1080p video",
+        "3-inch LCD",
+        "Interchangeable lenses"
+    ],
+    "描述": "使用这款多功能的单反相机，捕捉惊艳的照片和视频。",
+    "价格": 599.99
+}
+{
+    "名称": "FotoSnap Mirrorless Camera",
+    "类别": "相机和摄像机",
+    "品牌": "FotoSnap",
+    "型号": "FS-ML100",
+    "保修期": "1 year",
+    "评分": 4.6,
+    "特色": [
+        "20.1MP sensor",
+        "4K video",
+        "3-inch touchscreen",
+        "Interchangeable lenses"
+    ],
+    "描述": "一款具有先进功能的小巧轻便的无反相机。",
+    "价格": 799.99
+}
+{
+    "名称": "FotoSnap Instant Camera",
+    "类别": "相机和摄像机",
+    "品牌": "FotoSnap",
+    "型号": "FS-IC10",
+    "保修期": "1 year",
+    "评分": 4.1,
+    "特色": [
+        "Instant prints",
+        "Built-in flash",
+        "Selfie mirror",
+        "Battery-powered"
+    ],
+    "描述": "使用这款有趣且便携的即时相机，创造瞬间回忆。",
+    "价格": 69.99
+}
+{
+    "名称": "CineView 4K TV",
+    "类别": "电视和家庭影院系统",
+    "品牌": "CineView",
+    "型号": "CV-4K55",
+    "保修期": "2 years",
+    "评分": 4.8,
+    "特色": [
+        "55-inch display",
+        "4K resolution",
+        "HDR",
+        "Smart TV"
+    ],
+    "描述": "一款色彩鲜艳、智能功能丰富的惊艳4K电视。",
+    "价格": 599.99
+}
+{
+    "名称": "CineView 8K TV",
+    "类别": "电视和家庭影院系统",
+    "品牌": "CineView",
+    "型号": "CV-8K65",
+    "保修期": "2 years",
+    "评分": 4.9,
+    "特色": [
+        "65-inch display",
+        "8K resolution",
+        "HDR",
+        "Smart TV"
+    ],
+    "描述": "通过这款惊艳的8K电视，体验未来。",
+    "价格": 2999.99
+}
+{
+    "名称": "CineView OLED TV",
+    "类别": "电视和家庭影院系统",
+    "品牌": "CineView",
+    "型号": "CV-OLED55",
+    "保修期": "2 years",
+    "评分": 4.7,
+    "特色": [
+        "55-inch display",
+        "4K resolution",
+        "HDR",
+        "Smart TV"
+    ],
+    "描述": "通过这款OLED电视，体验真正的五彩斑斓。",
+    "价格": 1499.99
+}
+{
+    "名称": "SoundMax Home Theater",
+    "类别": "电视和家庭影院系统",
+    "品牌": "SoundMax",
+    "型号": "SM-HT100",
+    "保修期": "1 year",
+    "评分": 4.4,
+    "特色": [
+        "5.1 channel",
+        "1000W output",
+        "Wireless subwoofer",
+        "Bluetooth"
+    ],
+    "描述": "一款强大的家庭影院系统，提供沉浸式音频体验。",
+    "价格": 399.99
+}
+{
+    "名称": "SoundMax Soundbar",
+    "类别": "电视和家庭影院系统",
+    "品牌": "SoundMax",
+    "型号": "SM-SB50",
+    "保修期": "1 year",
+    "评分": 4.3,
+    "特色": [
+        "2.1 channel",
+        "300W output",
+        "Wireless subwoofer",
+        "Bluetooth"
+    ],
+    "描述": "使用这款时尚而功能强大的声音，升级您电视的音频体验。",
+    "价格": 199.99
+}
+</code></pre><h3 id="33-生成用户查询的答案">3.3 生成用户查询的答案</h3>
+<pre><code class="lang-python">system_message = <span class="hljs-string">f"""
+您是一家大型电子商店的客服助理。
+请以友好和乐于助人的口吻回答问题，并尽量简洁明了。
+请确保向用户提出相关的后续问题。
+"""</span>
+
+user_message_1 = <span class="hljs-string">f"""
+请告诉我关于 smartx pro phone 和 the fotosnap camera 的信息。
+另外，请告诉我关于你们的tvs的情况。
+"""</span>
+
+messages =  [{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>,<span class="hljs-string">'content'</span>: system_message},
+             {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>,<span class="hljs-string">'content'</span>: user_message_1},  
+             {<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>,
+              <span class="hljs-string">'content'</span>: <span class="hljs-string">f"""相关产品信息:\n\
+              <span class="hljs-subst">{product_information_for_user_message_1}</span>"""</span>}]
+
+final_response = get_completion_from_messages(messages)
+<span class="hljs-built_in">print</span>(final_response)
+</code></pre>
+<pre><code>关于SmartX ProPhone和FotoSnap相机的信息如下：
+
+SmartX ProPhone是一款由SmartX品牌推出的智能手机。它拥有6.1英寸的显示屏，128GB的存储空间，12MP的双摄像头和5G网络支持。这款手机的特点是先进的摄像功能。它的价格是899.99美元。
+
+FotoSnap相机有多个型号可供选择。其中包括DSLR相机、无反相机和即时相机。DSLR相机具有24.2MP的传感器、1080p视频拍摄、3英寸的LCD屏幕和可更换镜头。无反相机具有20.1MP的传感器、4K视频拍摄、3英寸的触摸屏和可更换镜头。即时相机具有即时打印功能、内置闪光灯、自拍镜和电池供电。这些相机的价格分别为599.99美元、799.99美元和69.99美元。
+
+关于我们的电视产品，我们有CineView和SoundMax品牌的电视和家庭影院系统可供选择。CineView电视有不同的型号，包括4K分辨率和8K分辨率的电视，以及OLED电视。这些电视都具有HDR和智能电视功能。价格从599.99美元到2999.99美元不等。SoundMax品牌提供家庭影院系统和声音棒。家庭影院系统具有5.1声道、1000W输出、无线低音炮和蓝牙功能，价格为399.99美元。声音棒具有2.1声道、300W输出、无线低音炮和蓝牙功能，价格为199.99美元。
+
+请问您对以上产品中的哪个感
+</code></pre><p>在这个例子中，我们只添加了一个特定函数或函数的调用，以通过产品名称获取产品描述或通过类别名称获取类别产品。但是，模型实际上擅长决定何时使用各种不同的工具，并可以正确地使用它们。这就是 ChatGPT 插件背后的思想。我们告诉模型它可以访问哪些工具以及它们的作用，它会在需要从特定来源获取信息或想要采取其他适当的操作时选择使用它们。在这个例子中，我们只能通过精确的产品和类别名称匹配查找信息，但还有更高级的信息检索技术。检索信息的最有效方法之一是使用自然语言处理技术，例如命名实体识别和关系提取。</p>
+<p>另一方法是使用文本嵌入（Embedding）来获取信息。嵌入可以用于实现对大型语料库的高效知识检索，以查找与给定查询相关的信息。使用文本嵌入的一个关键优势是它们可以实现模糊或语义搜索，这使您能够在不使用精确关键字的情况下找到相关信息。因此，在此例子中，我们不一定需要产品的确切名称，而可以使用更一般的查询如 <strong>“手机”</strong> 进行搜索。</p>
+<h2 id="四、总结">四、总结</h2>
+<p>在设计提示链时，我们并不需要也不建议将所有可能相关信息一次性全加载到模型中，而是采取动态、按需提供信息的策略，原因如下:</p>
+<ol>
+<li><p>过多无关信息会使模型处理上下文时更加困惑。尤其是低级模型，处理大量数据会表现衰减。</p>
+</li>
+<li><p>模型本身对上下文长度有限制，无法一次加载过多信息。</p>
+</li>
+<li><p>包含过多信息容易导致模型过拟合，处理新查询时效果较差。</p>
+</li>
+<li><p>动态加载信息可以降低计算成本。</p>
+</li>
+<li><p>允许模型主动决定何时需要更多信息，可以增强其推理能力。</p>
+</li>
+<li><p>我们可以使用更智能的检索机制，而不仅是精确匹配，例如文本 Embedding 实现语义搜索。</p>
+</li>
+</ol>
+<p>因此，合理设计提示链的信息提供策略，既考虑模型的能力限制，也兼顾提升其主动学习能力，是提示工程中需要着重考虑的点。希望这些经验可以帮助大家设计出运行高效且智能的提示链系统。</p>
+<p>在下一章中我们将讨论如何评估语言模型的输出。</p>
+<h2 id="五、英文版">五、英文版</h2>
+<p><strong>1.1 提取产品和类别</strong></p>
+<pre><code class="lang-python">delimiter = <span class="hljs-string">"####"</span>
+
+system_message = <span class="hljs-string">f"""
+You will be provided with customer service queries. \
+The customer service query will be delimited with \
+<span class="hljs-subst">{delimiter}</span> characters.
+Output a Python list of objects, where each object has \
+the following format:
+    'category': &lt;one of Computers and Laptops, \
+    Smartphones and Accessories, \
+    Televisions and Home Theater Systems, \
+    Gaming Consoles and Accessories, 
+    Audio Equipment, Cameras and Camcorders&gt;,
+and
+    'products': &lt;products must be found in the customer service query. And products that must \
+    be found in the allowed products below. If no products are found, output an empty list.
+    &gt;
+
+Where the categories and products must be found in \
+the customer service query.
+If a product is mentioned, it must be associated with \
+the correct category in the allowed products list below.
+If no products or categories are found, output an \
+empty list.
+
+Allowed products: 
+
+Products under Computers and Laptops category:
+TechPro Ultrabook
+BlueWave Gaming Laptop
+PowerLite Convertible
+TechPro Desktop
+BlueWave Chromebook
+
+Products under Smartphones and Accessories category:
+SmartX ProPhone
+MobiTech PowerCase
+SmartX MiniPhone
+MobiTech Wireless Charger
+SmartX EarBuds
+
+Products under Televisions and Home Theater Systems category:
+CineView 4K TV
+SoundMax Home Theater
+CineView 8K TV
+SoundMax Soundbar
+CineView OLED TV
+
+Products under Gaming Consoles and Accessories category:
+GameSphere X
+ProGamer Controller
+GameSphere Y
+ProGamer Racing Wheel
+GameSphere VR Headset
+
+Products under Audio Equipment category:
+AudioPhonic Noise-Canceling Headphones
+WaveSound Bluetooth Speaker
+AudioPhonic True Wireless Earbuds
+WaveSound Soundbar
+AudioPhonic Turntable
+
+Products under Cameras and Camcorders category:
+FotoSnap DSLR Camera
+ActionCam 4K
+FotoSnap Mirrorless Camera
+ZoomMaster Camcorder
+FotoSnap Instant Camera
+
+Only output the list of objects, with nothing else.
+"""</span>
+
+user_message_1 = <span class="hljs-string">f"""
+ tell me about the smartx pro phone and \
+ the fotosnap camera, the dslr one. \
+ Also tell me about your tvs """</span>
+
+messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, 
+ <span class="hljs-string">'content'</span>: system_message},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, 
+ <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message_1}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
+] 
+category_and_product_response_1 = get_completion_from_messages(messages)
+category_and_product_response_1
+</code></pre>
+<pre><code>"[{'category': 'Smartphones and Accessories', 'products': ['SmartX ProPhone']}, {'category': 'Cameras and Camcorders', 'products': ['FotoSnap DSLR Camera']}, {'category': 'Televisions and Home Theater Systems', 'products': []}]"
+</code></pre><pre><code class="lang-python">user_message_2 = <span class="hljs-string">f"""
+my router isn't working"""</span>
+messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>,
+ <span class="hljs-string">'content'</span>: system_message},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>,
+ <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message_2}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
+] 
+response = get_completion_from_messages(messages)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>[]
+</code></pre><p><strong>2.1 检索详细信息</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">"products.json"</span>, <span class="hljs-string">"r"</span>) <span class="hljs-keyword">as</span> file:
+    products = josn.load(file)
+</code></pre>
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_product_by_name</span>(<span class="hljs-params">name</span>):
+    <span class="hljs-keyword">return</span> products.get(name, <span class="hljs-literal">None</span>)
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">get_products_by_category</span>(<span class="hljs-params">category</span>):
+    <span class="hljs-keyword">return</span> [product <span class="hljs-keyword">for</span> product <span class="hljs-keyword">in</span> products.values() <span class="hljs-keyword">if</span> product[<span class="hljs-string">"category"</span>] == category]
+</code></pre>
+<pre><code class="lang-python">get_product_by_name(<span class="hljs-string">"TechPro Ultrabook"</span>)
+</code></pre>
+<pre><code>{'name': 'TechPro Ultrabook',
+ 'category': 'Computers and Laptops',
+ 'brand': 'TechPro',
+ 'model_number': 'TP-UB100',
+ 'warranty': '1 year',
+ 'rating': 4.5,
+ 'features': ['13.3-inch display',
+  '8GB RAM',
+  '256GB SSD',
+  'Intel Core i5 processor'],
+ 'description': 'A sleek and lightweight ultrabook for everyday use.',
+ 'price': 799.99}
+</code></pre><pre><code class="lang-python">get_products_by_category(<span class="hljs-string">"Computers and Laptops"</span>)
+</code></pre>
+<pre><code>[{'name': 'TechPro Ultrabook',
+  'category': 'Computers and Laptops',
+  'brand': 'TechPro',
+  'model_number': 'TP-UB100',
+  'warranty': '1 year',
+  'rating': 4.5,
+  'features': ['13.3-inch display',
+   '8GB RAM',
+   '256GB SSD',
+   'Intel Core i5 processor'],
+  'description': 'A sleek and lightweight ultrabook for everyday use.',
+  'price': 799.99},
+ {'name': 'BlueWave Gaming Laptop',
+  'category': 'Computers and Laptops',
+  'brand': 'BlueWave',
+  'model_number': 'BW-GL200',
+  'warranty': '2 years',
+  'rating': 4.7,
+  'features': ['15.6-inch display',
+   '16GB RAM',
+   '512GB SSD',
+   'NVIDIA GeForce RTX 3060'],
+  'description': 'A high-performance gaming laptop for an immersive experience.',
+  'price': 1199.99},
+ {'name': 'PowerLite Convertible',
+  'category': 'Computers and Laptops',
+  'brand': 'PowerLite',
+  'model_number': 'PL-CV300',
+  'warranty': '1 year',
+  'rating': 4.3,
+  'features': ['14-inch touchscreen',
+   '8GB RAM',
+   '256GB SSD',
+   '360-degree hinge'],
+  'description': 'A versatile convertible laptop with a responsive touchscreen.',
+  'price': 699.99},
+ {'name': 'TechPro Desktop',
+  'category': 'Computers and Laptops',
+  'brand': 'TechPro',
+  'model_number': 'TP-DT500',
+  'warranty': '1 year',
+  'rating': 4.4,
+  'features': ['Intel Core i7 processor',
+   '16GB RAM',
+   '1TB HDD',
+   'NVIDIA GeForce GTX 1660'],
+  'description': 'A powerful desktop computer for work and play.',
+  'price': 999.99},
+ {'name': 'BlueWave Chromebook',
+  'category': 'Computers and Laptops',
+  'brand': 'BlueWave',
+  'model_number': 'BW-CB100',
+  'warranty': '1 year',
+  'rating': 4.1,
+  'features': ['11.6-inch display', '4GB RAM', '32GB eMMC', 'Chrome OS'],
+  'description': 'A compact and affordable Chromebook for everyday tasks.',
+  'price': 249.99}]
+</code></pre><p><strong>3.1 解析输入字符串</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_string_to_list</span>(<span class="hljs-params">input_string</span>):
+    <span class="hljs-string">"""
+    将输入的字符串转换为 Python 列表。
+
+    参数:
+    input_string: 输入的字符串，应为有效的 JSON 格式。
+
+    返回:
+    list 或 None: 如果输入字符串有效，则返回对应的 Python 列表，否则返回 None。
+    """</span>
+    <span class="hljs-keyword">if</span> input_string <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
+
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-comment"># 将输入字符串中的单引号替换为双引号，以满足 JSON 格式的要求</span>
+        input_string = input_string.replace(<span class="hljs-string">"'"</span>, <span class="hljs-string">"\""</span>)  
+        data = json.loads(input_string)
+        <span class="hljs-keyword">return</span> data
+    <span class="hljs-keyword">except</span> json.JSONDecodeError:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"Error: Invalid JSON string"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
+</code></pre>
+<pre><code class="lang-python">category_and_product_list = read_string_to_list(category_and_product_response_1)
+category_and_product_list
+</code></pre>
+<pre><code>[{'category': 'Smartphones and Accessories', 'products': ['SmartX ProPhone']}, {'category': 'Cameras and Camcorders', 'products': ['FotoSnap DSLR Camera']}, {'category': 'Televisions and Home Theater Systems', 'products': []}]
+</code></pre><p><strong>3.2 进行检索</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_output_string</span>(<span class="hljs-params">data_list</span>):
+    <span class="hljs-string">"""
+    根据输入的数据列表生成包含产品或类别信息的字符串。
+
+    参数:
+    data_list: 包含字典的列表，每个字典都应包含 "products" 或 "category" 的键。
+
+    返回:
+    output_string: 包含产品或类别信息的字符串。
+    """</span>
+    output_string = <span class="hljs-string">""</span>
+    <span class="hljs-keyword">if</span> data_list <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+        <span class="hljs-keyword">return</span> output_string
+
+    <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> data_list:
+        <span class="hljs-keyword">try</span>:
+            <span class="hljs-keyword">if</span> <span class="hljs-string">"products"</span> <span class="hljs-keyword">in</span> data <span class="hljs-keyword">and</span> data[<span class="hljs-string">"products"</span>]:
+                products_list = data[<span class="hljs-string">"products"</span>]
+                <span class="hljs-keyword">for</span> product_name <span class="hljs-keyword">in</span> products_list:
+                    product = get_product_by_name(product_name)
+                    <span class="hljs-keyword">if</span> product:
+                        output_string += json.dumps(product, indent=<span class="hljs-number">4</span>, ensure_ascii=<span class="hljs-literal">False</span>) + <span class="hljs-string">"\n"</span>
+                    <span class="hljs-keyword">else</span>:
+                        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: Product '<span class="hljs-subst">{product_name}</span>' not found"</span>)
+            <span class="hljs-keyword">elif</span> <span class="hljs-string">"category"</span> <span class="hljs-keyword">in</span> data:
+                category_name = data[<span class="hljs-string">"category"</span>]
+                category_products = get_products_by_category(category_name)
+                <span class="hljs-keyword">for</span> product <span class="hljs-keyword">in</span> category_products:
+                    output_string += json.dumps(product, indent=<span class="hljs-number">4</span>, ensure_ascii=<span class="hljs-literal">False</span>) + <span class="hljs-string">"\n"</span>
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"Error: Invalid object format"</span>)
+        <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: <span class="hljs-subst">{e}</span>"</span>)
+
+    <span class="hljs-keyword">return</span> output_string
+</code></pre>
+<pre><code class="lang-python">product_information_for_user_message_1 = generate_output_string(category_and_product_list)
+<span class="hljs-built_in">print</span>(product_information_for_user_message_1)
+</code></pre>
+<pre><code>{
+    "name": "SmartX ProPhone",
+    "category": "Smartphones and Accessories",
+    "brand": "SmartX",
+    "model_number": "SX-PP10",
+    "warranty": "1 year",
+    "rating": 4.6,
+    "features": [
+        "6.1-inch display",
+        "128GB storage",
+        "12MP dual camera",
+        "5G"
+    ],
+    "description": "A powerful smartphone with advanced camera features.",
+    "price": 899.99
+}
+{
+    "name": "FotoSnap DSLR Camera",
+    "category": "Cameras and Camcorders",
+    "brand": "FotoSnap",
+    "model_number": "FS-DSLR200",
+    "warranty": "1 year",
+    "rating": 4.7,
+    "features": [
+        "24.2MP sensor",
+        "1080p video",
+        "3-inch LCD",
+        "Interchangeable lenses"
+    ],
+    "description": "Capture stunning photos and videos with this versatile DSLR camera.",
+    "price": 599.99
+}
+{
+    "name": "CineView 4K TV",
+    "category": "Televisions and Home Theater Systems",
+    "brand": "CineView",
+    "model_number": "CV-4K55",
+    "warranty": "2 years",
+    "rating": 4.8,
+    "features": [
+        "55-inch display",
+        "4K resolution",
+        "HDR",
+        "Smart TV"
+    ],
+    "description": "A stunning 4K TV with vibrant colors and smart features.",
+    "price": 599.99
+}
+{
+    "name": "SoundMax Home Theater",
+    "category": "Televisions and Home Theater Systems",
+    "brand": "SoundMax",
+    "model_number": "SM-HT100",
+    "warranty": "1 year",
+    "rating": 4.4,
+    "features": [
+        "5.1 channel",
+        "1000W output",
+        "Wireless subwoofer",
+        "Bluetooth"
+    ],
+    "description": "A powerful home theater system for an immersive audio experience.",
+    "price": 399.99
+}
+{
+    "name": "CineView 8K TV",
+    "category": "Televisions and Home Theater Systems",
+    "brand": "CineView",
+    "model_number": "CV-8K65",
+    "warranty": "2 years",
+    "rating": 4.9,
+    "features": [
+        "65-inch display",
+        "8K resolution",
+        "HDR",
+        "Smart TV"
+    ],
+    "description": "Experience the future of television with this stunning 8K TV.",
+    "price": 2999.99
+}
+{
+    "name": "SoundMax Soundbar",
+    "category": "Televisions and Home Theater Systems",
+    "brand": "SoundMax",
+    "model_number": "SM-SB50",
+    "warranty": "1 year",
+    "rating": 4.3,
+    "features": [
+        "2.1 channel",
+        "300W output",
+        "Wireless subwoofer",
+        "Bluetooth"
+    ],
+    "description": "Upgrade your TV's audio with this sleek and powerful soundbar.",
+    "price": 199.99
+}
+{
+    "name": "CineView OLED TV",
+    "category": "Televisions and Home Theater Systems",
+    "brand": "CineView",
+    "model_number": "CV-OLED55",
+    "warranty": "2 years",
+    "rating": 4.7,
+    "features": [
+        "55-inch display",
+        "4K resolution",
+        "HDR",
+        "Smart TV"
+    ],
+    "description": "Experience true blacks and vibrant colors with this OLED TV.",
+    "price": 1499.99
+}
+</code></pre><p><strong>3.3 生成用户查询的答案</strong></p>
+<pre><code class="lang-python">system_message = <span class="hljs-string">f"""
+You are a customer service assistant for a \
+large electronic store. \
+Respond in a friendly and helpful tone, \
+with very concise answers. \
+Make sure to ask the user relevant follow up questions.
+"""</span>
+user_message_1 = <span class="hljs-string">f"""
+tell me about the smartx pro phone and \
+the fotosnap camera, the dslr one. \
+Also tell me about your tvs"""</span>
+messages =  [{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>,<span class="hljs-string">'content'</span>: system_message},   
+             {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>,<span class="hljs-string">'content'</span>: user_message_1},
+             {<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>,
+              <span class="hljs-string">'content'</span>: <span class="hljs-string">f"""Relevant product information:\n\
+              <span class="hljs-subst">{product_information_for_user_message_1}</span>"""</span>}]
+final_response = get_completion_from_messages(messages)
+<span class="hljs-built_in">print</span>(final_response)
+</code></pre>
+<pre><code>The SmartX ProPhone is a powerful smartphone with a 6.1-inch display, 128GB storage, a 12MP dual camera, and 5G capability. It is priced at $899.99 and comes with a 1-year warranty. 
+
+The FotoSnap DSLR Camera is a versatile camera with a 24.2MP sensor, 1080p video recording, a 3-inch LCD screen, and interchangeable lenses. It is priced at $599.99 and also comes with a 1-year warranty.
+
+As for our TVs, we have a range of options. The CineView 4K TV is a 55-inch TV with 4K resolution, HDR, and smart TV features. It is priced at $599.99 and comes with a 2-year warranty.
+
+We also have the CineView 8K TV, which is a 65-inch TV with 8K resolution, HDR, and smart TV features. It is priced at $2999.99 and also comes with a 2-year warranty.
+
+Lastly, we have the CineView OLED TV, which is a 55-inch TV with 4K resolution, HDR, and smart TV features. It is priced at $1499.99 and comes with a 2-year warranty.
+
+Is there anything specific you would like to know about these products?
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html" class="navigation navigation-prev " aria-label="Previous page: 5. 思维链推理 Chain of Thought Reasoning">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="7.-检查结果-Check-Outputs.html" class="navigation navigation-next " aria-label="Next page: 7. 检查结果 Check Outputs">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"6. Prompt 链 Chaining Prompts","level":"3.7","depth":1,"next":{"title":"7. 检查结果 Check Outputs","level":"3.8","depth":1,"path":"C2/7.-检查结果-Check-Outputs.md","ref":"C2/7.-检查结果-Check-Outputs.md","articles":[]},"previous":{"title":"5. 思维链推理 Chain of Thought Reasoning","level":"3.6","depth":1,"path":"C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.md","ref":"C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/6.-处理输入-链式-Prompt-Chaining-Prompts.md","mtime":"2024-08-23T21:42:59.784Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-08-23T22:20:29.853Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

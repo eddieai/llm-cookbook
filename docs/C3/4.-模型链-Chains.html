@@ -1,0 +1,1491 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>4. 模型链 Chains · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="5.-基于文档的问答-Question-and-Answer.html" />
+    
+    
+    <link rel="prev" href="3.-储存-Memory.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../前言.html">
+            
+                <a href="../前言.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../环境配置.html">
+            
+                <a href="../环境配置.html">
+            
+                    
+                    环境配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第一部分 面向开发者的提示工程</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../C1/readme.html">
+            
+                <a href="../C1/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../C1/1.-简介-Introduction.html">
+            
+                <a href="../C1/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../C1/2.-提示原则-Guidelines.html">
+            
+                <a href="../C1/2.-提示原则-Guidelines.html">
+            
+                    
+                    2. 提示原则 Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../C1/3.-迭代优化-Iterative.html">
+            
+                <a href="../C1/3.-迭代优化-Iterative.html">
+            
+                    
+                    3. 迭代优化 Iterative
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../C1/4.-文本概括-Summarizing.html">
+            
+                <a href="../C1/4.-文本概括-Summarizing.html">
+            
+                    
+                    4. 文本概括 Summarizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../C1/5.-推断-Inferring.html">
+            
+                <a href="../C1/5.-推断-Inferring.html">
+            
+                    
+                    5. 推断 Inferring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../C1/6.-文本转换-Transforming.html">
+            
+                <a href="../C1/6.-文本转换-Transforming.html">
+            
+                    
+                    6. 文本转换 Transforming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../C1/7.-文本扩展-Expanding.html">
+            
+                <a href="../C1/7.-文本扩展-Expanding.html">
+            
+                    
+                    7. 文本扩展 Expanding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="../C1/8.-聊天机器人-Chatbot.html">
+            
+                <a href="../C1/8.-聊天机器人-Chatbot.html">
+            
+                    
+                    8. 聊天机器人 Chatbot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="../C1/9.-总结-Summary.html">
+            
+                <a href="../C1/9.-总结-Summary.html">
+            
+                    
+                    9. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第二部分 搭建基于 ChatGPT 的问答系统</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../C2/readme.html">
+            
+                <a href="../C2/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../C2/1.-简介-Introduction.html">
+            
+                <a href="../C2/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                <a href="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                    
+                    2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../C2/3.-评估输入-分类-Classification.html">
+            
+                <a href="../C2/3.-评估输入-分类-Classification.html">
+            
+                    
+                    3. 评估输入-分类 Classification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../C2/4.-检查输入-监督-Moderation.html">
+            
+                <a href="../C2/4.-检查输入-监督-Moderation.html">
+            
+                    
+                    4. 检查输入-监督 Moderation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                <a href="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                    
+                    5. 思维链推理 Chain of Thought Reasoning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                <a href="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                    
+                    6. Prompt 链 Chaining Prompts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="../C2/7.-检查结果-Check-Outputs.html">
+            
+                <a href="../C2/7.-检查结果-Check-Outputs.html">
+            
+                    
+                    7. 检查结果 Check Outputs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                <a href="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                    
+                    8. 搭建一个带评估的端到端系统 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                <a href="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                    
+                    9. 评估（上）Evaluation-part1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                <a href="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                    
+                    10. 评估（下）Evaluation-part2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="../C2/11.总结-conclusion.html">
+            
+                <a href="../C2/11.总结-conclusion.html">
+            
+                    
+                    11. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第三部分 使用 LangChain 开发应用程序</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="1.-简介-Introduction.html">
+            
+                <a href="1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                <a href="2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                    
+                    2. 模型、提示和解析器 Models, Prompts and Parsers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="3.-储存-Memory.html">
+            
+                <a href="3.-储存-Memory.html">
+            
+                    
+                    3. 储存 Memory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.5" data-path="4.-模型链-Chains.html">
+            
+                <a href="4.-模型链-Chains.html">
+            
+                    
+                    4. 模型链 Chains
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="5.-基于文档的问答-Question-and-Answer.html">
+            
+                <a href="5.-基于文档的问答-Question-and-Answer.html">
+            
+                    
+                    5. 基于文档的问答 Question and Answer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="6.-评估-Evaluation.html">
+            
+                <a href="6.-评估-Evaluation.html">
+            
+                    
+                    6. 评估 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="7.-代理-Agent.html">
+            
+                <a href="7.-代理-Agent.html">
+            
+                    
+                    7. 代理 Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="8.-总结-Conclusion.html">
+            
+                <a href="8.-总结-Conclusion.html">
+            
+                    
+                    8. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第四部分 使用 LangChain 访问个人数据</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../C4/readme.html">
+            
+                <a href="../C4/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../C4/1.-简介-Introduction.html">
+            
+                <a href="../C4/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../C4/2.-文档加载-Document-Loading.html">
+            
+                <a href="../C4/2.-文档加载-Document-Loading.html">
+            
+                    
+                    2. 文档加载 Document Loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../C4/3.-文档分割-Splitting.html">
+            
+                <a href="../C4/3.-文档分割-Splitting.html">
+            
+                    
+                    3. 文档分割 Splitting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                <a href="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                    
+                    4. 向量数据库与词向量 Vectorstores and Embeddings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../C4/5.-检索-Retrieval.html">
+            
+                <a href="../C4/5.-检索-Retrieval.html">
+            
+                    
+                    5. 检索 Retrieval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="../C4/6.-问答-Question-Answering.html">
+            
+                <a href="../C4/6.-问答-Question-Answering.html">
+            
+                    
+                    6. 问答 Question ANswering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="../C4/7.-聊天-Chat.html">
+            
+                <a href="../C4/7.-聊天-Chat.html">
+            
+                    
+                    7. 聊天 Chat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="../C4/8.-总结-Summary.html">
+            
+                <a href="../C4/8.-总结-Summary.html">
+            
+                    
+                    8. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >4. 模型链 Chains</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第四章-模型链">第四章 模型链</h1>
+<p>链（Chains）通常将大语言模型（LLM）与提示（Prompt）结合在一起，基于此，我们可以对文本或数据进行一系列操作。链（Chains）可以一次性接受多个输入。例如，我们可以创建一个链，该链接受用户输入，使用提示模板对其进行格式化，然后将格式化的响应传递给 LLM 。我们可以通过将多个链组合在一起，或者通过将链与其他组件组合在一起来构建更复杂的链。</p>
+<h2 id="一、大语言模型链">一、大语言模型链</h2>
+<p>大语言模型链（LLMChain）是一个简单但非常强大的链，也是后面我们将要介绍的许多链的基础。</p>
+<h3 id="11-初始化语言模型">1.1 初始化语言模型</h3>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> warnings
+warnings.filterwarnings(<span class="hljs-string">'ignore'</span>)
+
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI 
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate  
+<span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> LLMChain   
+
+<span class="hljs-comment"># 这里我们将参数temperature设置为0.0，从而减少生成答案的随机性。</span>
+<span class="hljs-comment"># 如果你想要每次得到不一样的有新意的答案，可以尝试调整该参数。</span>
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)
+</code></pre>
+<h3 id="12-初始化提示模版">1.2 初始化提示模版</h3>
+<p>初始化提示，这个提示将接受一个名为product的变量。该prompt将要求LLM生成一个描述制造该产品的公司的最佳名称</p>
+<pre><code class="lang-python">prompt = ChatPromptTemplate.from_template(<span class="hljs-string">"描述制造{product}的一个公司的最佳名称是什么?"</span>)
+</code></pre>
+<h3 id="13-构建大语言模型链">1.3 构建大语言模型链</h3>
+<p>将大语言模型(LLM)和提示（Prompt）组合成链。这个大语言模型链非常简单，可以让我们以一种顺序的方式去通过运行提示并且结合到大语言模型中。</p>
+<pre><code class="lang-python">chain = LLMChain(llm=llm, prompt=prompt)
+</code></pre>
+<h3 id="14-运行大语言模型链">1.4 运行大语言模型链</h3>
+<p>因此，如果我们有一个名为"Queen Size Sheet Set"的产品，我们可以通过使用<code>chain.run</code>将其通过这个链运行</p>
+<pre><code class="lang-python">product = <span class="hljs-string">"大号床单套装"</span>
+chain.run(product)
+</code></pre>
+<pre><code>'"豪华床纺"'
+</code></pre><p>您可以输入任何产品描述，然后查看链将输出什么结果。</p>
+<h2 id="二、简单顺序链">二、简单顺序链</h2>
+<p>顺序链（SequentialChains）是按预定义顺序执行其链接的链。具体来说，我们将使用简单顺序链（SimpleSequentialChain），这是顺序链的最简单类型，其中每个步骤都有一个输入/输出，一个步骤的输出是下一个步骤的输入。</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> SimpleSequentialChain
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.9</span>)
+</code></pre>
+<h3 id="21-创建两个子链">2.1 创建两个子链</h3>
+<pre><code class="lang-python"><span class="hljs-comment"># 提示模板 1 ：这个提示将接受产品并返回最佳名称来描述该公司</span>
+first_prompt = ChatPromptTemplate.from_template(   
+    <span class="hljs-string">"描述制造{product}的一个公司的最好的名称是什么"</span>
+)
+chain_one = LLMChain(llm=llm, prompt=first_prompt)
+
+<span class="hljs-comment"># 提示模板 2 ：接受公司名称，然后输出该公司的长为20个单词的描述</span>
+second_prompt = ChatPromptTemplate.from_template(   
+    <span class="hljs-string">"写一个20字的描述对于下面这个\
+    公司：{company_name}的"</span>
+)
+chain_two = LLMChain(llm=llm, prompt=second_prompt)
+</code></pre>
+<h3 id="22-构建简单顺序链">2.2 构建简单顺序链</h3>
+<p>现在我们可以组合两个LLMChain，以便我们可以在一个步骤中创建公司名称和描述</p>
+<pre><code class="lang-python">overall_simple_chain = SimpleSequentialChain(chains=[chain_one, chain_two],
+                                             verbose=<span class="hljs-literal">True</span>)
+</code></pre>
+<p>给一个输入，然后运行上面的链</p>
+<h3 id="23-运行简单顺序链">2.3 运行简单顺序链</h3>
+<pre><code class="lang-python">product = <span class="hljs-string">"大号床单套装"</span>
+overall_simple_chain.run(product)
+</code></pre>
+<pre><code>&gt; Entering new SimpleSequentialChain chain...
+优床制造公司
+优床制造公司是一家专注于生产高品质床具的公司。
+
+&gt; Finished chain.
+
+
+
+
+
+'优床制造公司是一家专注于生产高品质床具的公司。'
+</code></pre><h2 id="三、-顺序链">三、 顺序链</h2>
+<p>当只有一个输入和一个输出时，简单顺序链（SimpleSequentialChain）即可实现。当有多个输入或多个输出时，我们则需要使用顺序链（SequentialChain）来实现。</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> SequentialChain
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI    <span class="hljs-comment">#导入OpenAI模型</span>
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate   <span class="hljs-comment">#导入聊天提示模板</span>
+<span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> LLMChain    <span class="hljs-comment">#导入LLM链。</span>
+
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.9</span>)
+</code></pre>
+<p>接下来我们将创建一系列的链，然后一个接一个使用他们</p>
+<h3 id="31-创建四个子链">3.1 创建四个子链</h3>
+<pre><code class="lang-python"><span class="hljs-comment">#子链1</span>
+<span class="hljs-comment"># prompt模板 1: 翻译成英语（把下面的review翻译成英语）</span>
+first_prompt = ChatPromptTemplate.from_template(
+    <span class="hljs-string">"把下面的评论review翻译成英文:"</span>
+    <span class="hljs-string">"\n\n{Review}"</span>
+)
+<span class="hljs-comment"># chain 1: 输入：Review    输出：英文的 Review</span>
+chain_one = LLMChain(llm=llm, prompt=first_prompt, output_key=<span class="hljs-string">"English_Review"</span>)
+
+<span class="hljs-comment">#子链2</span>
+<span class="hljs-comment"># prompt模板 2: 用一句话总结下面的 review</span>
+second_prompt = ChatPromptTemplate.from_template(
+    <span class="hljs-string">"请你用一句话来总结下面的评论review:"</span>
+    <span class="hljs-string">"\n\n{English_Review}"</span>
+)
+<span class="hljs-comment"># chain 2: 输入：英文的Review   输出：总结</span>
+chain_two = LLMChain(llm=llm, prompt=second_prompt, output_key=<span class="hljs-string">"summary"</span>)
+
+
+<span class="hljs-comment">#子链3</span>
+<span class="hljs-comment"># prompt模板 3: 下面review使用的什么语言</span>
+third_prompt = ChatPromptTemplate.from_template(
+    <span class="hljs-string">"下面的评论review使用的什么语言:\n\n{Review}"</span>
+)
+<span class="hljs-comment"># chain 3: 输入：Review  输出：语言</span>
+chain_three = LLMChain(llm=llm, prompt=third_prompt, output_key=<span class="hljs-string">"language"</span>)
+
+
+<span class="hljs-comment">#子链4</span>
+<span class="hljs-comment"># prompt模板 4: 使用特定的语言对下面的总结写一个后续回复</span>
+fourth_prompt = ChatPromptTemplate.from_template(
+    <span class="hljs-string">"使用特定的语言对下面的总结写一个后续回复:"</span>
+    <span class="hljs-string">"\n\n总结: {summary}\n\n语言: {language}"</span>
+)
+<span class="hljs-comment"># chain 4: 输入： 总结, 语言    输出： 后续回复</span>
+chain_four = LLMChain(llm=llm, prompt=fourth_prompt, output_key=<span class="hljs-string">"followup_message"</span>)
+</code></pre>
+<h3 id="32-对四个子链进行组合">3.2 对四个子链进行组合</h3>
+<pre><code class="lang-python"><span class="hljs-comment">#输入：review    </span>
+<span class="hljs-comment">#输出：英文review，总结，后续回复 </span>
+overall_chain = SequentialChain(
+    chains=[chain_one, chain_two, chain_three, chain_four],
+    input_variables=[<span class="hljs-string">"Review"</span>],
+    output_variables=[<span class="hljs-string">"English_Review"</span>, <span class="hljs-string">"summary"</span>,<span class="hljs-string">"followup_message"</span>],
+    verbose=<span class="hljs-literal">True</span>
+)
+</code></pre>
+<p>让我们选择一篇评论并通过整个链传递它，可以发现，原始review是法语，可以把英文review看做是一种翻译，接下来是根据英文review得到的总结，最后输出的是用法语原文进行的续写信息。</p>
+<pre><code class="lang-python">df = pd.read_csv(<span class="hljs-string">'../data/Data.csv'</span>)
+review = df.Review[<span class="hljs-number">5</span>]
+overall_chain(review)
+</code></pre>
+<pre><code>&gt; Entering new SequentialChain chain...
+
+&gt; Finished chain.
+
+
+
+
+
+{'Review': "Je trouve le goût médiocre. La mousse ne tient pas, c'est bizarre. J'achète les mêmes dans le commerce et le goût est bien meilleur...\nVieux lot ou contrefaçon !?",
+ 'English_Review': "I find the taste mediocre. The foam doesn't hold, it's weird. I buy the same ones in stores and the taste is much better...\nOld batch or counterfeit!?",
+ 'summary': "The reviewer finds the taste mediocre, the foam doesn't hold well, and suspects the product may be either an old batch or a counterfeit.",
+ 'followup_message': "后续回复（法语）：Merci beaucoup pour votre avis. Nous sommes désolés d'apprendre que vous avez trouvé le goût médiocre et que la mousse ne tient pas bien. Nous prenons ces problèmes très au sérieux et nous enquêterons sur la possibilité que le produit soit soit un ancien lot, soit une contrefaçon. Nous vous prions de nous excuser pour cette expérience décevante et nous ferons tout notre possible pour résoudre ce problème. Votre satisfaction est notre priorité et nous apprécions vos commentaires précieux."}
+</code></pre><h2 id="四、-路由链">四、 路由链</h2>
+<p>到目前为止，我们已经学习了大语言模型链和顺序链。但是，如果我们想做一些更复杂的事情怎么办？一个相当常见但基本的操作是根据输入将其路由到一条链，具体取决于该输入到底是什么。如果你有多个子链，每个子链都专门用于特定类型的输入，那么可以组成一个路由链，它首先决定将它传递给哪个子链，然后将它传递给那个链。</p>
+<p>路由器由两个组件组成：</p>
+<ul>
+<li>路由链（Router Chain）：路由器链本身，负责选择要调用的下一个链</li>
+<li>destination_chains：路由器链可以路由到的链</li>
+</ul>
+<p>举一个具体的例子，让我们看一下我们在不同类型的链之间路由的地方，我们在这里有不同的prompt:  </p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains.router <span class="hljs-keyword">import</span> MultiPromptChain  <span class="hljs-comment">#导入多提示链</span>
+<span class="hljs-keyword">from</span> langchain.chains.router.llm_router <span class="hljs-keyword">import</span> LLMRouterChain,RouterOutputParser
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> PromptTemplate
+llm = ChatOpenAI(temperature=<span class="hljs-number">0</span>)
+</code></pre>
+<h3 id="41-定义提示模板">4.1 定义提示模板</h3>
+<p>首先，我们定义提示适用于不同场景下的提示模板。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 中文</span>
+<span class="hljs-comment">#第一个提示适合回答物理问题</span>
+physics_template = <span class="hljs-string">"""你是一个非常聪明的物理专家。 \
+你擅长用一种简洁并且易于理解的方式去回答问题。\
+当你不知道问题的答案时，你承认\
+你不知道.
+
+这是一个问题:
+{input}"""</span>
+
+
+<span class="hljs-comment">#第二个提示适合回答数学问题</span>
+math_template = <span class="hljs-string">"""你是一个非常优秀的数学家。 \
+你擅长回答数学问题。 \
+你之所以如此优秀， \
+是因为你能够将棘手的问题分解为组成部分，\
+回答组成部分，然后将它们组合在一起，回答更广泛的问题。
+
+这是一个问题：
+{input}"""</span>
+
+
+<span class="hljs-comment">#第三个适合回答历史问题</span>
+history_template = <span class="hljs-string">"""你是以为非常优秀的历史学家。 \
+你对一系列历史时期的人物、事件和背景有着极好的学识和理解\
+你有能力思考、反思、辩证、讨论和评估过去。\
+你尊重历史证据，并有能力利用它来支持你的解释和判断。
+
+这是一个问题:
+{input}"""</span>
+
+
+<span class="hljs-comment">#第四个适合回答计算机问题</span>
+computerscience_template = <span class="hljs-string">""" 你是一个成功的计算机科学专家。\
+你有创造力、协作精神、\
+前瞻性思维、自信、解决问题的能力、\
+对理论和算法的理解以及出色的沟通技巧。\
+你非常擅长回答编程问题。\
+你之所以如此优秀，是因为你知道  \
+如何通过以机器可以轻松解释的命令式步骤描述解决方案来解决问题，\
+并且你知道如何选择在时间复杂性和空间复杂性之间取得良好平衡的解决方案。
+
+这还是一个输入：
+{input}"""</span>
+</code></pre>
+<h3 id="42-对提示模版进行命名和描述">4.2 对提示模版进行命名和描述</h3>
+<p>在定义了这些提示模板后，我们可以为每个模板命名，并给出具体描述。例如，第一个物理学的描述适合回答关于物理学的问题，这些信息将传递给路由链，然后由路由链决定何时使用此子链。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 中文</span>
+prompt_infos = [
+    {
+        <span class="hljs-string">"名字"</span>: <span class="hljs-string">"物理学"</span>, 
+        <span class="hljs-string">"描述"</span>: <span class="hljs-string">"擅长回答关于物理学的问题"</span>, 
+        <span class="hljs-string">"提示模板"</span>: physics_template
+    },
+    {
+        <span class="hljs-string">"名字"</span>: <span class="hljs-string">"数学"</span>, 
+        <span class="hljs-string">"描述"</span>: <span class="hljs-string">"擅长回答数学问题"</span>, 
+        <span class="hljs-string">"提示模板"</span>: math_template
+    },
+    {
+        <span class="hljs-string">"名字"</span>: <span class="hljs-string">"历史"</span>, 
+        <span class="hljs-string">"描述"</span>: <span class="hljs-string">"擅长回答历史问题"</span>, 
+        <span class="hljs-string">"提示模板"</span>: history_template
+    },
+    {
+        <span class="hljs-string">"名字"</span>: <span class="hljs-string">"计算机科学"</span>, 
+        <span class="hljs-string">"描述"</span>: <span class="hljs-string">"擅长回答计算机科学问题"</span>, 
+        <span class="hljs-string">"提示模板"</span>: computerscience_template
+    }
+]
+</code></pre>
+<p>LLMRouterChain（此链使用 LLM 来确定如何路由事物）</p>
+<p>在这里，我们需要一个<strong>多提示链</strong>。这是一种特定类型的链，用于在多个不同的提示模板之间进行路由。 但是这只是路由的一种类型，我们也可以在任何类型的链之间进行路由。</p>
+<p>这里我们要实现的几个类是大模型路由器链。这个类本身使用语言模型来在不同的子链之间进行路由。这就是上面提供的描述和名称将被使用的地方。</p>
+<h3 id="43-基于提示模版信息创建相应目标链">4.3 基于提示模版信息创建相应目标链</h3>
+<p>目标链是由路由链调用的链，每个目标链都是一个语言模型链</p>
+<pre><code class="lang-python">destination_chains = {}
+<span class="hljs-keyword">for</span> p_info <span class="hljs-keyword">in</span> prompt_infos:
+    name = p_info[<span class="hljs-string">"名字"</span>]
+    prompt_template = p_info[<span class="hljs-string">"提示模板"</span>]
+    prompt = ChatPromptTemplate.from_template(template=prompt_template)
+    chain = LLMChain(llm=llm, prompt=prompt)
+    destination_chains[name] = chain  
+
+destinations = [<span class="hljs-string">f"<span class="hljs-subst">{p[<span class="hljs-string">'名字'</span>]}</span>: <span class="hljs-subst">{p[<span class="hljs-string">'描述'</span>]}</span>"</span> <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> prompt_infos]
+destinations_str = <span class="hljs-string">"\n"</span>.join(destinations)
+</code></pre>
+<h3 id="44-创建默认目标链">4.4 创建默认目标链</h3>
+<p>除了目标链之外，我们还需要一个默认目标链。这是一个当路由器无法决定使用哪个子链时调用的链。在上面的示例中，当输入问题与物理、数学、历史或计算机科学无关时，可能会调用它。</p>
+<pre><code class="lang-python">default_prompt = ChatPromptTemplate.from_template(<span class="hljs-string">"{input}"</span>)
+default_chain = LLMChain(llm=llm, prompt=default_prompt)
+</code></pre>
+<h3 id="45-定义不同链之间的路由模板">4.5 定义不同链之间的路由模板</h3>
+<p>这包括要完成的任务的说明以及输出应该采用的特定格式。</p>
+<p>注意：此处在原教程的基础上添加了一个示例，主要是因为"gpt-3.5-turbo"模型不能很好适应理解模板的意思，使用 "text-davinci-003" 或者"gpt-4-0613"可以很好的工作，因此在这里多加了示例提示让其更好的学习。</p>
+<p>例如:</p>
+<p>&lt;&lt; INPUT &gt;&gt;</p>
+<p>"What is black body radiation?"</p>
+<p>&lt;&lt; OUTPUT &gt;&gt;</p>
+<pre><code class="lang-json">{{{{
+    <span class="hljs-string">"destination"</span>: string \ name <span class="hljs-keyword">of</span> the prompt to use or <span class="hljs-string">"DEFAULT"</span>
+    <span class="hljs-string">"next_inputs"</span>: string \ a potentially modified version <span class="hljs-keyword">of</span> the original input
+}}}}
+</code></pre>
+<pre><code class="lang-python"><span class="hljs-comment"># 多提示路由模板</span>
+MULTI_PROMPT_ROUTER_TEMPLATE = <span class="hljs-string">"""给语言模型一个原始文本输入，\
+让其选择最适合输入的模型提示。\
+系统将为您提供可用提示的名称以及最适合改提示的描述。\
+如果你认为修改原始输入最终会导致语言模型做出更好的响应，\
+你也可以修改原始输入。
+
+
+&lt;&lt; 格式 &gt;&gt;
+返回一个带有JSON对象的markdown代码片段，该JSON对象的格式如下：
+```json
+{{{{
+    "destination": 字符串 \ 使用的提示名字或者使用 "DEFAULT"
+    "next_inputs": 字符串 \ 原始输入的改进版本
+}}}}
+
+
+
+记住：“destination”必须是下面指定的候选提示名称之一，\
+或者如果输入不太适合任何候选提示，\
+则可以是 “DEFAULT” 。
+记住：如果您认为不需要任何修改，\
+则 “next_inputs” 可以只是原始输入。
+
+&lt;&lt; 候选提示 &gt;&gt;
+{destinations}
+
+&lt;&lt; 输入 &gt;&gt;
+{{input}}
+
+&lt;&lt; 输出 (记得要包含 ```json)&gt;&gt;
+
+样例:
+&lt;&lt; 输入 &gt;&gt;
+"什么是黑体辐射?"
+&lt;&lt; 输出 &gt;&gt;
+```json
+{{{{
+    "destination": 字符串 \ 使用的提示名字或者使用 "DEFAULT"
+    "next_inputs": 字符串 \ 原始输入的改进版本
+}}}}
+
+"""</span>
+</code></pre>
+<h3 id="46-构建路由链">4.6 构建路由链</h3>
+<p>首先，我们通过格式化上面定义的目标创建完整的路由器模板。这个模板可以适用许多不同类型的目标。
+因此，在这里，您可以添加一个不同的学科，如英语或拉丁语，而不仅仅是物理、数学、历史和计算机科学。</p>
+<p>接下来，我们从这个模板创建提示模板。</p>
+<p>最后，通过传入llm和整个路由提示来创建路由链。需要注意的是这里有路由输出解析，这很重要，因为它将帮助这个链路决定在哪些子链路之间进行路由。</p>
+<pre><code class="lang-python">router_template = MULTI_PROMPT_ROUTER_TEMPLATE.<span class="hljs-built_in">format</span>(
+    destinations=destinations_str
+)
+router_prompt = PromptTemplate(
+    template=router_template,
+    input_variables=[<span class="hljs-string">"input"</span>],
+    output_parser=RouterOutputParser(),
+)
+
+router_chain = LLMRouterChain.from_llm(llm, router_prompt)
+</code></pre>
+<h3 id="47-创建整体链路">4.7 创建整体链路</h3>
+<pre><code class="lang-python"><span class="hljs-comment">#多提示链</span>
+chain = MultiPromptChain(router_chain=router_chain,    <span class="hljs-comment">#l路由链路</span>
+                         destination_chains=destination_chains,   <span class="hljs-comment">#目标链路</span>
+                         default_chain=default_chain,      <span class="hljs-comment">#默认链路</span>
+                         verbose=<span class="hljs-literal">True</span>   
+                        )
+</code></pre>
+<h3 id="48-进行提问">4.8 进行提问</h3>
+<p>如果我们问一个物理问题，我们希望看到他被路由到物理链路。</p>
+<pre><code class="lang-python">chain.run(<span class="hljs-string">"什么是黑体辐射？"</span>)
+</code></pre>
+<pre><code>&gt; Entering new MultiPromptChain chain...
+物理学: {'input': '什么是黑体辐射？'}
+&gt; Finished chain.
+
+
+
+
+
+'黑体辐射是指一个理想化的物体，它能够完全吸收并且以最高效率地辐射出所有入射到它上面的电磁辐射。这种辐射的特点是它的辐射强度与波长有关，且在不同波长下的辐射强度符合普朗克辐射定律。黑体辐射在物理学中有广泛的应用，例如研究热力学、量子力学和宇宙学等领域。'
+</code></pre><p>如果我们问一个数学问题，我们希望看到他被路由到数学链路。</p>
+<pre><code class="lang-python">chain.run(<span class="hljs-string">"2+2等于多少？"</span>)
+</code></pre>
+<pre><code>&gt; Entering new MultiPromptChain chain...
+数学: {'input': '2+2等于多少？'}
+&gt; Finished chain.
+
+
+
+
+
+'2+2等于4。'
+</code></pre><p>如果我们传递一个与任何子链路都无关的问题时，会发生什么呢？</p>
+<p>这里，我们问了一个关于生物学的问题，我们可以看到它选择的链路是无。这意味着它将被<strong>传递到默认链路，它本身只是对语言模型的通用调用</strong>。语言模型幸运地对生物学知道很多，所以它可以帮助我们。</p>
+<pre><code class="lang-python">chain.run(<span class="hljs-string">"为什么我们身体里的每个细胞都包含DNA？"</span>)
+</code></pre>
+<pre><code>&gt; Entering new MultiPromptChain chain...
+物理学: {'input': '为什么我们身体里的每个细胞都包含DNA？'}
+&gt; Finished chain.
+
+
+
+
+
+'我们身体里的每个细胞都包含DNA，因为DNA是遗传信息的载体。DNA是由四种碱基（腺嘌呤、胸腺嘧啶、鸟嘌呤和胞嘧啶）组成的长链状分子，它存储了我们的遗传信息，包括我们的基因和遗传特征。每个细胞都需要这些遗传信息来执行其特定的功能和任务。所以，DNA存在于每个细胞中，以确保我们的身体正常运作。'
+</code></pre><h2 id="英文版提示">英文版提示</h2>
+<p><strong>1.大语言模型链</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI 
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate  
+<span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> LLMChain   
+
+
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)  
+
+prompt = ChatPromptTemplate.from_template(   
+    <span class="hljs-string">"What is the best name to describe \
+    a company that makes {product}?"</span>
+)
+
+chain = LLMChain(llm=llm, prompt=prompt)
+
+product = <span class="hljs-string">"Queen Size Sheet Set"</span>
+chain.run(product)
+</code></pre>
+<pre><code>'Royal Comfort Linens'
+</code></pre><p><strong>2.简单顺序链</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> SimpleSequentialChain
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.9</span>)
+
+
+first_prompt = ChatPromptTemplate.from_template(
+    <span class="hljs-string">"What is the best name to describe \
+    a company that makes {product}?"</span>
+)
+
+<span class="hljs-comment"># Chain 1</span>
+chain_one = LLMChain(llm=llm, prompt=first_prompt)
+
+second_prompt = ChatPromptTemplate.from_template(
+    <span class="hljs-string">"Write a 20 words description for the following \
+    company:{company_name}"</span>
+)
+<span class="hljs-comment"># chain 2</span>
+chain_two = LLMChain(llm=llm, prompt=second_prompt)
+
+
+overall_simple_chain = SimpleSequentialChain(chains=[chain_one, chain_two], verbose=<span class="hljs-literal">True</span>)
+product = <span class="hljs-string">"Queen Size Sheet Set"</span>
+overall_simple_chain.run(product)
+</code></pre>
+<pre><code>&gt; Entering new SimpleSequentialChain chain...
+"Royal Comfort Beddings"
+Royal Comfort Beddings is a reputable company that offers luxurious and comfortable bedding options fit for royalty.
+
+&gt; Finished chain.
+
+
+
+
+
+'Royal Comfort Beddings is a reputable company that offers luxurious and comfortable bedding options fit for royalty.'
+</code></pre><p><strong>3. 顺序链</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> SequentialChain
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI    
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate   
+<span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> LLMChain    
+
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.9</span>)
+
+first_prompt = ChatPromptTemplate.from_template(
+    <span class="hljs-string">"Translate the following review to english:"</span>
+    <span class="hljs-string">"\n\n{Review}"</span>
+)
+
+chain_one = LLMChain(llm=llm, prompt=first_prompt, output_key=<span class="hljs-string">"English_Review"</span>)
+
+
+second_prompt = ChatPromptTemplate.from_template(
+    <span class="hljs-string">"Can you summarize the following review in 1 sentence:"</span>
+    <span class="hljs-string">"\n\n{English_Review}"</span>
+)
+
+chain_two = LLMChain(llm=llm, prompt=second_prompt, output_key=<span class="hljs-string">"summary"</span>)
+
+third_prompt = ChatPromptTemplate.from_template(
+    <span class="hljs-string">"What language is the following review:\n\n{Review}"</span>
+)
+
+chain_three = LLMChain(llm=llm, prompt=third_prompt, output_key=<span class="hljs-string">"language"</span>)
+
+fourth_prompt = ChatPromptTemplate.from_template(
+    <span class="hljs-string">"Write a follow up response to the following "</span>
+    <span class="hljs-string">"summary in the specified language:"</span>
+    <span class="hljs-string">"\n\nSummary: {summary}\n\nLanguage: {language}"</span>
+)
+
+chain_four = LLMChain(llm=llm, prompt=fourth_prompt, output_key=<span class="hljs-string">"followup_message"</span>)
+
+
+overall_chain = SequentialChain(
+    chains=[chain_one, chain_two, chain_three, chain_four],
+    input_variables=[<span class="hljs-string">"Review"</span>],
+    output_variables=[<span class="hljs-string">"English_Review"</span>, <span class="hljs-string">"summary"</span>,<span class="hljs-string">"followup_message"</span>],
+    verbose=<span class="hljs-literal">True</span>
+)
+
+review = df.Review[<span class="hljs-number">5</span>]
+overall_chain(review)
+</code></pre>
+<pre><code>&gt; Entering new SequentialChain chain...
+
+&gt; Finished chain.
+
+
+
+
+
+{'Review': "Je trouve le goût médiocre. La mousse ne tient pas, c'est bizarre. J'achète les mêmes dans le commerce et le goût est bien meilleur...\nVieux lot ou contrefaçon !?",
+ 'English_Review': "I find the taste poor. The foam doesn't hold, it's weird. I buy the same ones from the store and the taste is much better...\nOld batch or counterfeit!?",
+ 'summary': 'The reviewer is disappointed with the poor taste and lack of foam in the product, suspecting it to be either an old batch or a counterfeit.',
+ 'followup_message': "Réponse de suivi:\n\nCher(e) critique,\n\nNous sommes vraiment désolés d'apprendre que vous avez été déçu(e) par le mauvais goût et l'absence de mousse de notre produit. Nous comprenons votre frustration et souhaitons rectifier cette situation.\n\nTout d'abord, nous tenons à vous assurer que nous ne vendons que des produits authentiques et de haute qualité. Chaque lot de notre produit est soigneusement contrôlé avant d'être mis sur le marché.\n\nCependant, il est possible qu'un incident se soit produit dans votre cas. Nous vous invitons donc à nous contacter directement afin que nous puissions mieux comprendre la situation et résoudre ce problème. Nous accorderons une attention particulière à la fraîcheur et à la mousse de notre produit pour garantir votre satisfaction.\n\nNous tenons à vous remercier pour vos commentaires, car ils nous aident à améliorer continuellement notre produit. Votre satisfaction est notre priorité absolue et nous ferons tout notre possible pour rectifier cette situation.\n\nNous espérons avoir l'opportunité de vous fournir une expérience agréable avec notre produit à l'avenir.\n\nCordialement,\nL'équipe du service client"}
+</code></pre><p><strong>4. 路由链</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> LLMChain   
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI 
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate 
+<span class="hljs-keyword">from</span> langchain.chains.router <span class="hljs-keyword">import</span> MultiPromptChain 
+<span class="hljs-keyword">from</span> langchain.chains.router.llm_router <span class="hljs-keyword">import</span> LLMRouterChain,RouterOutputParser
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> PromptTemplate
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)  
+
+physics_template = <span class="hljs-string">"""You are a very smart physics professor. \
+You are great at answering questions about physics in a concise\
+and easy to understand manner. \
+When you don't know the answer to a question you admit\
+that you don't know.
+
+Here is a question:
+{input}"""</span>
+
+
+math_template = <span class="hljs-string">"""You are a very good mathematician. \
+You are great at answering math questions. \
+You are so good because you are able to break down \
+hard problems into their component parts, 
+answer the component parts, and then put them together\
+to answer the broader question.
+
+Here is a question:
+{input}"""</span>
+
+history_template = <span class="hljs-string">"""You are a very good historian. \
+You have an excellent knowledge of and understanding of people,\
+events and contexts from a range of historical periods. \
+You have the ability to think, reflect, debate, discuss and \
+evaluate the past. You have a respect for historical evidence\
+and the ability to make use of it to support your explanations \
+and judgements.
+
+Here is a question:
+{input}"""</span>
+
+
+computerscience_template = <span class="hljs-string">""" You are a successful computer scientist.\
+You have a passion for creativity, collaboration,\
+forward-thinking, confidence, strong problem-solving capabilities,\
+understanding of theories and algorithms, and excellent communication \
+skills. You are great at answering coding questions. \
+You are so good because you know how to solve a problem by \
+describing the solution in imperative steps \
+that a machine can easily interpret and you know how to \
+choose a solution that has a good balance between \
+time complexity and space complexity. 
+
+Here is a question:
+{input}"""</span>
+
+prompt_infos = [
+    {
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"physics"</span>, 
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Good for answering questions about physics"</span>, 
+        <span class="hljs-string">"prompt_template"</span>: physics_template
+    },
+    {
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"math"</span>, 
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Good for answering math questions"</span>, 
+        <span class="hljs-string">"prompt_template"</span>: math_template
+    },
+    {
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"History"</span>, 
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Good for answering history questions"</span>, 
+        <span class="hljs-string">"prompt_template"</span>: history_template
+    },
+    {
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"computer science"</span>, 
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Good for answering computer science questions"</span>, 
+        <span class="hljs-string">"prompt_template"</span>: computerscience_template
+    }
+]
+
+
+destination_chains = {}
+<span class="hljs-keyword">for</span> p_info <span class="hljs-keyword">in</span> prompt_infos:
+    name = p_info[<span class="hljs-string">"name"</span>]
+    prompt_template = p_info[<span class="hljs-string">"prompt_template"</span>]
+    prompt = ChatPromptTemplate.from_template(template=prompt_template)
+    chain = LLMChain(llm=llm, prompt=prompt)
+    destination_chains[name] = chain  
+
+destinations = [<span class="hljs-string">f"<span class="hljs-subst">{p[<span class="hljs-string">'name'</span>]}</span>: <span class="hljs-subst">{p[<span class="hljs-string">'description'</span>]}</span>"</span> <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> prompt_infos]
+destinations_str = <span class="hljs-string">"\n"</span>.join(destinations)
+
+default_prompt = ChatPromptTemplate.from_template(<span class="hljs-string">"{input}"</span>)
+default_chain = LLMChain(llm=llm, prompt=default_prompt)
+
+
+MULTI_PROMPT_ROUTER_TEMPLATE = <span class="hljs-string">"""Given a raw text input to a \
+language model select the model prompt best suited for the input. \
+You will be given the names of the available prompts and a \
+description of what the prompt is best suited for. \
+You may also revise the original input if you think that revising\
+it will ultimately lead to a better response from the language model.
+
+&lt;&lt; FORMATTING &gt;&gt;
+Return a markdown code snippet with a JSON object formatted to look like:
+```json
+{{{{
+    "destination": string \ name of the prompt to use or "DEFAULT"
+    "next_inputs": string \ a potentially modified version of the original input
+}}}}
+</span></code></pre>
+<p>REMEMBER: "destination" MUST be one of the candidate prompt \
+names specified below OR it can be "DEFAULT" if the input is not\
+well suited for any of the candidate prompts.
+REMEMBER: "next_inputs" can just be the original input \
+if you don't think any modifications are needed.</p>
+<p>&lt;&lt; CANDIDATE PROMPTS &gt;&gt;
+{destinations}</p>
+<p>&lt;&lt; INPUT &gt;&gt;</p>
+<p>&lt;&lt; OUTPUT (remember to include the ```json)&gt;&gt;"""</p>
+<p>router_template = MULTI_PROMPT_ROUTER_TEMPLATE.format(
+    destinations=destinations_str
+)
+router_prompt = PromptTemplate(
+    template=router_template,
+    input_variables=["input"],
+    output_parser=RouterOutputParser(),
+)</p>
+<p>router_chain = LLMRouterChain.from_llm(llm, router_prompt)</p>
+<p>chain = MultiPromptChain(router_chain=router_chain, 
+                         destination_chains=destination_chains, 
+                         default_chain=default_chain, verbose=True
+                        )</p>
+<p>print(chain.run("What is black body radiation?"))</p>
+<p>print(chain.run("what is 2 + 2"))</p>
+<p>print(chain.run("Why does every cell in our body contain DNA?"))
+```</p>
+<pre><code>&gt; Entering new MultiPromptChain chain...
+physics: {'input': 'What is black body radiation?'}
+&gt; Finished chain.
+Black body radiation refers to the electromagnetic radiation emitted by an object that absorbs all incident radiation and reflects or transmits none. It is called "black body" because it absorbs all wavelengths of light, appearing black at room temperature. 
+
+According to Planck's law, black body radiation is characterized by a continuous spectrum of wavelengths and intensities, which depend on the temperature of the object. As the temperature increases, the peak intensity of the radiation shifts to shorter wavelengths, resulting in a change in color from red to orange, yellow, white, and eventually blue at very high temperatures.
+
+Black body radiation is a fundamental concept in physics and has significant applications in various fields, including astrophysics, thermodynamics, and quantum mechanics. It played a crucial role in the development of quantum theory and understanding the behavior of light and matter.
+
+
+&gt; Entering new MultiPromptChain chain...
+math: {'input': 'what is 2 + 2'}
+&gt; Finished chain.
+Thank you for your kind words! As a mathematician, I am happy to help with any math questions, no matter how simple or complex they may be.
+
+The question you've asked is a basic addition problem: "What is 2 + 2?" To solve this, we can simply add the two numbers together:
+
+2 + 2 = 4
+
+Therefore, the answer to the question "What is 2 + 2?" is 4.
+
+
+&gt; Entering new MultiPromptChain chain...
+None: {'input': 'Why does every cell in our body contain DNA?'}
+&gt; Finished chain.
+Every cell in our body contains DNA because DNA is the genetic material that carries the instructions for the development, functioning, and reproduction of all living organisms. DNA contains the information necessary for the synthesis of proteins, which are essential for the structure and function of cells. It serves as a blueprint for the production of specific proteins that determine the characteristics and traits of an organism. Additionally, DNA is responsible for the transmission of genetic information from one generation to the next during reproduction. Therefore, every cell in our body contains DNA to ensure the proper functioning and continuity of life.
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3.-储存-Memory.html" class="navigation navigation-prev " aria-label="Previous page: 3. 储存 Memory">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="5.-基于文档的问答-Question-and-Answer.html" class="navigation navigation-next " aria-label="Next page: 5. 基于文档的问答 Question and Answer">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"4. 模型链 Chains","level":"4.5","depth":1,"next":{"title":"5. 基于文档的问答 Question and Answer","level":"4.6","depth":1,"path":"C3/5.-基于文档的问答-Question-and-Answer.md","ref":"C3/5.-基于文档的问答-Question-and-Answer.md","articles":[]},"previous":{"title":"3. 储存 Memory","level":"4.4","depth":1,"path":"C3/3.-储存-Memory.md","ref":"C3/3.-储存-Memory.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C3/4.-模型链-Chains.md","mtime":"2024-08-23T21:42:59.787Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-08-23T22:20:29.853Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

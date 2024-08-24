@@ -1,0 +1,1463 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>2. 模型、提示和解析器 Models, Prompts and Parsers · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3.-储存-Memory.html" />
+    
+    
+    <link rel="prev" href="1.-简介-Introduction.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../前言.html">
+            
+                <a href="../前言.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../环境配置.html">
+            
+                <a href="../环境配置.html">
+            
+                    
+                    环境配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第一部分 面向开发者的提示工程</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../C1/readme.html">
+            
+                <a href="../C1/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../C1/1.-简介-Introduction.html">
+            
+                <a href="../C1/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../C1/2.-提示原则-Guidelines.html">
+            
+                <a href="../C1/2.-提示原则-Guidelines.html">
+            
+                    
+                    2. 提示原则 Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../C1/3.-迭代优化-Iterative.html">
+            
+                <a href="../C1/3.-迭代优化-Iterative.html">
+            
+                    
+                    3. 迭代优化 Iterative
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../C1/4.-文本概括-Summarizing.html">
+            
+                <a href="../C1/4.-文本概括-Summarizing.html">
+            
+                    
+                    4. 文本概括 Summarizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../C1/5.-推断-Inferring.html">
+            
+                <a href="../C1/5.-推断-Inferring.html">
+            
+                    
+                    5. 推断 Inferring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../C1/6.-文本转换-Transforming.html">
+            
+                <a href="../C1/6.-文本转换-Transforming.html">
+            
+                    
+                    6. 文本转换 Transforming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../C1/7.-文本扩展-Expanding.html">
+            
+                <a href="../C1/7.-文本扩展-Expanding.html">
+            
+                    
+                    7. 文本扩展 Expanding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="../C1/8.-聊天机器人-Chatbot.html">
+            
+                <a href="../C1/8.-聊天机器人-Chatbot.html">
+            
+                    
+                    8. 聊天机器人 Chatbot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="../C1/9.-总结-Summary.html">
+            
+                <a href="../C1/9.-总结-Summary.html">
+            
+                    
+                    9. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第二部分 搭建基于 ChatGPT 的问答系统</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../C2/readme.html">
+            
+                <a href="../C2/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../C2/1.-简介-Introduction.html">
+            
+                <a href="../C2/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                <a href="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                    
+                    2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../C2/3.-评估输入-分类-Classification.html">
+            
+                <a href="../C2/3.-评估输入-分类-Classification.html">
+            
+                    
+                    3. 评估输入-分类 Classification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../C2/4.-检查输入-监督-Moderation.html">
+            
+                <a href="../C2/4.-检查输入-监督-Moderation.html">
+            
+                    
+                    4. 检查输入-监督 Moderation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                <a href="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                    
+                    5. 思维链推理 Chain of Thought Reasoning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                <a href="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                    
+                    6. Prompt 链 Chaining Prompts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="../C2/7.-检查结果-Check-Outputs.html">
+            
+                <a href="../C2/7.-检查结果-Check-Outputs.html">
+            
+                    
+                    7. 检查结果 Check Outputs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                <a href="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                    
+                    8. 搭建一个带评估的端到端系统 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                <a href="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                    
+                    9. 评估（上）Evaluation-part1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                <a href="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                    
+                    10. 评估（下）Evaluation-part2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="../C2/11.总结-conclusion.html">
+            
+                <a href="../C2/11.总结-conclusion.html">
+            
+                    
+                    11. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第三部分 使用 LangChain 开发应用程序</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="1.-简介-Introduction.html">
+            
+                <a href="1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.3" data-path="2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                <a href="2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                    
+                    2. 模型、提示和解析器 Models, Prompts and Parsers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="3.-储存-Memory.html">
+            
+                <a href="3.-储存-Memory.html">
+            
+                    
+                    3. 储存 Memory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="4.-模型链-Chains.html">
+            
+                <a href="4.-模型链-Chains.html">
+            
+                    
+                    4. 模型链 Chains
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="5.-基于文档的问答-Question-and-Answer.html">
+            
+                <a href="5.-基于文档的问答-Question-and-Answer.html">
+            
+                    
+                    5. 基于文档的问答 Question and Answer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="6.-评估-Evaluation.html">
+            
+                <a href="6.-评估-Evaluation.html">
+            
+                    
+                    6. 评估 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="7.-代理-Agent.html">
+            
+                <a href="7.-代理-Agent.html">
+            
+                    
+                    7. 代理 Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="8.-总结-Conclusion.html">
+            
+                <a href="8.-总结-Conclusion.html">
+            
+                    
+                    8. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第四部分 使用 LangChain 访问个人数据</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../C4/readme.html">
+            
+                <a href="../C4/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../C4/1.-简介-Introduction.html">
+            
+                <a href="../C4/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../C4/2.-文档加载-Document-Loading.html">
+            
+                <a href="../C4/2.-文档加载-Document-Loading.html">
+            
+                    
+                    2. 文档加载 Document Loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../C4/3.-文档分割-Splitting.html">
+            
+                <a href="../C4/3.-文档分割-Splitting.html">
+            
+                    
+                    3. 文档分割 Splitting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                <a href="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                    
+                    4. 向量数据库与词向量 Vectorstores and Embeddings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../C4/5.-检索-Retrieval.html">
+            
+                <a href="../C4/5.-检索-Retrieval.html">
+            
+                    
+                    5. 检索 Retrieval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="../C4/6.-问答-Question-Answering.html">
+            
+                <a href="../C4/6.-问答-Question-Answering.html">
+            
+                    
+                    6. 问答 Question ANswering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="../C4/7.-聊天-Chat.html">
+            
+                <a href="../C4/7.-聊天-Chat.html">
+            
+                    
+                    7. 聊天 Chat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="../C4/8.-总结-Summary.html">
+            
+                <a href="../C4/8.-总结-Summary.html">
+            
+                    
+                    8. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >2. 模型、提示和解析器 Models, Prompts and Parsers</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第二章-模型，提示和输出解释器">第二章 模型，提示和输出解释器</h1>
+<p>本章我们将简要介绍关于 LLM 开发的一些重要概念：模型、提示与解释器。如果您已完整学习过前面两个部分的内容，对这三个概念不会陌生。但是，在 LangChain 的定义中，对这三个概念的定义与使用又与之前有着细微的差别。我们仍然推荐您认真阅读本章，以进一步深入了解 LLM 开发。同时，如果您直接学习本部分的话，本章内容更是重要的基础。</p>
+<p>我们首先向您演示直接调用 OpenAI 的场景，以充分说明为什么我们需要使用 LangChain。</p>
+<h2 id="一、直接调用openai">一、直接调用OpenAI</h2>
+<h3 id="11-计算11">1.1 计算1+1</h3>
+<p>我们来看一个简单的例子，直接使用通过 OpenAI 接口封装的函数<code>get_completion</code>来让模型告诉我们：<code>1+1是什么？</code></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> tool <span class="hljs-keyword">import</span> get_completion
+
+get_completion(<span class="hljs-string">"1+1是什么？"</span>)
+</code></pre>
+<pre><code>'1+1等于2。'
+</code></pre><h3 id="12-用普通话表达海盗邮件">1.2 用普通话表达海盗邮件</h3>
+<p>在上述简单示例中，模型<code>gpt-3.5-turbo</code>为我们提供了关于1+1是什么的答案。而现在，我们进入一个更为丰富和复杂的场景。</p>
+<p>设想一下，你是一家电商公司的员工。你们的客户中有一位名为海盗A的特殊顾客。他在你们的平台上购买了一个榨汁机，目的是为了制作美味的奶昔。但在制作过程中，由于某种原因，奶昔的盖子突然弹开，导致厨房的墙上洒满了奶昔。想象一下这名海盗的愤怒和挫败之情。他用充满海盗特色的英语方言，给你们的客服中心写了一封邮件：<code>customer_email</code>。</p>
+<pre><code class="lang-python">customer_email = <span class="hljs-string">"""
+嗯呐，我现在可是火冒三丈，我那个搅拌机盖子竟然飞了出去，把我厨房的墙壁都溅上了果汁！
+更糟糕的是，保修条款可不包括清理我厨房的费用。
+伙计，赶紧给我过来！
+"""</span>
+</code></pre>
+<p>在处理来自多元文化背景的顾客时，我们的客服团队可能会遇到某些特殊的语言障碍。如上，我们收到了一名海盗客户的邮件，而他的表达方式对于我们的客服团队来说略显生涩。</p>
+<p>为了解决这一挑战，我们设定了以下两个目标：</p>
+<ul>
+<li>首先，我们希望模型能够将这封充满海盗方言的邮件翻译成普通话，这样客服团队就能更容易地理解其内容。</li>
+<li>其次，在进行翻译时，我们期望模型能采用平和和尊重的语气，这不仅能确保信息准确传达，还能保持与顾客之间的和谐关系。</li>
+</ul>
+<p>为了指导模型的输出，我们定义了一个文本表达风格标签，简称为<code>style</code>。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 普通话 + 平静、尊敬的语调</span>
+style = <span class="hljs-string">"""正式普通话 \
+用一个平静、尊敬、有礼貌的语调
+"""</span>
+</code></pre>
+<p>下一步我们需要做的是将<code>customer_email</code>和<code>style</code>结合起来构造我们的提示:<code>prompt</code></p>
+<pre><code class="lang-python"><span class="hljs-comment"># 要求模型根据给出的语调进行转化</span>
+prompt = <span class="hljs-string">f"""把由三个反引号分隔的文本\
+翻译成一种<span class="hljs-subst">{style}</span>风格。
+文本: ```<span class="hljs-subst">{customer_email}</span>
+</span></code></pre>
+<p>"""</p>
+<p>print("提示：", prompt)</p>
+<pre><code>
+
+    提示： 
+     把由三个反引号分隔的文本翻译成一种正式普通话 用一个平静、尊敬、有礼貌的语调
+    风格。
+    文本:
+</code></pre><pre><code>嗯呐，我现在可是火冒三丈，我那个搅拌机盖子竟然飞了出去，把我厨房的墙壁都溅上了果汁！
+更糟糕的是，保修条款可不包括清理我厨房的费用。
+伙计，赶紧给我过来！
+```
+</code></pre><p>经过精心设计的<code>prompt</code>已经准备就绪。接下来，只需调用<code>get_completion</code>方法，我们就可以获得期望的输出——那封原汁原味的海盗方言邮件，将被翻译成既平和又尊重的正式普通话表达。</p>
+<pre><code class="lang-python">response = get_completion(prompt)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>非常抱歉，我现在感到非常愤怒和不满。我的搅拌机盖子竟然飞了出去，导致我厨房的墙壁上都溅满了果汁！更糟糕的是，保修条款并不包括清理我厨房的费用。先生/女士，请您尽快过来处理这个问题！
+</code></pre><p>在进行语言风格转换之后，我们可以观察到明显的变化：原本的用词变得更为正式，那些带有极端情绪的表达得到了替代，并且文本中还加入了表示感激的词汇。</p>
+<blockquote>
+<p>小建议：你可以调整并尝试不同的提示，来探索模型能为你带来怎样的创新性输出。每次尝试都可能为你带来意想不到的惊喜！</p>
+</blockquote>
+<h2 id="二、通过langchain使用openai">二、通过LangChain使用OpenAI</h2>
+<p>在前面的小节中，我们使用了封装好的函数<code>get_completion</code>，利用 OpenAI 接口成功地对那封充满方言特色的邮件进行了翻译。得到一封采用平和且尊重的语气、并用标准普通话所写的邮件。接下来，我们将尝试使用 LangChain 解决该问题。</p>
+<h3 id="21-模型">2.1 模型</h3>
+<p>现在让我们尝试使用LangChain来实现相同的功能。从<code>langchain.chat_models</code>导入<code>OpenAI</code>的对话模型<code>ChatOpenAI</code>。 除去OpenAI以外，<code>langchain.chat_models</code>还集成了其他对话模型，更多细节可以查看 <a href="https://python.langchain.com/en/latest/modules/models/chat/integrations.html" target="_blank">Langchain 官方文档</a>(<a href="https://python.langchain.com/en/latest/modules/models/chat/integrations.html)。" target="_blank">https://python.langchain.com/en/latest/modules/models/chat/integrations.html)。</a></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI
+
+<span class="hljs-comment"># 这里我们将参数temperature设置为0.0，从而减少生成答案的随机性。</span>
+<span class="hljs-comment"># 如果你想要每次得到不一样的有新意的答案，可以尝试调整该参数。</span>
+chat = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)
+chat
+</code></pre>
+<pre><code>ChatOpenAI(cache=None, verbose=False, callbacks=None, callback_manager=None, tags=None, metadata=None, client=&lt;class 'openai.api_resources.chat_completion.ChatCompletion'&gt;, model_name='gpt-3.5-turbo', temperature=0.0, model_kwargs={}, openai_api_key='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', openai_api_base='', openai_organization='', openai_proxy='', request_timeout=None, max_retries=6, streaming=False, n=1, max_tokens=None, tiktoken_model_name=None)
+</code></pre><p><br></br></p>
+<p>上面的输出显示ChatOpenAI的默认模型为<code>gpt-3.5-turbo</code></p>
+<h3 id="22-使用提示模版">2.2 使用提示模版</h3>
+<p>在前面的例子中，我们通过<a href="https://docs.python.org/zh-cn/3/tutorial/inputoutput.html#tut-f-strings" target="_blank">f字符串</a>把Python表达式的值<code>style</code>和<code>customer_email</code>添加到<code>prompt</code>字符串内。</p>
+<p><code>langchain</code>提供了接口方便快速的构造和使用提示。</p>
+<h4 id="221-用普通话表达海盗邮件">2.2.1 用普通话表达海盗邮件</h4>
+<p>现在我们来看看如何使用<code>langchain</code>来构造提示吧！</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate
+
+<span class="hljs-comment"># 首先，构造一个提示模版字符串：`template_string`</span>
+template_string = <span class="hljs-string">"""把由三个反引号分隔的文本\
+翻译成一种{style}风格。\
+文本: ```{text}
+</span></code></pre>
+<p>"""</p>
+<h1 id="然后，我们调用chatprompttemplateefromtemplate函数将">然后，我们调用<code>ChatPromptTemplatee.from_template()</code>函数将</h1>
+<h1 id="上面的提示模版字符templatestring转换为提示模版prompttemplate">上面的提示模版字符<code>template_string</code>转换为提示模版<code>prompt_template</code></h1>
+<p>prompt_template = ChatPromptTemplate.from_template(template_string)</p>
+<p>print("\n", prompt_template.messages[0].prompt)</p>
+<pre><code>
+
+     input_variables=['style', 'text'] output_parser=None partial_variables={} template='把由三个反引号分隔的文本翻译成一种{style}风格。文本: ```{text}```\n' template_format='f-string' validate_template=True
+
+
+&lt;br&gt;
+
+对于给定的`customer_style`和`customer_email`, 我们可以使用提示模版`prompt_template`的`format_messages`方法生成想要的客户消息`customer_messages`。
+
+提示模版`prompt_template`需要两个输入变量： `style` 和 `text`。 这里分别对应 
+- `customer_style`: 我们想要的顾客邮件风格
+- `customer_email`: 顾客的原始邮件文本。
+
+
+```python
+customer_style = """正式普通话 \
+用一个平静、尊敬的语气
+"""
+
+customer_email = """
+嗯呐，我现在可是火冒三丈，我那个搅拌机盖子竟然飞了出去，把我厨房的墙壁都溅上了果汁！
+更糟糕的是，保修条款可不包括清理我厨房的费用。
+伙计，赶紧给我过来！
+"""
+
+# 使用提示模版
+customer_messages = prompt_template.format_messages(
+                    style=customer_style,
+                    text=customer_email)
+# 打印客户消息类型
+print("客户消息类型:",type(customer_messages),"\n")
+
+# 打印第一个客户消息类型
+print("第一个客户客户消息类型类型:", type(customer_messages[0]),"\n")
+
+# 打印第一个元素
+print("第一个客户客户消息类型类型: ", customer_messages[0],"\n")
+</code></pre><pre><code>客户消息类型:
+ &lt;class 'list'&gt; 
+
+第一个客户客户消息类型类型:
+ &lt;class 'langchain.schema.messages.HumanMessage'&gt; 
+
+第一个客户客户消息类型类型: 
+ content='把由三个反引号分隔的文本翻译成一种正式普通话 用一个平静、尊敬的语气\n风格。文本: ```\n嗯呐，我现在可是火冒三丈，我那个搅拌机盖子竟然飞了出去，把我厨房的墙壁都溅上了果汁！\n更糟糕的是，保修条款可不包括清理我厨房的费用。\n伙计，赶紧给我过来！\n```\n' additional_kwargs={} example=False 
+</code></pre><p><br></br></p>
+<p>可以看出</p>
+<ul>
+<li><code>customer_messages</code>变量类型为列表(<code>list</code>)</li>
+<li>列表里的元素变量类型为langchain自定义消息(<code>langchain.schema.HumanMessage</code>)。</li>
+</ul>
+<p><br></br></p>
+<p>现在我们可以调用模型部分定义的<code>chat</code>模型来实现转换客户消息风格。</p>
+<pre><code class="lang-python">customer_response = chat(customer_messages)
+<span class="hljs-built_in">print</span>(customer_response.content)
+</code></pre>
+<pre><code>非常抱歉，我现在感到非常愤怒。我的搅拌机盖子竟然飞了出去，导致我厨房的墙壁上都溅满了果汁！更糟糕的是，保修条款并不包括清理我厨房的费用。伙计，请你尽快过来帮我解决这个问题！
+</code></pre><h4 id="222-用海盗方言回复邮件">2.2.2 用海盗方言回复邮件</h4>
+<p>到目前为止，我们已经实现了在前一部分的任务。接下来，我们更进一步，将客服人员回复的消息，转换为海盗风格英语，并确保消息比较有礼貌。 这里，我们可以继续使用起前面构造的的langchain提示模版，来获得我们回复消息提示。</p>
+<pre><code class="lang-python">service_reply = <span class="hljs-string">"""嘿，顾客， \
+保修不包括厨房的清洁费用， \
+因为您在启动搅拌机之前 \
+忘记盖上盖子而误用搅拌机, \
+这是您的错。 \
+倒霉！ 再见！
+"""</span>
+
+service_style_pirate = <span class="hljs-string">"""\
+一个有礼貌的语气 \
+使用海盗风格\
+"""</span>
+service_messages = prompt_template.format_messages(
+    style=service_style_pirate,
+    text=service_reply)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"\n"</span>, service_messages[<span class="hljs-number">0</span>].content)
+</code></pre>
+<pre><code> 把由三个反引号分隔的文本翻译成一种一个有礼貌的语气 使用海盗风格风格。文本: ```嘿，顾客， 保修不包括厨房的清洁费用， 因为您在启动搅拌机之前 忘记盖上盖子而误用搅拌机, 这是您的错。 倒霉！ 再见！
+```
+</code></pre><pre><code class="lang-python"><span class="hljs-comment"># 调用模型部分定义的chat模型来转换回复消息风格</span>
+service_response = chat(service_messages)
+<span class="hljs-built_in">print</span>(service_response.content)
+</code></pre>
+<pre><code>嘿，尊贵的客户啊，保修可不包括厨房的清洁费用，因为您在启动搅拌机之前竟然忘记盖上盖子而误用了搅拌机，这可是您的疏忽之过啊。真是倒霉透顶啊！祝您一路顺风！
+</code></pre><h4 id="223-为什么需要提示模版">2.2.3 为什么需要提示模版</h4>
+<p>在应用于比较复杂的场景时，提示可能会非常长并且包含涉及许多细节。<strong>使用提示模版，可以让我们更为方便地重复使用设计好的提示</strong>。英文版提示2.2.3 给出了作业的提示模版案例：学生们线上学习并提交作业，通过提示来实现对学生的提交的作业的评分。</p>
+<p>此外，LangChain还提供了提示模版用于一些常用场景。比如自动摘要、问答、连接到SQL数据库、连接到不同的API。通过使用LangChain内置的提示模版，你可以快速建立自己的大模型应用，而不需要花时间去设计和构造提示。</p>
+<p>最后，我们在建立大模型应用时，通常希望模型的输出为给定的格式，比如在输出使用特定的关键词来让输出结构化。英文版提示2.2.3 给出了使用大模型进行链式思考推理结果示例 -- 对于问题：<em>What is the elevation range for the area that the eastern sector of the Colorado orogeny extends into?</em> 通过使用LangChain库函数，输出采用"Thought"（思考）、"Action"（行动）、"Observation"（观察）作为链式思考推理的关键词，让输出结构化。</p>
+<h3 id="23-输出解析器">2.3 输出解析器</h3>
+<h4 id="231-不使用输出解释器提取客户评价中的信息">2.3.1 不使用输出解释器提取客户评价中的信息</h4>
+<p>对于给定的评价<code>customer_review</code>, 我们希望提取信息，并按以下格式输出：</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">"gift"</span>: <span class="hljs-title class_">False</span>,
+  <span class="hljs-string">"delivery_days"</span>: <span class="hljs-number">5</span>,
+  <span class="hljs-string">"price_value"</span>: <span class="hljs-string">"pretty affordable!"</span>
+}
+</code></pre>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate
+
+customer_review = <span class="hljs-string">"""\
+这款吹叶机非常神奇。 它有四个设置：\
+吹蜡烛、微风、风城、龙卷风。 \
+两天后就到了，正好赶上我妻子的\
+周年纪念礼物。 \
+我想我的妻子会喜欢它到说不出话来。 \
+到目前为止，我是唯一一个使用它的人，而且我一直\
+每隔一天早上用它来清理草坪上的叶子。 \
+它比其他吹叶机稍微贵一点，\
+但我认为它的额外功能是值得的。
+"""</span>
+
+review_template = <span class="hljs-string">"""\
+对于以下文本，请从中提取以下信息：
+
+礼物：该商品是作为礼物送给别人的吗？ \
+如果是，则回答 是的；如果否或未知，则回答 不是。
+
+交货天数：产品需要多少天\
+到达？ 如果没有找到该信息，则输出-1。
+
+价钱：提取有关价值或价格的任何句子，\
+并将它们输出为逗号分隔的 Python 列表。
+
+使用以下键将输出格式化为 JSON：
+礼物
+交货天数
+价钱
+
+文本: {text}
+"""</span>
+
+prompt_template = ChatPromptTemplate.from_template(review_template)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"提示模版："</span>, prompt_template)
+
+
+messages = prompt_template.format_messages(text=customer_review)
+
+
+chat = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)
+response = chat(messages)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"结果类型:"</span>, <span class="hljs-built_in">type</span>(response.content))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"结果:"</span>, response.content)
+</code></pre>
+<pre><code>提示模版： 
+ input_variables=['text'] output_parser=None partial_variables={} messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['text'], output_parser=None, partial_variables={}, template='对于以下文本，请从中提取以下信息：\n\n礼物：该商品是作为礼物送给别人的吗？ 如果是，则回答 是的；如果否或未知，则回答 不是。\n\n交货天数：产品需要多少天到达？ 如果没有找到该信息，则输出-1。\n\n价钱：提取有关价值或价格的任何句子，并将它们输出为逗号分隔的 Python 列表。\n\n使用以下键将输出格式化为 JSON：\n礼物\n交货天数\n价钱\n\n文本: {text}\n', template_format='f-string', validate_template=True), additional_kwargs={})]
+
+结果类型:
+ &lt;class 'str'&gt;
+
+结果:
+ {
+  "礼物": "是的",
+  "交货天数": 2,
+  "价钱": ["它比其他吹叶机稍微贵一点"]
+}
+</code></pre><p>可以看出 <code>response.content</code>类型为字符串（<code>str</code>），而并非字典(<code>dict</code>), 如果想要从中更方便的提取信息，我们需要使用<code>Langchain</code>中的输出解释器。</p>
+<h4 id="232-使用输出解析器提取客户评价中的信息">2.3.2 使用输出解析器提取客户评价中的信息</h4>
+<p>接下来，我们将展示如何使用输出解释器。</p>
+<pre><code class="lang-python">review_template_2 = <span class="hljs-string">"""\
+对于以下文本，请从中提取以下信息：：
+
+礼物：该商品是作为礼物送给别人的吗？
+如果是，则回答 是的；如果否或未知，则回答 不是。
+
+交货天数：产品到达需要多少天？ 如果没有找到该信息，则输出-1。
+
+价钱：提取有关价值或价格的任何句子，并将它们输出为逗号分隔的 Python 列表。
+
+文本: {text}
+
+{format_instructions}
+"""</span>
+
+prompt = ChatPromptTemplate.from_template(template=review_template_2)
+
+<span class="hljs-keyword">from</span> langchain.output_parsers <span class="hljs-keyword">import</span> ResponseSchema
+<span class="hljs-keyword">from</span> langchain.output_parsers <span class="hljs-keyword">import</span> StructuredOutputParser
+
+gift_schema = ResponseSchema(name=<span class="hljs-string">"礼物"</span>,
+                             description=<span class="hljs-string">"这件物品是作为礼物送给别人的吗？\
+                            如果是，则回答 是的，\
+                            如果否或未知，则回答 不是。"</span>)
+
+delivery_days_schema = ResponseSchema(name=<span class="hljs-string">"交货天数"</span>,
+                                      description=<span class="hljs-string">"产品需要多少天才能到达？\
+                                      如果没有找到该信息，则输出-1。"</span>)
+
+price_value_schema = ResponseSchema(name=<span class="hljs-string">"价钱"</span>,
+                                    description=<span class="hljs-string">"提取有关价值或价格的任何句子，\
+                                    并将它们输出为逗号分隔的 Python 列表"</span>)
+
+
+response_schemas = [gift_schema, 
+                    delivery_days_schema,
+                    price_value_schema]
+output_parser = StructuredOutputParser.from_response_schemas(response_schemas)
+format_instructions = output_parser.get_format_instructions()
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"输出格式规定："</span>,format_instructions)
+</code></pre>
+<pre><code>输出格式规定： 
+ The output should be a markdown code snippet formatted in the following schema, including the leading and trailing "```json" and "```":
+
+```json
+{
+    "礼物": string  // 这件物品是作为礼物送给别人的吗？                            如果是，则回答 是的，                            如果否或未知，则回答 不是。
+    "交货天数": string  // 产品需要多少天才能到达？                                      如果没有找到该信息，则输出-1。
+    "价钱": string  // 提取有关价值或价格的任何句子，                                    并将它们输出为逗号分隔的 Python 列表
+}
+```
+</code></pre><pre><code class="lang-python">messages = prompt.format_messages(text=customer_review, format_instructions=format_instructions)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第一条客户消息:"</span>,messages[<span class="hljs-number">0</span>].content)
+</code></pre>
+<pre><code>第一条客户消息:
+ 对于以下文本，请从中提取以下信息：：
+
+礼物：该商品是作为礼物送给别人的吗？
+如果是，则回答 是的；如果否或未知，则回答 不是。
+
+交货天数：产品到达需要多少天？ 如果没有找到该信息，则输出-1。
+
+价钱：提取有关价值或价格的任何句子，并将它们输出为逗号分隔的 Python 列表。
+
+文本: 这款吹叶机非常神奇。 它有四个设置：吹蜡烛、微风、风城、龙卷风。 两天后就到了，正好赶上我妻子的周年纪念礼物。 我想我的妻子会喜欢它到说不出话来。 到目前为止，我是唯一一个使用它的人，而且我一直每隔一天早上用它来清理草坪上的叶子。 它比其他吹叶机稍微贵一点，但我认为它的额外功能是值得的。
+
+
+The output should be a markdown code snippet formatted in the following schema, including the leading and trailing "```json" and "```":
+
+```json
+{
+    "礼物": string  // 这件物品是作为礼物送给别人的吗？                            如果是，则回答 是的，                            如果否或未知，则回答 不是。
+    "交货天数": string  // 产品需要多少天才能到达？                                      如果没有找到该信息，则输出-1。
+    "价钱": string  // 提取有关价值或价格的任何句子，                                    并将它们输出为逗号分隔的 Python 列表
+}
+```
+</code></pre><pre><code class="lang-python">response = chat(messages)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"结果类型:"</span>, <span class="hljs-built_in">type</span>(response.content))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"结果:"</span>, response.content)
+</code></pre>
+<pre><code>结果类型:
+ &lt;class 'str'&gt;
+
+结果:
+ ```json
+{
+    "礼物": "不是",
+    "交货天数": "两天后就到了",
+    "价钱": "它比其他吹叶机稍微贵一点"
+}
+```
+</code></pre><pre><code class="lang-python">output_dict = output_parser.parse(response.content)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"解析后的结果类型:"</span>, <span class="hljs-built_in">type</span>(output_dict))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"解析后的结果:"</span>, output_dict)
+</code></pre>
+<pre><code>解析后的结果类型:
+ &lt;class 'dict'&gt;
+
+解析后的结果:
+ {'礼物': '不是', '交货天数': '两天后就到了', '价钱': '它比其他吹叶机稍微贵一点'}
+</code></pre><p><code>output_dict</code>类型为字典(<code>dict</code>), 可直接使用<code>get</code>方法。这样的输出更方便下游任务的处理。</p>
+<h2 id="三、英文版提示">三、英文版提示</h2>
+<p><strong>1.2 用美式英语表达海盗邮件</strong></p>
+<pre><code class="lang-python">customer_email = <span class="hljs-string">"""
+Arrr, I be fuming that me blender lid \
+flew off and splattered me kitchen walls \
+with smoothie! And to make matters worse,\
+the warranty don't cover the cost of \
+cleaning up me kitchen. I need yer help \
+right now, matey!
+"""</span>
+
+<span class="hljs-comment"># 美式英语 + 平静、尊敬的语调</span>
+style = <span class="hljs-string">"""American English \
+in a calm and respectful tone
+"""</span>
+
+
+<span class="hljs-comment"># 要求模型根据给出的语调进行转化</span>
+prompt = <span class="hljs-string">f"""Translate the text \
+that is delimited by triple backticks 
+into a style that is <span class="hljs-subst">{style}</span>.
+text: ```<span class="hljs-subst">{customer_email}</span>
+</span></code></pre>
+<p>"""</p>
+<p>print("提示：", prompt)</p>
+<p>response = get_completion(prompt)</p>
+<p>print("美式英语表达的海盗邮件: ", response)</p>
+<pre><code>
+
+    提示： 
+     Translate the text that is delimited by triple backticks 
+    into a style that is American English in a calm and respectful tone
+    .
+    text:
+</code></pre><pre><code>Arrr, I be fuming that me blender lid flew off and splattered me kitchen walls with smoothie! And to make matters worse,the warranty don't cover the cost of cleaning up me kitchen. I need yer help right now, matey!
+```
+
+
+美式英语表达的海盗邮件:  
+ I am quite frustrated that my blender lid flew off and made a mess of my kitchen walls with smoothie! To add to my frustration, the warranty does not cover the cost of cleaning up my kitchen. I kindly request your assistance at this moment, my friend.
+</code></pre><p><strong>2.2.1 用标准美式英语表达海盗邮件</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate
+
+template_string = <span class="hljs-string">"""Translate the text \
+that is delimited by triple backticks \
+into a style that is {style}. \
+text: ```{text}
+</span></code></pre>
+<p>"""</p>
+<p>prompt_template = ChatPromptTemplate.from_template(template_string)</p>
+<p>print("提示模版中的第一个提示：", prompt_template.messages[0].prompt)</p>
+<p>customer_style = """American English \
+in a calm and respectful tone
+"""</p>
+<p>customer_email = """
+Arrr, I be fuming that me blender lid \
+flew off and splattered me kitchen walls \
+with smoothie! And to make matters worse, \
+the warranty don't cover the cost of \
+cleaning up me kitchen. I need yer help \
+right now, matey!
+"""</p>
+<p>customer_messages = prompt_template.format_messages(
+                    style=customer_style,
+                    text=customer_email)</p>
+<p>print("用提示模版中生成的第一条客户消息：", customer_messages[0])</p>
+<pre><code>
+
+    提示模版中的第一个提示： 
+     input_variables=['style', 'text'] output_parser=None partial_variables={} template='Translate the text that is delimited by triple backticks into a style that is {style}. text: ```{text}```\n' template_format='f-string' validate_template=True
+
+    用提示模版中生成的第一条客户消息： 
+     content="Translate the text that is delimited by triple backticks into a style that is American English in a calm and respectful tone\n. text: ```\nArrr, I be fuming that me blender lid flew off and splattered me kitchen walls with smoothie! And to make matters worse, the warranty don't cover the cost of cleaning up me kitchen. I need yer help right now, matey!\n```\n" additional_kwargs={} example=False
+
+
+**2.2.2 用海盗方言回复邮件**
+
+
+```python
+service_reply = """Hey there customer, \
+the warranty does not cover \
+cleaning expenses for your kitchen \
+because it's your fault that \
+you misused your blender \
+by forgetting to put the lid on before \
+starting the blender. \
+Tough luck! See ya!
+"""
+service_style_pirate = """\
+a polite tone \
+that speaks in English Pirate\
+"""
+
+service_messages = prompt_template.format_messages(
+    style=service_style_pirate,
+    text=service_reply)
+
+print("提示模版中的第一条客户消息内容：", service_messages[0].content)
+
+service_response = chat(service_messages)
+print("模型得到的回复邮件：", service_response.content)
+</code></pre><pre><code>提示模版中的第一条客户消息内容： 
+ Translate the text that is delimited by triple backticks into a style that is a polite tone that speaks in English Pirate. text: ```Hey there customer, the warranty does not cover cleaning expenses for your kitchen because it's your fault that you misused your blender by forgetting to put the lid on before starting the blender. Tough luck! See ya!
+```
+
+
+模型得到的回复内容： 
+ Ahoy there, matey! I regret to inform ye that the warranty be not coverin' the costs o' cleanin' yer galley, as 'tis yer own fault fer misusin' yer blender by forgettin' to secure the lid afore startin' it. Aye, tough luck, me heartie! Fare thee well!
+</code></pre><p><strong>2.3.1 不使用输出解释器提取客户评价中的信息</strong></p>
+<pre><code class="lang-python">customer_review = <span class="hljs-string">"""\
+This leaf blower is pretty amazing.  It has four settings:\
+candle blower, gentle breeze, windy city, and tornado. \
+It arrived in two days, just in time for my wife's \
+anniversary present. \
+I think my wife liked it so much she was speechless. \
+So far I've been the only one using it, and I've been \
+using it every other morning to clear the leaves on our lawn. \
+It's slightly more expensive than the other leaf blowers \
+out there, but I think it's worth it for the extra features.
+"""</span>
+
+review_template = <span class="hljs-string">"""\
+For the following text, extract the following information:
+
+gift: Was the item purchased as a gift for someone else? \
+Answer True if yes, False if not or unknown.
+
+delivery_days: How many days did it take for the product \
+to arrive? If this information is not found, output -1.
+
+price_value: Extract any sentences about the value or price,\
+and output them as a comma separated Python list.
+
+Format the output as JSON with the following keys:
+gift
+delivery_days
+price_value
+
+text: {text}
+"""</span>
+
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate
+prompt_template = ChatPromptTemplate.from_template(review_template)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"提示模版："</span>,prompt_template)
+
+messages = prompt_template.format_messages(text=customer_review)
+
+chat = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)
+response = chat(messages)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"回复内容："</span>,response.content)
+</code></pre>
+<pre><code>提示模版： 
+ input_variables=['text'] output_parser=None partial_variables={} messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['text'], output_parser=None, partial_variables={}, template='For the following text, extract the following information:\n\ngift: Was the item purchased as a gift for someone else? Answer True if yes, False if not or unknown.\n\ndelivery_days: How many days did it take for the product to arrive? If this information is not found, output -1.\n\nprice_value: Extract any sentences about the value or price,and output them as a comma separated Python list.\n\nFormat the output as JSON with the following keys:\ngift\ndelivery_days\nprice_value\n\ntext: {text}\n', template_format='f-string', validate_template=True), additional_kwargs={})]
+
+回复内容： 
+ {
+  "gift": false,
+  "delivery_days": 2,
+  "price_value": ["It's slightly more expensive than the other leaf blowers out there, but I think it's worth it for the extra features."]
+}
+</code></pre><p><strong>2.3.2 使用输出解析器提取客户评价中的信息</strong></p>
+<pre><code class="lang-python">review_template_2 = <span class="hljs-string">"""\
+For the following text, extract the following information:
+
+gift: Was the item purchased as a gift for someone else? \
+Answer True if yes, False if not or unknown.
+
+delivery_days: How many days did it take for the product\
+to arrive? If this information is not found, output -1.
+
+price_value: Extract any sentences about the value or price,\
+and output them as a comma separated Python list.
+
+text: {text}
+
+{format_instructions}
+"""</span>
+
+prompt = ChatPromptTemplate.from_template(template=review_template_2)
+
+<span class="hljs-keyword">from</span> langchain.output_parsers <span class="hljs-keyword">import</span> ResponseSchema
+<span class="hljs-keyword">from</span> langchain.output_parsers <span class="hljs-keyword">import</span> StructuredOutputParser
+
+gift_schema = ResponseSchema(name=<span class="hljs-string">"gift"</span>,
+                             description=<span class="hljs-string">"Was the item purchased\
+                             as a gift for someone else? \
+                             Answer True if yes,\
+                             False if not or unknown."</span>)
+
+delivery_days_schema = ResponseSchema(name=<span class="hljs-string">"delivery_days"</span>,
+                                      description=<span class="hljs-string">"How many days\
+                                      did it take for the product\
+                                      to arrive? If this \
+                                      information is not found,\
+                                      output -1."</span>)
+
+price_value_schema = ResponseSchema(name=<span class="hljs-string">"price_value"</span>,
+                                    description=<span class="hljs-string">"Extract any\
+                                    sentences about the value or \
+                                    price, and output them as a \
+                                    comma separated Python list."</span>)
+
+
+response_schemas = [gift_schema, 
+                    delivery_days_schema,
+                    price_value_schema]
+output_parser = StructuredOutputParser.from_response_schemas(response_schemas)
+format_instructions = output_parser.get_format_instructions()
+<span class="hljs-built_in">print</span>(format_instructions)
+
+messages = prompt.format_messages(text=customer_review, format_instructions=format_instructions)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"提示消息："</span>, messages[<span class="hljs-number">0</span>].content)
+
+response = chat(messages)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"回复内容："</span>,response.content)
+
+output_dict = output_parser.parse(response.content)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"解析后的结果类型:"</span>, <span class="hljs-built_in">type</span>(output_dict))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"解析后的结果:"</span>, output_dict)
+</code></pre>
+<pre><code>The output should be a markdown code snippet formatted in the following schema, including the leading and trailing "```json" and "```":
+
+```json
+{
+    "gift": string  // Was the item purchased                             as a gift for someone else?                              Answer True if yes,                             False if not or unknown.
+    "delivery_days": string  // How many days                                      did it take for the product                                      to arrive? If this                                       information is not found,                                      output -1.
+    "price_value": string  // Extract any                                    sentences about the value or                                     price, and output them as a                                     comma separated Python list.
+}
+```
+
+提示消息： 
+ For the following text, extract the following information:
+
+gift: Was the item purchased as a gift for someone else? Answer True if yes, False if not or unknown.
+
+delivery_days: How many days did it take for the productto arrive? If this information is not found, output -1.
+
+price_value: Extract any sentences about the value or price,and output them as a comma separated Python list.
+
+text: This leaf blower is pretty amazing.  It has four settings:candle blower, gentle breeze, windy city, and tornado. It arrived in two days, just in time for my wife's anniversary present. I think my wife liked it so much she was speechless. So far I've been the only one using it, and I've been using it every other morning to clear the leaves on our lawn. It's slightly more expensive than the other leaf blowers out there, but I think it's worth it for the extra features.
+
+
+The output should be a markdown code snippet formatted in the following schema, including the leading and trailing "```json" and "```":
+
+```json
+{
+    "gift": string  // Was the item purchased                             as a gift for someone else?                              Answer True if yes,                             False if not or unknown.
+    "delivery_days": string  // How many days                                      did it take for the product                                      to arrive? If this                                       information is not found,                                      output -1.
+    "price_value": string  // Extract any                                    sentences about the value or                                     price, and output them as a                                     comma separated Python list.
+}
+```
+
+
+回复内容： 
+ ```json
+{
+    "gift": false,
+    "delivery_days": "2",
+    "price_value": "It's slightly more expensive than the other leaf blowers out there, but I think it's worth it for the extra features."
+}
+```
+
+解析后的结果类型:
+ &lt;class 'dict'&gt;
+
+解析后的结果:
+ {'gift': False, 'delivery_days': '2', 'price_value': "It's slightly more expensive than the other leaf blowers out there, but I think it's worth it for the extra features."}
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1.-简介-Introduction.html" class="navigation navigation-prev " aria-label="Previous page: 1. 简介 Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3.-储存-Memory.html" class="navigation navigation-next " aria-label="Next page: 3. 储存 Memory">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"2. 模型、提示和解析器 Models, Prompts and Parsers","level":"4.3","depth":1,"next":{"title":"3. 储存 Memory","level":"4.4","depth":1,"path":"C3/3.-储存-Memory.md","ref":"C3/3.-储存-Memory.md","articles":[]},"previous":{"title":"1. 简介 Introduction","level":"4.2","depth":1,"path":"C3/1.-简介-Introduction.md","ref":"C3/1.-简介-Introduction.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.md","mtime":"2024-08-23T21:42:59.786Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-08-23T22:20:29.853Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

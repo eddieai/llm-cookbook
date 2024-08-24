@@ -1,0 +1,1235 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>8. 搭建一个带评估的端到端系统 Evaluation · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="9.-评估（上）-Evaluation-part1.html" />
+    
+    
+    <link rel="prev" href="7.-检查结果-Check-Outputs.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../前言.html">
+            
+                <a href="../前言.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../环境配置.html">
+            
+                <a href="../环境配置.html">
+            
+                    
+                    环境配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第一部分 面向开发者的提示工程</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../C1/readme.html">
+            
+                <a href="../C1/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../C1/1.-简介-Introduction.html">
+            
+                <a href="../C1/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../C1/2.-提示原则-Guidelines.html">
+            
+                <a href="../C1/2.-提示原则-Guidelines.html">
+            
+                    
+                    2. 提示原则 Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../C1/3.-迭代优化-Iterative.html">
+            
+                <a href="../C1/3.-迭代优化-Iterative.html">
+            
+                    
+                    3. 迭代优化 Iterative
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../C1/4.-文本概括-Summarizing.html">
+            
+                <a href="../C1/4.-文本概括-Summarizing.html">
+            
+                    
+                    4. 文本概括 Summarizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../C1/5.-推断-Inferring.html">
+            
+                <a href="../C1/5.-推断-Inferring.html">
+            
+                    
+                    5. 推断 Inferring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../C1/6.-文本转换-Transforming.html">
+            
+                <a href="../C1/6.-文本转换-Transforming.html">
+            
+                    
+                    6. 文本转换 Transforming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../C1/7.-文本扩展-Expanding.html">
+            
+                <a href="../C1/7.-文本扩展-Expanding.html">
+            
+                    
+                    7. 文本扩展 Expanding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="../C1/8.-聊天机器人-Chatbot.html">
+            
+                <a href="../C1/8.-聊天机器人-Chatbot.html">
+            
+                    
+                    8. 聊天机器人 Chatbot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="../C1/9.-总结-Summary.html">
+            
+                <a href="../C1/9.-总结-Summary.html">
+            
+                    
+                    9. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第二部分 搭建基于 ChatGPT 的问答系统</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="1.-简介-Introduction.html">
+            
+                <a href="1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                <a href="2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                    
+                    2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="3.-评估输入-分类-Classification.html">
+            
+                <a href="3.-评估输入-分类-Classification.html">
+            
+                    
+                    3. 评估输入-分类 Classification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="4.-检查输入-监督-Moderation.html">
+            
+                <a href="4.-检查输入-监督-Moderation.html">
+            
+                    
+                    4. 检查输入-监督 Moderation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                <a href="5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                    
+                    5. 思维链推理 Chain of Thought Reasoning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                <a href="6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                    
+                    6. Prompt 链 Chaining Prompts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="7.-检查结果-Check-Outputs.html">
+            
+                <a href="7.-检查结果-Check-Outputs.html">
+            
+                    
+                    7. 检查结果 Check Outputs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.9" data-path="8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                <a href="8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                    
+                    8. 搭建一个带评估的端到端系统 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="9.-评估（上）-Evaluation-part1.html">
+            
+                <a href="9.-评估（上）-Evaluation-part1.html">
+            
+                    
+                    9. 评估（上）Evaluation-part1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="10.-评估（下）Evaluation-part2.html">
+            
+                <a href="10.-评估（下）Evaluation-part2.html">
+            
+                    
+                    10. 评估（下）Evaluation-part2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="11.总结-conclusion.html">
+            
+                <a href="11.总结-conclusion.html">
+            
+                    
+                    11. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第三部分 使用 LangChain 开发应用程序</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../C3/readme.html">
+            
+                <a href="../C3/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../C3/1.-简介-Introduction.html">
+            
+                <a href="../C3/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                <a href="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                    
+                    2. 模型、提示和解析器 Models, Prompts and Parsers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../C3/3.-储存-Memory.html">
+            
+                <a href="../C3/3.-储存-Memory.html">
+            
+                    
+                    3. 储存 Memory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../C3/4.-模型链-Chains.html">
+            
+                <a href="../C3/4.-模型链-Chains.html">
+            
+                    
+                    4. 模型链 Chains
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                <a href="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                    
+                    5. 基于文档的问答 Question and Answer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="../C3/6.-评估-Evaluation.html">
+            
+                <a href="../C3/6.-评估-Evaluation.html">
+            
+                    
+                    6. 评估 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="../C3/7.-代理-Agent.html">
+            
+                <a href="../C3/7.-代理-Agent.html">
+            
+                    
+                    7. 代理 Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="../C3/8.-总结-Conclusion.html">
+            
+                <a href="../C3/8.-总结-Conclusion.html">
+            
+                    
+                    8. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第四部分 使用 LangChain 访问个人数据</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../C4/readme.html">
+            
+                <a href="../C4/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../C4/1.-简介-Introduction.html">
+            
+                <a href="../C4/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../C4/2.-文档加载-Document-Loading.html">
+            
+                <a href="../C4/2.-文档加载-Document-Loading.html">
+            
+                    
+                    2. 文档加载 Document Loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../C4/3.-文档分割-Splitting.html">
+            
+                <a href="../C4/3.-文档分割-Splitting.html">
+            
+                    
+                    3. 文档分割 Splitting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                <a href="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                    
+                    4. 向量数据库与词向量 Vectorstores and Embeddings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../C4/5.-检索-Retrieval.html">
+            
+                <a href="../C4/5.-检索-Retrieval.html">
+            
+                    
+                    5. 检索 Retrieval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="../C4/6.-问答-Question-Answering.html">
+            
+                <a href="../C4/6.-问答-Question-Answering.html">
+            
+                    
+                    6. 问答 Question ANswering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="../C4/7.-聊天-Chat.html">
+            
+                <a href="../C4/7.-聊天-Chat.html">
+            
+                    
+                    7. 聊天 Chat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="../C4/8.-总结-Summary.html">
+            
+                <a href="../C4/8.-总结-Summary.html">
+            
+                    
+                    8. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >8. 搭建一个带评估的端到端系统 Evaluation</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第八章-搭建一个带评估的端到端问答系统">第八章 搭建一个带评估的端到端问答系统</h1>
+<p>在这一章节中，我们将会构建一个集成评估环节的完整问答系统。这个系统将会融合我们在前几节课中所学到的知识，并且加入了评估步骤。以下是该系统的核心操作流程：</p>
+<ol>
+<li>对用户的输入进行检验，验证其是否可以通过审核 API 的标准。</li>
+<li>若输入顺利通过审核，我们将进一步对产品目录进行搜索。</li>
+<li>若产品搜索成功，我们将继续寻找相关的产品信息。</li>
+<li>我们使用模型针对用户的问题进行回答。</li>
+<li>最后，我们会使用审核 API 对生成的回答进行再次的检验。</li>
+</ol>
+<p>如果最终答案没有被标记为有害，那么我们将毫无保留地将其呈现给用户。</p>
+<h2 id="二、端到端实现问答系统">二、端到端实现问答系统</h2>
+<p>在我们的探索之旅中，我们将实现一个完整的问答系统，一种能理解并回应人类语言的人工智能。在这个过程中，我们将使用 OpenAI 的相关API并引用相关函数，来帮助我们快速搭建一个高效且精准的模型。然而，我们需要注意到，在中文的理解和处理方面，由于模型的特性，我们可能会偶尔遇到不理想的结果。在这种情况下，你可以多尝试几次，或者进行深入的研究，以找到更稳定的方法。</p>
+<p>让我们先从一个函数开始，它的名称是 <code>process_user_message_ch</code>，该函数主要负责处理用户输入的信息。这个函数接收三个参数，用户的输入、所有的历史信息，以及一个表示是否需要调试的标志。
+在函数的内部，我们首先使用 OpenAI 的 Moderation API 来检查用户输入的合规性。如果输入被标记为不合规，我们将返回一个信息，告知用户请求不合规。在调试模式下，我们将打印出当前的进度。</p>
+<p>接下来，我们利用 <code>utils_zh.find_category_and_product_only</code> 函数（详细请见附录代码）抽取出用户输入中的商品和对应的目录。然后，我们将抽取的信息转化为一个列表。
+在获取到商品列表后，我们将查询这些商品的具体信息。之后，我们生成一个系统消息，设定一些约束，以确保我们的回应符合期望的标准。我们将生成的消息和历史信息一起送入 <code>get_completion_from_messages</code> 函数，得到模型的回应。之后，我们再次使用 Moderation API 检查模型的输出是否合规。如果输出不合规，我们将返回一个信息，告知无法提供该信息。</p>
+<p>最后，我们让模型自我评估是否很好地回答了用户的问题。如果模型认为回答是满足要求的，我们则返回模型的回答；否则，我们会告知用户，他们将会被转接到人工客服进行进一步的帮助。</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> openai 
+<span class="hljs-keyword">import</span> utils_zh
+<span class="hljs-keyword">from</span> tool <span class="hljs-keyword">import</span> get_completion_from_messages
+
+<span class="hljs-string">'''
+注意：限于模型对中文理解能力较弱，中文 Prompt 可能会随机出现不成功，可以多次运行；也非常欢迎同学探究更稳定的中文 Prompt
+'''</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">process_user_message_ch</span>(<span class="hljs-params">user_input, all_messages, debug=<span class="hljs-literal">True</span></span>):
+    <span class="hljs-string">"""
+    对用户信息进行预处理
+
+    参数:
+    user_input : 用户输入
+    all_messages : 历史信息
+    debug : 是否开启 DEBUG 模式,默认开启
+    """</span>
+    <span class="hljs-comment"># 分隔符</span>
+    delimiter = <span class="hljs-string">"```"</span>
+
+    <span class="hljs-comment"># 第一步: 使用 OpenAI 的 Moderation API 检查用户输入是否合规或者是一个注入的 Prompt</span>
+    response = openai.Moderation.create(<span class="hljs-built_in">input</span>=user_input)
+    moderation_output = response[<span class="hljs-string">"results"</span>][<span class="hljs-number">0</span>]
+
+    <span class="hljs-comment"># 经过 Moderation API 检查该输入不合规</span>
+    <span class="hljs-keyword">if</span> moderation_output[<span class="hljs-string">"flagged"</span>]:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"第一步：输入被 Moderation 拒绝"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"抱歉，您的请求不合规"</span>
+
+    <span class="hljs-comment"># 如果开启了 DEBUG 模式，打印实时进度</span>
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第一步：输入通过 Moderation 检查"</span>)
+
+    <span class="hljs-comment"># 第二步：抽取出商品和对应的目录，类似于之前课程中的方法，做了一个封装</span>
+    category_and_product_response = utils_zh.find_category_and_product_only(user_input, utils_zh.get_products_and_category())
+    <span class="hljs-comment">#print(category_and_product_response)</span>
+    <span class="hljs-comment"># 将抽取出来的字符串转化为列表</span>
+    category_and_product_list = utils_zh.read_string_to_list(category_and_product_response)
+    <span class="hljs-comment">#print(category_and_product_list)</span>
+
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第二步：抽取出商品列表"</span>)
+
+    <span class="hljs-comment"># 第三步：查找商品对应信息</span>
+    product_information = utils_zh.generate_output_string(category_and_product_list)
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第三步：查找抽取出的商品信息"</span>)
+
+    <span class="hljs-comment"># 第四步：根据信息生成回答</span>
+    system_message = <span class="hljs-string">f"""
+        您是一家大型电子商店的客户服务助理。\
+        请以友好和乐于助人的语气回答问题，并提供简洁明了的答案。\
+        请确保向用户提出相关的后续问题。
+    """</span>
+    <span class="hljs-comment"># 插入 message</span>
+    messages = [
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_input}</span><span class="hljs-subst">{delimiter}</span>"</span>},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"相关商品信息:\n<span class="hljs-subst">{product_information}</span>"</span>}
+    ]
+    <span class="hljs-comment"># 获取 GPT3.5 的回答</span>
+    <span class="hljs-comment"># 通过附加 all_messages 实现多轮对话</span>
+    final_response = get_completion_from_messages(all_messages + messages)
+    <span class="hljs-keyword">if</span> debug:<span class="hljs-built_in">print</span>(<span class="hljs-string">"第四步：生成用户回答"</span>)
+    <span class="hljs-comment"># 将该轮信息加入到历史信息中</span>
+    all_messages = all_messages + messages[<span class="hljs-number">1</span>:]
+
+    <span class="hljs-comment"># 第五步：基于 Moderation API 检查输出是否合规</span>
+    response = openai.Moderation.create(<span class="hljs-built_in">input</span>=final_response)
+    moderation_output = response[<span class="hljs-string">"results"</span>][<span class="hljs-number">0</span>]
+
+    <span class="hljs-comment"># 输出不合规</span>
+    <span class="hljs-keyword">if</span> moderation_output[<span class="hljs-string">"flagged"</span>]:
+        <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第五步：输出被 Moderation 拒绝"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"抱歉，我们不能提供该信息"</span>
+
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第五步：输出经过 Moderation 检查"</span>)
+
+    <span class="hljs-comment"># 第六步：模型检查是否很好地回答了用户问题</span>
+    user_message = <span class="hljs-string">f"""
+    用户信息: <span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_input}</span><span class="hljs-subst">{delimiter}</span>
+    代理回复: <span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{final_response}</span><span class="hljs-subst">{delimiter}</span>
+
+    回复是否足够回答问题
+    如果足够，回答 Y
+    如果不足够，回答 N
+    仅回答上述字母即可
+    """</span>
+    <span class="hljs-comment"># print(final_response)</span>
+    messages = [
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: user_message}
+    ]
+    <span class="hljs-comment"># 要求模型评估回答</span>
+    evaluation_response = get_completion_from_messages(messages)
+    <span class="hljs-comment"># print(evaluation_response)</span>
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第六步：模型评估该回答"</span>)
+
+    <span class="hljs-comment"># 第七步：如果评估为 Y，输出回答；如果评估为 N，反馈将由人工修正答案</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-string">"Y"</span> <span class="hljs-keyword">in</span> evaluation_response:  <span class="hljs-comment"># 使用 in 来避免模型可能生成 Yes</span>
+        <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第七步：模型赞同了该回答."</span>)
+        <span class="hljs-keyword">return</span> final_response, all_messages
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第七步：模型不赞成该回答."</span>)
+        neg_str = <span class="hljs-string">"很抱歉，我无法提供您所需的信息。我将为您转接到一位人工客服代表以获取进一步帮助。"</span>
+        <span class="hljs-keyword">return</span> neg_str, all_messages
+
+user_input = <span class="hljs-string">"请告诉我关于 smartx pro phone 和 the fotosnap camera 的信息。另外，请告诉我关于你们的tvs的情况。"</span>
+response,_ = process_user_message_ch(user_input,[])
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>第一步：输入通过 Moderation 检查
+第二步：抽取出商品列表
+第三步：查找抽取出的商品信息
+第四步：生成用户回答
+第五步：输出经过 Moderation 检查
+第六步：模型评估该回答
+第七步：模型赞同了该回答.
+关于SmartX ProPhone和FotoSnap相机的信息如下：
+
+SmartX ProPhone：
+- 品牌：SmartX
+- 型号：SX-PP10
+- 屏幕尺寸：6.1英寸
+- 存储容量：128GB
+- 相机：12MP双摄像头
+- 网络：支持5G
+- 保修：1年
+- 价格：899.99美元
+
+FotoSnap相机系列：
+1. FotoSnap DSLR相机：
+- 品牌：FotoSnap
+- 型号：FS-DSLR200
+- 传感器：24.2MP
+- 视频：1080p
+- 屏幕：3英寸LCD
+- 可更换镜头
+- 保修：1年
+- 价格：599.99美元
+
+2. FotoSnap无反相机：
+- 品牌：FotoSnap
+- 型号：FS-ML100
+- 传感器：20.1MP
+- 视频：4K
+- 屏幕：3英寸触摸屏
+- 可更换镜头
+- 保修：1年
+- 价格：799.99美元
+
+3. FotoSnap即时相机：
+- 品牌：FotoSnap
+- 型号：FS-IC10
+- 即时打印
+- 内置闪光灯
+- 自拍镜
+- 电池供电
+- 保修：1年
+- 价格：69.99美元
+
+关于我们的电视情况如下：
+
+1. CineView 4K电视：
+- 品牌：CineView
+- 型号：CV-4K55
+- 屏幕尺寸：55英寸
+- 分辨率：4K
+- HDR支持
+- 智能电视功能
+- 保修：2年
+- 价格：599.99美元
+
+2. CineView 8K电视：
+- 品牌：
+</code></pre><h2 id="二、持续收集用户和助手消息">二、持续收集用户和助手消息</h2>
+<p>为了持续优化用户和助手的问答体验，我们打造了一个友好的可视化界面，以促进用户与助手之间的便捷互动。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 调用中文 Prompt 版本</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">collect_messages_ch</span>(<span class="hljs-params">debug=<span class="hljs-literal">True</span></span>):
+    <span class="hljs-string">"""
+    用于收集用户的输入并生成助手的回答
+
+    参数：
+    debug: 用于觉得是否开启调试模式
+    """</span>
+    user_input = inp.value_input
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">f"User Input = <span class="hljs-subst">{user_input}</span>"</span>)
+    <span class="hljs-keyword">if</span> user_input == <span class="hljs-string">""</span>:
+        <span class="hljs-keyword">return</span>
+    inp.value = <span class="hljs-string">''</span>
+    <span class="hljs-keyword">global</span> context
+    <span class="hljs-comment"># 调用 process_user_message 函数</span>
+    <span class="hljs-comment">#response, context = process_user_message(user_input, context, utils.get_products_and_category(),debug=True)</span>
+    response, context = process_user_message_ch(user_input, context, debug=<span class="hljs-literal">False</span>)
+    <span class="hljs-comment"># print(response)</span>
+    context.append({<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">f"<span class="hljs-subst">{response}</span>"</span>})
+    panels.append(
+        pn.Row(<span class="hljs-string">'User:'</span>, pn.pane.Markdown(user_input, width=<span class="hljs-number">600</span>)))
+    panels.append(
+        pn.Row(<span class="hljs-string">'Assistant:'</span>, pn.pane.Markdown(response, width=<span class="hljs-number">600</span>, style={<span class="hljs-string">'background-color'</span>: <span class="hljs-string">'#F6F6F6'</span>})))
+
+    <span class="hljs-keyword">return</span> pn.Column(*panels) <span class="hljs-comment"># 包含了所有的对话信息</span>
+</code></pre>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> panel <span class="hljs-keyword">as</span> pn  <span class="hljs-comment"># 用于图形化界面</span>
+pn.extension()
+
+panels = [] <span class="hljs-comment"># collect display </span>
+
+<span class="hljs-comment"># 系统信息</span>
+context = [ {<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">"You are Service Assistant"</span>} ]  
+
+inp = pn.widgets.TextInput( placeholder=<span class="hljs-string">'Enter text here…'</span>)
+button_conversation = pn.widgets.Button(name=<span class="hljs-string">"Service Assistant"</span>)
+
+interactive_conversation = pn.bind(collect_messages_ch, button_conversation)
+
+dashboard = pn.Column(
+    inp,
+    pn.Row(button_conversation),
+    pn.panel(interactive_conversation, loading_indicator=<span class="hljs-literal">True</span>, height=<span class="hljs-number">300</span>),
+)
+
+dashboard
+</code></pre>
+<p>下图展示了该问答系统的运行实况：</p>
+<p><img src="../figures/C2/ch8-example.png" alt=""></img></p>
+<p>通过监控该问答系统在更多输入上的回答效果，您可以修改步骤，提高系统的整体性能。</p>
+<p>我们可能会察觉，在某些环节，我们的 Prompt 可能更好，有些环节可能完全可以省略，甚至，我们可能会找到更好的检索方法等等。</p>
+<p>对于这个问题，我们将在接下来的章节中进行更深入的探讨。</p>
+<h2 id="三、英文版">三、英文版</h2>
+<p><strong>1.1 端到端问答系统</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> utils_en
+<span class="hljs-keyword">import</span> openai
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">process_user_message</span>(<span class="hljs-params">user_input, all_messages, debug=<span class="hljs-literal">True</span></span>):
+    <span class="hljs-string">"""
+    对用户信息进行预处理
+
+    参数:
+    user_input : 用户输入
+    all_messages : 历史信息
+    debug : 是否开启 DEBUG 模式,默认开启
+    """</span>
+    <span class="hljs-comment"># 分隔符</span>
+    delimiter = <span class="hljs-string">"```"</span>
+
+    <span class="hljs-comment"># 第一步: 使用 OpenAI 的 Moderation API 检查用户输入是否合规或者是一个注入的 Prompt</span>
+    response = openai.Moderation.create(<span class="hljs-built_in">input</span>=user_input)
+    moderation_output = response[<span class="hljs-string">"results"</span>][<span class="hljs-number">0</span>]
+
+    <span class="hljs-comment"># 经过 Moderation API 检查该输入不合规</span>
+    <span class="hljs-keyword">if</span> moderation_output[<span class="hljs-string">"flagged"</span>]:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"第一步：输入被 Moderation 拒绝"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"抱歉，您的请求不合规"</span>
+
+    <span class="hljs-comment"># 如果开启了 DEBUG 模式，打印实时进度</span>
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第一步：输入通过 Moderation 检查"</span>)
+
+    <span class="hljs-comment"># 第二步：抽取出商品和对应的目录，类似于之前课程中的方法，做了一个封装</span>
+    category_and_product_response = utils_en.find_category_and_product_only(user_input, utils_en.get_products_and_category())
+    <span class="hljs-comment">#print(category_and_product_response)</span>
+    <span class="hljs-comment"># 将抽取出来的字符串转化为列表</span>
+    category_and_product_list = utils_en.read_string_to_list(category_and_product_response)
+    <span class="hljs-comment">#print(category_and_product_list)</span>
+
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第二步：抽取出商品列表"</span>)
+
+    <span class="hljs-comment"># 第三步：查找商品对应信息</span>
+    product_information = utils_en.generate_output_string(category_and_product_list)
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第三步：查找抽取出的商品信息"</span>)
+
+    <span class="hljs-comment"># 第四步：根据信息生成回答</span>
+    system_message = <span class="hljs-string">f"""
+    You are a customer service assistant for a large electronic store. \
+    Respond in a friendly and helpful tone, with concise answers. \
+    Make sure to ask the user relevant follow-up questions.
+    """</span>
+    <span class="hljs-comment"># 插入 message</span>
+    messages = [
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_input}</span><span class="hljs-subst">{delimiter}</span>"</span>},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"Relevant product information:\n<span class="hljs-subst">{product_information}</span>"</span>}
+    ]
+    <span class="hljs-comment"># 获取 GPT3.5 的回答</span>
+    <span class="hljs-comment"># 通过附加 all_messages 实现多轮对话</span>
+    final_response = get_completion_from_messages(all_messages + messages)
+    <span class="hljs-keyword">if</span> debug:<span class="hljs-built_in">print</span>(<span class="hljs-string">"第四步：生成用户回答"</span>)
+    <span class="hljs-comment"># 将该轮信息加入到历史信息中</span>
+    all_messages = all_messages + messages[<span class="hljs-number">1</span>:]
+
+    <span class="hljs-comment"># 第五步：基于 Moderation API 检查输出是否合规</span>
+    response = openai.Moderation.create(<span class="hljs-built_in">input</span>=final_response)
+    moderation_output = response[<span class="hljs-string">"results"</span>][<span class="hljs-number">0</span>]
+
+    <span class="hljs-comment"># 输出不合规</span>
+    <span class="hljs-keyword">if</span> moderation_output[<span class="hljs-string">"flagged"</span>]:
+        <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第五步：输出被 Moderation 拒绝"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"抱歉，我们不能提供该信息"</span>
+
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第五步：输出经过 Moderation 检查"</span>)
+
+    <span class="hljs-comment"># 第六步：模型检查是否很好地回答了用户问题</span>
+    user_message = <span class="hljs-string">f"""
+    Customer message: <span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_input}</span><span class="hljs-subst">{delimiter}</span>
+    Agent response: <span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{final_response}</span><span class="hljs-subst">{delimiter}</span>
+
+    Does the response sufficiently answer the question?
+    """</span>
+    messages = [
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: user_message}
+    ]
+    <span class="hljs-comment"># 要求模型评估回答</span>
+    evaluation_response = get_completion_from_messages(messages)
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第六步：模型评估该回答"</span>)
+
+    <span class="hljs-comment"># 第七步：如果评估为 Y，输出回答；如果评估为 N，反馈将由人工修正答案</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-string">"Y"</span> <span class="hljs-keyword">in</span> evaluation_response:  <span class="hljs-comment"># 使用 in 来避免模型可能生成 Yes</span>
+        <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第七步：模型赞同了该回答."</span>)
+        <span class="hljs-keyword">return</span> final_response, all_messages
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第七步：模型不赞成该回答."</span>)
+        neg_str = <span class="hljs-string">"很抱歉，我无法提供您所需的信息。我将为您转接到一位人工客服代表以获取进一步帮助。"</span>
+        <span class="hljs-keyword">return</span> neg_str, all_messages
+
+user_input = <span class="hljs-string">"tell me about the smartx pro phone and the fotosnap camera, the dslr one. Also what tell me about your tvs"</span>
+response,_ = process_user_message(user_input,[])
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>第一步：输入通过 Moderation 检查
+第二步：抽取出商品列表
+第三步：查找抽取出的商品信息
+第四步：生成用户回答
+第五步：输出经过 Moderation 检查
+第六步：模型评估该回答
+第七步：模型赞同了该回答.
+Sure! Here's some information about the SmartX ProPhone and the FotoSnap DSLR Camera:
+
+1. SmartX ProPhone:
+   - Brand: SmartX
+   - Model Number: SX-PP10
+   - Features: 6.1-inch display, 128GB storage, 12MP dual camera, 5G connectivity
+   - Description: A powerful smartphone with advanced camera features.
+   - Price: $899.99
+   - Warranty: 1 year
+
+2. FotoSnap DSLR Camera:
+   - Brand: FotoSnap
+   - Model Number: FS-DSLR200
+   - Features: 24.2MP sensor, 1080p video, 3-inch LCD, interchangeable lenses
+   - Description: Capture stunning photos and videos with this versatile DSLR camera.
+   - Price: $599.99
+   - Warranty: 1 year
+
+Now, could you please let me know which specific TV models you are interested in?
+</code></pre><p><strong>2.1 持续收集用户和助手信息</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">collect_messages_en</span>(<span class="hljs-params">debug=<span class="hljs-literal">False</span></span>):
+    <span class="hljs-string">"""
+    用于收集用户的输入并生成助手的回答
+
+    参数：
+    debug: 用于觉得是否开启调试模式
+    """</span>
+    user_input = inp.value_input
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">f"User Input = <span class="hljs-subst">{user_input}</span>"</span>)
+    <span class="hljs-keyword">if</span> user_input == <span class="hljs-string">""</span>:
+        <span class="hljs-keyword">return</span>
+    inp.value = <span class="hljs-string">''</span>
+    <span class="hljs-keyword">global</span> context
+    <span class="hljs-comment"># 调用 process_user_message 函数</span>
+    <span class="hljs-comment">#response, context = process_user_message(user_input, context, utils.get_products_and_category(),debug=True)</span>
+    response, context = process_user_message(user_input, context, debug=<span class="hljs-literal">False</span>)
+    context.append({<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">f"<span class="hljs-subst">{response}</span>"</span>})
+    panels.append(
+        pn.Row(<span class="hljs-string">'User:'</span>, pn.pane.Markdown(user_input, width=<span class="hljs-number">600</span>)))
+    panels.append(
+        pn.Row(<span class="hljs-string">'Assistant:'</span>, pn.pane.Markdown(response, width=<span class="hljs-number">600</span>, style={<span class="hljs-string">'background-color'</span>: <span class="hljs-string">'#F6F6F6'</span>})))
+
+    <span class="hljs-keyword">return</span> pn.Column(*panels) <span class="hljs-comment"># 包含了所有的对话信息</span>
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="7.-检查结果-Check-Outputs.html" class="navigation navigation-prev " aria-label="Previous page: 7. 检查结果 Check Outputs">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="9.-评估（上）-Evaluation-part1.html" class="navigation navigation-next " aria-label="Next page: 9. 评估（上）Evaluation-part1">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"8. 搭建一个带评估的端到端系统 Evaluation","level":"3.9","depth":1,"next":{"title":"9. 评估（上）Evaluation-part1","level":"3.10","depth":1,"path":"C2/9.-评估（上）-Evaluation-part1.md","ref":"C2/9.-评估（上）-Evaluation-part1.md","articles":[]},"previous":{"title":"7. 检查结果 Check Outputs","level":"3.8","depth":1,"path":"C2/7.-检查结果-Check-Outputs.md","ref":"C2/7.-检查结果-Check-Outputs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/8.-搭建一个带评估的端到端问答系统-Evaluation.md","mtime":"2024-08-23T21:42:59.785Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-08-23T22:20:29.853Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

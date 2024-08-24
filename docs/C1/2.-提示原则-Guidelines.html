@@ -1,0 +1,1523 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>2. 提示原则 Guidelines · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="3.-迭代优化-Iterative.html" />
+    
+    
+    <link rel="prev" href="1.-简介-Introduction.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../前言.html">
+            
+                <a href="../前言.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../环境配置.html">
+            
+                <a href="../环境配置.html">
+            
+                    
+                    环境配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第一部分 面向开发者的提示工程</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="1.-简介-Introduction.html">
+            
+                <a href="1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.3" data-path="2.-提示原则-Guidelines.html">
+            
+                <a href="2.-提示原则-Guidelines.html">
+            
+                    
+                    2. 提示原则 Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="3.-迭代优化-Iterative.html">
+            
+                <a href="3.-迭代优化-Iterative.html">
+            
+                    
+                    3. 迭代优化 Iterative
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="4.-文本概括-Summarizing.html">
+            
+                <a href="4.-文本概括-Summarizing.html">
+            
+                    
+                    4. 文本概括 Summarizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="5.-推断-Inferring.html">
+            
+                <a href="5.-推断-Inferring.html">
+            
+                    
+                    5. 推断 Inferring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="6.-文本转换-Transforming.html">
+            
+                <a href="6.-文本转换-Transforming.html">
+            
+                    
+                    6. 文本转换 Transforming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="7.-文本扩展-Expanding.html">
+            
+                <a href="7.-文本扩展-Expanding.html">
+            
+                    
+                    7. 文本扩展 Expanding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="8.-聊天机器人-Chatbot.html">
+            
+                <a href="8.-聊天机器人-Chatbot.html">
+            
+                    
+                    8. 聊天机器人 Chatbot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="9.-总结-Summary.html">
+            
+                <a href="9.-总结-Summary.html">
+            
+                    
+                    9. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第二部分 搭建基于 ChatGPT 的问答系统</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../C2/readme.html">
+            
+                <a href="../C2/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../C2/1.-简介-Introduction.html">
+            
+                <a href="../C2/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                <a href="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                    
+                    2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../C2/3.-评估输入-分类-Classification.html">
+            
+                <a href="../C2/3.-评估输入-分类-Classification.html">
+            
+                    
+                    3. 评估输入-分类 Classification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../C2/4.-检查输入-监督-Moderation.html">
+            
+                <a href="../C2/4.-检查输入-监督-Moderation.html">
+            
+                    
+                    4. 检查输入-监督 Moderation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                <a href="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                    
+                    5. 思维链推理 Chain of Thought Reasoning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                <a href="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                    
+                    6. Prompt 链 Chaining Prompts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="../C2/7.-检查结果-Check-Outputs.html">
+            
+                <a href="../C2/7.-检查结果-Check-Outputs.html">
+            
+                    
+                    7. 检查结果 Check Outputs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                <a href="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                    
+                    8. 搭建一个带评估的端到端系统 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                <a href="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                    
+                    9. 评估（上）Evaluation-part1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                <a href="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                    
+                    10. 评估（下）Evaluation-part2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="../C2/11.总结-conclusion.html">
+            
+                <a href="../C2/11.总结-conclusion.html">
+            
+                    
+                    11. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第三部分 使用 LangChain 开发应用程序</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../C3/readme.html">
+            
+                <a href="../C3/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../C3/1.-简介-Introduction.html">
+            
+                <a href="../C3/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                <a href="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                    
+                    2. 模型、提示和解析器 Models, Prompts and Parsers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../C3/3.-储存-Memory.html">
+            
+                <a href="../C3/3.-储存-Memory.html">
+            
+                    
+                    3. 储存 Memory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../C3/4.-模型链-Chains.html">
+            
+                <a href="../C3/4.-模型链-Chains.html">
+            
+                    
+                    4. 模型链 Chains
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                <a href="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                    
+                    5. 基于文档的问答 Question and Answer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="../C3/6.-评估-Evaluation.html">
+            
+                <a href="../C3/6.-评估-Evaluation.html">
+            
+                    
+                    6. 评估 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="../C3/7.-代理-Agent.html">
+            
+                <a href="../C3/7.-代理-Agent.html">
+            
+                    
+                    7. 代理 Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="../C3/8.-总结-Conclusion.html">
+            
+                <a href="../C3/8.-总结-Conclusion.html">
+            
+                    
+                    8. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第四部分 使用 LangChain 访问个人数据</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../C4/readme.html">
+            
+                <a href="../C4/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../C4/1.-简介-Introduction.html">
+            
+                <a href="../C4/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../C4/2.-文档加载-Document-Loading.html">
+            
+                <a href="../C4/2.-文档加载-Document-Loading.html">
+            
+                    
+                    2. 文档加载 Document Loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../C4/3.-文档分割-Splitting.html">
+            
+                <a href="../C4/3.-文档分割-Splitting.html">
+            
+                    
+                    3. 文档分割 Splitting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                <a href="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                    
+                    4. 向量数据库与词向量 Vectorstores and Embeddings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../C4/5.-检索-Retrieval.html">
+            
+                <a href="../C4/5.-检索-Retrieval.html">
+            
+                    
+                    5. 检索 Retrieval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="../C4/6.-问答-Question-Answering.html">
+            
+                <a href="../C4/6.-问答-Question-Answering.html">
+            
+                    
+                    6. 问答 Question ANswering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="../C4/7.-聊天-Chat.html">
+            
+                <a href="../C4/7.-聊天-Chat.html">
+            
+                    
+                    7. 聊天 Chat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="../C4/8.-总结-Summary.html">
+            
+                <a href="../C4/8.-总结-Summary.html">
+            
+                    
+                    8. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >2. 提示原则 Guidelines</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第二章-提示原则">第二章 提示原则</h1>
+<p>如何去使用 Prompt，以充分发挥 LLM 的性能？首先我们需要知道设计 Prompt 的原则，它们是每一个开发者设计 Prompt 所必须知道的基础概念。本章讨论了设计高效 Prompt 的两个关键原则：<strong>编写清晰、具体的指令</strong>和<strong>给予模型充足思考时间</strong>。掌握这两点，对创建可靠的语言模型交互尤为重要。</p>
+<p>首先，Prompt 需要清晰明确地表达需求，提供充足上下文，使语言模型准确理解我们的意图，就像向一个外星人详细解释人类世界一样。过于简略的 Prompt 往往使模型难以把握所要完成的具体任务。</p>
+<p>其次，让语言模型有充足时间推理也极为关键。就像人类解题一样，匆忙得出的结论多有失误。因此 Prompt 应加入逐步推理的要求，给模型留出充分思考时间，这样生成的结果才更准确可靠。</p>
+<p>如果 Prompt 在这两点上都作了优化，语言模型就能够尽可能发挥潜力，完成复杂的推理和生成任务。掌握这些 Prompt 设计原则，是开发者取得语言模型应用成功的重要一步。</p>
+<h2 id="一、原则一-编写清晰、具体的指令">一、原则一 编写清晰、具体的指令</h2>
+<p>亲爱的读者，在与语言模型交互时，您需要牢记一点:以<strong>清晰、具体</strong>的方式表达您的需求。假设您面前坐着一位来自外星球的新朋友，其对人类语言和常识都一无所知。在这种情况下，您需要把想表达的意图讲得非常明确，不要有任何歧义。同样的，在提供 Prompt 的时候，也要以足够详细和容易理解的方式，把您的需求与上下文说清楚。 </p>
+<p>并不是说 Prompt 就必须非常短小简洁。事实上，在许多情况下，更长、更复杂的 Prompt 反而会让语言模型更容易抓住关键点，给出符合预期的回复。原因在于，复杂的 Prompt 提供了更丰富的上下文和细节，让模型可以更准确地把握所需的操作和响应方式。</p>
+<p>所以，记住用清晰、详尽的语言表达 Prompt，就像在给外星人讲解人类世界一样，<em>“Adding more context helps the model understand you better.”</em>。</p>
+<p>从该原则出发，我们提供几个设计 Prompt 的技巧。</p>
+<h3 id="11-使用分隔符清晰地表示输入的不同部分">1.1 使用分隔符清晰地表示输入的不同部分</h3>
+<p>在编写 Prompt 时，我们可以使用各种标点符号作为“分隔符”，将不同的文本部分区分开来。</p>
+<p>分隔符就像是 Prompt 中的墙，将不同的指令、上下文、输入隔开，避免意外的混淆。你可以选择用 <code>```，"""，&lt; &gt;，&lt;tag&gt; &lt;/tag&gt;，:</code> 等做分隔符，只要能明确起到隔断作用即可。</p>
+<p>使用分隔符尤其重要的是可以防止 <strong>提示词注入（Prompt Rejection）</strong>。什么是提示词注入？就是用户输入的文本可能包含与你的预设 Prompt 相冲突的内容，如果不加分隔，这些输入就可能“注入”并操纵语言模型，导致模型产生毫无关联的乱七八糟的输出。</p>
+<p>在以下的例子中，我们给出一段话并要求 GPT 进行总结，在该示例中我们使用 ``` 来作为分隔符。</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> tool <span class="hljs-keyword">import</span> get_completion
+
+text = <span class="hljs-string">f"""
+您应该提供尽可能清晰、具体的指示，以表达您希望模型执行的任务。\
+这将引导模型朝向所需的输出，并降低收到无关或不正确响应的可能性。\
+不要将写清晰的提示词与写简短的提示词混淆。\
+在许多情况下，更长的提示词可以为模型提供更多的清晰度和上下文信息，从而导致更详细和相关的输出。
+"""</span>
+<span class="hljs-comment"># 需要总结的文本内容</span>
+prompt = <span class="hljs-string">f"""
+把用三个反引号括起来的文本总结成一句话。
+```<span class="hljs-subst">{text}</span>
+</span></code></pre>
+<p>"""</p>
+<h1 id="指令内容，使用--来分隔指令和待总结的内容">指令内容，使用 ``` 来分隔指令和待总结的内容</h1>
+<p>response = get_completion(prompt)
+print(response)</p>
+<pre><code>
+    为了获得所需的输出，您应该提供清晰、具体的指示，避免与简短的提示词混淆，并使用更长的提示词来提供更多的清晰度和上下文信息。
+
+
+### 1.2 寻求结构化的输出
+
+有时候我们需要语言模型给我们一些**结构化的输出**，而不仅仅是连续的文本。
+
+什么是结构化输出呢？就是按照某种格式组织的内容，例如JSON、HTML等。这种输出非常适合在代码中进一步解析和处理。例如，您可以在 Python 中将其读入字典或列表中。
+
+在以下示例中，我们要求 GPT 生成三本书的标题、作者和类别，并要求 GPT 以 JSON 的格式返回给我们，为便于解析，我们指定了 Json 的键。
+
+
+```python
+prompt = f"""
+请生成包括书名、作者和类别的三本虚构的、非真实存在的中文书籍清单，\
+并以 JSON 格式提供，其中包含以下键:book_id、title、author、genre。
+"""
+response = get_completion(prompt)
+print(response)
+</code></pre><pre><code>{
+  "books": [
+    {
+      "book_id": 1,
+      "title": "迷失的时光",
+      "author": "张三",
+      "genre": "科幻"
+    },
+    {
+      "book_id": 2,
+      "title": "幻境之门",
+      "author": "李四",
+      "genre": "奇幻"
+    },
+    {
+      "book_id": 3,
+      "title": "虚拟现实",
+      "author": "王五",
+      "genre": "科幻"
+    }
+  ]
+}
+</code></pre><h3 id="13-要求模型检查是否满足条件">1.3 要求模型检查是否满足条件</h3>
+<p>如果任务包含不一定能满足的假设（条件），我们可以告诉模型先检查这些假设，如果不满足，则会指出并停止执行后续的完整流程。您还可以考虑可能出现的边缘情况及模型的应对，以避免意外的结果或错误发生。</p>
+<p>在如下示例中，我们将分别给模型两段文本，分别是制作茶的步骤以及一段没有明确步骤的文本。我们将要求模型判断其是否包含一系列指令，如果包含则按照给定格式重新编写指令，不包含则回答“未提供步骤”。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 满足条件的输入（text中提供了步骤）</span>
+text_1 = <span class="hljs-string">f"""
+泡一杯茶很容易。首先，需要把水烧开。\
+在等待期间，拿一个杯子并把茶包放进去。\
+一旦水足够热，就把它倒在茶包上。\
+等待一会儿，让茶叶浸泡。几分钟后，取出茶包。\
+如果您愿意，可以加一些糖或牛奶调味。\
+就这样，您可以享受一杯美味的茶了。
+"""</span>
+prompt = <span class="hljs-string">f"""
+您将获得由三个引号括起来的文本。\
+如果它包含一系列的指令，则需要按照以下格式重新编写这些指令：
+
+第一步 - ...
+第二步 - …
+…
+第N步 - …
+
+如果文本中不包含一系列的指令，则直接写“未提供步骤”。"
+\"\"\"<span class="hljs-subst">{text_1}</span>\"\"\"
+"""</span>
+response = get_completion(prompt)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Text 1 的总结:"</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>Text 1 的总结:
+第一步 - 把水烧开。
+第二步 - 拿一个杯子并把茶包放进去。
+第三步 - 把烧开的水倒在茶包上。
+第四步 - 等待几分钟，让茶叶浸泡。
+第五步 - 取出茶包。
+第六步 - 如果需要，加入糖或牛奶调味。
+第七步 - 就这样，您可以享受一杯美味的茶了。
+</code></pre><p>上述示例中，模型可以很好地识别一系列的指令并进行输出。在接下来一个示例中，我们将提供给模型没有预期指令的输入，模型将判断未提供步骤。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 不满足条件的输入（text中未提供预期指令）</span>
+text_2 = <span class="hljs-string">f"""
+今天阳光明媚，鸟儿在歌唱。\
+这是一个去公园散步的美好日子。\
+鲜花盛开，树枝在微风中轻轻摇曳。\
+人们外出享受着这美好的天气，有些人在野餐，有些人在玩游戏或者在草地上放松。\
+这是一个完美的日子，可以在户外度过并欣赏大自然的美景。
+"""</span>
+prompt = <span class="hljs-string">f"""
+您将获得由三个引号括起来的文本。\
+如果它包含一系列的指令，则需要按照以下格式重新编写这些指令：
+
+第一步 - ...
+第二步 - …
+…
+第N步 - …
+
+如果文本中不包含一系列的指令，则直接写“未提供步骤”。"
+\"\"\"<span class="hljs-subst">{text_2}</span>\"\"\"
+"""</span>
+response = get_completion(prompt)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Text 2 的总结:"</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>Text 2 的总结:
+未提供步骤。
+</code></pre><h3 id="14-提供少量示例">1.4 提供少量示例</h3>
+<p>"Few-shot" prompting，即在要求模型执行实际任务之前，给模型一两个已完成的样例，让模型了解我们的要求和期望的输出样式。</p>
+<p>例如，在以下的样例中，我们先给了一个祖孙对话样例，然后要求模型用同样的隐喻风格回答关于“韧性”的问题。这就是一个少样本样例，它能帮助模型快速抓住我们要的语调和风格。</p>
+<p>利用少样本样例，我们可以轻松“预热”语言模型，让它为新的任务做好准备。这是一个让模型快速上手新任务的有效策略。</p>
+<pre><code class="lang-python">prompt = <span class="hljs-string">f"""
+您的任务是以一致的风格回答问题。
+
+&lt;孩子&gt;: 请教我何为耐心。
+
+&lt;祖父母&gt;: 挖出最深峡谷的河流源于一处不起眼的泉眼；最宏伟的交响乐从单一的音符开始；最复杂的挂毯以一根孤独的线开始编织。
+
+&lt;孩子&gt;: 请教我何为韧性。
+"""</span>
+response = get_completion(prompt)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>&lt;祖父母&gt;: 韧性是一种坚持不懈的品质，就像一棵顽强的树在风雨中屹立不倒。它是面对困难和挑战时不屈不挠的精神，能够适应变化和克服逆境。韧性是一种内在的力量，让我们能够坚持追求目标，即使面临困难和挫折也能坚持不懈地努力。
+</code></pre><h2 id="二、原则二-给模型时间去思考">二、原则二 给模型时间去思考</h2>
+<p>在设计 Prompt 时，给予语言模型充足的推理时间非常重要。语言模型与人类一样，需要时间来思考并解决复杂问题。如果让语言模型匆忙给出结论，其结果很可能不准确。例如，若要语言模型推断一本书的主题，仅提供简单的书名和一句简介是不足够的。这就像让一个人在极短时间内解决困难的数学题，错误在所难免。</p>
+<p>相反，我们应通过 Prompt 指引语言模型进行深入思考。可以要求其先列出对问题的各种看法，说明推理依据，然后再得出最终结论。在 Prompt 中添加逐步推理的要求，能让语言模型投入更多时间逻辑思维，输出结果也将更可靠准确。</p>
+<p>综上所述，给予语言模型充足的推理时间，是 Prompt Engineering 中一个非常重要的设计原则。这将大大提高语言模型处理复杂问题的效果，也是构建高质量 Prompt 的关键之处。开发者应注意给模型留出思考空间，以发挥语言模型的最大潜力。</p>
+<h3 id="21-指定完成任务所需的步骤">2.1 指定完成任务所需的步骤</h3>
+<p>接下来我们将通过给定一个复杂任务，给出完成该任务的一系列步骤，来展示这一策略的效果。</p>
+<p>首先我们描述了杰克和吉尔的故事，并给出提示词执行以下操作：首先，用一句话概括三个反引号限定的文本。第二，将摘要翻译成英语。第三，在英语摘要中列出每个名称。第四，输出包含以下键的 JSON 对象：英语摘要和人名个数。要求输出以换行符分隔。</p>
+<pre><code class="lang-python">text = <span class="hljs-string">f"""
+在一个迷人的村庄里，兄妹杰克和吉尔出发去一个山顶井里打水。\
+他们一边唱着欢乐的歌，一边往上爬，\
+然而不幸降临——杰克绊了一块石头，从山上滚了下来，吉尔紧随其后。\
+虽然略有些摔伤，但他们还是回到了温馨的家中。\
+尽管出了这样的意外，他们的冒险精神依然没有减弱，继续充满愉悦地探索。
+"""</span>
+<span class="hljs-comment"># example 1</span>
+prompt_1 = <span class="hljs-string">f"""
+执行以下操作：
+1-用一句话概括下面用三个反引号括起来的文本。
+2-将摘要翻译成英语。
+3-在英语摘要中列出每个人名。
+4-输出一个 JSON 对象，其中包含以下键：english_summary，num_names。
+
+请用换行符分隔您的答案。
+
+Text:
+```<span class="hljs-subst">{text}</span>
+</span></code></pre>
+<p>"""
+response = get_completion(prompt_1)
+print("prompt 1:")
+print(response)</p>
+<pre><code>
+    prompt 1:
+    1-两个兄妹在山上打水时发生意外，但最终平安回家。
+    2-In a charming village, siblings Jack and Jill set off to fetch water from a well on top of a hill. While singing joyfully, they climbed up, but unfortunately, Jack tripped on a stone and rolled down the hill, with Jill following closely behind. Despite some minor injuries, they made it back to their cozy home. Despite the mishap, their adventurous spirit remained undiminished as they continued to explore with delight.
+    3-Jack, Jill
+    4-{"english_summary": "In a charming village, siblings Jack and Jill set off to fetch water from a well on top of a hill. While singing joyfully, they climbed up, but unfortunately, Jack tripped on a stone and rolled down the hill, with Jill following closely behind. Despite some minor injuries, they made it back to their cozy home. Despite the mishap, their adventurous spirit remained undiminished as they continued to explore with delight.", "num_names": 2}
+
+
+上述输出仍然存在一定问题，例如，键“姓名”会被替换为法语（译注：在英文原版中，要求从英语翻译到法语，对应指令第三步的输出为 'Noms:'，为Name的法语，这种行为难以预测，并可能为导出带来困难）
+
+因此，我们将Prompt加以改进，该 Prompt 前半部分不变，同时**确切指定了输出的格式**。
+
+
+```python
+prompt_2 = f"""
+1-用一句话概括下面用&lt;&gt;括起来的文本。
+2-将摘要翻译成英语。
+3-在英语摘要中列出每个名称。
+4-输出一个 JSON 对象，其中包含以下键：English_summary，num_names。
+
+请使用以下格式：
+文本：&lt;要总结的文本&gt;
+摘要：&lt;摘要&gt;
+翻译：&lt;摘要的翻译&gt;
+名称：&lt;英语摘要中的名称列表&gt;
+输出 JSON：&lt;带有 English_summary 和 num_names 的 JSON&gt;
+
+Text: &lt;{text}&gt;
+"""
+response = get_completion(prompt_2)
+print("\nprompt 2:")
+print(response)
+</code></pre><pre><code>prompt 2:
+Summary: 在一个迷人的村庄里，兄妹杰克和吉尔在山顶井里打水时发生了意外，但他们的冒险精神依然没有减弱，继续充满愉悦地探索。
+
+Translation: In a charming village, siblings Jack and Jill set off to fetch water from a well on top of a hill. Unfortunately, Jack tripped on a rock and tumbled down the hill, with Jill following closely behind. Despite some minor injuries, they made it back home safely. Despite the mishap, their adventurous spirit remained strong as they continued to explore joyfully.
+
+Names: Jack, Jill
+
+JSON Output: {"English_summary": "In a charming village, siblings Jack and Jill set off to fetch water from a well on top of a hill. Unfortunately, Jack tripped on a rock and tumbled down the hill, with Jill following closely behind. Despite some minor injuries, they made it back home safely. Despite the mishap, their adventurous spirit remained strong as they continued to explore joyfully.", "num_names": 2}
+</code></pre><h3 id="22-指导模型在下结论之前找出一个自己的解法">2.2 指导模型在下结论之前找出一个自己的解法</h3>
+<p>在设计 Prompt 时，我们还可以通过明确指导语言模型进行自主思考，来获得更好的效果。</p>
+<p>举个例子，假设我们要语言模型判断一个数学问题的解答是否正确。仅仅提供问题和解答是不够的，语言模型可能会匆忙做出错误判断。</p>
+<p>相反，我们可以在 Prompt 中先要求语言模型自己尝试解决这个问题，思考出自己的解法，然后再与提供的解答进行对比，判断正确性。这种先让语言模型自主思考的方式，能帮助它更深入理解问题，做出更准确的判断。</p>
+<p>接下来我们会给出一个问题和一份来自学生的解答，要求模型判断解答是否正确：</p>
+<pre><code class="lang-python">prompt = <span class="hljs-string">f"""
+判断学生的解决方案是否正确。
+
+问题:
+我正在建造一个太阳能发电站，需要帮助计算财务。
+
+    土地费用为 100美元/平方英尺
+    我可以以 250美元/平方英尺的价格购买太阳能电池板
+    我已经谈判好了维护合同，每年需要支付固定的10万美元，并额外支付每平方英尺10美元
+    作为平方英尺数的函数，首年运营的总费用是多少。
+
+学生的解决方案：
+设x为发电站的大小，单位为平方英尺。
+费用：
+
+    土地费用：100x
+    太阳能电池板费用：250x
+    维护费用：100,000美元+100x
+    总费用：100x+250x+100,000美元+100x=450x+100,000美元
+"""</span>
+response = get_completion(prompt)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>学生的解决方案是正确的。他正确地计算了土地费用、太阳能电池板费用和维护费用，并将它们相加得到了总费用。
+</code></pre><p>但是注意，学生的解决方案实际上是错误的。（<em>维护费用项100x应为10x，总费用450x应为360x</em>）</p>
+<p>我们可以通过指导模型先自行找出一个解法来解决这个问题。</p>
+<p>在接下来这个 Prompt 中，我们要求模型先自行解决这个问题，再根据自己的解法与学生的解法进行对比，从而判断学生的解法是否正确。同时，我们给定了输出的格式要求。通过拆分任务、明确步骤，让模型有更多时间思考，有时可以获得更准确的结果。在这个例子中，学生的答案是错误的，但如果我们没有先让模型自己计算，那么可能会被误导以为学生是正确的。</p>
+<pre><code class="lang-python">prompt = <span class="hljs-string">f"""
+请判断学生的解决方案是否正确，请通过如下步骤解决这个问题：
+
+步骤：
+
+    首先，自己解决问题。
+    然后将您的解决方案与学生的解决方案进行比较，对比计算得到的总费用与学生计算的总费用是否一致，并评估学生的解决方案是否正确。
+    在自己完成问题之前，请勿决定学生的解决方案是否正确。
+
+使用以下格式：
+
+    问题：问题文本
+    学生的解决方案：学生的解决方案文本
+    实际解决方案和步骤：实际解决方案和步骤文本
+    学生计算的总费用：学生计算得到的总费用
+    实际计算的总费用：实际计算出的总费用
+    学生计算的费用和实际计算的费用是否相同：是或否
+    学生的解决方案和实际解决方案是否相同：是或否
+    学生的成绩：正确或不正确
+
+问题：
+
+    我正在建造一个太阳能发电站，需要帮助计算财务。 
+    - 土地费用为每平方英尺100美元
+    - 我可以以每平方英尺250美元的价格购买太阳能电池板
+    - 我已经谈判好了维护合同，每年需要支付固定的10万美元，并额外支付每平方英尺10美元;
+
+    作为平方英尺数的函数，首年运营的总费用是多少。
+
+学生的解决方案：
+
+    设x为发电站的大小，单位为平方英尺。
+    费用：
+    1. 土地费用：100x美元
+    2. 太阳能电池板费用：250x美元
+    3. 维护费用：100,000+100x=10万美元+10x美元
+    总费用：100x美元+250x美元+10万美元+100x美元=450x+10万美元
+
+实际解决方案和步骤：
+"""</span>
+response = get_completion(prompt)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>实际解决方案和步骤：
+
+    1. 土地费用：每平方英尺100美元，所以总费用为100x美元。
+    2. 太阳能电池板费用：每平方英尺250美元，所以总费用为250x美元。
+    3. 维护费用：固定费用为10万美元，额外费用为每平方英尺10美元，所以总费用为10万美元+10x美元。
+    4. 总费用：将上述三项费用相加，得到总费用为100x美元+250x美元+10万美元+10x美元=360x+10万美元。
+
+学生计算的总费用：450x+10万美元
+实际计算的总费用：360x+10万美元
+学生计算的费用和实际计算的费用是否相同：否
+学生的解决方案和实际解决方案是否相同：否
+学生的成绩：不正确
+</code></pre><h2 id="三、局限性">三、局限性</h2>
+<p><strong>开发大模型相关应用时请务必铭记：</strong></p>
+<p><strong>虚假知识</strong>：模型偶尔会生成一些看似真实实则编造的知识</p>
+<p>在开发与应用语言模型时，需要注意它们可能生成虚假信息的风险。尽管模型经过大规模预训练，掌握了丰富知识，但它实际上并没有<em>完全</em>记住所见的信息，难以准确判断自己的知识边界，可能做出错误推断。若让语言模型描述一个不存在的产品,它可能会自行构造出似是而非的细节。这被称为“幻觉”(Hallucination)，是语言模型的一大缺陷。</p>
+<p>如下示例展示了大模型的幻觉。我们要求告诉我们华为公司生产的 <em>GT Watch 运动手表</em> 产品的信息，事实上，这个公司是真实存在的，但产品是编造的，而模型一本正经地提供了它编造的知识，而且迷惑性很强。</p>
+<pre><code class="lang-python">prompt = <span class="hljs-string">f"""
+告诉我华为公司生产的GT Watch运动手表的相关信息
+"""</span>
+response = get_completion(prompt)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>华为公司生产的GT Watch运动手表是一款智能手表，具有多种功能和特点。以下是相关信息：
+
+1. 设计和外观：GT Watch采用圆形表盘设计，具有精致的外观和高质量的材料制造。它有多种颜色和表带选择，可以根据个人喜好进行定制。
+
+2. 显示屏：GT Watch配备了1.39英寸的AMOLED显示屏，具有高清分辨率和良好的可视性。用户可以通过触摸屏幕进行操作和导航。
+
+3. 运动追踪：GT Watch具有全天候的运动追踪功能，可以监测用户的步数、跑步距离、卡路里消耗和心率等数据。它还支持多种运动模式，如跑步、骑行、游泳等。
+
+4. 健康监测：GT Watch可以监测用户的心率、血氧饱和度和睡眠质量等健康指标。它还提供健康建议和提醒，帮助用户保持良好的健康状态。
+
+5. 通知和连接：GT Watch可以与用户的手机进行连接，通过蓝牙技术实现通知推送和电话提醒。用户可以在手表上查看短信、电话和社交媒体通知，无需拿出手机。
+
+6. 长续航时间：GT Watch具有较长的续航时间，一次充电可以使用数天。它还支持快速充电技术，可以在短时间内充满电。
+
+7. 其他功能：GT Watch还具有其他功能，如天气预报、闹钟、计时器、计步器等。它还支持NFC支付和音乐控制等便利功能。
+
+总体而言，华为GT Watch是一款功能强大、外观精致的智能运动手表，适合那些注重健康和运动的用户使用。
+</code></pre><p>语言模型生成虚假信息的“幻觉”问题，是使用与开发语言模型时需要高度关注的风险。由于幻觉信息往往令人无法辨别真伪，开发者必须警惕并尽量避免它的产生。</p>
+<p>目前 OpenAI 等公司正在积极研究解决语言模型的幻觉问题。在技术得以进一步改进之前，开发者可以通过Prompt设计减少幻觉发生的可能。例如，可以先让语言模型直接引用文本中的原句，然后再进行解答。这可以追踪信息来源，降低虚假内容的风险。</p>
+<p>综上，语言模型的幻觉问题事关应用的可靠性与安全性。开发者有必要认识到这一缺陷（注：截至2023年7月），并采取Prompt优化等措施予以缓解，以开发出更加可信赖的语言模型应用。这也将是未来语言模型进化的重要方向之一。</p>
+<p><strong>注意</strong>：</p>
+<p>关于反斜杠使用的说明：在本教程中，我们使用反斜杠 \ 来使文本适应屏幕大小以提高阅读体验，而没有用换行符 \n 。GPT-3 并不受换行符（newline characters）的影响，但在您调用其他大模型时，需额外考虑换行符是否会影响模型性能。</p>
+<h2 id="四、英文原版-prompt">四、英文原版 Prompt</h2>
+<p><strong>1.1 使用分隔符清晰地表示输入的不同部分</strong></p>
+<pre><code class="lang-python">text = <span class="hljs-string">f"""
+You should express what you want a model to do by \ 
+providing instructions that are as clear and \ 
+specific as you can possibly make them. \ 
+This will guide the model towards the desired output, \ 
+and reduce the chances of receiving irrelevant \ 
+or incorrect responses. Don't confuse writing a \ 
+clear prompt with writing a short prompt. \ 
+In many cases, longer prompts provide more clarity \ 
+and context for the model, which can lead to \ 
+more detailed and relevant outputs.
+"""</span>
+prompt = <span class="hljs-string">f"""
+Summarize the text delimited by triple backticks \ 
+into a single sentence.
+```<span class="hljs-subst">{text}</span>
+</span></code></pre>
+<p>"""
+response = get_completion(prompt)
+print(response)</p>
+<pre><code>
+    To guide a model towards the desired output and reduce irrelevant or incorrect responses, it is important to provide clear and specific instructions, which can be achieved through longer prompts that offer more clarity and context.
+
+
+**1.2 寻求结构化的输出**
+
+
+```python
+prompt = f"""
+Generate a list of three made-up book titles along \ 
+with their authors and genres. 
+Provide them in JSON format with the following keys: 
+book_id, title, author, genre.
+"""
+response = get_completion(prompt)
+print(response)
+</code></pre><pre><code>{
+  "books": [
+    {
+      "book_id": 1,
+      "title": "The Enigma of Elysium",
+      "author": "Evelyn Sinclair",
+      "genre": "Mystery"
+    },
+    {
+      "book_id": 2,
+      "title": "Whispers in the Wind",
+      "author": "Nathaniel Blackwood",
+      "genre": "Fantasy"
+    },
+    {
+      "book_id": 3,
+      "title": "Echoes of the Past",
+      "author": "Amelia Hart",
+      "genre": "Romance"
+    }
+  ]
+}
+</code></pre><p><strong>1.3 要求模型检查是否满足条件</strong></p>
+<pre><code class="lang-python">text_1 = <span class="hljs-string">f"""
+Making a cup of tea is easy! First, you need to get some \ 
+water boiling. While that's happening, \ 
+grab a cup and put a tea bag in it. Once the water is \ 
+hot enough, just pour it over the tea bag. \ 
+Let it sit for a bit so the tea can steep. After a \ 
+few minutes, take out the tea bag. If you \ 
+like, you can add some sugar or milk to taste. \ 
+And that's it! You've got yourself a delicious \ 
+cup of tea to enjoy.
+"""</span>
+prompt = <span class="hljs-string">f"""
+You will be provided with text delimited by triple quotes. 
+If it contains a sequence of instructions, \ 
+re-write those instructions in the following format:
+
+Step 1 - ...
+Step 2 - …
+…
+Step N - …
+
+If the text does not contain a sequence of instructions, \ 
+then simply write \"No steps provided.\"
+
+\"\"\"<span class="hljs-subst">{text_1}</span>\"\"\"
+"""</span>
+response = get_completion(prompt)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Completion for Text 1:"</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>Completion for Text 1:
+Step 1 - Get some water boiling.
+Step 2 - Grab a cup and put a tea bag in it.
+Step 3 - Once the water is hot enough, pour it over the tea bag.
+Step 4 - Let it sit for a bit so the tea can steep.
+Step 5 - After a few minutes, take out the tea bag.
+Step 6 - If you like, add some sugar or milk to taste.
+Step 7 - Enjoy your delicious cup of tea.
+</code></pre><pre><code class="lang-python">text_2 = <span class="hljs-string">f"""
+The sun is shining brightly today, and the birds are \
+singing. It's a beautiful day to go for a \ 
+walk in the park. The flowers are blooming, and the \ 
+trees are swaying gently in the breeze. People \ 
+are out and about, enjoying the lovely weather. \ 
+Some are having picnics, while others are playing \ 
+games or simply relaxing on the grass. It's a \ 
+perfect day to spend time outdoors and appreciate the \ 
+beauty of nature.
+"""</span>
+prompt = <span class="hljs-string">f"""You will be provided with text delimited by triple quotes. 
+If it contains a sequence of instructions, \ 
+re-write those instructions in the following format:
+Step 1 - ...
+Step 2 - …
+…
+Step N - …
+
+If the text does not contain a sequence of instructions, \ 
+then simply write \"No steps provided.\"
+
+\"\"\"<span class="hljs-subst">{text_2}</span>\"\"\"
+"""</span>
+response = get_completion(prompt)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Completion for Text 2:"</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>Completion for Text 2:
+No steps provided.
+</code></pre><p><strong>1.4 提供少量示例</strong>（少样本提示词，Few-shot prompting）</p>
+<pre><code class="lang-python">prompt = <span class="hljs-string">f"""
+Your task is to answer in a consistent style.
+
+&lt;child&gt;: Teach me about patience.
+
+&lt;grandparent&gt;: The river that carves the deepest \ 
+valley flows from a modest spring; the \ 
+grandest symphony originates from a single note; \ 
+the most intricate tapestry begins with a solitary thread.
+
+&lt;child&gt;: Teach me about resilience.
+"""</span>
+response = get_completion(prompt)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>&lt;grandparent&gt;: Resilience is like a mighty oak tree that withstands the strongest storms, bending but never breaking. It is the unwavering determination to rise again after every fall, and the ability to find strength in the face of adversity. Just as a diamond is formed under immense pressure, resilience is forged through challenges and hardships, making us stronger and more resilient in the process.
+</code></pre><p><strong>2.1 指定完成任务所需的步骤</strong></p>
+<pre><code class="lang-python">text = <span class="hljs-string">f"""
+In a charming village, siblings Jack and Jill set out on \ 
+a quest to fetch water from a hilltop \ 
+well. As they climbed, singing joyfully, misfortune \ 
+struck—Jack tripped on a stone and tumbled \ 
+down the hill, with Jill following suit. \ 
+Though slightly battered, the pair returned home to \ 
+comforting embraces. Despite the mishap, \ 
+their adventurous spirits remained undimmed, and they \ 
+continued exploring with delight.
+"""</span>
+<span class="hljs-comment"># example 1</span>
+prompt_1 = <span class="hljs-string">f"""
+Perform the following actions: 
+1 - Summarize the following text delimited by triple \
+backticks with 1 sentence.
+2 - Translate the summary into French.
+3 - List each name in the French summary.
+4 - Output a json object that contains the following \
+keys: french_summary, num_names.
+
+Separate your answers with line breaks.
+
+Text:
+```<span class="hljs-subst">{text}</span>
+</span></code></pre>
+<p>"""
+response = get_completion(prompt_1)
+print("Completion for prompt 1:")
+print(response)</p>
+<pre><code>
+    Completion for prompt 1:
+    1 - Jack and Jill, siblings, go on a quest to fetch water from a hilltop well, but encounter misfortune when Jack trips on a stone and tumbles down the hill, with Jill following suit, yet they return home and remain undeterred in their adventurous spirits.
+
+    2 - Jack et Jill, frère et sœur, partent en quête d'eau d'un puits au sommet d'une colline, mais rencontrent un malheur lorsque Jack trébuche sur une pierre et dévale la colline, suivi par Jill, pourtant ils rentrent chez eux et restent déterminés dans leur esprit d'aventure.
+
+    3 - Jack, Jill
+
+    4 - {
+      "french_summary": "Jack et Jill, frère et sœur, partent en quête d'eau d'un puits au sommet d'une colline, mais rencontrent un malheur lorsque Jack trébuche sur une pierre et dévale la colline, suivi par Jill, pourtant ils rentrent chez eux et restent déterminés dans leur esprit d'aventure.",
+      "num_names": 2
+    }
+
+
+
+```python
+prompt_2 = f"""
+Your task is to perform the following actions: 
+1 - Summarize the following text delimited by &lt;&gt; with 1 sentence.
+2 - Translate the summary into French.
+3 - List each name in the French summary.
+4 - Output a json object that contains the 
+following keys: french_summary, num_names.
+
+Use the following format:
+Text: &lt;text to summarize&gt;
+Summary: &lt;summary&gt;
+Translation: &lt;summary translation&gt;
+Names: &lt;list of names in French summary&gt;
+Output JSON: &lt;json with summary and num_names&gt;
+
+Text: &lt;{text}&gt;
+"""
+response = get_completion(prompt_2)
+print("\nCompletion for prompt 2:")
+print(response)
+</code></pre><pre><code>Completion for prompt 2:
+Summary: Jack and Jill, siblings from a charming village, go on a quest to fetch water from a hilltop well, but encounter misfortune when Jack trips on a stone and tumbles down the hill, with Jill following suit, yet they remain undeterred and continue exploring with delight.
+
+Translation: Jack et Jill, frère et sœur d'un charmant village, partent en quête d'eau d'un puits au sommet d'une colline, mais rencontrent un malheur lorsque Jack trébuche sur une pierre et dévale la colline, suivi par Jill, pourtant ils restent déterminés et continuent à explorer avec joie.
+
+Names: Jack, Jill
+
+Output JSON: 
+{
+  "french_summary": "Jack et Jill, frère et sœur d'un charmant village, partent en quête d'eau d'un puits au sommet d'une colline, mais rencontrent un malheur lorsque Jack trébuche sur une pierre et dévale la colline, suivi par Jill, pourtant ils restent déterminés et continuent à explorer avec joie.",
+  "num_names": 2
+}
+</code></pre><p><strong>2.2 指导模型在下结论之前找出一个自己的解法</strong></p>
+<pre><code class="lang-python">prompt = <span class="hljs-string">f"""
+Determine if the student's solution is correct or not.
+
+Question:
+I'm building a solar power installation and I need \
+ help working out the financials. 
+- Land costs $100 / square foot
+- I can buy solar panels for $250 / square foot
+- I negotiated a contract for maintenance that will cost \ 
+me a flat $100k per year, and an additional $10 / square \
+foot
+What is the total cost for the first year of operations 
+as a function of the number of square feet.
+
+Student's Solution:
+Let x be the size of the installation in square feet.
+Costs:
+1. Land cost: 100x
+2. Solar panel cost: 250x
+3. Maintenance cost: 100,000 + 100x
+Total cost: 100x + 250x + 100,000 + 100x = 450x + 100,000
+"""</span>
+response = get_completion(prompt)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>The student's solution is correct. They correctly identified the costs for land, solar panels, and maintenance, and calculated the total cost for the first year of operations as a function of the number of square feet.
+</code></pre><pre><code class="lang-python">prompt = <span class="hljs-string">f"""
+Your task is to determine if the student's solution \
+is correct or not.
+To solve the problem do the following:
+- First, work out your own solution to the problem. 
+- Then compare your solution to the student's solution \ 
+and evaluate if the student's solution is correct or not. 
+Don't decide if the student's solution is correct until 
+you have done the problem yourself.
+
+Use the following format:
+Question:
+</span></code></pre>
+<p>question here</p>
+<pre><code>Student's solution:
+</code></pre><p>student's solution here</p>
+<pre><code>Actual solution:
+</code></pre><p>steps to work out the solution and your solution here</p>
+<pre><code>Is the student's solution the same as actual solution \
+just calculated:
+</code></pre><p>yes or no</p>
+<pre><code>Student grade:
+</code></pre><p>correct or incorrect</p>
+<pre><code>
+Question:
+</code></pre><p>I'm building a solar power installation and I need help \
+working out the financials. </p>
+<ul>
+<li>Land costs $100 / square foot</li>
+<li>I can buy solar panels for $250 / square foot</li>
+<li>I negotiated a contract for maintenance that will cost \
+me a flat $100k per year, and an additional $10 / square \
+foot
+What is the total cost for the first year of operations \
+as a function of the number of square feet.<pre><code>Student's solution:
+</code></pre>Let x be the size of the installation in square feet.
+Costs:</li>
+<li>Land cost: 100x</li>
+<li>Solar panel cost: 250x</li>
+<li><p>Maintenance cost: 100,000 + 100x
+Total cost: 100x + 250x + 100,000 + 100x = 450x + 100,000</p>
+<pre><code>Actual solution:
+"""
+response = get_completion(prompt)
+print(response)
+</code></pre><p> To calculate the total cost for the first year of operations, we need to add up the costs of land, solar panels, and maintenance.</p>
+<ol>
+<li><p>Land cost: $100 / square foot
+The cost of land is $100 multiplied by the number of square feet.</p>
+</li>
+<li><p>Solar panel cost: $250 / square foot
+The cost of solar panels is $250 multiplied by the number of square feet.</p>
+</li>
+<li><p>Maintenance cost: $100,000 + $10 / square foot
+The maintenance cost is a flat fee of $100,000 per year, plus $10 multiplied by the number of square feet.</p>
+<p>Total cost: Land cost + Solar panel cost + Maintenance cost</p>
+<p>So the actual solution is:
+Total cost = (100 <em> x) + (250 </em> x) + (100,000 + (10 * x))</p>
+<p>Is the student's solution the same as the actual solution just calculated:
+No</p>
+<p>Student grade:
+Incorrect</p>
+</li>
+</ol>
+</li>
+</ul>
+<p><strong>3.1 幻觉</strong></p>
+<pre><code class="lang-python">prompt = <span class="hljs-string">f"""
+Tell me about AeroGlide UltraSlim Smart Toothbrush by Boie
+"""</span>
+response = get_completion(prompt)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>The AeroGlide UltraSlim Smart Toothbrush by Boie is a technologically advanced toothbrush designed to provide a superior brushing experience. Boie is a company known for its innovative oral care products, and the AeroGlide UltraSlim Smart Toothbrush is no exception.
+
+One of the standout features of this toothbrush is its ultra-slim design. The brush head is only 2mm thick, making it much thinner than traditional toothbrushes. This slim profile allows for better access to hard-to-reach areas of the mouth, ensuring a thorough and effective clean.
+
+The AeroGlide UltraSlim Smart Toothbrush also incorporates smart technology. It connects to a mobile app via Bluetooth, allowing users to track their brushing habits and receive personalized recommendations for improving their oral hygiene routine. The app provides real-time feedback on brushing technique, duration, and coverage, helping users to achieve optimal oral health.
+
+The toothbrush features soft, antimicrobial bristles made from a durable thermoplastic elastomer. These bristles are gentle on the gums and teeth, while also being effective at removing plaque and debris. The antimicrobial properties help to keep the brush head clean and hygienic between uses.
+
+Another notable feature of the AeroGlide UltraSlim Smart Toothbrush is its long battery life. It can last up to 30 days on a single charge, making it convenient for travel or everyday use without the need for frequent recharging.
+
+Overall, the AeroGlide UltraSlim Smart Toothbrush by Boie offers a combination of advanced technology, slim design, and effective cleaning capabilities. It is a great option for those looking to upgrade their oral care routine and achieve a healthier smile.
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="1.-简介-Introduction.html" class="navigation navigation-prev " aria-label="Previous page: 1. 简介 Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="3.-迭代优化-Iterative.html" class="navigation navigation-next " aria-label="Next page: 3. 迭代优化 Iterative">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"2. 提示原则 Guidelines","level":"2.3","depth":1,"next":{"title":"3. 迭代优化 Iterative","level":"2.4","depth":1,"path":"C1/3.-迭代优化-Iterative.md","ref":"C1/3.-迭代优化-Iterative.md","articles":[]},"previous":{"title":"1. 简介 Introduction","level":"2.2","depth":1,"path":"C1/1.-简介-Introduction.md","ref":"C1/1.-简介-Introduction.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C1/2.-提示原则-Guidelines.md","mtime":"2024-08-23T21:42:59.776Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-08-23T22:20:29.853Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,1213 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>4. 向量数据库与词向量 Vectorstores and Embeddings · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="5.-检索-Retrieval.html" />
+    
+    
+    <link rel="prev" href="3.-文档分割-Splitting.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../前言.html">
+            
+                <a href="../前言.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../环境配置.html">
+            
+                <a href="../环境配置.html">
+            
+                    
+                    环境配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第一部分 面向开发者的提示工程</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../C1/readme.html">
+            
+                <a href="../C1/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../C1/1.-简介-Introduction.html">
+            
+                <a href="../C1/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../C1/2.-提示原则-Guidelines.html">
+            
+                <a href="../C1/2.-提示原则-Guidelines.html">
+            
+                    
+                    2. 提示原则 Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../C1/3.-迭代优化-Iterative.html">
+            
+                <a href="../C1/3.-迭代优化-Iterative.html">
+            
+                    
+                    3. 迭代优化 Iterative
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../C1/4.-文本概括-Summarizing.html">
+            
+                <a href="../C1/4.-文本概括-Summarizing.html">
+            
+                    
+                    4. 文本概括 Summarizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../C1/5.-推断-Inferring.html">
+            
+                <a href="../C1/5.-推断-Inferring.html">
+            
+                    
+                    5. 推断 Inferring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../C1/6.-文本转换-Transforming.html">
+            
+                <a href="../C1/6.-文本转换-Transforming.html">
+            
+                    
+                    6. 文本转换 Transforming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../C1/7.-文本扩展-Expanding.html">
+            
+                <a href="../C1/7.-文本扩展-Expanding.html">
+            
+                    
+                    7. 文本扩展 Expanding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="../C1/8.-聊天机器人-Chatbot.html">
+            
+                <a href="../C1/8.-聊天机器人-Chatbot.html">
+            
+                    
+                    8. 聊天机器人 Chatbot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="../C1/9.-总结-Summary.html">
+            
+                <a href="../C1/9.-总结-Summary.html">
+            
+                    
+                    9. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第二部分 搭建基于 ChatGPT 的问答系统</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../C2/readme.html">
+            
+                <a href="../C2/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../C2/1.-简介-Introduction.html">
+            
+                <a href="../C2/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                <a href="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                    
+                    2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../C2/3.-评估输入-分类-Classification.html">
+            
+                <a href="../C2/3.-评估输入-分类-Classification.html">
+            
+                    
+                    3. 评估输入-分类 Classification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../C2/4.-检查输入-监督-Moderation.html">
+            
+                <a href="../C2/4.-检查输入-监督-Moderation.html">
+            
+                    
+                    4. 检查输入-监督 Moderation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                <a href="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                    
+                    5. 思维链推理 Chain of Thought Reasoning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                <a href="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                    
+                    6. Prompt 链 Chaining Prompts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="../C2/7.-检查结果-Check-Outputs.html">
+            
+                <a href="../C2/7.-检查结果-Check-Outputs.html">
+            
+                    
+                    7. 检查结果 Check Outputs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                <a href="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                    
+                    8. 搭建一个带评估的端到端系统 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                <a href="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                    
+                    9. 评估（上）Evaluation-part1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                <a href="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                    
+                    10. 评估（下）Evaluation-part2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="../C2/11.总结-conclusion.html">
+            
+                <a href="../C2/11.总结-conclusion.html">
+            
+                    
+                    11. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第三部分 使用 LangChain 开发应用程序</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../C3/readme.html">
+            
+                <a href="../C3/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../C3/1.-简介-Introduction.html">
+            
+                <a href="../C3/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                <a href="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                    
+                    2. 模型、提示和解析器 Models, Prompts and Parsers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../C3/3.-储存-Memory.html">
+            
+                <a href="../C3/3.-储存-Memory.html">
+            
+                    
+                    3. 储存 Memory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../C3/4.-模型链-Chains.html">
+            
+                <a href="../C3/4.-模型链-Chains.html">
+            
+                    
+                    4. 模型链 Chains
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                <a href="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                    
+                    5. 基于文档的问答 Question and Answer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="../C3/6.-评估-Evaluation.html">
+            
+                <a href="../C3/6.-评估-Evaluation.html">
+            
+                    
+                    6. 评估 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="../C3/7.-代理-Agent.html">
+            
+                <a href="../C3/7.-代理-Agent.html">
+            
+                    
+                    7. 代理 Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="../C3/8.-总结-Conclusion.html">
+            
+                <a href="../C3/8.-总结-Conclusion.html">
+            
+                    
+                    8. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第四部分 使用 LangChain 访问个人数据</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="1.-简介-Introduction.html">
+            
+                <a href="1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="2.-文档加载-Document-Loading.html">
+            
+                <a href="2.-文档加载-Document-Loading.html">
+            
+                    
+                    2. 文档加载 Document Loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="3.-文档分割-Splitting.html">
+            
+                <a href="3.-文档分割-Splitting.html">
+            
+                    
+                    3. 文档分割 Splitting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.5" data-path="4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                <a href="4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                    
+                    4. 向量数据库与词向量 Vectorstores and Embeddings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="5.-检索-Retrieval.html">
+            
+                <a href="5.-检索-Retrieval.html">
+            
+                    
+                    5. 检索 Retrieval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="6.-问答-Question-Answering.html">
+            
+                <a href="6.-问答-Question-Answering.html">
+            
+                    
+                    6. 问答 Question ANswering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="7.-聊天-Chat.html">
+            
+                <a href="7.-聊天-Chat.html">
+            
+                    
+                    7. 聊天 Chat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="8.-总结-Summary.html">
+            
+                <a href="8.-总结-Summary.html">
+            
+                    
+                    8. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >4. 向量数据库与词向量 Vectorstores and Embeddings</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第四章-向量数据库与词向量vectorstores-and-embeddings">第四章 向量数据库与词向量(Vectorstores and Embeddings)</h1>
+<p>让我们一起回顾一下检索增强生成（RAG）的整体工作流程：</p>
+<p><img src="../figures/C4/overview.png" alt="overview.jpeg"></img></p>
+<div align="center"> 图 4.4 检索增强生成整体流程 </div>
+
+<p>前两节课我们讨论了 <code>Document Loading</code>（文档加载）和 <code>Splitting</code>（分割）。</p>
+<p>下面我们将使用前两节课的知识对文档进行加载分割。</p>
+<h2 id="一、读取文档">一、读取文档</h2>
+<p>下面文档是 datawhale 官方开源的 matplotlib 教程链接 <a href="https://datawhalechina.github.io/fantastic-matplotlib/index.html" target="_blank">https://datawhalechina.github.io/fantastic-matplotlib/index.html</a> ，可在该网站上下载对应的教程。</p>
+<p>注意，本章节需要安装第三方库<code>pypdf</code>、<code>chromadb</code></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> PyPDFLoader
+
+<span class="hljs-comment"># 加载 PDF</span>
+loaders_chinese = [
+    <span class="hljs-comment"># 故意添加重复文档，使数据混乱</span>
+    PyPDFLoader(<span class="hljs-string">"docs/matplotlib/第一回：Matplotlib初相识.pdf"</span>),
+    PyPDFLoader(<span class="hljs-string">"docs/matplotlib/第一回：Matplotlib初相识.pdf"</span>),
+    PyPDFLoader(<span class="hljs-string">"docs/matplotlib/第二回：艺术画笔见乾坤.pdf"</span>),
+    PyPDFLoader(<span class="hljs-string">"docs/matplotlib/第三回：布局格式定方圆.pdf"</span>)
+]
+docs = []
+<span class="hljs-keyword">for</span> loader <span class="hljs-keyword">in</span> loaders_chinese:
+    docs.extend(loader.load())
+</code></pre>
+<p>在文档加载后，我们可以使用<code>RecursiveCharacterTextSplitter</code>(递归字符文本拆分器)来创建块。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 分割文本</span>
+<span class="hljs-keyword">from</span> langchain.text_splitter <span class="hljs-keyword">import</span> RecursiveCharacterTextSplitter
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size = <span class="hljs-number">1500</span>,  <span class="hljs-comment"># 每个文本块的大小。这意味着每次切分文本时，会尽量使每个块包含 1500 个字符。</span>
+    chunk_overlap = <span class="hljs-number">150</span>  <span class="hljs-comment"># 每个文本块之间的重叠部分。</span>
+)
+
+splits = text_splitter.split_documents(docs)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(splits))
+</code></pre>
+<pre><code>27
+</code></pre><h2 id="二、embeddings">二、Embeddings</h2>
+<p>什么是<code>Embeddings</code>？</p>
+<p>在机器学习和自然语言处理（NLP）中，<code>Embeddings</code>（嵌入）是一种将类别数据，如单词、句子或者整个文档，转化为实数向量的技术。这些实数向量可以被计算机更好地理解和处理。嵌入背后的主要想法是，相似或相关的对象在嵌入空间中的距离应该很近。</p>
+<p>举个例子，我们可以使用词嵌入（word embeddings）来表示文本数据。在词嵌入中，每个单词被转换为一个向量，这个向量捕获了这个单词的语义信息。例如，"king" 和 "queen" 这两个单词在嵌入空间中的位置将会非常接近，因为它们的含义相似。而 "apple" 和 "orange" 也会很接近，因为它们都是水果。而 "king" 和 "apple" 这两个单词在嵌入空间中的距离就会比较远，因为它们的含义不同。</p>
+<p>让我们取出我们的切分部分并对它们进行<code>Embedding</code>处理。</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.embeddings.openai <span class="hljs-keyword">import</span> OpenAIEmbeddings
+embedding = OpenAIEmbeddings()
+</code></pre>
+<p>在使用真实文档数据的例子之前，让我们用几个测试案例的句子来试试，以便了解<code>embedding</code>。</p>
+<p>下面有几个示例句子，其中前两个非常相似，第三个与之无关。然后我们可以使用<code>embedding</code>类为每个句子创建一个<code>embedding</code>。</p>
+<pre><code class="lang-python">sentence1_chinese = <span class="hljs-string">"我喜欢狗"</span>
+sentence2_chinese = <span class="hljs-string">"我喜欢犬科动物"</span>
+sentence3_chinese = <span class="hljs-string">"外面的天气很糟糕"</span>
+
+embedding1_chinese = embedding.embed_query(sentence1_chinese)
+embedding2_chinese = embedding.embed_query(sentence2_chinese)
+embedding3_chinese = embedding.embed_query(sentence3_chinese)
+</code></pre>
+<p>然后我们可以使用<code>numpy</code>来比较它们，看看哪些最相似。</p>
+<p>我们期望前两个句子应该非常相似。</p>
+<p>然后，第一和第二个与第三个相比应该相差很大。</p>
+<p>我们将使用点积来比较两个嵌入。</p>
+<p>如果你不知道什么是点积，没关系。你只需要知道的重要一点是，分数越高句子越相似。</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+np.dot(embedding1_chinese, embedding2_chinese)
+</code></pre>
+<pre><code>0.9440614936689298
+</code></pre><p>我们可以看到前两个<code>embedding</code>的分数相当高，为0.94。</p>
+<pre><code class="lang-python">np.dot(embedding1_chinese, embedding3_chinese)
+</code></pre>
+<pre><code>0.792186975021313
+</code></pre><p>如果我们将第一个<code>embedding</code>与第三个<code>embedding</code>进行比较，我们可以看到它明显较低，约为0.79。</p>
+<pre><code class="lang-python">np.dot(embedding2_chinese, embedding3_chinese)
+</code></pre>
+<pre><code>0.7804109942586283
+</code></pre><p>我们将第二个<code>embedding</code>和第三个<code>embedding</code>进行比较，我们可以看到它的分数大约为0.78。</p>
+<h2 id="三、vectorstores">三、Vectorstores</h2>
+<h3 id="31-初始化chroma">3.1 初始化Chroma</h3>
+<p>Langchain集成了超过30个不同的向量存储库。我们选择Chroma是因为它轻量级且数据存储在内存中，这使得它非常容易启动和开始使用。</p>
+<p>首先我们指定一个持久化路径：</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.vectorstores <span class="hljs-keyword">import</span> Chroma
+
+persist_directory_chinese = <span class="hljs-string">'docs/chroma/matplotlib/'</span>
+</code></pre>
+<p>如果该路径存在旧的数据库文件，可以通过以下命令删除：</p>
+<pre><code class="lang-python">!rm -rf <span class="hljs-string">'./docs/chroma/matplotlib'</span>  <span class="hljs-comment"># 删除旧的数据库文件（如果文件夹中有文件的话）</span>
+</code></pre>
+<p>接着从已加载的文档中创建一个向量数据库：</p>
+<pre><code class="lang-python">vectordb_chinese = Chroma.from_documents(
+    documents=splits,
+    embedding=embedding,
+    persist_directory=persist_directory_chinese  <span class="hljs-comment"># 允许我们将persist_directory目录保存到磁盘上</span>
+)
+</code></pre>
+<pre><code>100%|██████████| 1/1 [00:01&lt;00:00,  1.64s/it]
+</code></pre><p>可以看到数据库长度也是30，这与我们之前的切分数量是一样的。现在让我们开始使用它。</p>
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(vectordb_chinese._collection.count())
+</code></pre>
+<pre><code>27
+</code></pre><h3 id="32-相似性搜索similarity-search">3.2 相似性搜索(Similarity Search)</h3>
+<p>首先我们定义一个需要检索答案的问题：</p>
+<pre><code class="lang-python">question_chinese = <span class="hljs-string">"Matplotlib是什么？"</span>
+</code></pre>
+<p>接着调用已加载的向量数据库根据相似性检索答案：</p>
+<pre><code class="lang-python">docs_chinese = vectordb_chinese.similarity_search(question_chinese,k=<span class="hljs-number">3</span>)
+</code></pre>
+<p>查看检索答案数量：</p>
+<pre><code class="lang-python"><span class="hljs-built_in">len</span>(docs_chinese)
+</code></pre>
+<pre><code>3
+</code></pre><p>打印其 page_content 属性可以看到检索答案的文本：</p>
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(docs_chinese[<span class="hljs-number">0</span>].page_content)
+</code></pre>
+<pre><code>第⼀回：Matplotlib 初相识
+⼀、认识matplotlib
+Matplotlib 是⼀个 Python 2D 绘图库，能够以多种硬拷⻉格式和跨平台的交互式环境⽣成出版物质量的图形，⽤来绘制各种静态，动态，
+交互式的图表。
+Matplotlib 可⽤于 Python 脚本， Python 和 IPython Shell 、 Jupyter notebook ， Web 应⽤程序服务器和各种图形⽤户界⾯⼯具包等。
+Matplotlib 是 Python 数据可视化库中的泰⽃，它已经成为 python 中公认的数据可视化⼯具，我们所熟知的 pandas 和 seaborn 的绘图接⼝
+其实也是基于 matplotlib 所作的⾼级封装。
+为了对matplotlib 有更好的理解，让我们从⼀些最基本的概念开始认识它，再逐渐过渡到⼀些⾼级技巧中。
+⼆、⼀个最简单的绘图例⼦
+Matplotlib 的图像是画在 figure （如 windows ， jupyter 窗体）上的，每⼀个 figure ⼜包含了⼀个或多个 axes （⼀个可以指定坐标系的⼦区
+域）。最简单的创建 figure 以及 axes 的⽅式是通过 pyplot.subplots命令，创建 axes 以后，可以使⽤ Axes.plot绘制最简易的折线图。
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+import numpy as np
+fig, ax = plt.subplots()  # 创建⼀个包含⼀个 axes 的 figure
+ax.plot([1, 2, 3, 4], [1, 4, 2, 3]);  # 绘制图像
+Trick： 在jupyter notebook 中使⽤ matplotlib 时会发现，代码运⾏后⾃动打印出类似 &lt;matplotlib.lines.Line2D at 0x23155916dc0&gt;
+这样⼀段话，这是因为 matplotlib 的绘图代码默认打印出最后⼀个对象。如果不想显示这句话，有以下三种⽅法，在本章节的代码示例
+中你能找到这三种⽅法的使⽤。
+ . 在代码块最后加⼀个分号 ;
+ . 在代码块最后加⼀句 plt.show()
+ . 在绘图时将绘图对象显式赋值给⼀个变量，如将 plt.plot([1, 2, 3, 4]) 改成 line =plt.plot([1, 2, 3, 4])
+和MATLAB 命令类似，你还可以通过⼀种更简单的⽅式绘制图像， matplotlib.pyplot⽅法能够直接在当前 axes 上绘制图像，如果⽤户
+未指定axes ， matplotlib 会帮你⾃动创建⼀个。所以上⾯的例⼦也可以简化为以下这⼀⾏代码。
+line =plt.plot([1, 2, 3, 4], [1, 4, 2, 3]) 
+三、Figure 的组成
+现在我们来深⼊看⼀下 figure 的组成。通过⼀张 figure 解剖图，我们可以看到⼀个完整的 matplotlib 图像通常会包括以下四个层级，这些
+层级也被称为容器（ container ），下⼀节会详细介绍。在 matplotlib 的世界中，我们将通过各种命令⽅法来操纵图像中的每⼀个部分，
+从⽽达到数据可视化的最终效果，⼀副完整的图像实际上是各类⼦元素的集合。
+Figure：顶层级，⽤来容纳所有绘图元素
+</code></pre><p>在此之后，我们要确保通过运行vectordb.persist来持久化向量数据库，以便我们在未来的课程中使用。</p>
+<pre><code class="lang-python">vectordb_chinese.persist()
+</code></pre>
+<h2 id="四、失败的情况failure-modes">四、失败的情况(Failure modes)</h2>
+<p>这看起来很好，基本的相似性搜索很容易就能让你完成80%的工作。但是，可能会出现一些相似性搜索失败的情况。这里有一些可能出现的边缘情况————我们将在下一章节中修复它们。</p>
+<h3 id="41-重复块">4.1 重复块</h3>
+<pre><code class="lang-python">question_chinese = <span class="hljs-string">"Matplotlib是什么？"</span>
+
+docs_chinese = vectordb_chinese.similarity_search(question_chinese,k=<span class="hljs-number">5</span>)
+</code></pre>
+<p>请注意，我们得到了重复的块（因为索引中有重复的 <code>第一回：Matplotlib初相识.pdf</code>）。</p>
+<p>语义搜索获取所有相似的文档，但不强制多样性。</p>
+<p><code>docs[0]</code> 和 <code>docs[1]</code> 是完全相同的。</p>
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">"docs[0]"</span>)
+<span class="hljs-built_in">print</span>(docs_chinese[<span class="hljs-number">0</span>])
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"docs[1]"</span>)
+<span class="hljs-built_in">print</span>(docs_chinese[<span class="hljs-number">1</span>])
+</code></pre>
+<pre><code>docs[0]
+page_content='第⼀回：Matplotlib 初相识\n⼀、认识matplotlib\nMatplotlib 是⼀个 Python 2D 绘图库，能够以多种硬拷⻉格式和跨平台的交互式环境⽣成出版物质量的图形，⽤来绘制各种静态，动态，\n交互式的图表。\nMatplotlib 可⽤于 Python 脚本， Python 和 IPython Shell 、 Jupyter notebook ， Web 应⽤程序服务器和各种图形⽤户界⾯⼯具包等。\nMatplotlib 是 Python 数据可视化库中的泰⽃，它已经成为 python 中公认的数据可视化⼯具，我们所熟知的 pandas 和 seaborn 的绘图接⼝\n其实也是基于 matplotlib 所作的⾼级封装。\n为了对matplotlib 有更好的理解，让我们从⼀些最基本的概念开始认识它，再逐渐过渡到⼀些⾼级技巧中。\n⼆、⼀个最简单的绘图例⼦\nMatplotlib 的图像是画在 figure （如 windows ， jupyter 窗体）上的，每⼀个 figure ⼜包含了⼀个或多个 axes （⼀个可以指定坐标系的⼦区\n域）。最简单的创建 figure 以及 axes 的⽅式是通过 pyplot.subplots命令，创建 axes 以后，可以使⽤ Axes.plot绘制最简易的折线图。\nimport matplotlib.pyplot as plt\nimport matplotlib as mpl\nimport numpy as np\nfig, ax = plt.subplots()  # 创建⼀个包含⼀个 axes 的 figure\nax.plot([1, 2, 3, 4], [1, 4, 2, 3]);  # 绘制图像\nTrick： 在jupyter notebook 中使⽤ matplotlib 时会发现，代码运⾏后⾃动打印出类似 &lt;matplotlib.lines.Line2D at 0x23155916dc0&gt;\n这样⼀段话，这是因为 matplotlib 的绘图代码默认打印出最后⼀个对象。如果不想显示这句话，有以下三种⽅法，在本章节的代码示例\n中你能找到这三种⽅法的使⽤。\n\x00. 在代码块最后加⼀个分号 ;\n\x00. 在代码块最后加⼀句 plt.show()\n\x00. 在绘图时将绘图对象显式赋值给⼀个变量，如将 plt.plot([1, 2, 3, 4]) 改成 line =plt.plot([1, 2, 3, 4])\n和MATLAB 命令类似，你还可以通过⼀种更简单的⽅式绘制图像， matplotlib.pyplot⽅法能够直接在当前 axes 上绘制图像，如果⽤户\n未指定axes ， matplotlib 会帮你⾃动创建⼀个。所以上⾯的例⼦也可以简化为以下这⼀⾏代码。\nline =plt.plot([1, 2, 3, 4], [1, 4, 2, 3]) \n三、Figure 的组成\n现在我们来深⼊看⼀下 figure 的组成。通过⼀张 figure 解剖图，我们可以看到⼀个完整的 matplotlib 图像通常会包括以下四个层级，这些\n层级也被称为容器（ container ），下⼀节会详细介绍。在 matplotlib 的世界中，我们将通过各种命令⽅法来操纵图像中的每⼀个部分，\n从⽽达到数据可视化的最终效果，⼀副完整的图像实际上是各类⼦元素的集合。\nFigure：顶层级，⽤来容纳所有绘图元素' metadata={'source': 'docs/matplotlib/第一回：Matplotlib初相识.pdf', 'page': 0}
+docs[1]
+page_content='第⼀回：Matplotlib 初相识\n⼀、认识matplotlib\nMatplotlib 是⼀个 Python 2D 绘图库，能够以多种硬拷⻉格式和跨平台的交互式环境⽣成出版物质量的图形，⽤来绘制各种静态，动态，\n交互式的图表。\nMatplotlib 可⽤于 Python 脚本， Python 和 IPython Shell 、 Jupyter notebook ， Web 应⽤程序服务器和各种图形⽤户界⾯⼯具包等。\nMatplotlib 是 Python 数据可视化库中的泰⽃，它已经成为 python 中公认的数据可视化⼯具，我们所熟知的 pandas 和 seaborn 的绘图接⼝\n其实也是基于 matplotlib 所作的⾼级封装。\n为了对matplotlib 有更好的理解，让我们从⼀些最基本的概念开始认识它，再逐渐过渡到⼀些⾼级技巧中。\n⼆、⼀个最简单的绘图例⼦\nMatplotlib 的图像是画在 figure （如 windows ， jupyter 窗体）上的，每⼀个 figure ⼜包含了⼀个或多个 axes （⼀个可以指定坐标系的⼦区\n域）。最简单的创建 figure 以及 axes 的⽅式是通过 pyplot.subplots命令，创建 axes 以后，可以使⽤ Axes.plot绘制最简易的折线图。\nimport matplotlib.pyplot as plt\nimport matplotlib as mpl\nimport numpy as np\nfig, ax = plt.subplots()  # 创建⼀个包含⼀个 axes 的 figure\nax.plot([1, 2, 3, 4], [1, 4, 2, 3]);  # 绘制图像\nTrick： 在jupyter notebook 中使⽤ matplotlib 时会发现，代码运⾏后⾃动打印出类似 &lt;matplotlib.lines.Line2D at 0x23155916dc0&gt;\n这样⼀段话，这是因为 matplotlib 的绘图代码默认打印出最后⼀个对象。如果不想显示这句话，有以下三种⽅法，在本章节的代码示例\n中你能找到这三种⽅法的使⽤。\n\x00. 在代码块最后加⼀个分号 ;\n\x00. 在代码块最后加⼀句 plt.show()\n\x00. 在绘图时将绘图对象显式赋值给⼀个变量，如将 plt.plot([1, 2, 3, 4]) 改成 line =plt.plot([1, 2, 3, 4])\n和MATLAB 命令类似，你还可以通过⼀种更简单的⽅式绘制图像， matplotlib.pyplot⽅法能够直接在当前 axes 上绘制图像，如果⽤户\n未指定axes ， matplotlib 会帮你⾃动创建⼀个。所以上⾯的例⼦也可以简化为以下这⼀⾏代码。\nline =plt.plot([1, 2, 3, 4], [1, 4, 2, 3]) \n三、Figure 的组成\n现在我们来深⼊看⼀下 figure 的组成。通过⼀张 figure 解剖图，我们可以看到⼀个完整的 matplotlib 图像通常会包括以下四个层级，这些\n层级也被称为容器（ container ），下⼀节会详细介绍。在 matplotlib 的世界中，我们将通过各种命令⽅法来操纵图像中的每⼀个部分，\n从⽽达到数据可视化的最终效果，⼀副完整的图像实际上是各类⼦元素的集合。\nFigure：顶层级，⽤来容纳所有绘图元素' metadata={'source': 'docs/matplotlib/第一回：Matplotlib初相识.pdf', 'page': 0}
+</code></pre><h3 id="42-检索错误答案">4.2 检索错误答案</h3>
+<p>我们可以看到一种新的失败的情况。</p>
+<p>下面的问题询问了关于第二讲的问题，但也包括了来自其他讲的结果。</p>
+<pre><code class="lang-python">question_chinese = <span class="hljs-string">"他们在第二讲中对Figure说了些什么？"</span>  
+docs_chinese = vectordb_chinese.similarity_search(question_chinese,k=<span class="hljs-number">5</span>)
+
+<span class="hljs-keyword">for</span> doc_chinese <span class="hljs-keyword">in</span> docs_chinese:
+    <span class="hljs-built_in">print</span>(doc_chinese.metadata)
+</code></pre>
+<pre><code>{'source': 'docs/matplotlib/第一回：Matplotlib初相识.pdf', 'page': 0}
+{'source': 'docs/matplotlib/第一回：Matplotlib初相识.pdf', 'page': 0}
+{'source': 'docs/matplotlib/第二回：艺术画笔见乾坤.pdf', 'page': 9}
+{'source': 'docs/matplotlib/第二回：艺术画笔见乾坤.pdf', 'page': 10}
+{'source': 'docs/matplotlib/第一回：Matplotlib初相识.pdf', 'page': 1}
+</code></pre><p>可见，虽然我们询问的问题是第二讲，但第一个出现的答案却是第一讲的内容。而第三个答案才是我们想要的正确回答。</p>
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(docs_chinese[<span class="hljs-number">2</span>].page_content)
+</code></pre>
+<pre><code>三、对象容器  - Object container
+容器会包含⼀些 primitives，并且容器还有它⾃身的属性。
+⽐如Axes Artist，它是⼀种容器，它包含了很多 primitives，⽐如Line2D，Text；同时，它也有⾃身的属性，⽐如 xscal，⽤来控制
+X轴是linear还是log的。
+1. Figure容器
+matplotlib.figure.Figure是Artist最顶层的 container对象容器，它包含了图表中的所有元素。⼀张图表的背景就是在
+Figure.patch的⼀个矩形 Rectangle。
+当我们向图表添加 Figure.add_subplot()或者Figure.add_axes()元素时，这些都会被添加到 Figure.axes列表中。
+fig = plt.figure()
+ax1 = fig.add_subplot(211) # 作⼀幅2*1 的图，选择第 1 个⼦图
+ax2 = fig.add_axes([0.1, 0.1, 0.7, 0.3]) # 位置参数，四个数分别代表了
+(left,bottom,width,height)
+print(ax1) 
+print(fig.axes) # fig.axes 中包含了 subplot 和 axes 两个实例 , 刚刚添加的
+AxesSubplot(0.125,0.536818;0.775x0.343182)
+[&lt;AxesSubplot:&gt;, &lt;Axes:&gt;]
+由于Figure维持了current axes，因此你不应该⼿动的从 Figure.axes列表中添加删除元素，⽽是要通过 Figure.add_subplot()、
+Figure.add_axes()来添加元素，通过 Figure.delaxes()来删除元素。但是你可以迭代或者访问 Figure.axes中的Axes，然后修改这个
+Axes的属性。
+⽐如下⾯的遍历 axes ⾥的内容，并且添加⽹格线：
+fig = plt.figure()
+ax1 = fig.add_subplot(211)
+for ax in fig.axes:
+    ax.grid(True)
+Figure也有它⾃⼰的 text、line 、 patch 、 image。你可以直接通过 add primitive语句直接添加。但是注意 Figure默认的坐标系是以像
+素为单位，你可能需要转换成 figure 坐标系： (0,0) 表示左下点， (1,1) 表示右上点。
+Figure容器的常⻅属性：
+Figure.patch属性：Figure 的背景矩形
+Figure.axes属性：⼀个 Axes 实例的列表（包括 Subplot)
+Figure.images属性：⼀个 FigureImages patch 列表
+Figure.lines属性：⼀个 Line2D 实例的列表（很少使⽤）
+Figure.legends属性：⼀个 Figure Legend 实例列表（不同于 Axes.legends)
+Figure.texts属性：⼀个 Figure Text 实例列表
+</code></pre><p>在接下来的章节中，我们将探讨的方法能够有效地解答这两个问题！</p>
+<h2 id="五、英文版">五、英文版</h2>
+<p><strong>1.1 读取文档</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> PyPDFLoader
+
+<span class="hljs-comment"># 加载 PDF</span>
+loaders = [
+    <span class="hljs-comment"># 故意添加重复文档，使数据混乱</span>
+    PyPDFLoader(<span class="hljs-string">"docs/cs229_lectures/MachineLearning-Lecture01.pdf"</span>),
+    PyPDFLoader(<span class="hljs-string">"docs/cs229_lectures/MachineLearning-Lecture01.pdf"</span>),
+    PyPDFLoader(<span class="hljs-string">"docs/cs229_lectures/MachineLearning-Lecture02.pdf"</span>),
+    PyPDFLoader(<span class="hljs-string">"docs/cs229_lectures/MachineLearning-Lecture03.pdf"</span>)
+]
+docs = []
+<span class="hljs-keyword">for</span> loader <span class="hljs-keyword">in</span> loaders:
+    docs.extend(loader.load())
+</code></pre>
+<p>进行分割</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 分割文本</span>
+<span class="hljs-keyword">from</span> langchain.text_splitter <span class="hljs-keyword">import</span> RecursiveCharacterTextSplitter
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size = <span class="hljs-number">1500</span>,  <span class="hljs-comment"># 每个文本块的大小。这意味着每次切分文本时，会尽量使每个块包含 1500 个字符。</span>
+    chunk_overlap = <span class="hljs-number">150</span>  <span class="hljs-comment"># 每个文本块之间的重叠部分。</span>
+)
+
+splits = text_splitter.split_documents(docs)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(splits))
+</code></pre>
+<pre><code>209
+</code></pre><p><strong>2.1 Embedding</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.embeddings.openai <span class="hljs-keyword">import</span> OpenAIEmbeddings
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+
+embedding = OpenAIEmbeddings()
+
+sentence1 = <span class="hljs-string">"i like dogs"</span>
+sentence2 = <span class="hljs-string">"i like canines"</span>
+sentence3 = <span class="hljs-string">"the weather is ugly outside"</span>
+
+embedding1 = embedding.embed_query(sentence1)
+embedding2 = embedding.embed_query(sentence2)
+embedding3 = embedding.embed_query(sentence3)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Sentence 1 VS setence 2"</span>)
+<span class="hljs-built_in">print</span>(np.dot(embedding1, embedding2))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Sentence 1 VS setence 3"</span>)
+<span class="hljs-built_in">print</span>(np.dot(embedding1, embedding3))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Sentence 2 VS sentence 3"</span>)
+<span class="hljs-built_in">print</span>(np.dot(embedding2, embedding3))
+</code></pre>
+<pre><code>Sentence 1 VS setence 2
+0.9632026347895142
+Sentence 1 VS setence 3
+0.7711302839662464
+Sentence 2 VS sentence 3
+0.759699788340627
+</code></pre><p><strong>3.1 初始化 Chroma</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.vectorstores <span class="hljs-keyword">import</span> Chroma
+
+persist_directory = <span class="hljs-string">'docs/chroma/cs229_lectures/'</span>
+
+vectordb = Chroma.from_documents(
+    documents=splits,
+    embedding=embedding,
+    persist_directory=persist_directory  <span class="hljs-comment"># 允许我们将persist_directory目录保存到磁盘上</span>
+)
+
+<span class="hljs-built_in">print</span>(vectordb._collection.count())
+</code></pre>
+<pre><code>100%|██████████| 1/1 [00:02&lt;00:00,  2.62s/it]
+
+
+209
+</code></pre><p><strong>3.2 相似性检索</strong></p>
+<pre><code class="lang-python">question = <span class="hljs-string">"is there an email i can ask for help"</span>  <span class="hljs-comment"># "有我可以寻求帮助的电子邮件吗"</span>
+
+docs = vectordb.similarity_search(question,k=<span class="hljs-number">3</span>)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Length of docs: "</span>, <span class="hljs-built_in">len</span>(docs))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Page content:"</span>)
+<span class="hljs-built_in">print</span>(docs[<span class="hljs-number">0</span>].page_content)
+</code></pre>
+<pre><code>Length of docs:  3
+Page content:
+cs229-qa@cs.stanford.edu. This goes to an acc ount that's read by all the TAs and me. So 
+rather than sending us email individually, if you send email to this account, it will 
+actually let us get back to you maximally quickly with answers to your questions.  
+If you're asking questions about homework probl ems, please say in the subject line which 
+assignment and which question the email refers to, since that will also help us to route 
+your question to the appropriate TA or to me  appropriately and get the response back to 
+you quickly.  
+Let's see. Skipping ahead — let's see — for homework, one midterm, one open and term 
+project. Notice on the honor code. So one thi ng that I think will help you to succeed and 
+do well in this class and even help you to enjoy this cla ss more is if you form a study 
+group.  
+So start looking around where you' re sitting now or at the end of class today, mingle a 
+little bit and get to know your classmates. I strongly encourage you to form study groups 
+and sort of have a group of people to study with and have a group of your fellow students 
+to talk over these concepts with. You can also  post on the class news group if you want to 
+use that to try to form a study group.  
+But some of the problems sets in this cla ss are reasonably difficult.  People that have 
+taken the class before may tell you they were very difficult. And just I bet it would be 
+more fun for you, and you'd probably have a be tter learning experience if you form a
+</code></pre><p>持久化数据库</p>
+<pre><code class="lang-python">vectordb.persist()
+</code></pre>
+<p><strong>4.1 重复块</strong></p>
+<pre><code class="lang-python">question = <span class="hljs-string">"what did they say about matlab?"</span>  <span class="hljs-comment"># "他们对 matlab 有何评价？"</span>
+
+docs = vectordb.similarity_search(question,k=<span class="hljs-number">5</span>)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"docs[0]"</span>)
+<span class="hljs-built_in">print</span>(docs[<span class="hljs-number">0</span>])
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"docs[1]"</span>)
+<span class="hljs-built_in">print</span>(docs[<span class="hljs-number">1</span>])
+</code></pre>
+<pre><code>docs[0]
+page_content='those homeworks will be done in either MATLA B or in Octave, which is sort of — I \nknow some people call it a free ve rsion of MATLAB, which it sort  of is, sort of isn\'t.  \nSo I guess for those of you that haven\'t s een MATLAB before, and I know most of you \nhave, MATLAB is I guess part of the programming language that makes it very easy to write codes using matrices, to write code for numerical routines, to move data around, to \nplot data. And it\'s sort of an extremely easy to  learn tool to use for implementing a lot of \nlearning algorithms.  \nAnd in case some of you want to work on your  own home computer or something if you \ndon\'t have a MATLAB license, for the purposes of  this class, there\'s also — [inaudible] \nwrite that down [inaudible] MATLAB — there\' s also a software package called Octave \nthat you can download for free off the Internet. And it has somewhat fewer features than MATLAB, but it\'s free, and for the purposes of  this class, it will work for just about \neverything.  \nSo actually I, well, so yeah, just a side comment for those of you that haven\'t seen \nMATLAB before I guess, once a colleague of mine at a different university, not at \nStanford, actually teaches another machine l earning course. He\'s taught it for many years. \nSo one day, he was in his office, and an old student of his from, lik e, ten years ago came \ninto his office and he said, "Oh, professo r, professor, thank you so much for your' metadata={'source': 'docs/cs229_lectures/MachineLearning-Lecture01.pdf', 'page': 8}
+docs[1]
+page_content='those homeworks will be done in either MATLA B or in Octave, which is sort of — I \nknow some people call it a free ve rsion of MATLAB, which it sort  of is, sort of isn\'t.  \nSo I guess for those of you that haven\'t s een MATLAB before, and I know most of you \nhave, MATLAB is I guess part of the programming language that makes it very easy to write codes using matrices, to write code for numerical routines, to move data around, to \nplot data. And it\'s sort of an extremely easy to  learn tool to use for implementing a lot of \nlearning algorithms.  \nAnd in case some of you want to work on your  own home computer or something if you \ndon\'t have a MATLAB license, for the purposes of  this class, there\'s also — [inaudible] \nwrite that down [inaudible] MATLAB — there\' s also a software package called Octave \nthat you can download for free off the Internet. And it has somewhat fewer features than MATLAB, but it\'s free, and for the purposes of  this class, it will work for just about \neverything.  \nSo actually I, well, so yeah, just a side comment for those of you that haven\'t seen \nMATLAB before I guess, once a colleague of mine at a different university, not at \nStanford, actually teaches another machine l earning course. He\'s taught it for many years. \nSo one day, he was in his office, and an old student of his from, lik e, ten years ago came \ninto his office and he said, "Oh, professo r, professor, thank you so much for your' metadata={'source': 'docs/cs229_lectures/MachineLearning-Lecture01.pdf', 'page': 8}
+</code></pre><p><strong>4.2 检索错误答案</strong></p>
+<pre><code class="lang-python">question = <span class="hljs-string">"what did they say about regression in the third lecture?"</span>  <span class="hljs-comment"># "他们在第三讲中是怎么谈论回归的？"</span>
+
+docs = vectordb.similarity_search(question,k=<span class="hljs-number">5</span>)
+
+<span class="hljs-keyword">for</span> doc <span class="hljs-keyword">in</span> docs:
+    <span class="hljs-built_in">print</span>(doc.metadata)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"docs-4:"</span>)
+<span class="hljs-built_in">print</span>(docs[<span class="hljs-number">4</span>].page_content)
+</code></pre>
+<pre><code>{'source': 'docs/cs229_lectures/MachineLearning-Lecture03.pdf', 'page': 0}
+{'source': 'docs/cs229_lectures/MachineLearning-Lecture03.pdf', 'page': 14}
+{'source': 'docs/cs229_lectures/MachineLearning-Lecture02.pdf', 'page': 0}
+{'source': 'docs/cs229_lectures/MachineLearning-Lecture03.pdf', 'page': 6}
+{'source': 'docs/cs229_lectures/MachineLearning-Lecture01.pdf', 'page': 8}
+docs-4:
+into his office and he said, "Oh, professo r, professor, thank you so much for your 
+machine learning class. I learned so much from it. There's this stuff that I learned in your 
+class, and I now use every day. And it's help ed me make lots of money, and here's a 
+picture of my big house."  
+So my friend was very excited. He said, "W ow. That's great. I'm glad to hear this 
+machine learning stuff was actually useful. So what was it that you learned? Was it 
+logistic regression? Was it the PCA? Was it the data ne tworks? What was it that you 
+learned that was so helpful?" And the student said, "Oh, it was the MATLAB."  
+So for those of you that don't know MATLAB yet, I hope you do learn it. It's not hard, 
+and we'll actually have a short MATLAB tutori al in one of the discussion sections for 
+those of you that don't know it.  
+Okay. The very last piece of logistical th ing is the discussion s ections. So discussion 
+sections will be taught by the TAs, and atte ndance at discussion sections is optional, 
+although they'll also be recorded and televi sed. And we'll use the discussion sections 
+mainly for two things. For the next two or th ree weeks, we'll use the discussion sections 
+to go over the prerequisites to this class or if some of you haven't seen probability or 
+statistics for a while or maybe algebra, we'll go over those in the discussion sections as a 
+refresher for those of you that want one.
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3.-文档分割-Splitting.html" class="navigation navigation-prev " aria-label="Previous page: 3. 文档分割 Splitting">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="5.-检索-Retrieval.html" class="navigation navigation-next " aria-label="Next page: 5. 检索 Retrieval">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"4. 向量数据库与词向量 Vectorstores and Embeddings","level":"5.5","depth":1,"next":{"title":"5. 检索 Retrieval","level":"5.6","depth":1,"path":"C4/5.-检索-Retrieval.md","ref":"C4/5.-检索-Retrieval.md","articles":[]},"previous":{"title":"3. 文档分割 Splitting","level":"5.4","depth":1,"path":"C4/3.-文档分割-Splitting.md","ref":"C4/3.-文档分割-Splitting.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.md","mtime":"2024-08-23T21:42:59.791Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-08-23T22:20:29.853Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

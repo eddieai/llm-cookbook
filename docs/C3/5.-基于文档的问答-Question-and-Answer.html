@@ -1,0 +1,1301 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>5. 基于文档的问答 Question and Answer · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="6.-评估-Evaluation.html" />
+    
+    
+    <link rel="prev" href="4.-模型链-Chains.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../前言.html">
+            
+                <a href="../前言.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../环境配置.html">
+            
+                <a href="../环境配置.html">
+            
+                    
+                    环境配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第一部分 面向开发者的提示工程</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../C1/readme.html">
+            
+                <a href="../C1/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../C1/1.-简介-Introduction.html">
+            
+                <a href="../C1/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../C1/2.-提示原则-Guidelines.html">
+            
+                <a href="../C1/2.-提示原则-Guidelines.html">
+            
+                    
+                    2. 提示原则 Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../C1/3.-迭代优化-Iterative.html">
+            
+                <a href="../C1/3.-迭代优化-Iterative.html">
+            
+                    
+                    3. 迭代优化 Iterative
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../C1/4.-文本概括-Summarizing.html">
+            
+                <a href="../C1/4.-文本概括-Summarizing.html">
+            
+                    
+                    4. 文本概括 Summarizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../C1/5.-推断-Inferring.html">
+            
+                <a href="../C1/5.-推断-Inferring.html">
+            
+                    
+                    5. 推断 Inferring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../C1/6.-文本转换-Transforming.html">
+            
+                <a href="../C1/6.-文本转换-Transforming.html">
+            
+                    
+                    6. 文本转换 Transforming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../C1/7.-文本扩展-Expanding.html">
+            
+                <a href="../C1/7.-文本扩展-Expanding.html">
+            
+                    
+                    7. 文本扩展 Expanding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="../C1/8.-聊天机器人-Chatbot.html">
+            
+                <a href="../C1/8.-聊天机器人-Chatbot.html">
+            
+                    
+                    8. 聊天机器人 Chatbot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="../C1/9.-总结-Summary.html">
+            
+                <a href="../C1/9.-总结-Summary.html">
+            
+                    
+                    9. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第二部分 搭建基于 ChatGPT 的问答系统</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../C2/readme.html">
+            
+                <a href="../C2/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../C2/1.-简介-Introduction.html">
+            
+                <a href="../C2/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                <a href="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                    
+                    2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../C2/3.-评估输入-分类-Classification.html">
+            
+                <a href="../C2/3.-评估输入-分类-Classification.html">
+            
+                    
+                    3. 评估输入-分类 Classification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../C2/4.-检查输入-监督-Moderation.html">
+            
+                <a href="../C2/4.-检查输入-监督-Moderation.html">
+            
+                    
+                    4. 检查输入-监督 Moderation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                <a href="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                    
+                    5. 思维链推理 Chain of Thought Reasoning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                <a href="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                    
+                    6. Prompt 链 Chaining Prompts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="../C2/7.-检查结果-Check-Outputs.html">
+            
+                <a href="../C2/7.-检查结果-Check-Outputs.html">
+            
+                    
+                    7. 检查结果 Check Outputs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                <a href="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                    
+                    8. 搭建一个带评估的端到端系统 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                <a href="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                    
+                    9. 评估（上）Evaluation-part1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                <a href="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                    
+                    10. 评估（下）Evaluation-part2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="../C2/11.总结-conclusion.html">
+            
+                <a href="../C2/11.总结-conclusion.html">
+            
+                    
+                    11. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第三部分 使用 LangChain 开发应用程序</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="1.-简介-Introduction.html">
+            
+                <a href="1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                <a href="2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                    
+                    2. 模型、提示和解析器 Models, Prompts and Parsers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="3.-储存-Memory.html">
+            
+                <a href="3.-储存-Memory.html">
+            
+                    
+                    3. 储存 Memory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="4.-模型链-Chains.html">
+            
+                <a href="4.-模型链-Chains.html">
+            
+                    
+                    4. 模型链 Chains
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.6" data-path="5.-基于文档的问答-Question-and-Answer.html">
+            
+                <a href="5.-基于文档的问答-Question-and-Answer.html">
+            
+                    
+                    5. 基于文档的问答 Question and Answer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="6.-评估-Evaluation.html">
+            
+                <a href="6.-评估-Evaluation.html">
+            
+                    
+                    6. 评估 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="7.-代理-Agent.html">
+            
+                <a href="7.-代理-Agent.html">
+            
+                    
+                    7. 代理 Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="8.-总结-Conclusion.html">
+            
+                <a href="8.-总结-Conclusion.html">
+            
+                    
+                    8. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第四部分 使用 LangChain 访问个人数据</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../C4/readme.html">
+            
+                <a href="../C4/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../C4/1.-简介-Introduction.html">
+            
+                <a href="../C4/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../C4/2.-文档加载-Document-Loading.html">
+            
+                <a href="../C4/2.-文档加载-Document-Loading.html">
+            
+                    
+                    2. 文档加载 Document Loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../C4/3.-文档分割-Splitting.html">
+            
+                <a href="../C4/3.-文档分割-Splitting.html">
+            
+                    
+                    3. 文档分割 Splitting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                <a href="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                    
+                    4. 向量数据库与词向量 Vectorstores and Embeddings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../C4/5.-检索-Retrieval.html">
+            
+                <a href="../C4/5.-检索-Retrieval.html">
+            
+                    
+                    5. 检索 Retrieval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="../C4/6.-问答-Question-Answering.html">
+            
+                <a href="../C4/6.-问答-Question-Answering.html">
+            
+                    
+                    6. 问答 Question ANswering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="../C4/7.-聊天-Chat.html">
+            
+                <a href="../C4/7.-聊天-Chat.html">
+            
+                    
+                    7. 聊天 Chat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="../C4/8.-总结-Summary.html">
+            
+                <a href="../C4/8.-总结-Summary.html">
+            
+                    
+                    8. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >5. 基于文档的问答 Question and Answer</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第五章-基于文档的问答">第五章 基于文档的问答</h1>
+<p>使用大语言模型构建一个能够回答关于给定文档和文档集合的问答系统是一种非常实用和有效的应用场景。<strong>与仅依赖模型预训练知识不同，这种方法可以进一步整合用户自有数据，实现更加个性化和专业的问答服务</strong>。例如,我们可以收集某公司的内部文档、产品说明书等文字资料，导入问答系统中。然后用户针对这些文档提出问题时，系统可以先在文档中检索相关信息，再提供给语言模型生成答案。</p>
+<p>这样，语言模型不仅利用了自己的通用知识，还可以充分运用外部输入文档的专业信息来回答用户问题，显著提升答案的质量和适用性。构建这类基于外部文档的问答系统，可以让语言模型更好地服务于具体场景，而不是停留在通用层面。这种灵活应用语言模型的方法值得在实际使用中推广。</p>
+<p>基于文档问答的这个过程，我们会涉及 LangChain 中的其他组件，比如：嵌入模型（Embedding Models)和向量储存(Vector Stores)，本章让我们一起来学习这部分的内容。</p>
+<h2 id="一、直接使用向量储存查询">一、直接使用向量储存查询</h2>
+<h3 id="11-导入数据">1.1 导入数据</h3>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> RetrievalQA  <span class="hljs-comment">#检索QA链，在文档上进行检索</span>
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI  <span class="hljs-comment">#openai模型</span>
+<span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> CSVLoader <span class="hljs-comment">#文档加载器，采用csv格式存储</span>
+<span class="hljs-keyword">from</span> langchain.vectorstores <span class="hljs-keyword">import</span> DocArrayInMemorySearch  <span class="hljs-comment">#向量存储</span>
+<span class="hljs-keyword">from</span> IPython.display <span class="hljs-keyword">import</span> display, Markdown <span class="hljs-comment">#在jupyter显示信息的工具</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+file = <span class="hljs-string">'../data/OutdoorClothingCatalog_1000.csv'</span>
+
+<span class="hljs-comment"># 使用langchain文档加载器对数据进行导入</span>
+loader = CSVLoader(file_path=file)
+
+<span class="hljs-comment"># 使用pandas导入数据，用以查看</span>
+data = pd.read_csv(file,usecols=[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>])
+data.head()
+</code></pre>
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Women's Campside Oxfords</td>
+      <td>This ultracomfortable lace-to-toe Oxford boast...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Recycled Waterhog Dog Mat, Chevron Weave</td>
+      <td>Protect your floors from spills and splashing ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Infant and Toddler Girls' Coastal Chill Swimsu...</td>
+      <td>She'll love the bright colors, ruffles and exc...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Refresh Swimwear, V-Neck Tankini Contrasts</td>
+      <td>Whether you're going for a swim or heading out...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>EcoFlex 3L Storm Pants</td>
+      <td>Our new TEK O2 technology makes our four-seaso...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+<p>数据是字段为 <code>name</code> 和 <code>description</code> 的文本数据：</p>
+<p>可以看到，导入的数据集为一个户外服装的 CSV 文件，接下来我们将在语言模型中使用它。</p>
+<h3 id="12-基本文档加载器创建向量存储">1.2 基本文档加载器创建向量存储</h3>
+<pre><code class="lang-python"><span class="hljs-comment">#导入向量存储索引创建器</span>
+<span class="hljs-keyword">from</span> langchain.indexes <span class="hljs-keyword">import</span> VectorstoreIndexCreator 
+
+<span class="hljs-comment"># 创建指定向量存储类, 创建完成后，从加载器中调用, 通过文档加载器列表加载</span>
+index = VectorstoreIndexCreator(vectorstore_cls=DocArrayInMemorySearch).from_loaders([loader])
+</code></pre>
+<h3 id="13-查询创建的向量存储">1.3 查询创建的向量存储</h3>
+<pre><code class="lang-python">query =<span class="hljs-string">"请用markdown表格的方式列出所有具有防晒功能的衬衫，对每件衬衫描述进行总结"</span>
+
+<span class="hljs-comment">#使用索引查询创建一个响应，并传入这个查询</span>
+response = index.query(query)
+
+<span class="hljs-comment">#查看查询返回的内容</span>
+display(Markdown(response))
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Men's Tropical Plaid Short-Sleeve Shirt</td>
+<td>UPF 50+ rated sun protection, 100% polyester fabric, wrinkle-resistant, front and back cape venting, two front bellows pockets</td>
+</tr>
+<tr>
+<td>Men's Plaid Tropic Shirt, Short-Sleeve</td>
+<td>UPF 50+ rated sun protection, 52% polyester and 48% nylon fabric, wrinkle-free, quickly evaporates perspiration, front and back cape venting, two front bellows pockets</td>
+</tr>
+<tr>
+<td>Girls' Ocean Breeze Long-Sleeve Stripe Shirt</td>
+<td>UPF 50+ rated sun protection, Nylon Lycra®-elastane blend fabric, quick-drying and fade-resistant, holds shape well, durable seawater-resistant fabric retains its color</td>
+</tr>
+</tbody>
+</table>
+<p>在上面我们得到了一个 Markdown 表格，其中包含所有带有防晒衣的衬衫的 <code>名称(Name)</code> 和 <code>描述(Description)</code> ，其中描述是语言模型总结过的结果。</p>
+<h2 id="二、-结合表征模型和向量存储">二、 结合表征模型和向量存储</h2>
+<p>由于语言模型的上下文长度限制，直接处理长文档具有困难。为实现对长文档的问答，我们可以引入向量嵌入(Embeddings)和向量存储(Vector Store)等技术：</p>
+<p>首先，<strong>使用文本嵌入(Embeddings)算法对文档进行向量化</strong>，使语义相似的文本片段具有接近的向量表示。其次，<strong>将向量化的文档切分为小块，存入向量数据库</strong>，这个流程正是创建索引(index)的过程。向量数据库对各文档片段进行索引，支持快速检索。这样，当用户提出问题时，可以先将问题转换为向量，在数据库中快速找到语义最相关的文档片段。然后将这些文档片段与问题一起传递给语言模型，生成回答。</p>
+<p>通过嵌入向量化和索引技术，我们实现了对长文档的切片检索和问答。这种流程克服了语言模型的上下文限制，可以构建处理大规模文档的问答系统。</p>
+<h3 id="21-导入数据">2.1 导入数据</h3>
+<pre><code class="lang-python"><span class="hljs-comment">#创建一个文档加载器，通过csv格式加载</span>
+file = <span class="hljs-string">'../data/OutdoorClothingCatalog_1000.csv'</span>
+loader = CSVLoader(file_path=file)
+docs = loader.load()
+
+<span class="hljs-comment">#查看单个文档，每个文档对应于CSV中的一行数据</span>
+docs[<span class="hljs-number">0</span>]
+</code></pre>
+<pre><code>Document(page_content=": 0\nname: Women's Campside Oxfords\ndescription: This ultracomfortable lace-to-toe Oxford boasts a super-soft canvas, thick cushioning, and quality construction for a broken-in feel from the first time you put them on. \n\nSize &amp; Fit: Order regular shoe size. For half sizes not offered, order up to next whole size. \n\nSpecs: Approx. weight: 1 lb.1 oz. per pair. \n\nConstruction: Soft canvas material for a broken-in feel and look. Comfortable EVA innersole with Cleansport NXT® antimicrobial odor control. Vintage hunt, fish and camping motif on innersole. Moderate arch contour of innersole. EVA foam midsole for cushioning and support. Chain-tread-inspired molded rubber outsole with modified chain-tread pattern. Imported. \n\nQuestions? Please contact us for any inquiries.", metadata={'source': '../data/OutdoorClothingCatalog_1000.csv', 'row': 0})
+</code></pre><h3 id="22-文本向量表征模型">2.2 文本向量表征模型</h3>
+<pre><code class="lang-python"><span class="hljs-comment">#使用OpenAIEmbedding类</span>
+<span class="hljs-keyword">from</span> langchain.embeddings <span class="hljs-keyword">import</span> OpenAIEmbeddings 
+
+embeddings = OpenAIEmbeddings() 
+
+<span class="hljs-comment">#因为文档比较短了，所以这里不需要进行任何分块,可以直接进行向量表征</span>
+<span class="hljs-comment">#使用初始化OpenAIEmbedding实例上的查询方法embed_query为文本创建向量表征</span>
+embed = embeddings.embed_query(<span class="hljs-string">"你好呀，我的名字叫小可爱"</span>)
+
+<span class="hljs-comment">#查看得到向量表征的长度</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"\n\033[32m向量表征的长度: \033[0m \n"</span>, <span class="hljs-built_in">len</span>(embed))
+
+<span class="hljs-comment">#每个元素都是不同的数字值，组合起来就是文本的向量表征</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"\n\033[32m向量表征前5个元素: \033[0m \n"</span>, embed[:<span class="hljs-number">5</span>])
+</code></pre>
+<pre><code>向量表征的长度:  
+ 1536
+
+向量表征前5个元素:  
+ [-0.019283676849006164, -0.006842594710511029, -0.007344046732916966, -0.024501312942119265, -0.026608679897592472]
+</code></pre><h3 id="23-基于向量表征创建并查询向量存储">2.3 基于向量表征创建并查询向量存储</h3>
+<pre><code class="lang-python"><span class="hljs-comment"># 将刚才创建文本向量表征(embeddings)存储在向量存储(vector store)中</span>
+<span class="hljs-comment"># 使用DocArrayInMemorySearch类的from_documents方法来实现</span>
+<span class="hljs-comment"># 该方法接受文档列表以及向量表征模型作为输入</span>
+db = DocArrayInMemorySearch.from_documents(docs, embeddings)
+
+query = <span class="hljs-string">"请推荐一件具有防晒功能的衬衫"</span>
+<span class="hljs-comment">#使用上面的向量存储来查找与传入查询类似的文本，得到一个相似文档列表</span>
+docs = db.similarity_search(query)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"\n\033[32m返回文档的个数: \033[0m \n"</span>, <span class="hljs-built_in">len</span>(docs))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"\n\033[32m第一个文档: \033[0m \n"</span>, docs[<span class="hljs-number">0</span>])
+</code></pre>
+<pre><code>返回文档的个数:  
+ 4
+
+第一个文档:  
+ page_content=": 535\nname: Men's TropicVibe Shirt, Short-Sleeve\ndescription: This Men’s sun-protection shirt with built-in UPF 50+ has the lightweight feel you want and the coverage you need when the air is hot and the UV rays are strong. Size &amp; Fit: Traditional Fit: Relaxed through the chest, sleeve and waist. Fabric &amp; Care: Shell: 71% Nylon, 29% Polyester. Lining: 100% Polyester knit mesh. UPF 50+ rated – the highest rated sun protection possible. Machine wash and dry. Additional Features: Wrinkle resistant. Front and back cape venting lets in cool breezes. Two front bellows pockets. Imported.\n\nSun Protection That Won't Wear Off: Our high-performance fabric provides SPF 50+ sun protection, blocking 98% of the sun's harmful rays." metadata={'source': '../data/OutdoorClothingCatalog_1000.csv', 'row': 535}
+</code></pre><p>我们可以看到一个返回了四个结果。输出的第一结果是一件关于防晒的衬衫，满足我们查询的要求：<code>请推荐一件具有防晒功能的衬衫</code></p>
+<h3 id="24-使用查询结果构造提示来回答问题">2.4 使用查询结果构造提示来回答问题</h3>
+<pre><code class="lang-python"><span class="hljs-comment">#导入大语言模型, 这里使用默认模型gpt-3.5-turbo会出现504服务器超时，</span>
+<span class="hljs-comment">#因此使用gpt-3.5-turbo-0301</span>
+llm = ChatOpenAI(model_name=<span class="hljs-string">"gpt-3.5-turbo-0301"</span>,temperature = <span class="hljs-number">0.0</span>) 
+
+<span class="hljs-comment">#合并获得的相似文档内容</span>
+qdocs = <span class="hljs-string">""</span>.join([docs[i].page_content <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(docs))])  
+
+
+<span class="hljs-comment">#将合并的相似文档内容后加上问题（question）输入到 `llm.call_as_llm`中</span>
+<span class="hljs-comment">#这里问题是：以Markdown表格的方式列出所有具有防晒功能的衬衫并总结 </span>
+response = llm.call_as_llm(<span class="hljs-string">f"<span class="hljs-subst">{qdocs}</span>问题：请用markdown表格的方式列出所有具有防晒功能的衬衫，对每件衬衫描述进行总结"</span>) 
+
+display(Markdown(response))
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>衣服名称</th>
+<th>描述总结</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Men's TropicVibe Shirt, Short-Sleeve</td>
+<td>男士短袖衬衫，内置UPF 50+防晒功能，轻盈舒适，前后通风口，两个前口袋，防皱，最高级别的防晒保护。</td>
+</tr>
+<tr>
+<td>Men's Tropical Plaid Short-Sleeve Shirt</td>
+<td>男士短袖衬衫，UPF 50+防晒，100%聚酯纤维，防皱，前后通风口，两个前口袋，最高级别的防晒保护。</td>
+</tr>
+<tr>
+<td>Men's Plaid Tropic Shirt, Short-Sleeve</td>
+<td>男士短袖衬衫，UPF 50+防晒，52%聚酯纤维和48%尼龙，防皱，前后通风口，两个前口袋，最高级别的防晒保护。</td>
+</tr>
+<tr>
+<td>Girls' Ocean Breeze Long-Sleeve Stripe Shirt</td>
+<td>女孩长袖衬衫，UPF 50+防晒，尼龙Lycra®-弹性纤维混纺，快干，耐褪色，防水，最高级别的防晒保护，适合与我们的泳衣系列搭配。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="25-使用检索问答链来回答问题">2.5 使用检索问答链来回答问题</h3>
+<p>通过LangChain创建一个检索问答链，对检索到的文档进行问题回答。检索问答链的输入包含以下</p>
+<ul>
+<li><code>llm</code>: 语言模型，进行文本生成</li>
+<li><code>chain_type</code>: 传入链类型，这里使用stuff，将所有查询得到的文档组合成一个文档传入下一步。其他的方式包括：<ul>
+<li>Map Reduce： 将所有块与问题一起传递给语言模型，获取回复，使用另一个语言模型调用将所有单独的回复总结成最终答案，它可以在任意数量的文档上运行。可以并行处理单个问题，同时也需要更多的调用。它将所有文档视为独立的</li>
+<li>Refine： 用于循环许多文档，际上是迭代的，建立在先前文档的答案之上，非常适合前后因果信息并随时间逐步构建答案，依赖于先前调用的结果。它通常需要更长的时间，并且基本上需要与Map Reduce一样多的调用</li>
+<li>Map Re-rank： 对每个文档进行单个语言模型调用，要求它返回一个分数，选择最高分，这依赖于语言模型知道分数应该是什么，需要告诉它，如果它与文档相关，则应该是高分，并在那里精细调整说明，可以批量处理它们相对较快，但是更加昂贵</li>
+</ul>
+</li>
+</ul>
+<p><img src="../figures/C3/3_additional%20methods.png" alt=""></img></p>
+<div align="center">图 3.5 检索问答链</div>
+
+<ul>
+<li><code>retriever</code>:检索器</li>
+</ul>
+<pre><code class="lang-python"><span class="hljs-comment">#基于向量储存，创建检索器</span>
+retriever = db.as_retriever() 
+
+qa_stuff = RetrievalQA.from_chain_type(
+    llm=llm, 
+    chain_type=<span class="hljs-string">"stuff"</span>, 
+    retriever=retriever, 
+    verbose=<span class="hljs-literal">True</span>
+)
+
+<span class="hljs-comment">#创建一个查询并在此查询上运行链</span>
+query =  <span class="hljs-string">"请用markdown表格的方式列出所有具有防晒功能的衬衫，对每件衬衫描述进行总结"</span>
+
+response = qa_stuff.run(query)
+
+display(Markdown(response))
+</code></pre>
+<pre><code>&gt; Entering new RetrievalQA chain...
+
+&gt; Finished chain.
+</code></pre><table>
+<thead>
+<tr>
+<th>编号</th>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>618</td>
+<td>Men's Tropical Plaid Short-Sleeve Shirt</td>
+<td>100%聚酯纤维制成，轻便，防皱，前后背部有通风口，两个前面的褶皱口袋，UPF 50+防晒等级，可阻挡98%的紫外线</td>
+</tr>
+<tr>
+<td>374</td>
+<td>Men's Plaid Tropic Shirt, Short-Sleeve</td>
+<td>52%聚酯纤维和48%尼龙制成，轻便，防皱，前后背部有通风口，两个前面的褶皱口袋，UPF 50+防晒等级，可阻挡98%的紫外线</td>
+</tr>
+<tr>
+<td>535</td>
+<td>Men's TropicVibe Shirt, Short-Sleeve</td>
+<td>71%尼龙和29%聚酯纤维制成，轻便，防皱，前后背部有通风口，两个前面的褶皱口袋，UPF 50+防晒等级，可阻挡98%的紫外线</td>
+</tr>
+<tr>
+<td>293</td>
+<td>Girls' Ocean Breeze Long-Sleeve Stripe Shirt</td>
+<td>尼龙Lycra®-弹性纤维混纺，长袖，UPF 50+防晒等级，可阻挡98%的紫外线，快干，耐褪色，可与我们的泳衣系列轻松搭配</td>
+</tr>
+</tbody>
+</table>
+<p>总结：这些衬衫都具有防晒功能，防晒等级为UPF 50+，可阻挡98%的紫外线。它们都是轻便的，防皱的，有前后背部通风口和前面的褶皱口袋。其中女孩的长袖条纹衬衫是由尼龙Lycra®-弹性纤维混纺制成，快干，耐褪色，可与泳衣系列轻松搭配。</p>
+<p>可以看到 2.5 和 2.6 部分的这两个方式返回相同的结果。</p>
+<h2 id="英文版提示">英文版提示</h2>
+<p><strong>1. 直接使用向量储存查询</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> CSVLoader 
+<span class="hljs-keyword">from</span> langchain.indexes <span class="hljs-keyword">import</span> VectorstoreIndexCreator
+
+file = <span class="hljs-string">'../data/OutdoorClothingCatalog_1000.csv'</span>
+loader = CSVLoader(file_path=file)
+
+index = VectorstoreIndexCreator(vectorstore_cls=DocArrayInMemorySearch).from_loaders([loader])
+
+query =<span class="hljs-string">"Please list all your shirts with sun protection \
+in a table in markdown and summarize each one."</span>
+
+response = index.query(query)
+
+display(Markdown(response))
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Men's Tropical Plaid Short-Sleeve Shirt</td>
+<td>UPF 50+ rated, 100% polyester, wrinkle-resistant, front and back cape venting, two front bellows pockets</td>
+</tr>
+<tr>
+<td>Men's Plaid Tropic Shirt, Short-Sleeve</td>
+<td>UPF 50+ rated, 52% polyester and 48% nylon, machine washable and dryable, front and back cape venting, two front bellows pockets</td>
+</tr>
+<tr>
+<td>Men's TropicVibe Shirt, Short-Sleeve</td>
+<td>UPF 50+ rated, 71% Nylon, 29% Polyester, 100% Polyester knit mesh, machine wash and dry, front and back cape venting, two front bellows pockets</td>
+</tr>
+<tr>
+<td>Sun Shield Shirt by</td>
+<td>UPF 50+ rated, 78% nylon, 22% Lycra Xtra Life fiber, handwash, line dry, wicks moisture, fits comfortably over swimsuit, abrasion resistant</td>
+</tr>
+</tbody>
+</table>
+<p>All four shirts provide UPF 50+ sun protection, blocking 98% of the sun's harmful rays. The Men's Tropical Plaid Short-Sleeve Shirt is made of 100% polyester and is wrinkle-resistant</p>
+<p><strong>2. 结合表征模型和向量存储</strong></p>
+<pre><code class="lang-python">
+<span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> CSVLoader 
+<span class="hljs-keyword">from</span> langchain.embeddings <span class="hljs-keyword">import</span> OpenAIEmbeddings 
+<span class="hljs-keyword">from</span> langchain.vectorstores <span class="hljs-keyword">import</span> DocArrayInMemorySearch  
+
+
+embeddings = OpenAIEmbeddings() 
+embed = embeddings.embed_query(<span class="hljs-string">"Hi my name is Harrison"</span>)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"\n\033[32m向量表征的长度: \033[0m \n"</span>, <span class="hljs-built_in">len</span>(embed))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"\n\033[32m向量表征前5个元素: \033[0m \n"</span>, embed[:<span class="hljs-number">5</span>])
+
+file = <span class="hljs-string">'../data/OutdoorClothingCatalog_1000.csv'</span>
+loader = CSVLoader(file_path=file)
+docs = loader.load()
+embeddings = OpenAIEmbeddings() 
+db = DocArrayInMemorySearch.from_documents(docs, embeddings)
+
+query = <span class="hljs-string">"Please suggest a shirt with sunblocking"</span>
+docs = db.similarity_search(query)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"\n\033[32m返回文档的个数: \033[0m \n"</span>, <span class="hljs-built_in">len</span>(docs))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"\n\033[32m第一个文档: \033[0m \n"</span>, docs[<span class="hljs-number">0</span>])
+
+
+<span class="hljs-comment"># 使用查询结果构造提示来回答问题</span>
+llm = ChatOpenAI(model_name=<span class="hljs-string">"gpt-3.5-turbo-0301"</span>,temperature = <span class="hljs-number">0.0</span>) 
+
+qdocs = <span class="hljs-string">""</span>.join([docs[i].page_content <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(docs))])  
+
+response = llm.call_as_llm(<span class="hljs-string">f"<span class="hljs-subst">{qdocs}</span> Question: Please list all your \
+shirts with sun protection in a table in markdown and summarize each one."</span>) 
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"\n\033[32m使用查询结果构造提示来回答问题: \033[0m \n"</span>, docs[<span class="hljs-number">0</span>])
+display(Markdown(response))
+
+
+<span class="hljs-comment"># 使用检索问答链来回答问题</span>
+retriever = db.as_retriever() 
+
+qa_stuff = RetrievalQA.from_chain_type(
+    llm=llm, 
+    chain_type=<span class="hljs-string">"stuff"</span>, 
+    retriever=retriever, 
+    verbose=<span class="hljs-literal">True</span>
+)
+
+
+query =  <span class="hljs-string">"Please list all your shirts with sun protection in a table \
+in markdown and summarize each one."</span>
+
+response = qa_stuff.run(query)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"\n\033[32m 使用检索问答链来回答问题： \033[0m \n"</span>)
+display(Markdown(response))
+</code></pre>
+<pre><code>向量表征的长度:  
+ 1536
+
+向量表征前5个元素:  
+ [-0.021913960932078383, 0.006774206755842609, -0.018190348816400977, -0.039148249368104494, -0.014089343366938917]
+
+返回文档的个数:  
+ 4
+
+第一个文档:  
+ page_content=': 255\nname: Sun Shield Shirt by\ndescription: "Block the sun, not the fun – our high-performance sun shirt is guaranteed to protect from harmful UV rays. \n\nSize &amp; Fit: Slightly Fitted: Softly shapes the body. Falls at hip.\n\nFabric &amp; Care: 78% nylon, 22% Lycra Xtra Life fiber. UPF 50+ rated – the highest rated sun protection possible. Handwash, line dry.\n\nAdditional Features: Wicks moisture for quick-drying comfort. Fits comfortably over your favorite swimsuit. Abrasion resistant for season after season of wear. Imported.\n\nSun Protection That Won\'t Wear Off\nOur high-performance fabric provides SPF 50+ sun protection, blocking 98% of the sun\'s harmful rays. This fabric is recommended by The Skin Cancer Foundation as an effective UV protectant.' metadata={'source': '../data/OutdoorClothingCatalog_1000.csv', 'row': 255}
+
+使用查询结果构造提示来回答问题:  
+ page_content=': 255\nname: Sun Shield Shirt by\ndescription: "Block the sun, not the fun – our high-performance sun shirt is guaranteed to protect from harmful UV rays. \n\nSize &amp; Fit: Slightly Fitted: Softly shapes the body. Falls at hip.\n\nFabric &amp; Care: 78% nylon, 22% Lycra Xtra Life fiber. UPF 50+ rated – the highest rated sun protection possible. Handwash, line dry.\n\nAdditional Features: Wicks moisture for quick-drying comfort. Fits comfortably over your favorite swimsuit. Abrasion resistant for season after season of wear. Imported.\n\nSun Protection That Won\'t Wear Off\nOur high-performance fabric provides SPF 50+ sun protection, blocking 98% of the sun\'s harmful rays. This fabric is recommended by The Skin Cancer Foundation as an effective UV protectant.' metadata={'source': '../data/OutdoorClothingCatalog_1000.csv', 'row': 255}
+</code></pre><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sun Shield Shirt</td>
+<td>High-performance sun shirt with UPF 50+ sun protection, moisture-wicking, and abrasion-resistant fabric. Recommended by The Skin Cancer Foundation.</td>
+</tr>
+<tr>
+<td>Men's Plaid Tropic Shirt</td>
+<td>Ultracomfortable shirt with UPF 50+ sun protection, wrinkle-free fabric, and front/back cape venting. Made with 52% polyester and 48% nylon.</td>
+</tr>
+<tr>
+<td>Men's TropicVibe Shirt</td>
+<td>Men's sun-protection shirt with built-in UPF 50+ and front/back cape venting. Made with 71% nylon and 29% polyester.</td>
+</tr>
+<tr>
+<td>Men's Tropical Plaid Short-Sleeve Shirt</td>
+<td>Lightest hot-weather shirt with UPF 50+ sun protection, front/back cape venting, and two front bellows pockets. Made with 100% polyester.</td>
+</tr>
+</tbody>
+</table>
+<p>All of these shirts provide UPF 50+ sun protection, blocking 98% of the sun's harmful rays. They also have additional features such as moisture-wicking, wrinkle-free fabric, and front/back cape venting for added comfort.</p>
+<pre><code>&gt; Entering new RetrievalQA chain...
+
+&gt; Finished chain.
+
+ 使用检索问答链来回答问题：  
+</code></pre><table>
+<thead>
+<tr>
+<th>Shirt Number</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>618</td>
+<td>Men's Tropical Plaid Short-Sleeve Shirt</td>
+<td>Rated UPF 50+ for superior protection from the sun's UV rays. Made of 100% polyester and is wrinkle-resistant. With front and back cape venting that lets in cool breezes and two front bellows pockets.</td>
+</tr>
+<tr>
+<td>374</td>
+<td>Men's Plaid Tropic Shirt, Short-Sleeve</td>
+<td>Rated to UPF 50+ and offers sun protection. Made with 52% polyester and 48% nylon, this shirt is machine washable and dryable. Additional features include front and back cape venting, two front bellows pockets.</td>
+</tr>
+<tr>
+<td>535</td>
+<td>Men's TropicVibe Shirt, Short-Sleeve</td>
+<td>Built-in UPF 50+ has the lightweight feel you want and the coverage you need when the air is hot and the UV rays are strong. Made with 71% Nylon, 29% Polyester. Wrinkle resistant. Front and back cape venting lets in cool breezes. Two front bellows pockets.</td>
+</tr>
+<tr>
+<td>255</td>
+<td>Sun Shield Shirt</td>
+<td>High-performance sun shirt is guaranteed to protect from harmful UV rays. Made with 78% nylon, 22% Lycra Xtra Life fiber. Wicks moisture for quick-drying comfort. Fits comfortably over your favorite swimsuit. Abrasion-resistant.</td>
+</tr>
+</tbody>
+</table>
+<p>All of the shirts listed above provide sun protection with a UPF rating of 50+ and block 98% of the sun's harmful rays. The Men's Tropical Plaid Short-Sleeve Shirt is made of 100% polyester and has front and back cape venting and two front bellows pockets. The Men's Plaid Tropic Shirt, Short-Sleeve is made with 52% polyester and 48% nylon and has front and back cape venting and two front bellows pockets. The Men's TropicVibe Shirt, Short-Sleeve is made with 71% Nylon, 29% Polyester and has front and back cape venting and two front bellows pockets. The Sun Shield Shirt is made with 78% nylon, 22% Lycra Xtra Life fiber and is abrasion-resistant. It fits comfortably over your favorite swimsuit.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="4.-模型链-Chains.html" class="navigation navigation-prev " aria-label="Previous page: 4. 模型链 Chains">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="6.-评估-Evaluation.html" class="navigation navigation-next " aria-label="Next page: 6. 评估 Evaluation">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"5. 基于文档的问答 Question and Answer","level":"4.6","depth":1,"next":{"title":"6. 评估 Evaluation","level":"4.7","depth":1,"path":"C3/6.-评估-Evaluation.md","ref":"C3/6.-评估-Evaluation.md","articles":[]},"previous":{"title":"4. 模型链 Chains","level":"4.5","depth":1,"path":"C3/4.-模型链-Chains.md","ref":"C3/4.-模型链-Chains.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C3/5.-基于文档的问答-Question-and-Answer.md","mtime":"2024-08-23T21:42:59.787Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-08-23T22:20:29.853Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

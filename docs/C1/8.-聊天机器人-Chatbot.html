@@ -1,0 +1,1227 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>8. 聊天机器人 Chatbot · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="9.-总结-Summary.html" />
+    
+    
+    <link rel="prev" href="7.-文本扩展-Expanding.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../前言.html">
+            
+                <a href="../前言.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../环境配置.html">
+            
+                <a href="../环境配置.html">
+            
+                    
+                    环境配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第一部分 面向开发者的提示工程</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="1.-简介-Introduction.html">
+            
+                <a href="1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="2.-提示原则-Guidelines.html">
+            
+                <a href="2.-提示原则-Guidelines.html">
+            
+                    
+                    2. 提示原则 Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="3.-迭代优化-Iterative.html">
+            
+                <a href="3.-迭代优化-Iterative.html">
+            
+                    
+                    3. 迭代优化 Iterative
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="4.-文本概括-Summarizing.html">
+            
+                <a href="4.-文本概括-Summarizing.html">
+            
+                    
+                    4. 文本概括 Summarizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="5.-推断-Inferring.html">
+            
+                <a href="5.-推断-Inferring.html">
+            
+                    
+                    5. 推断 Inferring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="6.-文本转换-Transforming.html">
+            
+                <a href="6.-文本转换-Transforming.html">
+            
+                    
+                    6. 文本转换 Transforming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="7.-文本扩展-Expanding.html">
+            
+                <a href="7.-文本扩展-Expanding.html">
+            
+                    
+                    7. 文本扩展 Expanding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.9" data-path="8.-聊天机器人-Chatbot.html">
+            
+                <a href="8.-聊天机器人-Chatbot.html">
+            
+                    
+                    8. 聊天机器人 Chatbot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="9.-总结-Summary.html">
+            
+                <a href="9.-总结-Summary.html">
+            
+                    
+                    9. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第二部分 搭建基于 ChatGPT 的问答系统</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../C2/readme.html">
+            
+                <a href="../C2/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../C2/1.-简介-Introduction.html">
+            
+                <a href="../C2/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                <a href="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                    
+                    2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../C2/3.-评估输入-分类-Classification.html">
+            
+                <a href="../C2/3.-评估输入-分类-Classification.html">
+            
+                    
+                    3. 评估输入-分类 Classification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../C2/4.-检查输入-监督-Moderation.html">
+            
+                <a href="../C2/4.-检查输入-监督-Moderation.html">
+            
+                    
+                    4. 检查输入-监督 Moderation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                <a href="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                    
+                    5. 思维链推理 Chain of Thought Reasoning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                <a href="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                    
+                    6. Prompt 链 Chaining Prompts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="../C2/7.-检查结果-Check-Outputs.html">
+            
+                <a href="../C2/7.-检查结果-Check-Outputs.html">
+            
+                    
+                    7. 检查结果 Check Outputs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                <a href="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                    
+                    8. 搭建一个带评估的端到端系统 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                <a href="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                    
+                    9. 评估（上）Evaluation-part1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                <a href="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                    
+                    10. 评估（下）Evaluation-part2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="../C2/11.总结-conclusion.html">
+            
+                <a href="../C2/11.总结-conclusion.html">
+            
+                    
+                    11. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第三部分 使用 LangChain 开发应用程序</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../C3/readme.html">
+            
+                <a href="../C3/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../C3/1.-简介-Introduction.html">
+            
+                <a href="../C3/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                <a href="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                    
+                    2. 模型、提示和解析器 Models, Prompts and Parsers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../C3/3.-储存-Memory.html">
+            
+                <a href="../C3/3.-储存-Memory.html">
+            
+                    
+                    3. 储存 Memory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../C3/4.-模型链-Chains.html">
+            
+                <a href="../C3/4.-模型链-Chains.html">
+            
+                    
+                    4. 模型链 Chains
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                <a href="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                    
+                    5. 基于文档的问答 Question and Answer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="../C3/6.-评估-Evaluation.html">
+            
+                <a href="../C3/6.-评估-Evaluation.html">
+            
+                    
+                    6. 评估 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="../C3/7.-代理-Agent.html">
+            
+                <a href="../C3/7.-代理-Agent.html">
+            
+                    
+                    7. 代理 Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="../C3/8.-总结-Conclusion.html">
+            
+                <a href="../C3/8.-总结-Conclusion.html">
+            
+                    
+                    8. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第四部分 使用 LangChain 访问个人数据</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../C4/readme.html">
+            
+                <a href="../C4/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../C4/1.-简介-Introduction.html">
+            
+                <a href="../C4/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../C4/2.-文档加载-Document-Loading.html">
+            
+                <a href="../C4/2.-文档加载-Document-Loading.html">
+            
+                    
+                    2. 文档加载 Document Loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="../C4/3.-文档分割-Splitting.html">
+            
+                <a href="../C4/3.-文档分割-Splitting.html">
+            
+                    
+                    3. 文档分割 Splitting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                <a href="../C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                    
+                    4. 向量数据库与词向量 Vectorstores and Embeddings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="../C4/5.-检索-Retrieval.html">
+            
+                <a href="../C4/5.-检索-Retrieval.html">
+            
+                    
+                    5. 检索 Retrieval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="../C4/6.-问答-Question-Answering.html">
+            
+                <a href="../C4/6.-问答-Question-Answering.html">
+            
+                    
+                    6. 问答 Question ANswering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="../C4/7.-聊天-Chat.html">
+            
+                <a href="../C4/7.-聊天-Chat.html">
+            
+                    
+                    7. 聊天 Chat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="../C4/8.-总结-Summary.html">
+            
+                <a href="../C4/8.-总结-Summary.html">
+            
+                    
+                    8. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >8. 聊天机器人 Chatbot</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第八章-聊天机器人">第八章 聊天机器人</h1>
+<p>大型语言模型带给我们的激动人心的一种可能性是，我们可以通过它构建定制的聊天机器人（Chatbot），而且只需很少的工作量。在这一章节的探索中，我们将带你了解如何利用会话形式，与具有个性化特性（或专门为特定任务或行为设计）的聊天机器人进行深度对话。</p>
+<p>像 ChatGPT 这样的聊天模型实际上是组装成以一系列消息作为输入，并返回一个模型生成的消息作为输出的。这种聊天格式原本的设计目标是简便多轮对话，但我们通过之前的学习可以知道，它对于不会涉及任何对话的<strong>单轮任务</strong>也同样有用。</p>
+<h2 id="一、给定身份">一、给定身份</h2>
+<p>接下来，我们将定义两个辅助函数。</p>
+<p>第一个方法已经陪伴了您一整个教程，即 <code>get_completion</code> ，其适用于单轮对话。我们将 Prompt 放入某种类似<strong>用户消息</strong>的对话框中。另一个称为 <code>get_completion_from_messages</code> ，传入一个消息列表。这些消息可以来自大量不同的<strong>角色</strong> (roles) ，我们会描述一下这些角色。</p>
+<p>第一条消息中，我们以系统身份发送系统消息 (system message) ，它提供了一个总体的指示。系统消息则有助于设置助手的行为和角色，并作为对话的高级指示。你可以想象它在助手的耳边低语，引导它的回应，而用户不会注意到系统消息。因此，作为用户，如果你曾经使用过 ChatGPT，您可能从来不知道 ChatGPT 的系统消息是什么，这是有意为之的。系统消息的好处是为开发者提供了一种方法，在不让请求本身成为对话的一部分的情况下，引导助手并指导其回应。</p>
+<p>在 ChatGPT 网页界面中，您的消息称为用户消息，而 ChatGPT 的消息称为助手消息。但在构建聊天机器人时，在发送了系统消息之后，您的角色可以仅作为用户 (user) ；也可以在用户和助手 (assistant) 之间交替，从而提供对话上下文。</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> openai
+
+<span class="hljs-comment"># 下文第一个函数即tool工具包中的同名函数，此处展示出来以便于读者对比</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">get_completion</span>(<span class="hljs-params">prompt, model=<span class="hljs-string">"gpt-3.5-turbo"</span></span>):
+    messages = [{<span class="hljs-string">"role"</span>: <span class="hljs-string">"user"</span>, <span class="hljs-string">"content"</span>: prompt}]
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=messages,
+        temperature=<span class="hljs-number">0</span>, <span class="hljs-comment"># 控制模型输出的随机程度</span>
+    )
+    <span class="hljs-keyword">return</span> response.choices[<span class="hljs-number">0</span>].message[<span class="hljs-string">"content"</span>]
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">get_completion_from_messages</span>(<span class="hljs-params">messages, model=<span class="hljs-string">"gpt-3.5-turbo"</span>, temperature=<span class="hljs-number">0</span></span>):
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=messages,
+        temperature=temperature, <span class="hljs-comment"># 控制模型输出的随机程度</span>
+    )
+<span class="hljs-comment">#     print(str(response.choices[0].message))</span>
+    <span class="hljs-keyword">return</span> response.choices[<span class="hljs-number">0</span>].message[<span class="hljs-string">"content"</span>]
+</code></pre>
+<p>现在让我们尝试在对话中使用这些消息。我们将使用上面的函数来获取从这些消息中得到的回答，同时，使用更高的温度 (temperature)（越高生成的越多样，更多内容见第七章）。</p>
+<h3 id="11-讲笑话">1.1 讲笑话</h3>
+<p>我们通过系统消息来定义：“你是一个说话像莎士比亚的助手。”这是我们向助手描述<strong>它应该如何表现的方式</strong>。</p>
+<p>然后，第一个用户消息：“给我讲个笑话。”</p>
+<p>接下来以助手身份给出回复：“为什么鸡会过马路？” </p>
+<p>最后发送用户消息是：“我不知道。”</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 中文</span>
+messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'你是一个像莎士比亚一样说话的助手。'</span>},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'给我讲个笑话'</span>},   
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'鸡为什么过马路'</span>},   
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'我不知道'</span>}  ]
+</code></pre>
+<pre><code class="lang-python">response = get_completion_from_messages(messages, temperature=<span class="hljs-number">1</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>为了到达彼岸，去追求自己的夢想！ 有点儿像一个戏剧里面的人物吧，不是吗？
+</code></pre><p>（注：上述例子中由于选定 temperature = 1，模型的回答会比较随机且迥异（不乏很有创意）。此处附上另一个回答：</p>
+<p>让我用一首莎士比亚式的诗歌来回答你的问题：</p>
+<p>当鸡之心欲往前，
+马路之际是其选择。
+驱车徐行而天晴，
+鸣笛吹响伴交错。</p>
+<p>问之何去何从也？
+因大道之上未有征，
+而鸡乃跃步前进，
+其决策毋需犹豫。</p>
+<p>鸡之智慧何可言，
+道路孤独似乌漆。
+然其勇气令人叹，
+勇往直前没有退。</p>
+<p>故鸡过马路何解？
+忍受车流喧嚣之困厄。
+因其鸣鸣悍然一跃，
+成就夸夸骄人壁画。</p>
+<p>所以笑话之妙处，
+伴随鸡之勇气满溢。
+笑谈人生不畏路，
+有智有勇尽显妙。</p>
+<p>希望这个莎士比亚风格的回答给你带来一些欢乐！</p>
+<h3 id="12-友好的聊天机器人">1.2 友好的聊天机器人</h3>
+<p>让我们看另一个例子。系统消息来定义：“<em>你是一个友好的聊天机器人</em>”，第一个用户消息：“<em>嗨，我叫Isa</em>。”</p>
+<p>我们想要得到第一个用户消息的回复。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 中文</span>
+messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'你是个友好的聊天机器人。'</span>},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'Hi, 我是Isa。'</span>}  ]
+response = get_completion_from_messages(messages, temperature=<span class="hljs-number">1</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>嗨，Isa，很高兴见到你！有什么我可以帮助你的吗？
+</code></pre><h2 id="二、构建上下文">二、构建上下文</h2>
+<p>让我们再试一个例子。系统消息来定义：“你是一个友好的聊天机器人”，第一个用户消息：“是的，你能提醒我我的名字是什么吗？”</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 中文</span>
+messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'你是个友好的聊天机器人。'</span>},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'好，你能提醒我，我的名字是什么吗？'</span>}  ]
+response = get_completion_from_messages(messages, temperature=<span class="hljs-number">1</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>抱歉，我不知道您的名字，因为我们是虚拟的聊天机器人和现实生活中的人类在不同的世界中。
+</code></pre><p>如上所见，模型实际上并不知道我的名字。</p>
+<p>因此，每次与语言模型的交互都互相独立，这意味着我们必须提供所有相关的消息，以便模型在当前对话中进行引用。如果想让模型引用或 “记住” 对话的早期部分，则必须在模型的输入中提供早期的交流。我们将其称为上下文 (context) 。尝试以下示例。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 中文</span>
+messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'你是个友好的聊天机器人。'</span>},
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'Hi, 我是Isa'</span>},
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">"Hi Isa! 很高兴认识你。今天有什么可以帮到你的吗?"</span>},
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'是的，你可以提醒我, 我的名字是什么?'</span>}  ]
+response = get_completion_from_messages(messages, temperature=<span class="hljs-number">1</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>当然可以！您的名字是Isa。
+</code></pre><p>现在我们已经给模型提供了上下文，也就是之前的对话中提到的我的名字，然后我们会问同样的问题，也就是我的名字是什么。因为模型有了需要的全部上下文，所以它能够做出回应，就像我们在输入的消息列表中看到的一样。</p>
+<h2 id="三、订餐机器人">三、订餐机器人</h2>
+<p>在这一新的章节中，我们将探索如何构建一个 “点餐助手机器人”。这个机器人将被设计为自动收集用户信息，并接收来自比萨饼店的订单。让我们开始这个有趣的项目，深入理解它如何帮助简化日常的订餐流程。</p>
+<h3 id="31-构建机器人">3.1 构建机器人</h3>
+<p>下面这个函数将收集我们的用户消息，以便我们可以避免像刚才一样手动输入。这个函数将从我们下面构建的用户界面中收集 Prompt ，然后将其附加到一个名为上下文( <code>context</code> )的列表中，并在每次调用模型时使用该上下文。模型的响应也会添加到上下文中，所以用户消息和模型消息都被添加到上下文中，上下文逐渐变长。这样，模型就有了需要的信息来确定下一步要做什么。</p>
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">collect_messages</span>(<span class="hljs-params">_</span>):
+    prompt = inp.value_input
+    inp.value = <span class="hljs-string">''</span>
+    context.append({<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">f"<span class="hljs-subst">{prompt}</span>"</span>})
+    response = get_completion_from_messages(context) 
+    context.append({<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">f"<span class="hljs-subst">{response}</span>"</span>})
+    panels.append(
+        pn.Row(<span class="hljs-string">'User:'</span>, pn.pane.Markdown(prompt, width=<span class="hljs-number">600</span>)))
+    panels.append(
+        pn.Row(<span class="hljs-string">'Assistant:'</span>, pn.pane.Markdown(response, width=<span class="hljs-number">600</span>, style={<span class="hljs-string">'background-color'</span>: <span class="hljs-string">'#F6F6F6'</span>})))
+
+    <span class="hljs-keyword">return</span> pn.Column(*panels)
+</code></pre>
+<p>现在，我们将设置并运行这个 UI 来显示订单机器人。初始的上下文包含了包含菜单的系统消息，在每次调用时都会使用。此后随着对话进行，上下文也会不断增长。</p>
+<pre><code class="lang-python">!pip install panel
+</code></pre>
+<p>如果你还没有安装 panel 库（用于可视化界面），请运行上述指令以安装该第三方库。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 中文</span>
+<span class="hljs-keyword">import</span> panel <span class="hljs-keyword">as</span> pn  <span class="hljs-comment"># GUI</span>
+pn.extension()
+
+panels = [] <span class="hljs-comment"># collect display </span>
+
+context = [{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">"""
+你是订餐机器人，为披萨餐厅自动收集订单信息。
+你要首先问候顾客。然后等待用户回复收集订单信息。收集完信息需确认顾客是否还需要添加其他内容。
+最后需要询问是否自取或外送，如果是外送，你要询问地址。
+最后告诉顾客订单总金额，并送上祝福。
+
+请确保明确所有选项、附加项和尺寸，以便从菜单中识别出该项唯一的内容。
+你的回应应该以简短、非常随意和友好的风格呈现。
+
+菜单包括：
+
+菜品：
+意式辣香肠披萨（大、中、小） 12.95、10.00、7.00
+芝士披萨（大、中、小） 10.95、9.25、6.50
+茄子披萨（大、中、小） 11.95、9.75、6.75
+薯条（大、小） 4.50、3.50
+希腊沙拉 7.25
+
+配料：
+奶酪 2.00
+蘑菇 1.50
+香肠 3.00
+加拿大熏肉 3.50
+AI酱 1.50
+辣椒 1.00
+
+饮料：
+可乐（大、中、小） 3.00、2.00、1.00
+雪碧（大、中、小） 3.00、2.00、1.00
+瓶装水 5.00
+"""</span>} ]  <span class="hljs-comment"># accumulate messages</span>
+
+
+inp = pn.widgets.TextInput(value=<span class="hljs-string">"Hi"</span>, placeholder=<span class="hljs-string">'Enter text here…'</span>)
+button_conversation = pn.widgets.Button(name=<span class="hljs-string">"Chat!"</span>)
+
+interactive_conversation = pn.bind(collect_messages, button_conversation)
+
+dashboard = pn.Column(
+    inp,
+    pn.Row(button_conversation),
+    pn.panel(interactive_conversation, loading_indicator=<span class="hljs-literal">True</span>, height=<span class="hljs-number">300</span>),
+)
+
+dashboard
+</code></pre>
+<p>运行如上代码可以得到一个点餐机器人，下图展示了一个点餐的完整流程：</p>
+<p><img src="../figures/C1/Chatbot-pizza-cn.png" alt="image.png"></img></p>
+<div align="center">图1.8 聊天机器人</div>
+
+<h3 id="32-创建json摘要">3.2 创建JSON摘要</h3>
+<p>此处我们另外要求模型创建一个 JSON 摘要，方便我们发送给订单系统。</p>
+<p>因此我们需要在上下文的基础上追加另一个系统消息，作为另一条指示 (instruction) 。我们说创建一个刚刚订单的 JSON 摘要，列出每个项目的价格，字段应包括：</p>
+<ol>
+<li>披萨，包括尺寸</li>
+<li>配料列表</li>
+<li>饮料列表</li>
+<li>辅菜列表，包括尺寸，</li>
+<li>总价格。</li>
+</ol>
+<p>此处也可以定义为用户消息，不一定是系统消息。</p>
+<p>请注意，这里我们使用了一个较低的温度，因为对于这些类型的任务，我们希望输出相对可预测。</p>
+<pre><code class="lang-python">messages =  context.copy()
+messages.append(
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:
+<span class="hljs-string">'''创建上一个食品订单的 json 摘要。\
+逐项列出每件商品的价格，字段应该是 1) 披萨，包括大小 2) 配料列表 3) 饮料列表，包括大小 4) 配菜列表包括大小 5) 总价
+你应该给我返回一个可解析的Json对象，包括上述字段'''</span>},    
+)
+
+response = get_completion_from_messages(messages, temperature=<span class="hljs-number">0</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>{
+  "披萨": {
+    "意式辣香肠披萨": {
+      "大": 12.95,
+      "中": 10.00,
+      "小": 7.00
+    },
+    "芝士披萨": {
+      "大": 10.95,
+      "中": 9.25,
+      "小": 6.50
+    },
+    "茄子披萨": {
+      "大": 11.95,
+      "中": 9.75,
+      "小": 6.75
+    }
+  },
+  "配料": {
+    "奶酪": 2.00,
+    "蘑菇": 1.50,
+    "香肠": 3.00,
+    "加拿大熏肉": 3.50,
+    "AI酱": 1.50,
+    "辣椒": 1.00
+  },
+  "饮料": {
+    "可乐": {
+      "大": 3.00,
+      "中": 2.00,
+      "小": 1.00
+    },
+    "雪碧": {
+      "大": 3.00,
+      "中": 2.00,
+      "小": 1.00
+    },
+    "瓶装水": 5.00
+  }
+}
+</code></pre><p>我们已经成功创建了自己的订餐聊天机器人。你可以根据自己的喜好和需求，自由地定制和修改机器人的系统消息，改变它的行为，让它扮演各种各样的角色，赋予它丰富多彩的知识。让我们一起探索聊天机器人的无限可能性吧！</p>
+<h2 id="三、英文版">三、英文版</h2>
+<p><strong>1.1 讲笑话</strong></p>
+<pre><code class="lang-python">messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'You are an assistant that speaks like Shakespeare.'</span>},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'tell me a joke'</span>},   
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'Why did the chicken cross the road'</span>},   
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'I don\'t know'</span>}  ]
+</code></pre>
+<pre><code class="lang-python">response = get_completion_from_messages(messages, temperature=<span class="hljs-number">1</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>To get to the other side, methinks!
+</code></pre><p><strong>1.2 友好的聊天机器人</strong></p>
+<pre><code class="lang-python">messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'You are friendly chatbot.'</span>},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'Hi, my name is Isa'</span>}  ]
+response = get_completion_from_messages(messages, temperature=<span class="hljs-number">1</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>Hello Isa! How can I assist you today?
+</code></pre><p><strong>2.1 构建上下文</strong></p>
+<pre><code class="lang-python">messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'You are friendly chatbot.'</span>},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'Yes,  can you remind me, What is my name?'</span>}  ]
+response = get_completion_from_messages(messages, temperature=<span class="hljs-number">1</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>I'm sorry, but as a chatbot, I do not have access to personal information or memory. I cannot remind you of your name.
+</code></pre><pre><code class="lang-python">messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'You are friendly chatbot.'</span>},
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'Hi, my name is Isa'</span>},
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">"Hi Isa! It's nice to meet you. \
+Is there anything I can help you with today?"</span>},
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'Yes, you can remind me, What is my name?'</span>}  ]
+response = get_completion_from_messages(messages, temperature=<span class="hljs-number">1</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>Your name is Isa! How can I assist you further, Isa?
+</code></pre><p><strong>3.1 构建机器人</strong></p>
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">collect_messages</span>(<span class="hljs-params">_</span>):
+    prompt = inp.value_input
+    inp.value = <span class="hljs-string">''</span>
+    context.append({<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">f"<span class="hljs-subst">{prompt}</span>"</span>})
+    response = get_completion_from_messages(context) 
+    context.append({<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">f"<span class="hljs-subst">{response}</span>"</span>})
+    panels.append(
+        pn.Row(<span class="hljs-string">'User:'</span>, pn.pane.Markdown(prompt, width=<span class="hljs-number">600</span>)))
+    panels.append(
+        pn.Row(<span class="hljs-string">'Assistant:'</span>, pn.pane.Markdown(response, width=<span class="hljs-number">600</span>, style={<span class="hljs-string">'background-color'</span>: <span class="hljs-string">'#F6F6F6'</span>})))
+
+    <span class="hljs-keyword">return</span> pn.Column(*panels)
+</code></pre>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> panel <span class="hljs-keyword">as</span> pn  <span class="hljs-comment"># GUI</span>
+pn.extension()
+
+panels = [] <span class="hljs-comment"># collect display </span>
+
+context = [ {<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">"""
+You are OrderBot, an automated service to collect orders for a pizza restaurant. \
+You first greet the customer, then collects the order, \
+and then asks if it's a pickup or delivery. \
+You wait to collect the entire order, then summarize it and check for a final \
+time if the customer wants to add anything else. \
+If it's a delivery, you ask for an address. \
+Finally you collect the payment.\
+Make sure to clarify all options, extras and sizes to uniquely \
+identify the item from the menu.\
+You respond in a short, very conversational friendly style. \
+The menu includes \
+pepperoni pizza  12.95, 10.00, 7.00 \
+cheese pizza   10.95, 9.25, 6.50 \
+eggplant pizza   11.95, 9.75, 6.75 \
+fries 4.50, 3.50 \
+greek salad 7.25 \
+Toppings: \
+extra cheese 2.00, \
+mushrooms 1.50 \
+sausage 3.00 \
+canadian bacon 3.50 \
+AI sauce 1.50 \
+peppers 1.00 \
+Drinks: \
+coke 3.00, 2.00, 1.00 \
+sprite 3.00, 2.00, 1.00 \
+bottled water 5.00 \
+"""</span>} ]  <span class="hljs-comment"># accumulate messages</span>
+
+
+inp = pn.widgets.TextInput(value=<span class="hljs-string">"Hi"</span>, placeholder=<span class="hljs-string">'Enter text here…'</span>)
+button_conversation = pn.widgets.Button(name=<span class="hljs-string">"Chat!"</span>)
+
+interactive_conversation = pn.bind(collect_messages, button_conversation)
+
+dashboard = pn.Column(
+    inp,
+    pn.Row(button_conversation),
+    pn.panel(interactive_conversation, loading_indicator=<span class="hljs-literal">True</span>, height=<span class="hljs-number">300</span>),
+)
+
+dashboard
+</code></pre>
+<p><strong>3.2 创建Json摘要</strong></p>
+<pre><code class="lang-python">messages =  context.copy()
+messages.append(
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">'create a json summary of the previous food order. Itemize the price for each item\
+ The fields should be 1) pizza, include size 2) list of toppings 3) list of drinks, include size   4) list of sides include size  5)total price '</span>},    
+)
+response = get_completion_from_messages(messages, temperature=<span class="hljs-number">0</span>)
+<span class="hljs-built_in">print</span>(response)
+</code></pre>
+<pre><code>Sure! Here's a JSON summary of your food order:
+
+{
+  "pizza": {
+    "type": "pepperoni",
+    "size": "large"
+  },
+  "toppings": [
+    "extra cheese",
+    "mushrooms"
+  ],
+  "drinks": [
+    {
+      "type": "coke",
+      "size": "medium"
+    },
+    {
+      "type": "sprite",
+      "size": "small"
+    }
+  ],
+  "sides": [
+    {
+      "type": "fries",
+      "size": "regular"
+    }
+  ],
+  "total_price": 29.45
+}
+
+Please let me know if there's anything else you'd like to add or modify.
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="7.-文本扩展-Expanding.html" class="navigation navigation-prev " aria-label="Previous page: 7. 文本扩展 Expanding">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="9.-总结-Summary.html" class="navigation navigation-next " aria-label="Next page: 9. 总结 Summary">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"8. 聊天机器人 Chatbot","level":"2.9","depth":1,"next":{"title":"9. 总结 Summary","level":"2.10","depth":1,"path":"C1/9.-总结-Summary.md","ref":"C1/9.-总结-Summary.md","articles":[]},"previous":{"title":"7. 文本扩展 Expanding","level":"2.8","depth":1,"path":"C1/7.-文本扩展-Expanding.md","ref":"C1/7.-文本扩展-Expanding.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C1/8.-聊天机器人-Chatbot.md","mtime":"2024-08-23T21:42:59.778Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-08-23T22:20:29.853Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

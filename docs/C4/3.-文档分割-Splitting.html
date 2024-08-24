@@ -1,0 +1,1230 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>3. 文档分割 Splitting · HonKit</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="HonKit 5.1.4">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="4.-向量数据库与词向量-Vectorstores-and-Embeddings.html" />
+    
+    
+    <link rel="prev" href="2.-文档加载-Document-Loading.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../前言.html">
+            
+                <a href="../前言.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../环境配置.html">
+            
+                <a href="../环境配置.html">
+            
+                    
+                    环境配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第一部分 面向开发者的提示工程</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../C1/readme.html">
+            
+                <a href="../C1/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../C1/1.-简介-Introduction.html">
+            
+                <a href="../C1/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../C1/2.-提示原则-Guidelines.html">
+            
+                <a href="../C1/2.-提示原则-Guidelines.html">
+            
+                    
+                    2. 提示原则 Guidelines
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../C1/3.-迭代优化-Iterative.html">
+            
+                <a href="../C1/3.-迭代优化-Iterative.html">
+            
+                    
+                    3. 迭代优化 Iterative
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../C1/4.-文本概括-Summarizing.html">
+            
+                <a href="../C1/4.-文本概括-Summarizing.html">
+            
+                    
+                    4. 文本概括 Summarizing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../C1/5.-推断-Inferring.html">
+            
+                <a href="../C1/5.-推断-Inferring.html">
+            
+                    
+                    5. 推断 Inferring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../C1/6.-文本转换-Transforming.html">
+            
+                <a href="../C1/6.-文本转换-Transforming.html">
+            
+                    
+                    6. 文本转换 Transforming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../C1/7.-文本扩展-Expanding.html">
+            
+                <a href="../C1/7.-文本扩展-Expanding.html">
+            
+                    
+                    7. 文本扩展 Expanding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="../C1/8.-聊天机器人-Chatbot.html">
+            
+                <a href="../C1/8.-聊天机器人-Chatbot.html">
+            
+                    
+                    8. 聊天机器人 Chatbot
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.10" data-path="../C1/9.-总结-Summary.html">
+            
+                <a href="../C1/9.-总结-Summary.html">
+            
+                    
+                    9. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第二部分 搭建基于 ChatGPT 的问答系统</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../C2/readme.html">
+            
+                <a href="../C2/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../C2/1.-简介-Introduction.html">
+            
+                <a href="../C2/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                <a href="../C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.html">
+            
+                    
+                    2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../C2/3.-评估输入-分类-Classification.html">
+            
+                <a href="../C2/3.-评估输入-分类-Classification.html">
+            
+                    
+                    3. 评估输入-分类 Classification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../C2/4.-检查输入-监督-Moderation.html">
+            
+                <a href="../C2/4.-检查输入-监督-Moderation.html">
+            
+                    
+                    4. 检查输入-监督 Moderation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                <a href="../C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.html">
+            
+                    
+                    5. 思维链推理 Chain of Thought Reasoning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.7" data-path="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                <a href="../C2/6.-处理输入-链式-Prompt-Chaining-Prompts.html">
+            
+                    
+                    6. Prompt 链 Chaining Prompts
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.8" data-path="../C2/7.-检查结果-Check-Outputs.html">
+            
+                <a href="../C2/7.-检查结果-Check-Outputs.html">
+            
+                    
+                    7. 检查结果 Check Outputs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.9" data-path="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                <a href="../C2/8.-搭建一个带评估的端到端问答系统-Evaluation.html">
+            
+                    
+                    8. 搭建一个带评估的端到端系统 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.10" data-path="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                <a href="../C2/9.-评估（上）-Evaluation-part1.html">
+            
+                    
+                    9. 评估（上）Evaluation-part1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.11" data-path="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                <a href="../C2/10.-评估（下）Evaluation-part2.html">
+            
+                    
+                    10. 评估（下）Evaluation-part2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.12" data-path="../C2/11.总结-conclusion.html">
+            
+                <a href="../C2/11.总结-conclusion.html">
+            
+                    
+                    11. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第三部分 使用 LangChain 开发应用程序</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../C3/readme.html">
+            
+                <a href="../C3/readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../C3/1.-简介-Introduction.html">
+            
+                <a href="../C3/1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                <a href="../C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.html">
+            
+                    
+                    2. 模型、提示和解析器 Models, Prompts and Parsers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../C3/3.-储存-Memory.html">
+            
+                <a href="../C3/3.-储存-Memory.html">
+            
+                    
+                    3. 储存 Memory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../C3/4.-模型链-Chains.html">
+            
+                <a href="../C3/4.-模型链-Chains.html">
+            
+                    
+                    4. 模型链 Chains
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                <a href="../C3/5.-基于文档的问答-Question-and-Answer.html">
+            
+                    
+                    5. 基于文档的问答 Question and Answer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="../C3/6.-评估-Evaluation.html">
+            
+                <a href="../C3/6.-评估-Evaluation.html">
+            
+                    
+                    6. 评估 Evaluation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="../C3/7.-代理-Agent.html">
+            
+                <a href="../C3/7.-代理-Agent.html">
+            
+                    
+                    7. 代理 Agent
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="../C3/8.-总结-Conclusion.html">
+            
+                <a href="../C3/8.-总结-Conclusion.html">
+            
+                    
+                    8. 总结 Conclusion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">第四部分 使用 LangChain 访问个人数据</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="readme.html">
+            
+                <a href="readme.html">
+            
+                    
+                    0. 概述
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="1.-简介-Introduction.html">
+            
+                <a href="1.-简介-Introduction.html">
+            
+                    
+                    1. 简介 Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="2.-文档加载-Document-Loading.html">
+            
+                <a href="2.-文档加载-Document-Loading.html">
+            
+                    
+                    2. 文档加载 Document Loading
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.4" data-path="3.-文档分割-Splitting.html">
+            
+                <a href="3.-文档分割-Splitting.html">
+            
+                    
+                    3. 文档分割 Splitting
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                <a href="4.-向量数据库与词向量-Vectorstores-and-Embeddings.html">
+            
+                    
+                    4. 向量数据库与词向量 Vectorstores and Embeddings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.6" data-path="5.-检索-Retrieval.html">
+            
+                <a href="5.-检索-Retrieval.html">
+            
+                    
+                    5. 检索 Retrieval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.7" data-path="6.-问答-Question-Answering.html">
+            
+                <a href="6.-问答-Question-Answering.html">
+            
+                    
+                    6. 问答 Question ANswering
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.8" data-path="7.-聊天-Chat.html">
+            
+                <a href="7.-聊天-Chat.html">
+            
+                    
+                    7. 聊天 Chat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.9" data-path="8.-总结-Summary.html">
+            
+                <a href="8.-总结-Summary.html">
+            
+                    
+                    8. 总结 Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3. 文档分割 Splitting</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="第三章-文档分割">第三章 文档分割</h1>
+<p>在上一章中，我们刚刚讨论了如何将文档加载到标准格式中，现在我们要谈论如何将它们分割成较小的块。这听起来可能很简单，但其中有很多微妙之处会对后续工作产生重要影响。</p>
+<h2 id="一、为什么要进行文档分割">一、为什么要进行文档分割</h2>
+<ol>
+<li><strong>模型大小和内存限制</strong>：GPT 模型，特别是大型版本如 GPT-3 或 GPT-4 ，具有数十亿甚至上百亿的参数。为了在一次前向传播中处理这么多的参数，需要大量的计算能力和内存。但是，大多数硬件设备（例如 GPU 或 TPU ）有内存限制。文档分割使模型能够在这些限制内工作。</li>
+<li><strong>计算效率</strong>：处理更长的文本序列需要更多的计算资源。通过将长文档分割成更小的块，可以更高效地进行计算。</li>
+<li><strong>序列长度限制</strong>：GPT 模型有一个固定的最大序列长度，例如2048个 token 。这意味着模型一次只能处理这么多 token 。对于超过这个长度的文档，需要进行分割才能被模型处理。</li>
+<li><strong>更好的泛化</strong>：通过在多个文档块上进行训练，模型可以更好地学习和泛化到各种不同的文本样式和结构。</li>
+<li><strong>数据增强</strong>：分割文档可以为训练数据提供更多的样本。例如，一个长文档可以被分割成多个部分，并分别作为单独的训练样本。</li>
+</ol>
+<p>需要注意的是，虽然文档分割有其优点，但也可能导致一些上下文信息的丢失，尤其是在分割点附近。因此，如何进行文档分割是一个需要权衡的问题。</p>
+<p><img src="../figures/C4/document-splitting.png" alt="image.png"></img></p>
+<div align="center"> 图 4.3.1 文档分割的意义</div>
+
+<p>若仅按照单一字符进行文本分割，很容易使文本的语义信息丧失，这样在回答问题时可能会出现偏差。因此，为了确保语义的准确性，我们应该尽量将文本分割为包含完整语义的段落或单元。</p>
+<h2 id="二、文档分割方式">二、文档分割方式</h2>
+<p>Langchain 中文本分割器都根据 chunk_size (块大小)和 chunk_overlap (块与块之间的重叠大小)进行分割。</p>
+<p><img src="../figures/C4/example-splitter.png" alt="image.png"></img></p>
+<div align="center"> 图 4.3.2 文档分割示例 </div>
+
+<ul>
+<li><p>chunk_size 指每个块包含的字符或 Token （如单词、句子等）的数量</p>
+</li>
+<li><p>chunk_overlap 指两个块之间共享的字符数量，用于保持上下文的连贯性，避免分割丢失上下文信息</p>
+</li>
+</ul>
+<p><img src="../figures/C4/types-of-splitters.png" alt="image.png"></img></p>
+<div align="center"> 图 4.3.3 文档分割工具 </div>
+
+<p>Langchain提供多种文档分割方式，区别在怎么确定块与块之间的边界、块由哪些字符/token组成、以及如何测量块大小</p>
+<h2 id="三、基于字符分割">三、基于字符分割</h2>
+<p>如何进行文本分割，往往与我们的任务类型息息相关。当我们拆分代码时，这种相关性变得尤为突出。因此，我们引入了一个语言文本分割器，其中包含各种为 Python、Ruby、C 等不同编程语言设计的分隔符。在对这些文档进行分割时，必须充分考虑各种编程语言之间的差异。</p>
+<p>我们将从基于字符的分割开始探索，借助 <code>LangChain</code> 提供的 <code>RecursiveCharacterTextSplitter</code> 和 <code>CharacterTextSplitter</code> 工具来实现此目标。</p>
+<p><code>CharacterTextSplitter</code> 是字符文本分割，分隔符的参数是单个的字符串；<code>RecursiveCharacterTextSplitter</code> 是递归字符文本分割，将按不同的字符递归地分割（按照这个优先级["\n\n", "\n", " ", ""]），这样就能尽量把所有和语义相关的内容尽可能长时间地保留在同一位置。因此，<code>RecursiveCharacterTextSplitter</code> 比 <code>CharacterTextSplitter</code> 对文档切割得更加碎片化</p>
+<p><code>RecursiveCharacterTextSplitter</code> 需要关注的是如下4个参数：</p>
+<ul>
+<li><code>separators</code> - 分隔符字符串数组</li>
+<li><code>chunk_size</code> - 每个文档的字符数量限制</li>
+<li><code>chunk_overlap</code> - 两份文档重叠区域的长度</li>
+<li><code>length_function</code> - 长度计算函数</li>
+</ul>
+<h3 id="31-短句分割">3.1 短句分割</h3>
+<pre><code class="lang-python"><span class="hljs-comment"># 导入文本分割器</span>
+<span class="hljs-keyword">from</span> langchain.text_splitter <span class="hljs-keyword">import</span> RecursiveCharacterTextSplitter, CharacterTextSplitter
+
+chunk_size = <span class="hljs-number">20</span> <span class="hljs-comment">#设置块大小</span>
+chunk_overlap = <span class="hljs-number">10</span> <span class="hljs-comment">#设置块重叠大小</span>
+
+<span class="hljs-comment"># 初始化递归字符文本分割器</span>
+r_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=chunk_size,
+    chunk_overlap=chunk_overlap
+)
+<span class="hljs-comment"># 初始化字符文本分割器</span>
+c_splitter = CharacterTextSplitter(
+    chunk_size=chunk_size,
+    chunk_overlap=chunk_overlap
+)
+</code></pre>
+<p>接下来我们对比展示两个字符文本分割器的效果。</p>
+<pre><code class="lang-python">text = <span class="hljs-string">"在AI的研究中，由于大模型规模非常大，模型参数很多，在大模型上跑完来验证参数好不好训练时间成本很高，所以一般会在小模型上做消融实验来验证哪些改进是有效的再去大模型上做实验。"</span>  <span class="hljs-comment">#测试文本</span>
+r_splitter.split_text(text)
+</code></pre>
+<pre><code>['在AI的研究中，由于大模型规模非常大，模',
+ '大模型规模非常大，模型参数很多，在大模型',
+ '型参数很多，在大模型上跑完来验证参数好不',
+ '上跑完来验证参数好不好训练时间成本很高，',
+ '好训练时间成本很高，所以一般会在小模型上',
+ '所以一般会在小模型上做消融实验来验证哪些',
+ '做消融实验来验证哪些改进是有效的再去大模',
+ '改进是有效的再去大模型上做实验。']
+</code></pre><p>可以看到，分割结果中，第二块是从“大模型规模非常大，模”开始的，刚好是我们设定的块重叠大小</p>
+<pre><code class="lang-python"><span class="hljs-comment">#字符文本分割器</span>
+c_splitter.split_text(text)
+</code></pre>
+<pre><code>['在AI的研究中，由于大模型规模非常大，模型参数很多，在大模型上跑完来验证参数好不好训练时间成本很高，所以一般会在小模型上做消融实验来验证哪些改进是有效的再去大模型上做实验。']
+</code></pre><p>可以看到字符分割器没有分割这个文本，因为字符文本分割器默认以换行符为分隔符，因此需要设置“，”为分隔符。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 设置空格分隔符</span>
+c_splitter = CharacterTextSplitter(
+    chunk_size=chunk_size,
+    chunk_overlap=chunk_overlap,
+    separator=<span class="hljs-string">'，'</span>
+)
+c_splitter.split_text(text)
+</code></pre>
+<pre><code>Created a chunk of size 23, which is longer than the specified 20
+
+
+
+
+
+['在AI的研究中，由于大模型规模非常大',
+ '由于大模型规模非常大，模型参数很多',
+ '在大模型上跑完来验证参数好不好训练时间成本很高',
+ '所以一般会在小模型上做消融实验来验证哪些改进是有效的再去大模型上做实验。']
+</code></pre><p>设置“，”为分隔符后，分割效果与递归字符文本分割器类似。</p>
+<blockquote>
+<p>可以看到出现了提示"Created a chunk of size 23, which is longer than the specified 20"，意思是“创建了一个长度为23的块，这比指定的20要长。”。这是因为<code>CharacterTextSplitter</code>优先使用我们自定义的分隔符进行分割，所以在长度上会有较小的差距</p>
+</blockquote>
+<h3 id="32-长文本分割">3.2 长文本分割</h3>
+<p>接下来，我们来尝试对长文本进行分割。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 中文版</span>
+some_text = <span class="hljs-string">"""在编写文档时，作者将使用文档结构对内容进行分组。 \
+    这可以向读者传达哪些想法是相关的。 例如，密切相关的想法\
+    是在句子中。 类似的想法在段落中。 段落构成文档。 \n\n\
+    段落通常用一个或两个回车符分隔。 \
+    回车符是您在该字符串中看到的嵌入的“反斜杠 n”。 \
+    句子末尾有一个句号，但也有一个空格。\
+    并且单词之间用空格分隔"""</span>
+
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(some_text))
+</code></pre>
+<pre><code>177
+</code></pre><p>我们使用以上长文本作为示例。</p>
+<pre><code class="lang-python">
+c_splitter = CharacterTextSplitter(
+    chunk_size=<span class="hljs-number">80</span>,
+    chunk_overlap=<span class="hljs-number">0</span>,
+    separator=<span class="hljs-string">' '</span>
+)
+
+<span class="hljs-string">''' 
+对于递归字符分割器，依次传入分隔符列表，分别是双换行符、单换行符、空格、空字符，
+因此在分割文本时，首先会采用双分换行符进行分割，同时依次使用其他分隔符进行分割
+'''</span>
+
+r_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=<span class="hljs-number">80</span>,
+    chunk_overlap=<span class="hljs-number">0</span>,
+    separators=[<span class="hljs-string">"\n\n"</span>, <span class="hljs-string">"\n"</span>, <span class="hljs-string">" "</span>, <span class="hljs-string">""</span>]
+)
+</code></pre>
+<p>字符分割器结果：</p>
+<pre><code class="lang-python">c_splitter.split_text(some_text)
+</code></pre>
+<pre><code>['在编写文档时，作者将使用文档结构对内容进行分组。 这可以向读者传达哪些想法是相关的。 例如，密切相关的想法 是在句子中。 类似的想法在段落中。 段落构成文档。',
+ '段落通常用一个或两个回车符分隔。 回车符是您在该字符串中看到的嵌入的“反斜杠 n”。 句子末尾有一个句号，但也有一个空格。 并且单词之间用空格分隔']
+</code></pre><p>递归字符分割器效果：</p>
+<pre><code class="lang-python">r_splitter.split_text(some_text)
+</code></pre>
+<pre><code>['在编写文档时，作者将使用文档结构对内容进行分组。     这可以向读者传达哪些想法是相关的。 例如，密切相关的想法    是在句子中。 类似的想法在段落中。',
+ '段落构成文档。',
+ '段落通常用一个或两个回车符分隔。     回车符是您在该字符串中看到的嵌入的“反斜杠 n”。     句子末尾有一个句号，但也有一个空格。',
+ '并且单词之间用空格分隔']
+</code></pre><p>如果需要按照句子进行分隔，则还要用正则表达式添加一个句号分隔符</p>
+<pre><code class="lang-python">r_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=<span class="hljs-number">30</span>,
+    chunk_overlap=<span class="hljs-number">0</span>,
+    separators=[<span class="hljs-string">"\n\n"</span>, <span class="hljs-string">"\n"</span>, <span class="hljs-string">"(?&lt;=\。 )"</span>, <span class="hljs-string">" "</span>, <span class="hljs-string">""</span>]
+)
+r_splitter.split_text(some_text)
+</code></pre>
+<pre><code>['在编写文档时，作者将使用文档结构对内容进行分组。',
+ '这可以向读者传达哪些想法是相关的。',
+ '例如，密切相关的想法    是在句子中。',
+ '类似的想法在段落中。 段落构成文档。',
+ '段落通常用一个或两个回车符分隔。',
+ '回车符是您在该字符串中看到的嵌入的“反斜杠 n”。',
+ '句子末尾有一个句号，但也有一个空格。',
+ '并且单词之间用空格分隔']
+</code></pre><p>这就是递归字符文本分割器名字中“递归”的含义，总的来说，我们更建议在通用文本中使用递归字符文本分割器</p>
+<h2 id="四、基于-token-分割">四、基于 Token 分割</h2>
+<p>很多 LLM 的上下文窗口长度限制是按照 Token 来计数的。因此，以 LLM 的视角，按照 Token 对文本进行分隔，通常可以得到更好的结果。
+通过一个实例理解基于字符分割和基于 Token 分割的区别</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 使用token分割器进行分割，</span>
+<span class="hljs-comment"># 将块大小设为1，块重叠大小设为0，相当于将任意字符串分割成了单个Token组成的列</span>
+<span class="hljs-keyword">from</span> langchain.text_splitter <span class="hljs-keyword">import</span> TokenTextSplitter
+text_splitter = TokenTextSplitter(chunk_size=<span class="hljs-number">1</span>, chunk_overlap=<span class="hljs-number">0</span>)
+text = <span class="hljs-string">"foo bar bazzyfoo"</span>
+text_splitter.split_text(text)
+<span class="hljs-comment"># 注：目前 LangChain 基于 Token 的分割器还不支持中文</span>
+</code></pre>
+<pre><code>['foo', ' bar', ' b', 'az', 'zy', 'foo']
+</code></pre><p>可以看出token长度和字符长度不一样，token通常为4个字符</p>
+<h2 id="五、分割markdown文档">五、分割Markdown文档</h2>
+<h3 id="51-分割一个自定义-markdown-文档">5.1 分割一个自定义 Markdown 文档</h3>
+<p>分块的目的是把具有上下文的文本放在一起，我们可以通过使用指定分隔符来进行分隔，但有些类型的文档（例如 Markdown ）本身就具有可用于分割的结构（如标题）。</p>
+<p>Markdown 标题文本分割器会根据标题或子标题来分割一个 Markdown 文档，并将标题作为元数据添加到每个块中</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 定义一个Markdown文档</span>
+
+<span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> NotionDirectoryLoader<span class="hljs-comment">#Notion加载器</span>
+<span class="hljs-keyword">from</span> langchain.text_splitter <span class="hljs-keyword">import</span> MarkdownHeaderTextSplitter<span class="hljs-comment">#markdown分割器</span>
+
+markdown_document = <span class="hljs-string">"""# Title\n\n \
+## 第一章\n\n \
+李白乘舟将欲行\n\n 忽然岸上踏歌声\n\n \
+### Section \n\n \
+桃花潭水深千尺 \n\n 
+## 第二章\n\n \
+不及汪伦送我情"""</span>
+</code></pre>
+<p>我们以上述文本作为 Markdown 文档的示例，上述文本格式遵循了 Markdown 语法，如读者对该语法不了解，可以简单查阅该教程 ：<a href="https://markdown.com.cn/basic-syntax/" target="_blank">Markdown 教程</a></p>
+<pre><code class="lang-python"><span class="hljs-comment"># 定义想要分割的标题列表和名称</span>
+headers_to_split_on = [
+    (<span class="hljs-string">"#"</span>, <span class="hljs-string">"Header 1"</span>),
+    (<span class="hljs-string">"##"</span>, <span class="hljs-string">"Header 2"</span>),
+    (<span class="hljs-string">"###"</span>, <span class="hljs-string">"Header 3"</span>),
+]
+
+markdown_splitter = MarkdownHeaderTextSplitter(
+    headers_to_split_on=headers_to_split_on
+)<span class="hljs-comment">#message_typemessage_type</span>
+md_header_splits = markdown_splitter.split_text(markdown_document)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第一个块"</span>)
+<span class="hljs-built_in">print</span>(md_header_splits[<span class="hljs-number">0</span>])
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第二个块"</span>)
+<span class="hljs-built_in">print</span>(md_header_splits[<span class="hljs-number">1</span>])
+</code></pre>
+<pre><code>第一个块
+page_content='李白乘舟将欲行  \n忽然岸上踏歌声' metadata={'Header 1': 'Title', 'Header 2': '第一章'}
+第二个块
+page_content='桃花潭水深千尺' metadata={'Header 1': 'Title', 'Header 2': '第一章', 'Header 3': 'Section'}
+</code></pre><p>可以看到，每个块都包含了页面内容和元数据，元数据中记录了该块所属的标题和子标题。</p>
+<h2 id="52-分割数据库中的-markdown-文档">5.2 分割数据库中的 Markdown 文档</h2>
+<p>在上一章中，我们尝试了 Notion 数据库的加载，Notion 文档就是一个 Markdown 文档。我们在此处加载 Notion 数据库中的文档并进行分割。</p>
+<pre><code class="lang-python"><span class="hljs-comment">#加载数据库的内容</span>
+loader = NotionDirectoryLoader(<span class="hljs-string">"docs/Notion_DB"</span>)
+docs = loader.load()
+txt = <span class="hljs-string">' '</span>.join([d.page_content <span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> docs])<span class="hljs-comment">#拼接文档</span>
+
+headers_to_split_on = [
+    (<span class="hljs-string">"#"</span>, <span class="hljs-string">"Header 1"</span>),
+    (<span class="hljs-string">"##"</span>, <span class="hljs-string">"Header 2"</span>),
+]
+<span class="hljs-comment">#加载文档分割器</span>
+markdown_splitter = MarkdownHeaderTextSplitter(
+    headers_to_split_on=headers_to_split_on
+)
+
+md_header_splits = markdown_splitter.split_text(txt)<span class="hljs-comment">#分割文本内容</span>
+
+<span class="hljs-built_in">print</span>(md_header_splits[<span class="hljs-number">0</span>])<span class="hljs-comment">#分割结果</span>
+</code></pre>
+<pre><code>page_content='Let’s talk about stress. Too much stress.  \nWe know this can be a topic.  \nSo let’s get this conversation going.  \n[Intro: two things you should know](#letstalkaboutstress%2064040a0733074994976118bbe0acc7fb/Intro%20two%20things%20you%20should%20know%20b5fd0c5393a9498b93396e79fe71e8bf.md)  \n[What is stress](#letstalkaboutstress%2064040a0733074994976118bbe0acc7fb/What%20is%20stress%20b198b685ed6a474ab14f6fafff7004b6.md)  \n[When is there too much stress?](#letstalkaboutstress%2064040a0733074994976118bbe0acc7fb/When%20is%20there%20too%20much%20stress%20dc135b9a86a843cbafd115aa128c5c90.md)  \n[What can I do](#letstalkaboutstress%2064040a0733074994976118bbe0acc7fb/What%20can%20I%20do%2009c1b13703ef42d4a889e2059c5b25fe.md)  \n[What can Blendle do?](#letstalkaboutstress%2064040a0733074994976118bbe0acc7fb/What%20can%20Blendle%20do%20618ab89df4a647bf96e7b432af82779f.md)  \n[Good reads](#letstalkaboutstress%2064040a0733074994976118bbe0acc7fb/Good%20reads%20e817491d84d549f886af972e0668192e.md)  \nGo to **#letstalkaboutstress** on slack to chat about this topic' metadata={'Header 1': '#letstalkaboutstress'}
+</code></pre><h2 id="六、英文版">六、英文版</h2>
+<p><strong>3.1 短句分割</strong></p>
+<pre><code class="lang-python"><span class="hljs-comment">#导入文本分割器</span>
+<span class="hljs-keyword">from</span> langchain.text_splitter <span class="hljs-keyword">import</span> RecursiveCharacterTextSplitter, CharacterTextSplitter
+
+chunk_size = <span class="hljs-number">26</span> <span class="hljs-comment">#设置块大小</span>
+chunk_overlap = <span class="hljs-number">4</span> <span class="hljs-comment">#设置块重叠大小</span>
+
+<span class="hljs-comment">#初始化文本分割器</span>
+r_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=chunk_size,
+    chunk_overlap=chunk_overlap
+)
+c_splitter = CharacterTextSplitter(
+    chunk_size=chunk_size,
+    chunk_overlap=chunk_overlap
+)
+</code></pre>
+<p>递归字符分割器效果</p>
+<pre><code class="lang-python">text = <span class="hljs-string">"a b c d e f g h i j k l m n o p q r s t u v w x y z"</span><span class="hljs-comment">#测试文本</span>
+r_splitter.split_text(text)
+</code></pre>
+<pre><code>['a b c d e f g h i j k l m', 'l m n o p q r s t u v w x', 'w x y z']
+</code></pre><pre><code class="lang-python"><span class="hljs-built_in">len</span>(<span class="hljs-string">" l m n o p q r s t u v w x"</span>)
+</code></pre>
+<pre><code>25
+</code></pre><p>字符分割器效果</p>
+<pre><code class="lang-python"><span class="hljs-comment">#字符文本分割器</span>
+c_splitter.split_text(text)
+</code></pre>
+<pre><code>['a b c d e f g h i j k l m n o p q r s t u v w x y z']
+</code></pre><p>设置空格为分隔符的字符分割器</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 设置空格分隔符</span>
+c_splitter = CharacterTextSplitter(
+    chunk_size=chunk_size,
+    chunk_overlap=chunk_overlap,
+    separator=<span class="hljs-string">' '</span>
+)
+c_splitter.split_text(text)
+</code></pre>
+<pre><code>['a b c d e f g h i j k l m', 'l m n o p q r s t u v w x', 'w x y z']
+</code></pre><p><strong>3.2 长文本分割</strong></p>
+<pre><code class="lang-python"><span class="hljs-comment"># 递归分割长段落</span>
+some_text = <span class="hljs-string">"""When writing documents, writers will use document structure to group content. \
+This can convey to the reader, which idea's are related. For example, closely related ideas \
+are in sentances. Similar ideas are in paragraphs. Paragraphs form a document. \n\n  \
+Paragraphs are often delimited with a carriage return or two carriage returns. \
+Carriage returns are the "backslash n" you see embedded in this string. \
+Sentences have a period at the end, but also, have a space.\
+and words are separated by space."""</span>
+
+
+c_splitter = CharacterTextSplitter(
+    chunk_size=<span class="hljs-number">450</span>,
+    chunk_overlap=<span class="hljs-number">0</span>,
+    separator=<span class="hljs-string">' '</span>
+)
+
+<span class="hljs-string">''' 
+对于递归字符分割器，依次传入分隔符列表，分别是双换行符、单换行符、空格、空字符，
+因此在分割文本时，首先会采用双分换行符进行分割，同时依次使用其他分隔符进行分割
+'''</span>
+
+r_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=<span class="hljs-number">450</span>,
+    chunk_overlap=<span class="hljs-number">0</span>,
+    separators=[<span class="hljs-string">"\n\n"</span>, <span class="hljs-string">"\n"</span>, <span class="hljs-string">" "</span>, <span class="hljs-string">""</span>]
+)
+</code></pre>
+<p>字符分割器效果：</p>
+<pre><code class="lang-python">c_splitter.split_text(some_text)
+</code></pre>
+<pre><code>['When writing documents, writers will use document structure to group content. This can convey to the reader, which idea\'s are related. For example, closely related ideas are in sentances. Similar ideas are in paragraphs. Paragraphs form a document. \n\n Paragraphs are often delimited with a carriage return or two carriage returns. Carriage returns are the "backslash n" you see embedded in this string. Sentences have a period at the end, but also,',
+ 'have a space.and words are separated by space.']
+</code></pre><p>递归字符分割器效果：</p>
+<pre><code class="lang-python"><span class="hljs-comment">#分割结果</span>
+r_splitter.split_text(some_text)
+</code></pre>
+<pre><code>["When writing documents, writers will use document structure to group content. This can convey to the reader, which idea's are related. For example, closely related ideas are in sentances. Similar ideas are in paragraphs. Paragraphs form a document.",
+ 'Paragraphs are often delimited with a carriage return or two carriage returns. Carriage returns are the "backslash n" you see embedded in this string. Sentences have a period at the end, but also, have a space.and words are separated by space.']
+</code></pre><p>增加按句子分割的效果：</p>
+<pre><code class="lang-python">r_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=<span class="hljs-number">150</span>,
+    chunk_overlap=<span class="hljs-number">0</span>,
+    separators=[<span class="hljs-string">"\n\n"</span>, <span class="hljs-string">"\n"</span>, <span class="hljs-string">"(?&lt;=\. )"</span>, <span class="hljs-string">" "</span>, <span class="hljs-string">""</span>]
+)
+r_splitter.split_text(some_text)
+</code></pre>
+<pre><code>["When writing documents, writers will use document structure to group content. This can convey to the reader, which idea's are related.",
+ 'For example, closely related ideas are in sentances. Similar ideas are in paragraphs. Paragraphs form a document.',
+ 'Paragraphs are often delimited with a carriage return or two carriage returns.',
+ 'Carriage returns are the "backslash n" you see embedded in this string.',
+ 'Sentences have a period at the end, but also, have a space.and words are separated by space.']
+</code></pre><p><strong>4.1 基于 Token 分割</strong></p>
+<pre><code class="lang-python"><span class="hljs-comment"># 使用token分割器进行分割，</span>
+<span class="hljs-comment"># 将块大小设为1，块重叠大小设为0，相当于将任意字符串分割成了单个Token组成的列</span>
+<span class="hljs-keyword">from</span> langchain.text_splitter <span class="hljs-keyword">import</span> TokenTextSplitter
+text_splitter = TokenTextSplitter(chunk_size=<span class="hljs-number">1</span>, chunk_overlap=<span class="hljs-number">0</span>)
+text1 = <span class="hljs-string">"foo bar bazzyfoo"</span>
+text_splitter.split_text(text1)
+</code></pre>
+<pre><code>['foo', ' bar', ' b', 'az', 'zy', 'foo']
+</code></pre><p><strong>5.1 分割自定义 Markdown 文档</strong></p>
+<pre><code class="lang-python"><span class="hljs-comment"># 定义一个Markdown文档</span>
+
+<span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> NotionDirectoryLoader<span class="hljs-comment">#Notion加载器</span>
+<span class="hljs-keyword">from</span> langchain.text_splitter <span class="hljs-keyword">import</span> MarkdownHeaderTextSplitter<span class="hljs-comment">#markdown分割器</span>
+
+markdown_document = <span class="hljs-string">"""# Title\n\n \
+## Chapter 1\n\n \
+Hi this is Jim\n\n Hi this is Joe\n\n \
+### Section \n\n \
+Hi this is Lance \n\n 
+## Chapter 2\n\n \
+Hi this is Molly"""</span>
+
+<span class="hljs-comment"># 初始化Markdown标题文本分割器，分割Markdown文档</span>
+markdown_splitter = MarkdownHeaderTextSplitter(
+    headers_to_split_on=headers_to_split_on
+)
+md_header_splits = markdown_splitter.split_text(markdown_document)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"The first chunk"</span>)
+<span class="hljs-built_in">print</span>(md_header_splits[<span class="hljs-number">0</span>])
+<span class="hljs-comment"># Document(page_content='Hi this is Jim  \nHi this is Joe', metadata={'Header 1': 'Title', 'Header 2': 'Chapter 1'})</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"The second chunk"</span>)
+<span class="hljs-built_in">print</span>(md_header_splits[<span class="hljs-number">1</span>])
+<span class="hljs-comment"># Document(page_content='Hi this is Lance', metadata={'Header 1': 'Title', 'Header 2': 'Chapter 1', 'Header 3': 'Section'})</span>
+</code></pre>
+<pre><code>The first chunk
+page_content='Hi this is Jim  \nHi this is Joe  \n### Section  \nHi this is Lance' metadata={'Header 1': 'Title', 'Header 2': 'Chapter 1'}
+The second chunk
+page_content='Hi this is Molly' metadata={'Header 1': 'Title', 'Header 2': 'Chapter 2'}
+</code></pre><p><strong>5.2 分割数据库中的 Markdown 文档</strong></p>
+<pre><code class="lang-python"><span class="hljs-comment">#加载数据库的内容</span>
+loader = NotionDirectoryLoader(<span class="hljs-string">"docs/Notion_DB"</span>)
+docs = loader.load()
+txt = <span class="hljs-string">' '</span>.join([d.page_content <span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> docs])<span class="hljs-comment">#拼接文档</span>
+
+headers_to_split_on = [
+    (<span class="hljs-string">"#"</span>, <span class="hljs-string">"Header 1"</span>),
+    (<span class="hljs-string">"##"</span>, <span class="hljs-string">"Header 2"</span>),
+]
+<span class="hljs-comment">#加载文档分割器</span>
+markdown_splitter = MarkdownHeaderTextSplitter(
+    headers_to_split_on=headers_to_split_on
+)
+
+md_header_splits = markdown_splitter.split_text(txt)<span class="hljs-comment">#分割文本内容</span>
+
+<span class="hljs-built_in">print</span>(md_header_splits[<span class="hljs-number">0</span>])<span class="hljs-comment">#分割结果</span>
+</code></pre>
+<pre><code>page_content='Let’s talk about stress. Too much stress.  \nWe know this can be a topic.  \nSo let’s get this conversation going.  \n[Intro: two things you should know](#letstalkaboutstress%2064040a0733074994976118bbe0acc7fb/Intro%20two%20things%20you%20should%20know%20b5fd0c5393a9498b93396e79fe71e8bf.md)  \n[What is stress](#letstalkaboutstress%2064040a0733074994976118bbe0acc7fb/What%20is%20stress%20b198b685ed6a474ab14f6fafff7004b6.md)  \n[When is there too much stress?](#letstalkaboutstress%2064040a0733074994976118bbe0acc7fb/When%20is%20there%20too%20much%20stress%20dc135b9a86a843cbafd115aa128c5c90.md)  \n[What can I do](#letstalkaboutstress%2064040a0733074994976118bbe0acc7fb/What%20can%20I%20do%2009c1b13703ef42d4a889e2059c5b25fe.md)  \n[What can Blendle do?](#letstalkaboutstress%2064040a0733074994976118bbe0acc7fb/What%20can%20Blendle%20do%20618ab89df4a647bf96e7b432af82779f.md)  \n[Good reads](#letstalkaboutstress%2064040a0733074994976118bbe0acc7fb/Good%20reads%20e817491d84d549f886af972e0668192e.md)  \nGo to **#letstalkaboutstress** on slack to chat about this topic' metadata={'Header 1': '#letstalkaboutstress'}
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="2.-文档加载-Document-Loading.html" class="navigation navigation-prev " aria-label="Previous page: 2. 文档加载 Document Loading">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="4.-向量数据库与词向量-Vectorstores-and-Embeddings.html" class="navigation navigation-next " aria-label="Next page: 4. 向量数据库与词向量 Vectorstores and Embeddings">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3. 文档分割 Splitting","level":"5.4","depth":1,"next":{"title":"4. 向量数据库与词向量 Vectorstores and Embeddings","level":"5.5","depth":1,"path":"C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.md","ref":"C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.md","articles":[]},"previous":{"title":"2. 文档加载 Document Loading","level":"5.3","depth":1,"path":"C4/2.-文档加载-Document-Loading.md","ref":"C4/2.-文档加载-Document-Loading.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C4/3.-文档分割-Splitting.md","mtime":"2024-08-23T21:42:59.791Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-08-23T22:20:29.853Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
