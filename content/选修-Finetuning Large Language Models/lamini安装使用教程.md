@@ -17,7 +17,7 @@
 ### 1. 默认方式
 `lamini`默认需要在你的用户目录下创建一个配置文件 `~/.powerml/configure_llama.yaml`，然后按如下方式写入配置信息：
 
-```
+```python
 production:
     key: "<YOUR-KEY-HERE>"
 ```
@@ -27,7 +27,7 @@ production:
 ### 2. 简便方式
 鉴于默认方式较为麻烦，我们给大家提供一种更为方便的方法。当我们需要用到`llama`的`LLMEngine`或`BasicModelRunner`类时，直接将`production.key`写入类的参数`config`中即可，比如：
 
-```
+```python
 llm = LLMEngine(
     id="example_llm",
     config={"production.key": "<YOUR-KEY-HERE>"}
@@ -35,7 +35,7 @@ llm = LLMEngine(
 ```
 
 又或者：
-```
+```python
 non_finetuned = BasicModelRunner("meta-llama/Llama-2-7b-hf", 
                 config={"production.key": "<YOUR-KEY-HERE>"})
 
