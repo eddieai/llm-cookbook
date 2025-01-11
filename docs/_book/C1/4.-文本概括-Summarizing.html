@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -49,7 +49,7 @@
     
     
     <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
@@ -727,24 +727,24 @@
 <h2 id="一、单一文本概括">一、单一文本概括</h2>
 <p>以商品评论的总结任务为例：对于电商平台来说，网站上往往存在着海量的商品评论，这些评论反映了所有客户的想法。如果我们拥有一个工具去概括这些海量、冗长的评论，便能够快速地浏览更多评论，洞悉客户的偏好，从而指导平台与商家提供更优质的服务。</p>
 <p>接下来我们提供一段在线商品评价作为示例，可能来自于一个在线购物平台，例如亚马逊、淘宝、京东等。评价者为一款熊猫公仔进行了点评，评价内容包括商品的质量、大小、价格和物流速度等因素，以及他的女儿对该商品的喜爱程度。</p>
-<pre><code class="lang-pythonthon">prod_review = """
+<pre><code class="lang-python">prod_review = <span class="hljs-string">"""
 这个熊猫公仔是我给女儿的生日礼物，她很喜欢，去哪都带着。
 公仔很软，超级可爱，面部表情也很和善。但是相比于价钱来说，
 它有点小，我感觉在别的地方用同样的价钱能买到更大的。
 快递比预期提前了一天到货，所以在送给女儿之前，我自己玩了会。
-"""
+"""</span>
 </code></pre>
 <h3 id="11-限制输出文本长度">1.1 限制输出文本长度</h3>
 <p>我们首先尝试将文本的长度限制在30个字以内。</p>
-<pre><code class="lang-pythonthon">from tool import get_completion
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> tool <span class="hljs-keyword">import</span> get_completion
 
-prompt = f"""
+prompt = <span class="hljs-string">f"""
 您的任务是从电子商务网站上生成一个产品评论的简短摘要。
 
 请对三个反引号之间的评论文本进行概括，最多30个字。
 
-评论: ```{prod_review}
-</code></pre>
+评论: ```<span class="hljs-subst">{prod_review}</span>
+</span></code></pre>
 <p>"""</p>
 <p>response = get_completion(prompt)
 print(response)</p>
@@ -765,7 +765,7 @@ print(response)</p>
 #### 1.2.1 侧重于快递服务
 
 
-```pythonthon
+```python
 prompt = f"""
 您的任务是从电子商务网站上生成一个产品评论的简短摘要。
 
@@ -784,7 +784,7 @@ print(response)</p>
 #### 1.2.2 侧重于价格与质量
 
 
-```pythonthon
+```python
 prompt = f"""
 您的任务是从电子商务网站上生成一个产品评论的简短摘要。
 
@@ -807,7 +807,7 @@ print(response)</p>
 下面让我们来一起来对文本进行提取信息吧！
 
 
-```pythonthon
+```python
 prompt = f"""
 您的任务是从电子商务网站上的产品评论中提取相关信息。
 
@@ -826,7 +826,7 @@ print(response)</p>
 在实际的工作流中，我们往往要处理大量的评论文本，下面的示例将多条用户评价集合在一个列表中，并利用 ```for``` 循环和文本概括（Summarize）提示词，将评价概括至小于 20 个词以下，并按顺序打印。当然，在实际生产中，对于不同规模的评论文本，除了使用 ```for``` 循环以外，还可能需要考虑整合评论、分布式等方法提升运算效率。您可以搭建主控面板，来总结大量用户评论，以及方便您或他人快速浏览，还可以点击查看原评论。这样，您就能高效掌握顾客的所有想法。
 
 
-```pythonthon
+```python
 review_1 = prod_review
 
 # 一盏落地灯的评论
@@ -871,14 +871,14 @@ review_4 = """
 """
 
 reviews = [review_1, review_2, review_3, review_4]
-</code></pre><pre><code class="lang-pythonthon">for i in range(len(reviews)):
-    prompt = f"""
+</code></pre><pre><code class="lang-python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(reviews)):
+    prompt = <span class="hljs-string">f"""
     你的任务是从电子商务网站上的产品评论中提取相关信息。
 
     请对三个反引号之间的评论文本进行概括，最多20个词汇。
 
-    评论文本: ```{reviews[i]}
-</code></pre>
+    评论文本: ```<span class="hljs-subst">{reviews[i]}</span>
+</span></code></pre>
 <pre><code>"""
 response = get_completion(prompt)
 print(f"评论{i+1}: ", response, "\n")
@@ -898,7 +898,7 @@ print(f"评论{i+1}: ", response, "\n")
 **1.1 单一文本概括**
 
 
-```pythonthon
+```python
 prod_review = """
 Got this panda plush toy for my daughter's birthday, \
 who loves it and takes it everywhere. It's soft and \ 
@@ -909,15 +909,15 @@ same price. It arrived a day earlier than expected, \
 so I got to play with it myself before I gave it \ 
 to her.
 """
-</code></pre><pre><code class="lang-pythonthon">prompt = f"""
+</code></pre><pre><code class="lang-python">prompt = <span class="hljs-string">f"""
 Your task is to generate a short summary of a product \
 review from an ecommerce site. 
 
 Summarize the review below, delimited by triple 
 backticks, in at most 30 words. 
 
-Review: ```{prod_review}
-</code></pre>
+Review: ```<span class="hljs-subst">{prod_review}</span>
+</span></code></pre>
 <p>"""</p>
 <p>response = get_completion(prompt)
 print(response)</p>
@@ -930,7 +930,7 @@ print(response)</p>
 1.2.1 侧重于快递服务
 
 
-```pythonthon
+```python
 prompt = f"""
 Your task is to generate a short summary of a product \
 review from an ecommerce site to give feedback to the \
@@ -951,7 +951,7 @@ print(response)</p>
 1.2.2 侧重于价格和质量
 
 
-```pythonthon
+```python
 prompt = f"""
 Your task is to generate a short summary of a product \
 review from an ecommerce site to give feedback to the \
@@ -973,7 +973,7 @@ print(response)</p>
 **1.3 关键信息提取**
 
 
-```pythonthon
+```python
 prompt = f"""
 Your task is to extract relevant information from \ 
 a product review from an ecommerce site to give \
@@ -994,7 +994,7 @@ print(response)</p>
 **2.1 同时概括多条文本**
 
 
-```pythonthon
+```python
 review_1 = prod_review 
 
 # review for a standing lamp
@@ -1066,16 +1066,16 @@ two days.
 """
 
 reviews = [review_1, review_2, review_3, review_4]
-</code></pre><pre><code class="lang-pythonthon">for i in range(len(reviews)):
-    prompt = f"""
+</code></pre><pre><code class="lang-python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(reviews)):
+    prompt = <span class="hljs-string">f"""
     Your task is to generate a short summary of a product \
     review from an ecommerce site. 
 
     Summarize the review below, delimited by triple \
     backticks in at most 20 words. 
 
-    Review: ```{reviews[i]}
-</code></pre>
+    Review: ```<span class="hljs-subst">{reviews[i]}</span>
+</span></code></pre>
 <pre><code>"""
 response = get_completion(prompt)
 print(i, response, "\n")
@@ -1130,7 +1130,7 @@ print(i, response, "\n")
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"4. 文本概括 Summarizing","level":"2.5","depth":1,"next":{"title":"5. 推断 Inferring","level":"2.6","depth":1,"path":"C1/5.-推断-Inferring.md","ref":"C1/5.-推断-Inferring.md","articles":[]},"previous":{"title":"3. 迭代优化 Iterative","level":"2.4","depth":1,"path":"C1/3.-迭代优化-Iterative.md","ref":"C1/3.-迭代优化-Iterative.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C1/4.-文本概括-Summarizing.md","mtime":"2025-01-05T18:01:16.631Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-05T18:01:25.931Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"4. 文本概括 Summarizing","level":"2.5","depth":1,"next":{"title":"5. 推断 Inferring","level":"2.6","depth":1,"path":"C1/5.-推断-Inferring.md","ref":"C1/5.-推断-Inferring.md","articles":[]},"previous":{"title":"3. 迭代优化 Iterative","level":"2.4","depth":1,"path":"C1/3.-迭代优化-Iterative.md","ref":"C1/3.-迭代优化-Iterative.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C1/4.-文本概括-Summarizing.md","mtime":"2025-01-11T00:02:01.059Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-11T18:48:15.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1200,7 +1200,7 @@ print(i, response, "\n")
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

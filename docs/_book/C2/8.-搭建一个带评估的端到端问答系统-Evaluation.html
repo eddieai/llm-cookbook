@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -49,7 +49,7 @@
     
     
     <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
@@ -737,112 +737,112 @@
 <p>接下来，我们利用 <code>utils_zh.find_category_and_product_only</code> 函数（详细请见附录代码）抽取出用户输入中的商品和对应的目录。然后，我们将抽取的信息转化为一个列表。
 在获取到商品列表后，我们将查询这些商品的具体信息。之后，我们生成一个系统消息，设定一些约束，以确保我们的回应符合期望的标准。我们将生成的消息和历史信息一起送入 <code>get_completion_from_messages</code> 函数，得到模型的回应。之后，我们再次使用 Moderation API 检查模型的输出是否合规。如果输出不合规，我们将返回一个信息，告知无法提供该信息。</p>
 <p>最后，我们让模型自我评估是否很好地回答了用户的问题。如果模型认为回答是满足要求的，我们则返回模型的回答；否则，我们会告知用户，他们将会被转接到人工客服进行进一步的帮助。</p>
-<pre><code class="lang-pythonthon">import openai 
-import utils_zh
-from tool import get_completion_from_messages
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> openai 
+<span class="hljs-keyword">import</span> utils_zh
+<span class="hljs-keyword">from</span> tool <span class="hljs-keyword">import</span> get_completion_from_messages
 
-'''
+<span class="hljs-string">'''
 注意：限于模型对中文理解能力较弱，中文 Prompt 可能会随机出现不成功，可以多次运行；也非常欢迎同学探究更稳定的中文 Prompt
-'''
-def process_user_message_ch(user_input, all_messages, debug=True):
-    """
+'''</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">process_user_message_ch</span>(<span class="hljs-params">user_input, all_messages, debug=<span class="hljs-literal">True</span></span>):
+    <span class="hljs-string">"""
     对用户信息进行预处理
 
     参数:
     user_input : 用户输入
     all_messages : 历史信息
     debug : 是否开启 DEBUG 模式,默认开启
-    """
-    # 分隔符
-    delimiter = "```"
+    """</span>
+    <span class="hljs-comment"># 分隔符</span>
+    delimiter = <span class="hljs-string">"```"</span>
 
-    # 第一步: 使用 OpenAI 的 Moderation API 检查用户输入是否合规或者是一个注入的 Prompt
-    response = openai.Moderation.create(input=user_input)
-    moderation_output = response["results"][0]
+    <span class="hljs-comment"># 第一步: 使用 OpenAI 的 Moderation API 检查用户输入是否合规或者是一个注入的 Prompt</span>
+    response = openai.Moderation.create(<span class="hljs-built_in">input</span>=user_input)
+    moderation_output = response[<span class="hljs-string">"results"</span>][<span class="hljs-number">0</span>]
 
-    # 经过 Moderation API 检查该输入不合规
-    if moderation_output["flagged"]:
-        print("第一步：输入被 Moderation 拒绝")
-        return "抱歉，您的请求不合规"
+    <span class="hljs-comment"># 经过 Moderation API 检查该输入不合规</span>
+    <span class="hljs-keyword">if</span> moderation_output[<span class="hljs-string">"flagged"</span>]:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"第一步：输入被 Moderation 拒绝"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"抱歉，您的请求不合规"</span>
 
-    # 如果开启了 DEBUG 模式，打印实时进度
-    if debug: print("第一步：输入通过 Moderation 检查")
+    <span class="hljs-comment"># 如果开启了 DEBUG 模式，打印实时进度</span>
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第一步：输入通过 Moderation 检查"</span>)
 
-    # 第二步：抽取出商品和对应的目录，类似于之前课程中的方法，做了一个封装
+    <span class="hljs-comment"># 第二步：抽取出商品和对应的目录，类似于之前课程中的方法，做了一个封装</span>
     category_and_product_response = utils_zh.find_category_and_product_only(user_input, utils_zh.get_products_and_category())
-    #print(category_and_product_response)
-    # 将抽取出来的字符串转化为列表
+    <span class="hljs-comment">#print(category_and_product_response)</span>
+    <span class="hljs-comment"># 将抽取出来的字符串转化为列表</span>
     category_and_product_list = utils_zh.read_string_to_list(category_and_product_response)
-    #print(category_and_product_list)
+    <span class="hljs-comment">#print(category_and_product_list)</span>
 
-    if debug: print("第二步：抽取出商品列表")
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第二步：抽取出商品列表"</span>)
 
-    # 第三步：查找商品对应信息
+    <span class="hljs-comment"># 第三步：查找商品对应信息</span>
     product_information = utils_zh.generate_output_string(category_and_product_list)
-    if debug: print("第三步：查找抽取出的商品信息")
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第三步：查找抽取出的商品信息"</span>)
 
-    # 第四步：根据信息生成回答
-    system_message = f"""
+    <span class="hljs-comment"># 第四步：根据信息生成回答</span>
+    system_message = <span class="hljs-string">f"""
         您是一家大型电子商店的客户服务助理。\
         请以友好和乐于助人的语气回答问题，并提供简洁明了的答案。\
         请确保向用户提出相关的后续问题。
-    """
-    # 插入 message
+    """</span>
+    <span class="hljs-comment"># 插入 message</span>
     messages = [
-        {'role': 'system', 'content': system_message},
-        {'role': 'user', 'content': f"{delimiter}{user_input}{delimiter}"},
-        {'role': 'assistant', 'content': f"相关商品信息:\n{product_information}"}
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_input}</span><span class="hljs-subst">{delimiter}</span>"</span>},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"相关商品信息:\n<span class="hljs-subst">{product_information}</span>"</span>}
     ]
-    # 获取 GPT3.5 的回答
-    # 通过附加 all_messages 实现多轮对话
+    <span class="hljs-comment"># 获取 GPT3.5 的回答</span>
+    <span class="hljs-comment"># 通过附加 all_messages 实现多轮对话</span>
     final_response = get_completion_from_messages(all_messages + messages)
-    if debug:print("第四步：生成用户回答")
-    # 将该轮信息加入到历史信息中
-    all_messages = all_messages + messages[1:]
+    <span class="hljs-keyword">if</span> debug:<span class="hljs-built_in">print</span>(<span class="hljs-string">"第四步：生成用户回答"</span>)
+    <span class="hljs-comment"># 将该轮信息加入到历史信息中</span>
+    all_messages = all_messages + messages[<span class="hljs-number">1</span>:]
 
-    # 第五步：基于 Moderation API 检查输出是否合规
-    response = openai.Moderation.create(input=final_response)
-    moderation_output = response["results"][0]
+    <span class="hljs-comment"># 第五步：基于 Moderation API 检查输出是否合规</span>
+    response = openai.Moderation.create(<span class="hljs-built_in">input</span>=final_response)
+    moderation_output = response[<span class="hljs-string">"results"</span>][<span class="hljs-number">0</span>]
 
-    # 输出不合规
-    if moderation_output["flagged"]:
-        if debug: print("第五步：输出被 Moderation 拒绝")
-        return "抱歉，我们不能提供该信息"
+    <span class="hljs-comment"># 输出不合规</span>
+    <span class="hljs-keyword">if</span> moderation_output[<span class="hljs-string">"flagged"</span>]:
+        <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第五步：输出被 Moderation 拒绝"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"抱歉，我们不能提供该信息"</span>
 
-    if debug: print("第五步：输出经过 Moderation 检查")
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第五步：输出经过 Moderation 检查"</span>)
 
-    # 第六步：模型检查是否很好地回答了用户问题
-    user_message = f"""
-    用户信息: {delimiter}{user_input}{delimiter}
-    代理回复: {delimiter}{final_response}{delimiter}
+    <span class="hljs-comment"># 第六步：模型检查是否很好地回答了用户问题</span>
+    user_message = <span class="hljs-string">f"""
+    用户信息: <span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_input}</span><span class="hljs-subst">{delimiter}</span>
+    代理回复: <span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{final_response}</span><span class="hljs-subst">{delimiter}</span>
 
     回复是否足够回答问题
     如果足够，回答 Y
     如果不足够，回答 N
     仅回答上述字母即可
-    """
-    # print(final_response)
+    """</span>
+    <span class="hljs-comment"># print(final_response)</span>
     messages = [
-        {'role': 'system', 'content': system_message},
-        {'role': 'user', 'content': user_message}
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: user_message}
     ]
-    # 要求模型评估回答
+    <span class="hljs-comment"># 要求模型评估回答</span>
     evaluation_response = get_completion_from_messages(messages)
-    # print(evaluation_response)
-    if debug: print("第六步：模型评估该回答")
+    <span class="hljs-comment"># print(evaluation_response)</span>
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第六步：模型评估该回答"</span>)
 
-    # 第七步：如果评估为 Y，输出回答；如果评估为 N，反馈将由人工修正答案
-    if "Y" in evaluation_response:  # 使用 in 来避免模型可能生成 Yes
-        if debug: print("第七步：模型赞同了该回答.")
-        return final_response, all_messages
-    else:
-        if debug: print("第七步：模型不赞成该回答.")
-        neg_str = "很抱歉，我无法提供您所需的信息。我将为您转接到一位人工客服代表以获取进一步帮助。"
-        return neg_str, all_messages
+    <span class="hljs-comment"># 第七步：如果评估为 Y，输出回答；如果评估为 N，反馈将由人工修正答案</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-string">"Y"</span> <span class="hljs-keyword">in</span> evaluation_response:  <span class="hljs-comment"># 使用 in 来避免模型可能生成 Yes</span>
+        <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第七步：模型赞同了该回答."</span>)
+        <span class="hljs-keyword">return</span> final_response, all_messages
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第七步：模型不赞成该回答."</span>)
+        neg_str = <span class="hljs-string">"很抱歉，我无法提供您所需的信息。我将为您转接到一位人工客服代表以获取进一步帮助。"</span>
+        <span class="hljs-keyword">return</span> neg_str, all_messages
 
-user_input = "请告诉我关于 smartx pro phone 和 the fotosnap camera 的信息。另外，请告诉我关于你们的tvs的情况。"
+user_input = <span class="hljs-string">"请告诉我关于 smartx pro phone 和 the fotosnap camera 的信息。另外，请告诉我关于你们的tvs的情况。"</span>
 response,_ = process_user_message_ch(user_input,[])
-print(response)
+<span class="hljs-built_in">print</span>(response)
 </code></pre>
 <pre><code>第一步：输入通过 Moderation 检查
 第二步：抽取出商品列表
@@ -910,49 +910,49 @@ FotoSnap相机系列：
 - 品牌：
 </code></pre><h2 id="二、持续收集用户和助手消息">二、持续收集用户和助手消息</h2>
 <p>为了持续优化用户和助手的问答体验，我们打造了一个友好的可视化界面，以促进用户与助手之间的便捷互动。</p>
-<pre><code class="lang-pythonthon"># 调用中文 Prompt 版本
-def collect_messages_ch(debug=True):
-    """
+<pre><code class="lang-python"><span class="hljs-comment"># 调用中文 Prompt 版本</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">collect_messages_ch</span>(<span class="hljs-params">debug=<span class="hljs-literal">True</span></span>):
+    <span class="hljs-string">"""
     用于收集用户的输入并生成助手的回答
 
     参数：
     debug: 用于觉得是否开启调试模式
-    """
+    """</span>
     user_input = inp.value_input
-    if debug: print(f"User Input = {user_input}")
-    if user_input == "":
-        return
-    inp.value = ''
-    global context
-    # 调用 process_user_message 函数
-    #response, context = process_user_message(user_input, context, utils.get_products_and_category(),debug=True)
-    response, context = process_user_message_ch(user_input, context, debug=False)
-    # print(response)
-    context.append({'role':'assistant', 'content':f"{response}"})
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">f"User Input = <span class="hljs-subst">{user_input}</span>"</span>)
+    <span class="hljs-keyword">if</span> user_input == <span class="hljs-string">""</span>:
+        <span class="hljs-keyword">return</span>
+    inp.value = <span class="hljs-string">''</span>
+    <span class="hljs-keyword">global</span> context
+    <span class="hljs-comment"># 调用 process_user_message 函数</span>
+    <span class="hljs-comment">#response, context = process_user_message(user_input, context, utils.get_products_and_category(),debug=True)</span>
+    response, context = process_user_message_ch(user_input, context, debug=<span class="hljs-literal">False</span>)
+    <span class="hljs-comment"># print(response)</span>
+    context.append({<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">f"<span class="hljs-subst">{response}</span>"</span>})
     panels.append(
-        pn.Row('User:', pn.pane.Markdown(user_input, width=600)))
+        pn.Row(<span class="hljs-string">'User:'</span>, pn.pane.Markdown(user_input, width=<span class="hljs-number">600</span>)))
     panels.append(
-        pn.Row('Assistant:', pn.pane.Markdown(response, width=600, style={'background-color': '#F6F6F6'})))
+        pn.Row(<span class="hljs-string">'Assistant:'</span>, pn.pane.Markdown(response, width=<span class="hljs-number">600</span>, style={<span class="hljs-string">'background-color'</span>: <span class="hljs-string">'#F6F6F6'</span>})))
 
-    return pn.Column(*panels) # 包含了所有的对话信息
+    <span class="hljs-keyword">return</span> pn.Column(*panels) <span class="hljs-comment"># 包含了所有的对话信息</span>
 </code></pre>
-<pre><code class="lang-pythonthon">import panel as pn  # 用于图形化界面
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> panel <span class="hljs-keyword">as</span> pn  <span class="hljs-comment"># 用于图形化界面</span>
 pn.extension()
 
-panels = [] # collect display 
+panels = [] <span class="hljs-comment"># collect display </span>
 
-# 系统信息
-context = [ {'role':'system', 'content':"You are Service Assistant"} ]  
+<span class="hljs-comment"># 系统信息</span>
+context = [ {<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">"You are Service Assistant"</span>} ]  
 
-inp = pn.widgets.TextInput( placeholder='Enter text here…')
-button_conversation = pn.widgets.Button(name="Service Assistant")
+inp = pn.widgets.TextInput( placeholder=<span class="hljs-string">'Enter text here…'</span>)
+button_conversation = pn.widgets.Button(name=<span class="hljs-string">"Service Assistant"</span>)
 
 interactive_conversation = pn.bind(collect_messages_ch, button_conversation)
 
 dashboard = pn.Column(
     inp,
     pn.Row(button_conversation),
-    pn.panel(interactive_conversation, loading_indicator=True, height=300),
+    pn.panel(interactive_conversation, loading_indicator=<span class="hljs-literal">True</span>, height=<span class="hljs-number">300</span>),
 )
 
 dashboard
@@ -964,103 +964,103 @@ dashboard
 <p>对于这个问题，我们将在接下来的章节中进行更深入的探讨。</p>
 <h2 id="三、英文版">三、英文版</h2>
 <p><strong>1.1 端到端问答系统</strong></p>
-<pre><code class="lang-pythonthon">import utils_en
-import openai
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> utils_en
+<span class="hljs-keyword">import</span> openai
 
-def process_user_message(user_input, all_messages, debug=True):
-    """
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">process_user_message</span>(<span class="hljs-params">user_input, all_messages, debug=<span class="hljs-literal">True</span></span>):
+    <span class="hljs-string">"""
     对用户信息进行预处理
 
     参数:
     user_input : 用户输入
     all_messages : 历史信息
     debug : 是否开启 DEBUG 模式,默认开启
-    """
-    # 分隔符
-    delimiter = "```"
+    """</span>
+    <span class="hljs-comment"># 分隔符</span>
+    delimiter = <span class="hljs-string">"```"</span>
 
-    # 第一步: 使用 OpenAI 的 Moderation API 检查用户输入是否合规或者是一个注入的 Prompt
-    response = openai.Moderation.create(input=user_input)
-    moderation_output = response["results"][0]
+    <span class="hljs-comment"># 第一步: 使用 OpenAI 的 Moderation API 检查用户输入是否合规或者是一个注入的 Prompt</span>
+    response = openai.Moderation.create(<span class="hljs-built_in">input</span>=user_input)
+    moderation_output = response[<span class="hljs-string">"results"</span>][<span class="hljs-number">0</span>]
 
-    # 经过 Moderation API 检查该输入不合规
-    if moderation_output["flagged"]:
-        print("第一步：输入被 Moderation 拒绝")
-        return "抱歉，您的请求不合规"
+    <span class="hljs-comment"># 经过 Moderation API 检查该输入不合规</span>
+    <span class="hljs-keyword">if</span> moderation_output[<span class="hljs-string">"flagged"</span>]:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"第一步：输入被 Moderation 拒绝"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"抱歉，您的请求不合规"</span>
 
-    # 如果开启了 DEBUG 模式，打印实时进度
-    if debug: print("第一步：输入通过 Moderation 检查")
+    <span class="hljs-comment"># 如果开启了 DEBUG 模式，打印实时进度</span>
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第一步：输入通过 Moderation 检查"</span>)
 
-    # 第二步：抽取出商品和对应的目录，类似于之前课程中的方法，做了一个封装
+    <span class="hljs-comment"># 第二步：抽取出商品和对应的目录，类似于之前课程中的方法，做了一个封装</span>
     category_and_product_response = utils_en.find_category_and_product_only(user_input, utils_en.get_products_and_category())
-    #print(category_and_product_response)
-    # 将抽取出来的字符串转化为列表
+    <span class="hljs-comment">#print(category_and_product_response)</span>
+    <span class="hljs-comment"># 将抽取出来的字符串转化为列表</span>
     category_and_product_list = utils_en.read_string_to_list(category_and_product_response)
-    #print(category_and_product_list)
+    <span class="hljs-comment">#print(category_and_product_list)</span>
 
-    if debug: print("第二步：抽取出商品列表")
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第二步：抽取出商品列表"</span>)
 
-    # 第三步：查找商品对应信息
+    <span class="hljs-comment"># 第三步：查找商品对应信息</span>
     product_information = utils_en.generate_output_string(category_and_product_list)
-    if debug: print("第三步：查找抽取出的商品信息")
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第三步：查找抽取出的商品信息"</span>)
 
-    # 第四步：根据信息生成回答
-    system_message = f"""
+    <span class="hljs-comment"># 第四步：根据信息生成回答</span>
+    system_message = <span class="hljs-string">f"""
     You are a customer service assistant for a large electronic store. \
     Respond in a friendly and helpful tone, with concise answers. \
     Make sure to ask the user relevant follow-up questions.
-    """
-    # 插入 message
+    """</span>
+    <span class="hljs-comment"># 插入 message</span>
     messages = [
-        {'role': 'system', 'content': system_message},
-        {'role': 'user', 'content': f"{delimiter}{user_input}{delimiter}"},
-        {'role': 'assistant', 'content': f"Relevant product information:\n{product_information}"}
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_input}</span><span class="hljs-subst">{delimiter}</span>"</span>},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"Relevant product information:\n<span class="hljs-subst">{product_information}</span>"</span>}
     ]
-    # 获取 GPT3.5 的回答
-    # 通过附加 all_messages 实现多轮对话
+    <span class="hljs-comment"># 获取 GPT3.5 的回答</span>
+    <span class="hljs-comment"># 通过附加 all_messages 实现多轮对话</span>
     final_response = get_completion_from_messages(all_messages + messages)
-    if debug:print("第四步：生成用户回答")
-    # 将该轮信息加入到历史信息中
-    all_messages = all_messages + messages[1:]
+    <span class="hljs-keyword">if</span> debug:<span class="hljs-built_in">print</span>(<span class="hljs-string">"第四步：生成用户回答"</span>)
+    <span class="hljs-comment"># 将该轮信息加入到历史信息中</span>
+    all_messages = all_messages + messages[<span class="hljs-number">1</span>:]
 
-    # 第五步：基于 Moderation API 检查输出是否合规
-    response = openai.Moderation.create(input=final_response)
-    moderation_output = response["results"][0]
+    <span class="hljs-comment"># 第五步：基于 Moderation API 检查输出是否合规</span>
+    response = openai.Moderation.create(<span class="hljs-built_in">input</span>=final_response)
+    moderation_output = response[<span class="hljs-string">"results"</span>][<span class="hljs-number">0</span>]
 
-    # 输出不合规
-    if moderation_output["flagged"]:
-        if debug: print("第五步：输出被 Moderation 拒绝")
-        return "抱歉，我们不能提供该信息"
+    <span class="hljs-comment"># 输出不合规</span>
+    <span class="hljs-keyword">if</span> moderation_output[<span class="hljs-string">"flagged"</span>]:
+        <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第五步：输出被 Moderation 拒绝"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"抱歉，我们不能提供该信息"</span>
 
-    if debug: print("第五步：输出经过 Moderation 检查")
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第五步：输出经过 Moderation 检查"</span>)
 
-    # 第六步：模型检查是否很好地回答了用户问题
-    user_message = f"""
-    Customer message: {delimiter}{user_input}{delimiter}
-    Agent response: {delimiter}{final_response}{delimiter}
+    <span class="hljs-comment"># 第六步：模型检查是否很好地回答了用户问题</span>
+    user_message = <span class="hljs-string">f"""
+    Customer message: <span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_input}</span><span class="hljs-subst">{delimiter}</span>
+    Agent response: <span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{final_response}</span><span class="hljs-subst">{delimiter}</span>
 
     Does the response sufficiently answer the question?
-    """
+    """</span>
     messages = [
-        {'role': 'system', 'content': system_message},
-        {'role': 'user', 'content': user_message}
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: user_message}
     ]
-    # 要求模型评估回答
+    <span class="hljs-comment"># 要求模型评估回答</span>
     evaluation_response = get_completion_from_messages(messages)
-    if debug: print("第六步：模型评估该回答")
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第六步：模型评估该回答"</span>)
 
-    # 第七步：如果评估为 Y，输出回答；如果评估为 N，反馈将由人工修正答案
-    if "Y" in evaluation_response:  # 使用 in 来避免模型可能生成 Yes
-        if debug: print("第七步：模型赞同了该回答.")
-        return final_response, all_messages
-    else:
-        if debug: print("第七步：模型不赞成该回答.")
-        neg_str = "很抱歉，我无法提供您所需的信息。我将为您转接到一位人工客服代表以获取进一步帮助。"
-        return neg_str, all_messages
+    <span class="hljs-comment"># 第七步：如果评估为 Y，输出回答；如果评估为 N，反馈将由人工修正答案</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-string">"Y"</span> <span class="hljs-keyword">in</span> evaluation_response:  <span class="hljs-comment"># 使用 in 来避免模型可能生成 Yes</span>
+        <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第七步：模型赞同了该回答."</span>)
+        <span class="hljs-keyword">return</span> final_response, all_messages
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">"第七步：模型不赞成该回答."</span>)
+        neg_str = <span class="hljs-string">"很抱歉，我无法提供您所需的信息。我将为您转接到一位人工客服代表以获取进一步帮助。"</span>
+        <span class="hljs-keyword">return</span> neg_str, all_messages
 
-user_input = "tell me about the smartx pro phone and the fotosnap camera, the dslr one. Also what tell me about your tvs"
+user_input = <span class="hljs-string">"tell me about the smartx pro phone and the fotosnap camera, the dslr one. Also what tell me about your tvs"</span>
 response,_ = process_user_message(user_input,[])
-print(response)
+<span class="hljs-built_in">print</span>(response)
 </code></pre>
 <pre><code>第一步：输入通过 Moderation 检查
 第二步：抽取出商品列表
@@ -1089,29 +1089,29 @@ Sure! Here's some information about the SmartX ProPhone and the FotoSnap DSLR Ca
 
 Now, could you please let me know which specific TV models you are interested in?
 </code></pre><p><strong>2.1 持续收集用户和助手信息</strong></p>
-<pre><code class="lang-pythonthon">def collect_messages_en(debug=False):
-    """
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">collect_messages_en</span>(<span class="hljs-params">debug=<span class="hljs-literal">False</span></span>):
+    <span class="hljs-string">"""
     用于收集用户的输入并生成助手的回答
 
     参数：
     debug: 用于觉得是否开启调试模式
-    """
+    """</span>
     user_input = inp.value_input
-    if debug: print(f"User Input = {user_input}")
-    if user_input == "":
-        return
-    inp.value = ''
-    global context
-    # 调用 process_user_message 函数
-    #response, context = process_user_message(user_input, context, utils.get_products_and_category(),debug=True)
-    response, context = process_user_message(user_input, context, debug=False)
-    context.append({'role':'assistant', 'content':f"{response}"})
+    <span class="hljs-keyword">if</span> debug: <span class="hljs-built_in">print</span>(<span class="hljs-string">f"User Input = <span class="hljs-subst">{user_input}</span>"</span>)
+    <span class="hljs-keyword">if</span> user_input == <span class="hljs-string">""</span>:
+        <span class="hljs-keyword">return</span>
+    inp.value = <span class="hljs-string">''</span>
+    <span class="hljs-keyword">global</span> context
+    <span class="hljs-comment"># 调用 process_user_message 函数</span>
+    <span class="hljs-comment">#response, context = process_user_message(user_input, context, utils.get_products_and_category(),debug=True)</span>
+    response, context = process_user_message(user_input, context, debug=<span class="hljs-literal">False</span>)
+    context.append({<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>:<span class="hljs-string">f"<span class="hljs-subst">{response}</span>"</span>})
     panels.append(
-        pn.Row('User:', pn.pane.Markdown(user_input, width=600)))
+        pn.Row(<span class="hljs-string">'User:'</span>, pn.pane.Markdown(user_input, width=<span class="hljs-number">600</span>)))
     panels.append(
-        pn.Row('Assistant:', pn.pane.Markdown(response, width=600, style={'background-color': '#F6F6F6'})))
+        pn.Row(<span class="hljs-string">'Assistant:'</span>, pn.pane.Markdown(response, width=<span class="hljs-number">600</span>, style={<span class="hljs-string">'background-color'</span>: <span class="hljs-string">'#F6F6F6'</span>})))
 
-    return pn.Column(*panels) # 包含了所有的对话信息
+    <span class="hljs-keyword">return</span> pn.Column(*panels) <span class="hljs-comment"># 包含了所有的对话信息</span>
 </code></pre>
 
                                 
@@ -1156,7 +1156,7 @@ Now, could you please let me know which specific TV models you are interested in
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"8. 搭建一个带评估的端到端系统 Evaluation","level":"3.9","depth":1,"next":{"title":"9. 评估（上）Evaluation-part1","level":"3.10","depth":1,"path":"C2/9.-评估（上）-Evaluation-part1.md","ref":"C2/9.-评估（上）-Evaluation-part1.md","articles":[]},"previous":{"title":"7. 检查结果 Check Outputs","level":"3.8","depth":1,"path":"C2/7.-检查结果-Check-Outputs.md","ref":"C2/7.-检查结果-Check-Outputs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/8.-搭建一个带评估的端到端问答系统-Evaluation.md","mtime":"2025-01-05T18:01:16.631Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-05T18:01:25.931Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"8. 搭建一个带评估的端到端系统 Evaluation","level":"3.9","depth":1,"next":{"title":"9. 评估（上）Evaluation-part1","level":"3.10","depth":1,"path":"C2/9.-评估（上）-Evaluation-part1.md","ref":"C2/9.-评估（上）-Evaluation-part1.md","articles":[]},"previous":{"title":"7. 检查结果 Check Outputs","level":"3.8","depth":1,"path":"C2/7.-检查结果-Check-Outputs.md","ref":"C2/7.-检查结果-Check-Outputs.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/8.-搭建一个带评估的端到端问答系统-Evaluation.md","mtime":"2025-01-11T00:02:01.069Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-11T18:48:15.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1226,7 +1226,7 @@ Now, could you please let me know which specific TV models you are interested in
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

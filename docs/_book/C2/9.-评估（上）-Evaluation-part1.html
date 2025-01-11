@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -49,7 +49,7 @@
     
     
     <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
@@ -727,7 +727,7 @@
 <p>因此，在使用LLM构建应用程序时，你可能会经历以下流程：首先，你会在一到三个样本的小样本中调整 Prompt ，尝试使其在这些样本上起效。随后，当你对系统进行进一步测试时，可能会遇到一些棘手的例子，这些例子无法通过 Prompt 或者算法解决。这就是使用 ChatGPT API 构建应用程序的开发者所面临的挑战。在这种情况下，你可以将这些额外的几个例子添加到你正在测试的集合中，有机地添加其他难以处理的例子。最终，你会将足够多的这些例子添加到你逐步扩大的开发集中，以至于手动运行每一个例子以测试 Prompt 变得有些不便。然后，你开始开发一些用于衡量这些小样本集性能的指标，例如平均准确度。这个过程的有趣之处在于，如果你觉得你的系统已经足够好了，你可以随时停止，不再进行改进。实际上，很多已经部署的应用程序就在第一步或第二步就停下来了，而且它们运行得非常好。</p>
 <p>值得注意的是，很多大型模型的应用程序没有实质性的风险，即使它没有给出完全正确的答案。但是，对于一些高风险的应用，如若存在偏见或不适当的输出可能对某人造成伤害，那么收集测试集、严格评估系统的性能，以及确保它在使用前能做对事情，就显得尤为重要。然而，如果你仅仅是用它来总结文章供自己阅读，而不是给其他人看，那么可能带来的风险就会较小，你可以在这个过程中早早地停止，而不必付出收集大规模数据集的巨大代价。</p>
 <p>现在让我们进入更实际的应用阶段，将刚才所学的理论知识转化为实践。让我们一起研究一些真实的数据，理解其结构并使用我们的工具来分析它们。在我们的案例中，我们获取一组分类信息及其产品名称。让我们执行以下代码，以查看这些分类信息及其产品名称</p>
-<pre><code class="lang-pythonthon">import utils_zh
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> utils_zh
 
 products_and_category = utils_zh.get_products_and_category()
 products_and_category
@@ -768,21 +768,21 @@ products_and_category
 <p>在函数的开始，我们定义了一个分隔符<code>delimiter</code>，用来在客户服务查询中分隔内容。随后，我们创建了一条系统消息。这条消息主要解释了系统的运作方式：用户会提供客户服务查询，查询会被分隔符<code>delimiter</code>分隔。系统会输出一个Python列表，列表中的每个对象都是Json对象。每个对象会包含'类别'和'名称'两个字段，分别对应产品的类别和名称。</p>
 <p>我们创建了一个名为<code>messages</code>的列表，用来存储这些示例对话以及用户的查询。最后，我们使用<code>get_completion_from_messages</code>函数处理这些消息，返回处理结果。</p>
 <p>通过这段代码，我们可以看到如何通过对话的方式理解和处理用户的查询，以提供更好的用户体验。</p>
-<pre><code class="lang-pythonthon">from tool import get_completion_from_messages
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> tool <span class="hljs-keyword">import</span> get_completion_from_messages
 
-def find_category_and_product_v1(user_input,products_and_category):
-    """
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">find_category_and_product_v1</span>(<span class="hljs-params">user_input,products_and_category</span>):
+    <span class="hljs-string">"""
     从用户输入中获取到产品和类别
 
     参数：
     user_input：用户的查询
     products_and_category：产品类型和对应产品的字典
-    """
+    """</span>
 
-    delimiter = "####"
-    system_message = f"""
+    delimiter = <span class="hljs-string">"####"</span>
+    system_message = <span class="hljs-string">f"""
     您将提供客户服务查询。\
-    客户服务查询将用{delimiter}字符分隔。
+    客户服务查询将用<span class="hljs-subst">{delimiter}</span>字符分隔。
     输出一个 Python 列表，列表中的每个对象都是 Json 对象，每个对象的格式如下：
         '类别': &lt;电脑和笔记本, 智能手机和配件, 电视和家庭影院系统, \
     游戏机和配件, 音频设备, 相机和摄像机中的一个&gt;,
@@ -799,45 +799,45 @@ def find_category_and_product_v1(user_input,products_and_category):
     允许的产品以 JSON 格式提供。
     每个项目的键代表类别。
     每个项目的值是该类别中的产品列表。
-    允许的产品：{products_and_category}
+    允许的产品：<span class="hljs-subst">{products_and_category}</span>
 
-    """
+    """</span>
 
-    few_shot_user_1 = """我想要最贵的电脑。"""
-    few_shot_assistant_1 = """ 
+    few_shot_user_1 = <span class="hljs-string">"""我想要最贵的电脑。"""</span>
+    few_shot_assistant_1 = <span class="hljs-string">""" 
     [{'category': '电脑和笔记本', \
 'products': ['TechPro 超极本', 'BlueWave 游戏本', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook']}]
-    """
+    """</span>
 
     messages =  [  
-    {'role':'system', 'content': system_message},    
-    {'role':'user', 'content': f"{delimiter}{few_shot_user_1}{delimiter}"},  
-    {'role':'assistant', 'content': few_shot_assistant_1 },
-    {'role':'user', 'content': f"{delimiter}{user_input}{delimiter}"},  
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},    
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{few_shot_user_1}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>: few_shot_assistant_1 },
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_input}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
     ] 
-    return get_completion_from_messages(messages)
+    <span class="hljs-keyword">return</span> get_completion_from_messages(messages)
 </code></pre>
 <h2 id="二、在一些查询上进行评估">二、在一些查询上进行评估</h2>
 <p>对上述系统，我们可以首先在一些简单查询上进行评估：</p>
-<pre><code class="lang-pythonthon"># 第一个评估的查询
-customer_msg_0 = f"""如果我预算有限，我可以买哪款电视？"""
+<pre><code class="lang-python"><span class="hljs-comment"># 第一个评估的查询</span>
+customer_msg_0 = <span class="hljs-string">f"""如果我预算有限，我可以买哪款电视？"""</span>
 
 products_by_category_0 = find_category_and_product_v1(customer_msg_0,
                                                       products_and_category)
-print(products_by_category_0)
+<span class="hljs-built_in">print</span>(products_by_category_0)
 </code></pre>
 <pre><code>    [{'category': '电视和家庭影院系统', 'products': ['CineView 4K TV', 'SoundMax Home Theater', 'CineView 8K TV', 'SoundMax Soundbar', 'CineView OLED TV']}]
 </code></pre><p>输出了正确回答。</p>
-<pre><code class="lang-pythonthon">customer_msg_1 = f"""我需要一个智能手机的充电器"""
+<pre><code class="lang-python">customer_msg_1 = <span class="hljs-string">f"""我需要一个智能手机的充电器"""</span>
 
 products_by_category_1 = find_category_and_product_v1(customer_msg_1,
                                                       products_and_category)
-print(products_by_category_1)
+<span class="hljs-built_in">print</span>(products_by_category_1)
 </code></pre>
 <pre><code>    [{'category': '智能手机和配件', 'products': ['MobiTech PowerCase', 'SmartX MiniPhone', 'MobiTech Wireless Charger', 'SmartX EarBuds']}]
 </code></pre><p>输出了正确回答。</p>
-<pre><code class="lang-pythonthon">customer_msg_2 = f"""
-你们有哪些电脑？"""
+<pre><code class="lang-python">customer_msg_2 = <span class="hljs-string">f"""
+你们有哪些电脑？"""</span>
 
 products_by_category_2 = find_category_and_product_v1(customer_msg_2,
                                                       products_and_category)
@@ -845,13 +845,13 @@ products_by_category_2
 </code></pre>
 <pre><code>" \n    [{'category': '电脑和笔记本', 'products': ['TechPro 超极本', 'BlueWave 游戏本', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook']}]"
 </code></pre><p>输出回答正确，但格式有误。</p>
-<pre><code class="lang-pythonthon">customer_msg_3 = f"""
+<pre><code class="lang-python">customer_msg_3 = <span class="hljs-string">f"""
 告诉我关于smartx pro手机和fotosnap相机的信息，那款DSLR的。
-我预算有限，你们有哪些性价比高的电视推荐？"""
+我预算有限，你们有哪些性价比高的电视推荐？"""</span>
 
 products_by_category_3 = find_category_and_product_v1(customer_msg_3,
                                                       products_and_category)
-print(products_by_category_3)
+<span class="hljs-built_in">print</span>(products_by_category_3)
 </code></pre>
 <pre><code>    [{'category': '智能手机和配件', 'products': ['SmartX ProPhone']}, {'category': '相机和摄像机', 'products': ['FotoSnap DSLR Camera']}]
 
@@ -859,12 +859,12 @@ print(products_by_category_3)
 </code></pre><p>它看起来像是输出了正确的数据，但没有按照要求的格式输出。这使得将其解析为 Python 字典列表更加困难。</p>
 <h2 id="三、更难的测试用例">三、更难的测试用例</h2>
 <p>接着，我们可以给出一些在实际使用中，模型表现不如预期的查询。</p>
-<pre><code class="lang-pythonthon">customer_msg_4 = f"""
+<pre><code class="lang-python">customer_msg_4 = <span class="hljs-string">f"""
 告诉我关于CineView电视的信息，那款8K的，还有Gamesphere游戏机，X款的。
-我预算有限，你们有哪些电脑？"""
+我预算有限，你们有哪些电脑？"""</span>
 
 products_by_category_4 = find_category_and_product_v1(customer_msg_4,products_and_category)
-print(products_by_category_4)
+<span class="hljs-built_in">print</span>(products_by_category_4)
 </code></pre>
 <pre><code>    [{'category': '电视和家庭影院系统', 'products': ['CineView 4K TV', 'SoundMax Home Theater', 'CineView 8K TV', 'SoundMax Soundbar', 'CineView OLED TV']}]
     [{'category': '游戏机和配件', 'products': ['GameSphere X', 'ProGamer Controller', 'GameSphere Y', 'ProGamer Racing Wheel', 'GameSphere VR Headset']}]
@@ -872,8 +872,8 @@ print(products_by_category_4)
 </code></pre><h2 id="四、修改指令以处理难测试用例">四、修改指令以处理难测试用例</h2>
 <p>综上，我们实现的最初版本在上述一些测试用例中表现不尽如人意。</p>
 <p>为提升效果，我们在提示中添加了以下内容：不要输出任何不在 JSON 格式中的附加文本，并添加了第二个示例，使用用户和助手消息进行 few-shot 提示。</p>
-<pre><code class="lang-pythonthon">def find_category_and_product_v2(user_input,products_and_category):
-    """
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_category_and_product_v2</span>(<span class="hljs-params">user_input,products_and_category</span>):
+    <span class="hljs-string">"""
     从用户输入中获取到产品和类别
 
     添加：不要输出任何不符合 JSON 格式的额外文本。
@@ -883,11 +883,11 @@ print(products_by_category_4)
     参数：
     user_input：用户的查询
     products_and_category：产品类型和对应产品的字典    
-    """
-    delimiter = "####"
-    system_message = f"""
+    """</span>
+    delimiter = <span class="hljs-string">"####"</span>
+    system_message = <span class="hljs-string">f"""
     您将提供客户服务查询。\
-    客户服务查询将用{delimiter}字符分隔。
+    客户服务查询将用<span class="hljs-subst">{delimiter}</span>字符分隔。
     输出一个 Python列表，列表中的每个对象都是 JSON 对象，每个对象的格式如下：
         '类别': &lt;电脑和笔记本, 智能手机和配件, 电视和家庭影院系统, \
     游戏机和配件, 音频设备, 相机和摄像机中的一个&gt;,
@@ -906,245 +906,245 @@ print(products_by_category_4)
     允许的产品以 JSON 格式提供。
     每个项目的键代表类别。
     每个项目的值是该类别中的产品列表。
-    允许的产品：{products_and_category}
+    允许的产品：<span class="hljs-subst">{products_and_category}</span>
 
-    """
+    """</span>
 
-    few_shot_user_1 = """我想要最贵的电脑。你推荐哪款？"""
-    few_shot_assistant_1 = """ 
+    few_shot_user_1 = <span class="hljs-string">"""我想要最贵的电脑。你推荐哪款？"""</span>
+    few_shot_assistant_1 = <span class="hljs-string">""" 
     [{'category': '电脑和笔记本', \
 'products': ['TechPro 超极本', 'BlueWave 游戏本', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook']}]
-     """
+     """</span>
 
-    few_shot_user_2 = """我想要最便宜的电脑。你推荐哪款？"""
-    few_shot_assistant_2 = """ 
+    few_shot_user_2 = <span class="hljs-string">"""我想要最便宜的电脑。你推荐哪款？"""</span>
+    few_shot_assistant_2 = <span class="hljs-string">""" 
     [{'category': '电脑和笔记本', \
 'products': ['TechPro 超极本', 'BlueWave 游戏本', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook']}]
-    """
+    """</span>
 
     messages =  [  
-    {'role':'system', 'content': system_message},    
-    {'role':'user', 'content': f"{delimiter}{few_shot_user_1}{delimiter}"},  
-    {'role':'assistant', 'content': few_shot_assistant_1 },
-    {'role':'user', 'content': f"{delimiter}{few_shot_user_2}{delimiter}"},  
-    {'role':'assistant', 'content': few_shot_assistant_2 },
-    {'role':'user', 'content': f"{delimiter}{user_input}{delimiter}"},  
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},    
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{few_shot_user_1}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>: few_shot_assistant_1 },
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{few_shot_user_2}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>: few_shot_assistant_2 },
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_input}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
     ] 
-    return get_completion_from_messages(messages)
+    <span class="hljs-keyword">return</span> get_completion_from_messages(messages)
 </code></pre>
 <h2 id="五、在难测试用例上评估修改后的指令">五、在难测试用例上评估修改后的指令</h2>
 <p>我们可以在之前表现不如预期的较难测试用例上评估改进后系统的效果：</p>
-<pre><code class="lang-pythonthon">customer_msg_3 = f"""
+<pre><code class="lang-python">customer_msg_3 = <span class="hljs-string">f"""
 告诉我关于smartx pro手机和fotosnap相机的信息，那款DSLR的。
-另外，你们有哪些电视？"""
+另外，你们有哪些电视？"""</span>
 
 products_by_category_3 = find_category_and_product_v2(customer_msg_3,
                                                       products_and_category)
-print(products_by_category_3)
+<span class="hljs-built_in">print</span>(products_by_category_3)
 </code></pre>
 <pre><code>    [{'category': '智能手机和配件', 'products': ['SmartX ProPhone']}, {'category': '相机和摄像机', 'products': ['FotoSnap DSLR Camera', 'ActionCam 4K', 'FotoSnap Mirrorless Camera', 'ZoomMaster Camcorder', 'FotoSnap Instant Camera']}, {'category': '电视和家庭影院系统', 'products': ['CineView 4K TV', 'SoundMax Home Theater', 'CineView 8K TV', 'SoundMax Soundbar', 'CineView OLED TV']}]
 </code></pre><h2 id="六、回归测试：验证模型在以前的测试用例上仍然有效">六、回归测试：验证模型在以前的测试用例上仍然有效</h2>
 <p>检查并修复模型以提高难以测试的用例效果，同时确保此修正不会对先前的测试用例性能造成负面影响。</p>
-<pre><code class="lang-pythonthon">customer_msg_0 = f"""如果我预算有限，我可以买哪款电视？"""
+<pre><code class="lang-python">customer_msg_0 = <span class="hljs-string">f"""如果我预算有限，我可以买哪款电视？"""</span>
 
 products_by_category_0 = find_category_and_product_v2(customer_msg_0,
                                                       products_and_category)
-print(products_by_category_0)
+<span class="hljs-built_in">print</span>(products_by_category_0)
 </code></pre>
 <pre><code>    [{'category': '电视和家庭影院系统', 'products': ['CineView 4K TV', 'SoundMax Home Theater', 'CineView 8K TV', 'SoundMax Soundbar', 'CineView OLED TV']}]
 </code></pre><h2 id="七、收集开发集进行自动化测试">七、收集开发集进行自动化测试</h2>
 <p>当我们的应用程序逐渐成熟，测试的重要性也随之增加。通常，当我们仅处理少量样本，手动运行测试并对结果进行评估是可行的。然而，随着开发集的增大，这种方法变得既繁琐又低效。此时，就需要引入自动化测试来提高我们的工作效率。下面将开始编写代码来自动化测试流程，可以帮助您提升效率并确保测试的准确率。</p>
 <p>以下是一些用户问题的标准答案，用于评估 LLM 回答的准确度，与机器学习中的验证集的作用相当。</p>
-<pre><code class="lang-pythonthon">msg_ideal_pairs_set = [
+<pre><code class="lang-python">msg_ideal_pairs_set = [
 
-    # eg 0
-    {'customer_msg':"""如果我预算有限，我可以买哪种电视？""",
-     'ideal_answer':{
-        '电视和家庭影院系统':set(
-            ['CineView 4K TV', 'SoundMax Home Theater', 'CineView 8K TV', 'SoundMax Soundbar', 'CineView OLED TV']
+    <span class="hljs-comment"># eg 0</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">"""如果我预算有限，我可以买哪种电视？"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+        <span class="hljs-string">'电视和家庭影院系统'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'CineView 4K TV'</span>, <span class="hljs-string">'SoundMax Home Theater'</span>, <span class="hljs-string">'CineView 8K TV'</span>, <span class="hljs-string">'SoundMax Soundbar'</span>, <span class="hljs-string">'CineView OLED TV'</span>]
         )}
     },
 
-    # eg 1
-    {'customer_msg':"""我需要一个智能手机的充电器""",
-     'ideal_answer':{
-        '智能手机和配件':set(
-            ['MobiTech PowerCase', 'MobiTech Wireless Charger', 'SmartX EarBuds']
+    <span class="hljs-comment"># eg 1</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">"""我需要一个智能手机的充电器"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+        <span class="hljs-string">'智能手机和配件'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'MobiTech PowerCase'</span>, <span class="hljs-string">'MobiTech Wireless Charger'</span>, <span class="hljs-string">'SmartX EarBuds'</span>]
         )}
     },
-    # eg 2
-    {'customer_msg':f"""你有什么样的电脑""",
-     'ideal_answer':{
-           '电脑和笔记本':set(
-               ['TechPro 超极本', 'BlueWave 游戏本', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook'
+    <span class="hljs-comment"># eg 2</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""你有什么样的电脑"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+           <span class="hljs-string">'电脑和笔记本'</span>:<span class="hljs-built_in">set</span>(
+               [<span class="hljs-string">'TechPro 超极本'</span>, <span class="hljs-string">'BlueWave 游戏本'</span>, <span class="hljs-string">'PowerLite Convertible'</span>, <span class="hljs-string">'TechPro Desktop'</span>, <span class="hljs-string">'BlueWave Chromebook'</span>
                ])
                 }
     },
 
-    # eg 3
-    {'customer_msg':f"""告诉我关于smartx pro手机和fotosnap相机的信息，那款DSLR的。\
-另外，你们有哪些电视？""",
-     'ideal_answer':{
-        '智能手机和配件':set(
-            ['SmartX ProPhone']),
-        '相机和摄像机':set(
-            ['FotoSnap DSLR Camera']),
-        '电视和家庭影院系统':set(
-            ['CineView 4K TV', 'SoundMax Home Theater','CineView 8K TV', 'SoundMax Soundbar', 'CineView OLED TV'])
+    <span class="hljs-comment"># eg 3</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""告诉我关于smartx pro手机和fotosnap相机的信息，那款DSLR的。\
+另外，你们有哪些电视？"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+        <span class="hljs-string">'智能手机和配件'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'SmartX ProPhone'</span>]),
+        <span class="hljs-string">'相机和摄像机'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'FotoSnap DSLR Camera'</span>]),
+        <span class="hljs-string">'电视和家庭影院系统'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'CineView 4K TV'</span>, <span class="hljs-string">'SoundMax Home Theater'</span>,<span class="hljs-string">'CineView 8K TV'</span>, <span class="hljs-string">'SoundMax Soundbar'</span>, <span class="hljs-string">'CineView OLED TV'</span>])
         }
     }, 
 
-    # eg 4
-    {'customer_msg':"""告诉我关于CineView电视，那款8K电视、\
-     Gamesphere游戏机和X游戏机的信息。我的预算有限，你们有哪些电脑？""",
-     'ideal_answer':{
-        '电视和家庭影院系统':set(
-            ['CineView 8K TV']),
-        '游戏机和配件':set(
-            ['GameSphere X']),
-        '电脑和笔记本':set(
-            ['TechPro Ultrabook', 'BlueWave Gaming Laptop', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook'])
+    <span class="hljs-comment"># eg 4</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">"""告诉我关于CineView电视，那款8K电视、\
+     Gamesphere游戏机和X游戏机的信息。我的预算有限，你们有哪些电脑？"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+        <span class="hljs-string">'电视和家庭影院系统'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'CineView 8K TV'</span>]),
+        <span class="hljs-string">'游戏机和配件'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'GameSphere X'</span>]),
+        <span class="hljs-string">'电脑和笔记本'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'TechPro Ultrabook'</span>, <span class="hljs-string">'BlueWave Gaming Laptop'</span>, <span class="hljs-string">'PowerLite Convertible'</span>, <span class="hljs-string">'TechPro Desktop'</span>, <span class="hljs-string">'BlueWave Chromebook'</span>])
         }
     },
 
-    # eg 5
-    {'customer_msg':f"""你们有哪些智能手机""",
-     'ideal_answer':{
-           '智能手机和配件':set(
-               ['SmartX ProPhone', 'MobiTech PowerCase', 'SmartX MiniPhone', 'MobiTech Wireless Charger', 'SmartX EarBuds'
+    <span class="hljs-comment"># eg 5</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""你们有哪些智能手机"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+           <span class="hljs-string">'智能手机和配件'</span>:<span class="hljs-built_in">set</span>(
+               [<span class="hljs-string">'SmartX ProPhone'</span>, <span class="hljs-string">'MobiTech PowerCase'</span>, <span class="hljs-string">'SmartX MiniPhone'</span>, <span class="hljs-string">'MobiTech Wireless Charger'</span>, <span class="hljs-string">'SmartX EarBuds'</span>
                ])
                     }
     },
-    # eg 6
-    {'customer_msg':f"""我预算有限。你能向我推荐一些智能手机吗？""",
-     'ideal_answer':{
-        '智能手机和配件':set(
-            ['SmartX EarBuds', 'SmartX MiniPhone', 'MobiTech PowerCase', 'SmartX ProPhone', 'MobiTech Wireless Charger']
+    <span class="hljs-comment"># eg 6</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""我预算有限。你能向我推荐一些智能手机吗？"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+        <span class="hljs-string">'智能手机和配件'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'SmartX EarBuds'</span>, <span class="hljs-string">'SmartX MiniPhone'</span>, <span class="hljs-string">'MobiTech PowerCase'</span>, <span class="hljs-string">'SmartX ProPhone'</span>, <span class="hljs-string">'MobiTech Wireless Charger'</span>]
         )}
     },
 
-    # eg 7 # this will output a subset of the ideal answer
-    {'customer_msg':f"""有哪些游戏机适合我喜欢赛车游戏的朋友？""",
-     'ideal_answer':{
-        '游戏机和配件':set([
-            'GameSphere X',
-            'ProGamer Controller',
-            'GameSphere Y',
-            'ProGamer Racing Wheel',
-            'GameSphere VR Headset'
+    <span class="hljs-comment"># eg 7 # this will output a subset of the ideal answer</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""有哪些游戏机适合我喜欢赛车游戏的朋友？"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+        <span class="hljs-string">'游戏机和配件'</span>:<span class="hljs-built_in">set</span>([
+            <span class="hljs-string">'GameSphere X'</span>,
+            <span class="hljs-string">'ProGamer Controller'</span>,
+            <span class="hljs-string">'GameSphere Y'</span>,
+            <span class="hljs-string">'ProGamer Racing Wheel'</span>,
+            <span class="hljs-string">'GameSphere VR Headset'</span>
      ])}
     },
-    # eg 8
-    {'customer_msg':f"""送给我摄像师朋友什么礼物合适？""",
-     'ideal_answer': {
-        '相机和摄像机':set([
-        'FotoSnap DSLR Camera', 'ActionCam 4K', 'FotoSnap Mirrorless Camera', 'ZoomMaster Camcorder', 'FotoSnap Instant Camera'
+    <span class="hljs-comment"># eg 8</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""送给我摄像师朋友什么礼物合适？"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>: {
+        <span class="hljs-string">'相机和摄像机'</span>:<span class="hljs-built_in">set</span>([
+        <span class="hljs-string">'FotoSnap DSLR Camera'</span>, <span class="hljs-string">'ActionCam 4K'</span>, <span class="hljs-string">'FotoSnap Mirrorless Camera'</span>, <span class="hljs-string">'ZoomMaster Camcorder'</span>, <span class="hljs-string">'FotoSnap Instant Camera'</span>
         ])}
     },
 
-    # eg 9
-    {'customer_msg':f"""我想要一台热水浴缸时光机""",
-     'ideal_answer': []
+    <span class="hljs-comment"># eg 9</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""我想要一台热水浴缸时光机"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>: []
     }
 
 ]
 </code></pre>
 <h2 id="八、通过与理想答案比较来评估测试用例">八、通过与理想答案比较来评估测试用例</h2>
 <p>我们通过以下函数<code>eval_response_with_ideal</code>来评估 LLM 回答的准确度，该函数通过将 LLM 回答与理想答案进行比较来评估系统在测试用例上的效果。</p>
-<pre><code class="lang-pythonthon">import json
-def eval_response_with_ideal(response,
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">eval_response_with_ideal</span>(<span class="hljs-params">response,
                               ideal,
-                              debug=False):
-    """
+                              debug=<span class="hljs-literal">False</span></span>):
+    <span class="hljs-string">"""
     评估回复是否与理想答案匹配
 
     参数：
     response: 回复的内容
     ideal: 理想的答案
     debug: 是否打印调试信息
-    """
-    if debug:
-        print("回复：")
-        print(response)
+    """</span>
+    <span class="hljs-keyword">if</span> debug:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"回复："</span>)
+        <span class="hljs-built_in">print</span>(response)
 
-    # json.loads() 只能解析双引号，因此此处将单引号替换为双引号
-    json_like_str = response.replace("'",'"')
+    <span class="hljs-comment"># json.loads() 只能解析双引号，因此此处将单引号替换为双引号</span>
+    json_like_str = response.replace(<span class="hljs-string">"'"</span>,<span class="hljs-string">'"'</span>)
 
-    # 解析为一系列的字典
+    <span class="hljs-comment"># 解析为一系列的字典</span>
     l_of_d = json.loads(json_like_str)
 
-    # 当响应为空，即没有找到任何商品时
-    if l_of_d == [] and ideal == []:
-        return 1
+    <span class="hljs-comment"># 当响应为空，即没有找到任何商品时</span>
+    <span class="hljs-keyword">if</span> l_of_d == [] <span class="hljs-keyword">and</span> ideal == []:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
 
-    # 另外一种异常情况是，标准答案数量与回复答案数量不匹配
-    elif l_of_d == [] or ideal == []:
-        return 0
+    <span class="hljs-comment"># 另外一种异常情况是，标准答案数量与回复答案数量不匹配</span>
+    <span class="hljs-keyword">elif</span> l_of_d == [] <span class="hljs-keyword">or</span> ideal == []:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
 
-    # 统计正确答案数量
-    correct = 0    
+    <span class="hljs-comment"># 统计正确答案数量</span>
+    correct = <span class="hljs-number">0</span>    
 
-    if debug:
-        print("l_of_d is")
-        print(l_of_d)
+    <span class="hljs-keyword">if</span> debug:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"l_of_d is"</span>)
+        <span class="hljs-built_in">print</span>(l_of_d)
 
-    # 对每一个问答对  
-    for d in l_of_d:
+    <span class="hljs-comment"># 对每一个问答对  </span>
+    <span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> l_of_d:
 
-        # 获取产品和目录
-        cat = d.get('category')
-        prod_l = d.get('products')
-        # 有获取到产品和目录
-        if cat and prod_l:
-            # convert list to set for comparison
-            prod_set = set(prod_l)
-            # get ideal set of products
+        <span class="hljs-comment"># 获取产品和目录</span>
+        cat = d.get(<span class="hljs-string">'category'</span>)
+        prod_l = d.get(<span class="hljs-string">'products'</span>)
+        <span class="hljs-comment"># 有获取到产品和目录</span>
+        <span class="hljs-keyword">if</span> cat <span class="hljs-keyword">and</span> prod_l:
+            <span class="hljs-comment"># convert list to set for comparison</span>
+            prod_set = <span class="hljs-built_in">set</span>(prod_l)
+            <span class="hljs-comment"># get ideal set of products</span>
             ideal_cat = ideal.get(cat)
-            if ideal_cat:
-                prod_set_ideal = set(ideal.get(cat))
-            else:
-                if debug:
-                    print(f"没有在标准答案中找到目录 {cat}")
-                    print(f"标准答案: {ideal}")
-                continue
+            <span class="hljs-keyword">if</span> ideal_cat:
+                prod_set_ideal = <span class="hljs-built_in">set</span>(ideal.get(cat))
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-keyword">if</span> debug:
+                    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"没有在标准答案中找到目录 <span class="hljs-subst">{cat}</span>"</span>)
+                    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"标准答案: <span class="hljs-subst">{ideal}</span>"</span>)
+                <span class="hljs-keyword">continue</span>
 
-            if debug:
-                print("产品集合：\n",prod_set)
-                print()
-                print("标准答案的产品集合：\n",prod_set_ideal)
+            <span class="hljs-keyword">if</span> debug:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"产品集合：\n"</span>,prod_set)
+                <span class="hljs-built_in">print</span>()
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"标准答案的产品集合：\n"</span>,prod_set_ideal)
 
-            # 查找到的产品集合和标准的产品集合一致
-            if prod_set == prod_set_ideal:
-                if debug:
-                    print("正确")
-                correct +=1
-            else:
-                print("错误")
-                print(f"产品集合: {prod_set}")
-                print(f"标准的产品集合: {prod_set_ideal}")
-                if prod_set &lt;= prod_set_ideal:
-                    print("回答是标准答案的一个子集")
-                elif prod_set &gt;= prod_set_ideal:
-                    print("回答是标准答案的一个超集")
+            <span class="hljs-comment"># 查找到的产品集合和标准的产品集合一致</span>
+            <span class="hljs-keyword">if</span> prod_set == prod_set_ideal:
+                <span class="hljs-keyword">if</span> debug:
+                    <span class="hljs-built_in">print</span>(<span class="hljs-string">"正确"</span>)
+                correct +=<span class="hljs-number">1</span>
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"错误"</span>)
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">f"产品集合: <span class="hljs-subst">{prod_set}</span>"</span>)
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">f"标准的产品集合: <span class="hljs-subst">{prod_set_ideal}</span>"</span>)
+                <span class="hljs-keyword">if</span> prod_set &lt;= prod_set_ideal:
+                    <span class="hljs-built_in">print</span>(<span class="hljs-string">"回答是标准答案的一个子集"</span>)
+                <span class="hljs-keyword">elif</span> prod_set &gt;= prod_set_ideal:
+                    <span class="hljs-built_in">print</span>(<span class="hljs-string">"回答是标准答案的一个超集"</span>)
 
-    # 计算正确答案数
-    pc_correct = correct / len(l_of_d)
+    <span class="hljs-comment"># 计算正确答案数</span>
+    pc_correct = correct / <span class="hljs-built_in">len</span>(l_of_d)
 
-    return pc_correct
+    <span class="hljs-keyword">return</span> pc_correct
 </code></pre>
 <p>我们使用上述测试用例中的一个进行测试，首先看一下标准回答：</p>
-<pre><code class="lang-pythonthon">print(f'用户提问: {msg_ideal_pairs_set[7]["customer_msg"]}')
-print(f'标准答案: {msg_ideal_pairs_set[7]["ideal_answer"]}')
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">f'用户提问: <span class="hljs-subst">{msg_ideal_pairs_set[<span class="hljs-number">7</span>][<span class="hljs-string">"customer_msg"</span>]}</span>'</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'标准答案: <span class="hljs-subst">{msg_ideal_pairs_set[<span class="hljs-number">7</span>][<span class="hljs-string">"ideal_answer"</span>]}</span>'</span>)
 </code></pre>
 <pre><code>用户提问: 有哪些游戏机适合我喜欢赛车游戏的朋友？
 标准答案: {'游戏机和配件': {'ProGamer Racing Wheel', 'ProGamer Controller', 'GameSphere Y', 'GameSphere VR Headset', 'GameSphere X'}}
 </code></pre><p>再对比 LLM 回答，并使用验证函数进行评分：</p>
-<pre><code class="lang-pythonthon">response = find_category_and_product_v2(msg_ideal_pairs_set[7]["customer_msg"],
+<pre><code class="lang-python">response = find_category_and_product_v2(msg_ideal_pairs_set[<span class="hljs-number">7</span>][<span class="hljs-string">"customer_msg"</span>],
                                          products_and_category)
-print(f'回答: {response}')
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'回答: <span class="hljs-subst">{response}</span>'</span>)
 
 eval_response_with_ideal(response,
-                              msg_ideal_pairs_set[7]["ideal_answer"])
+                              msg_ideal_pairs_set[<span class="hljs-number">7</span>][<span class="hljs-string">"ideal_answer"</span>])
 </code></pre>
 <pre><code>回答:  
     [{'category': '游戏机和配件', 'products': ['GameSphere X', 'ProGamer Controller', 'GameSphere Y', 'ProGamer Racing Wheel', 'GameSphere VR Headset']}]
@@ -1161,31 +1161,31 @@ eval_response_with_ideal(response,
 <blockquote>
 <p>注意：如果任何 API 调用超时，将无法运行</p>
 </blockquote>
-<pre><code class="lang-pythonthon">import time
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> time
 
-score_accum = 0
-for i, pair in enumerate(msg_ideal_pairs_set):
-    time.sleep(20)
-    print(f"示例 {i}")
+score_accum = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> i, pair <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(msg_ideal_pairs_set):
+    time.sleep(<span class="hljs-number">20</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"示例 <span class="hljs-subst">{i}</span>"</span>)
 
-    customer_msg = pair['customer_msg']
-    ideal = pair['ideal_answer']
+    customer_msg = pair[<span class="hljs-string">'customer_msg'</span>]
+    ideal = pair[<span class="hljs-string">'ideal_answer'</span>]
 
-    # print("Customer message",customer_msg)
-    # print("ideal:",ideal)
+    <span class="hljs-comment"># print("Customer message",customer_msg)</span>
+    <span class="hljs-comment"># print("ideal:",ideal)</span>
     response = find_category_and_product_v2(customer_msg,
                                                       products_and_category)
 
 
-    # print("products_by_category",products_by_category)
-    score = eval_response_with_ideal(response,ideal,debug=False)
-    print(f"{i}: {score}")
+    <span class="hljs-comment"># print("products_by_category",products_by_category)</span>
+    score = eval_response_with_ideal(response,ideal,debug=<span class="hljs-literal">False</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"<span class="hljs-subst">{i}</span>: <span class="hljs-subst">{score}</span>"</span>)
     score_accum += score
 
 
-n_examples = len(msg_ideal_pairs_set)
+n_examples = <span class="hljs-built_in">len</span>(msg_ideal_pairs_set)
 fraction_correct = score_accum / n_examples
-print(f"正确比例为 {n_examples}: {fraction_correct}")
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f"正确比例为 <span class="hljs-subst">{n_examples}</span>: <span class="hljs-subst">{fraction_correct}</span>"</span>)
 </code></pre>
 <pre><code>示例 0
 0: 1.0
@@ -1235,7 +1235,7 @@ print(f"正确比例为 {n_examples}: {fraction_correct}")
 <p>在本章中，输出可以被定量评估，就像有一个期望的输出一样，您可以判断它是否给出了这个期望的输出。在下一章中，我们将探讨如何在更加模糊的情况下评估我们的输出。即正确答案可能不那么明确的情况。</p>
 <h2 id="十、英文版">十、英文版</h2>
 <p><strong>1. 找出产品和类别名称</strong></p>
-<pre><code class="lang-pythonthon">import utils_en
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> utils_en
 
 products_and_category = utils_en.get_products_and_category()
 products_and_category
@@ -1270,21 +1270,21 @@ products_and_category
   'FotoSnap Mirrorless Camera',
   'ZoomMaster Camcorder',
   'FotoSnap Instant Camera']}
-</code></pre><pre><code class="lang-pythonthon">def find_category_and_product_v1(user_input, products_and_category):
-    """
+</code></pre><pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_category_and_product_v1</span>(<span class="hljs-params">user_input, products_and_category</span>):
+    <span class="hljs-string">"""
     从用户输入中获取到产品和类别
 
     参数：
     user_input：用户的查询
     products_and_category：产品类型和对应产品的字典
-    """
+    """</span>
 
-    # 分隔符
-    delimiter = "####"
-    # 定义的系统信息，陈述了需要 GPT 完成的工作
-    system_message = f"""
+    <span class="hljs-comment"># 分隔符</span>
+    delimiter = <span class="hljs-string">"####"</span>
+    <span class="hljs-comment"># 定义的系统信息，陈述了需要 GPT 完成的工作</span>
+    system_message = <span class="hljs-string">f"""
     You will be provided with customer service queries. \
-    The customer service query will be delimited with {delimiter} characters.
+    The customer service query will be delimited with <span class="hljs-subst">{delimiter}</span> characters.
     Output a Python list of json objects, where each object has the following format:
         'category': &lt;one of Computers and Laptops, Smartphones and Accessories, Televisions and Home Theater Systems, \
     Gaming Consoles and Accessories, Audio Equipment, Cameras and Camcorders&gt;,
@@ -1304,74 +1304,74 @@ products_and_category
     The allowed products are provided in JSON format.
     The keys of each item represent the category.
     The values of each item is a list of products that are within that category.
-    Allowed products: {products_and_category}
+    Allowed products: <span class="hljs-subst">{products_and_category}</span>
 
 
-    """
-    # 给出几个示例
-    few_shot_user_1 = """I want the most expensive computer."""
-    few_shot_assistant_1 = """ 
+    """</span>
+    <span class="hljs-comment"># 给出几个示例</span>
+    few_shot_user_1 = <span class="hljs-string">"""I want the most expensive computer."""</span>
+    few_shot_assistant_1 = <span class="hljs-string">""" 
     [{'category': 'Computers and Laptops', \
 'products': ['TechPro Ultrabook', 'BlueWave Gaming Laptop', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook']}]
-    """
+    """</span>
 
     messages =  [  
-    {'role':'system', 'content': system_message},    
-    {'role':'user', 'content': f"{delimiter}{few_shot_user_1}{delimiter}"},  
-    {'role':'assistant', 'content': few_shot_assistant_1 },
-    {'role':'user', 'content': f"{delimiter}{user_input}{delimiter}"},  
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},    
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{few_shot_user_1}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>: few_shot_assistant_1 },
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_input}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
     ] 
-    return get_completion_from_messages(messages)
+    <span class="hljs-keyword">return</span> get_completion_from_messages(messages)
 </code></pre>
 <p><strong>2. 在一些查询上进行评估</strong></p>
-<pre><code class="lang-pythonthon"># 第一个评估的查询
-customer_msg_0 = f"""Which TV can I buy if I'm on a budget?"""
+<pre><code class="lang-python"><span class="hljs-comment"># 第一个评估的查询</span>
+customer_msg_0 = <span class="hljs-string">f"""Which TV can I buy if I'm on a budget?"""</span>
 
 products_by_category_0 = find_category_and_product_v1(customer_msg_0,
                                                       products_and_category)
-print(products_by_category_0)
+<span class="hljs-built_in">print</span>(products_by_category_0)
 </code></pre>
 <pre><code>    [{'category': 'Televisions and Home Theater Systems', 'products': ['CineView 4K TV', 'SoundMax Home Theater', 'CineView 8K TV', 'SoundMax Soundbar', 'CineView OLED TV']}]
-</code></pre><pre><code class="lang-pythonthon"># 第二个评估的查询
-customer_msg_1 = f"""I need a charger for my smartphone"""
+</code></pre><pre><code class="lang-python"><span class="hljs-comment"># 第二个评估的查询</span>
+customer_msg_1 = <span class="hljs-string">f"""I need a charger for my smartphone"""</span>
 
 products_by_category_1 = find_category_and_product_v1(customer_msg_1,
                                                       products_and_category)
-print(products_by_category_1)
+<span class="hljs-built_in">print</span>(products_by_category_1)
 </code></pre>
 <pre><code>    [{'category': 'Smartphones and Accessories', 'products': ['MobiTech PowerCase', 'MobiTech Wireless Charger', 'SmartX EarBuds']}]
-</code></pre><pre><code class="lang-pythonthon"># 第三个评估查询
-customer_msg_2 = f"""
-What computers do you have?"""
+</code></pre><pre><code class="lang-python"><span class="hljs-comment"># 第三个评估查询</span>
+customer_msg_2 = <span class="hljs-string">f"""
+What computers do you have?"""</span>
 
 products_by_category_2 = find_category_and_product_v1(customer_msg_2,
                                                       products_and_category)
 products_by_category_2
 </code></pre>
 <pre><code>" \n    [{'category': 'Computers and Laptops', 'products': ['TechPro Ultrabook', 'BlueWave Gaming Laptop', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook']}]"
-</code></pre><pre><code class="lang-pythonthon"># 第四个查询，更复杂
-customer_msg_3 = f"""
+</code></pre><pre><code class="lang-python"><span class="hljs-comment"># 第四个查询，更复杂</span>
+customer_msg_3 = <span class="hljs-string">f"""
 tell me about the smartx pro phone and the fotosnap camera, the dslr one.
-Also, what TVs do you have?"""
+Also, what TVs do you have?"""</span>
 
 products_by_category_3 = find_category_and_product_v1(customer_msg_3,
                                                       products_and_category)
-print(products_by_category_3)
+<span class="hljs-built_in">print</span>(products_by_category_3)
 </code></pre>
 <pre><code>    [{'category': 'Smartphones and Accessories', 'products': ['SmartX ProPhone']}, {'category': 'Cameras and Camcorders', 'products': ['FotoSnap DSLR Camera']}, {'category': 'Televisions and Home Theater Systems', 'products': ['CineView 4K TV', 'SoundMax Home Theater', 'CineView 8K TV', 'SoundMax Soundbar', 'CineView OLED TV']}]
 </code></pre><p><strong>3. 更难的测试用例</strong></p>
-<pre><code class="lang-pythonthon">customer_msg_4 = f"""
+<pre><code class="lang-python">customer_msg_4 = <span class="hljs-string">f"""
 tell me about the CineView TV, the 8K one, Gamesphere console, the X one.
-I'm on a budget, what computers do you have?"""
+I'm on a budget, what computers do you have?"""</span>
 
 products_by_category_4 = find_category_and_product_v1(customer_msg_4,
                                                       products_and_category)
-print(products_by_category_4)
+<span class="hljs-built_in">print</span>(products_by_category_4)
 </code></pre>
 <pre><code>    [{'category': 'Televisions and Home Theater Systems', 'products': ['CineView 8K TV']}, {'category': 'Gaming Consoles and Accessories', 'products': ['GameSphere X']}, {'category': 'Computers and Laptops', 'products': ['TechPro Ultrabook', 'BlueWave Gaming Laptop', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook']}]
 </code></pre><p><strong>4. 修改指令</strong></p>
-<pre><code class="lang-pythonthon">def find_category_and_product_v2(user_input, products_and_category):
-    """
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_category_and_product_v2</span>(<span class="hljs-params">user_input, products_and_category</span>):
+    <span class="hljs-string">"""
     从用户输入中获取到产品和类别
     添加：不要输出任何不符合 JSON 格式的额外文本。
     添加了第二个示例（用于 few-shot 提示），用户询问最便宜的计算机。
@@ -1380,11 +1380,11 @@ print(products_by_category_4)
     参数：
     user_input：用户的查询
     products_and_category：产品类型和对应产品的字典
-    """
-    delimiter = "####"
-    system_message = f"""
+    """</span>
+    delimiter = <span class="hljs-string">"####"</span>
+    system_message = <span class="hljs-string">f"""
     You will be provided with customer service queries. \
-    The customer service query will be delimited with {delimiter} characters.
+    The customer service query will be delimited with <span class="hljs-subst">{delimiter}</span> characters.
     Output a Python list of JSON objects, where each object has the following format:
         'category': &lt;one of Computers and Laptops, Smartphones and Accessories, Televisions and Home Theater Systems, \
     Gaming Consoles and Accessories, Audio Equipment, Cameras and Camcorders&gt;,
@@ -1406,240 +1406,240 @@ print(products_by_category_4)
     The allowed products are provided in JSON format.
     The keys of each item represent the category.
     The values of each item is a list of products that are within that category.
-    Allowed products: {products_and_category}
+    Allowed products: <span class="hljs-subst">{products_and_category}</span>
 
 
-    """
+    """</span>
 
-    few_shot_user_1 = """I want the most expensive computer. What do you recommend?"""
-    few_shot_assistant_1 = """ 
+    few_shot_user_1 = <span class="hljs-string">"""I want the most expensive computer. What do you recommend?"""</span>
+    few_shot_assistant_1 = <span class="hljs-string">""" 
     [{'category': 'Computers and Laptops', \
 'products': ['TechPro Ultrabook', 'BlueWave Gaming Laptop', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook']}]
-    """
+    """</span>
 
-    few_shot_user_2 = """I want the most cheapest computer. What do you recommend?"""
-    few_shot_assistant_2 = """ 
+    few_shot_user_2 = <span class="hljs-string">"""I want the most cheapest computer. What do you recommend?"""</span>
+    few_shot_assistant_2 = <span class="hljs-string">""" 
     [{'category': 'Computers and Laptops', \
 'products': ['TechPro Ultrabook', 'BlueWave Gaming Laptop', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook']}]
-    """
+    """</span>
 
     messages =  [  
-    {'role':'system', 'content': system_message},    
-    {'role':'user', 'content': f"{delimiter}{few_shot_user_1}{delimiter}"},  
-    {'role':'assistant', 'content': few_shot_assistant_1 },
-    {'role':'user', 'content': f"{delimiter}{few_shot_user_2}{delimiter}"},  
-    {'role':'assistant', 'content': few_shot_assistant_2 },
-    {'role':'user', 'content': f"{delimiter}{user_input}{delimiter}"},  
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},    
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{few_shot_user_1}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>: few_shot_assistant_1 },
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{few_shot_user_2}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>, <span class="hljs-string">'content'</span>: few_shot_assistant_2 },
+    {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_input}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
     ] 
-    return get_completion_from_messages(messages)
+    <span class="hljs-keyword">return</span> get_completion_from_messages(messages)
 </code></pre>
 <p><strong>5. 进一步评估</strong></p>
-<pre><code class="lang-pythonthon">customer_msg_3 = f"""
+<pre><code class="lang-python">customer_msg_3 = <span class="hljs-string">f"""
 tell me about the smartx pro phone and the fotosnap camera, the dslr one.
-Also, what TVs do you have?"""
+Also, what TVs do you have?"""</span>
 
 products_by_category_3 = find_category_and_product_v2(customer_msg_3,
                                                       products_and_category)
-print(products_by_category_3)
+<span class="hljs-built_in">print</span>(products_by_category_3)
 </code></pre>
 <pre><code>    [{'category': 'Smartphones and Accessories', 'products': ['SmartX ProPhone']}, {'category': 'Cameras and Camcorders', 'products': ['FotoSnap DSLR Camera']}, {'category': 'Televisions and Home Theater Systems', 'products': ['CineView 4K TV', 'SoundMax Home Theater', 'CineView 8K TV', 'SoundMax Soundbar', 'CineView OLED TV']}]
 </code></pre><p><strong>6. 回归测试</strong></p>
-<pre><code class="lang-pythonthon">customer_msg_0 = f"""Which TV can I buy if I'm on a budget?"""
+<pre><code class="lang-python">customer_msg_0 = <span class="hljs-string">f"""Which TV can I buy if I'm on a budget?"""</span>
 
 products_by_category_0 = find_category_and_product_v2(customer_msg_0,
                                                       products_and_category)
-print(products_by_category_0)
+<span class="hljs-built_in">print</span>(products_by_category_0)
 </code></pre>
 <pre><code>    [{'category': 'Televisions and Home Theater Systems', 'products': ['CineView 4K TV', 'SoundMax Home Theater', 'CineView 8K TV', 'SoundMax Soundbar', 'CineView OLED TV']}]
 </code></pre><p><strong>7. 自动化测试</strong></p>
-<pre><code class="lang-pythonthon">msg_ideal_pairs_set = [
+<pre><code class="lang-python">msg_ideal_pairs_set = [
 
-    # eg 0
-    {'customer_msg':"""Which TV can I buy if I'm on a budget?""",
-     'ideal_answer':{
-        'Televisions and Home Theater Systems':set(
-            ['CineView 4K TV', 'SoundMax Home Theater', 'CineView 8K TV', 'SoundMax Soundbar', 'CineView OLED TV']
+    <span class="hljs-comment"># eg 0</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">"""Which TV can I buy if I'm on a budget?"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+        <span class="hljs-string">'Televisions and Home Theater Systems'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'CineView 4K TV'</span>, <span class="hljs-string">'SoundMax Home Theater'</span>, <span class="hljs-string">'CineView 8K TV'</span>, <span class="hljs-string">'SoundMax Soundbar'</span>, <span class="hljs-string">'CineView OLED TV'</span>]
         )}
     },
 
-    # eg 1
-    {'customer_msg':"""I need a charger for my smartphone""",
-     'ideal_answer':{
-        'Smartphones and Accessories':set(
-            ['MobiTech PowerCase', 'MobiTech Wireless Charger', 'SmartX EarBuds']
+    <span class="hljs-comment"># eg 1</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">"""I need a charger for my smartphone"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+        <span class="hljs-string">'Smartphones and Accessories'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'MobiTech PowerCase'</span>, <span class="hljs-string">'MobiTech Wireless Charger'</span>, <span class="hljs-string">'SmartX EarBuds'</span>]
         )}
     },
-    # eg 2
-    {'customer_msg':f"""What computers do you have?""",
-     'ideal_answer':{
-           'Computers and Laptops':set(
-               ['TechPro Ultrabook', 'BlueWave Gaming Laptop', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook'
+    <span class="hljs-comment"># eg 2</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""What computers do you have?"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+           <span class="hljs-string">'Computers and Laptops'</span>:<span class="hljs-built_in">set</span>(
+               [<span class="hljs-string">'TechPro Ultrabook'</span>, <span class="hljs-string">'BlueWave Gaming Laptop'</span>, <span class="hljs-string">'PowerLite Convertible'</span>, <span class="hljs-string">'TechPro Desktop'</span>, <span class="hljs-string">'BlueWave Chromebook'</span>
                ])
                 }
     },
 
-    # eg 3
-    {'customer_msg':f"""tell me about the smartx pro phone and \
+    <span class="hljs-comment"># eg 3</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""tell me about the smartx pro phone and \
     the fotosnap camera, the dslr one.\
-    Also, what TVs do you have?""",
-     'ideal_answer':{
-        'Smartphones and Accessories':set(
-            ['SmartX ProPhone']),
-        'Cameras and Camcorders':set(
-            ['FotoSnap DSLR Camera']),
-        'Televisions and Home Theater Systems':set(
-            ['CineView 4K TV', 'SoundMax Home Theater','CineView 8K TV', 'SoundMax Soundbar', 'CineView OLED TV'])
+    Also, what TVs do you have?"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+        <span class="hljs-string">'Smartphones and Accessories'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'SmartX ProPhone'</span>]),
+        <span class="hljs-string">'Cameras and Camcorders'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'FotoSnap DSLR Camera'</span>]),
+        <span class="hljs-string">'Televisions and Home Theater Systems'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'CineView 4K TV'</span>, <span class="hljs-string">'SoundMax Home Theater'</span>,<span class="hljs-string">'CineView 8K TV'</span>, <span class="hljs-string">'SoundMax Soundbar'</span>, <span class="hljs-string">'CineView OLED TV'</span>])
         }
     }, 
 
-    # eg 4
-    {'customer_msg':"""tell me about the CineView TV, the 8K one, Gamesphere console, the X one.
-I'm on a budget, what computers do you have?""",
-     'ideal_answer':{
-        'Televisions and Home Theater Systems':set(
-            ['CineView 8K TV']),
-        'Gaming Consoles and Accessories':set(
-            ['GameSphere X']),
-        'Computers and Laptops':set(
-            ['TechPro Ultrabook', 'BlueWave Gaming Laptop', 'PowerLite Convertible', 'TechPro Desktop', 'BlueWave Chromebook'])
+    <span class="hljs-comment"># eg 4</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">"""tell me about the CineView TV, the 8K one, Gamesphere console, the X one.
+I'm on a budget, what computers do you have?"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+        <span class="hljs-string">'Televisions and Home Theater Systems'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'CineView 8K TV'</span>]),
+        <span class="hljs-string">'Gaming Consoles and Accessories'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'GameSphere X'</span>]),
+        <span class="hljs-string">'Computers and Laptops'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'TechPro Ultrabook'</span>, <span class="hljs-string">'BlueWave Gaming Laptop'</span>, <span class="hljs-string">'PowerLite Convertible'</span>, <span class="hljs-string">'TechPro Desktop'</span>, <span class="hljs-string">'BlueWave Chromebook'</span>])
         }
     },
 
-    # eg 5
-    {'customer_msg':f"""What smartphones do you have?""",
-     'ideal_answer':{
-           'Smartphones and Accessories':set(
-               ['SmartX ProPhone', 'MobiTech PowerCase', 'SmartX MiniPhone', 'MobiTech Wireless Charger', 'SmartX EarBuds'
+    <span class="hljs-comment"># eg 5</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""What smartphones do you have?"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+           <span class="hljs-string">'Smartphones and Accessories'</span>:<span class="hljs-built_in">set</span>(
+               [<span class="hljs-string">'SmartX ProPhone'</span>, <span class="hljs-string">'MobiTech PowerCase'</span>, <span class="hljs-string">'SmartX MiniPhone'</span>, <span class="hljs-string">'MobiTech Wireless Charger'</span>, <span class="hljs-string">'SmartX EarBuds'</span>
                ])
                     }
     },
-    # eg 6
-    {'customer_msg':f"""I'm on a budget.  Can you recommend some smartphones to me?""",
-     'ideal_answer':{
-        'Smartphones and Accessories':set(
-            ['SmartX EarBuds', 'SmartX MiniPhone', 'MobiTech PowerCase', 'SmartX ProPhone', 'MobiTech Wireless Charger']
+    <span class="hljs-comment"># eg 6</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""I'm on a budget.  Can you recommend some smartphones to me?"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+        <span class="hljs-string">'Smartphones and Accessories'</span>:<span class="hljs-built_in">set</span>(
+            [<span class="hljs-string">'SmartX EarBuds'</span>, <span class="hljs-string">'SmartX MiniPhone'</span>, <span class="hljs-string">'MobiTech PowerCase'</span>, <span class="hljs-string">'SmartX ProPhone'</span>, <span class="hljs-string">'MobiTech Wireless Charger'</span>]
         )}
     },
 
-    # eg 7 # this will output a subset of the ideal answer
-    {'customer_msg':f"""What Gaming consoles would be good for my friend who is into racing games?""",
-     'ideal_answer':{
-        'Gaming Consoles and Accessories':set([
-            'GameSphere X',
-            'ProGamer Controller',
-            'GameSphere Y',
-            'ProGamer Racing Wheel',
-            'GameSphere VR Headset'
+    <span class="hljs-comment"># eg 7 # this will output a subset of the ideal answer</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""What Gaming consoles would be good for my friend who is into racing games?"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>:{
+        <span class="hljs-string">'Gaming Consoles and Accessories'</span>:<span class="hljs-built_in">set</span>([
+            <span class="hljs-string">'GameSphere X'</span>,
+            <span class="hljs-string">'ProGamer Controller'</span>,
+            <span class="hljs-string">'GameSphere Y'</span>,
+            <span class="hljs-string">'ProGamer Racing Wheel'</span>,
+            <span class="hljs-string">'GameSphere VR Headset'</span>
      ])}
     },
-    # eg 8
-    {'customer_msg':f"""What could be a good present for my videographer friend?""",
-     'ideal_answer': {
-        'Cameras and Camcorders':set([
-        'FotoSnap DSLR Camera', 'ActionCam 4K', 'FotoSnap Mirrorless Camera', 'ZoomMaster Camcorder', 'FotoSnap Instant Camera'
+    <span class="hljs-comment"># eg 8</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""What could be a good present for my videographer friend?"""</span>,
+     <span class="hljs-string">'ideal_answer'</span>: {
+        <span class="hljs-string">'Cameras and Camcorders'</span>:<span class="hljs-built_in">set</span>([
+        <span class="hljs-string">'FotoSnap DSLR Camera'</span>, <span class="hljs-string">'ActionCam 4K'</span>, <span class="hljs-string">'FotoSnap Mirrorless Camera'</span>, <span class="hljs-string">'ZoomMaster Camcorder'</span>, <span class="hljs-string">'FotoSnap Instant Camera'</span>
         ])}
     },
 
-    # eg 9
-    {'customer_msg':f"""I would like a hot tub time machine.""",
-     'ideal_answer': []
+    <span class="hljs-comment"># eg 9</span>
+    {<span class="hljs-string">'customer_msg'</span>:<span class="hljs-string">f"""I would like a hot tub time machine."""</span>,
+     <span class="hljs-string">'ideal_answer'</span>: []
     }
 
 ]
 </code></pre>
 <p><strong>8. 与理想答案对比</strong></p>
-<pre><code class="lang-pythonthon">import json
-def eval_response_with_ideal(response,
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">eval_response_with_ideal</span>(<span class="hljs-params">response,
                               ideal,
-                              debug=False):
-    """
+                              debug=<span class="hljs-literal">False</span></span>):
+    <span class="hljs-string">"""
     评估回复是否与理想答案匹配
 
     参数：
     response: 回复的内容
     ideal: 理想的答案
     debug: 是否打印调试信息
-    """
-    if debug:
-        print("回复：")
-        print(response)
+    """</span>
+    <span class="hljs-keyword">if</span> debug:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"回复："</span>)
+        <span class="hljs-built_in">print</span>(response)
 
-    # json.loads() 只能解析双引号，因此此处将单引号替换为双引号
-    json_like_str = response.replace("'",'"')
+    <span class="hljs-comment"># json.loads() 只能解析双引号，因此此处将单引号替换为双引号</span>
+    json_like_str = response.replace(<span class="hljs-string">"'"</span>,<span class="hljs-string">'"'</span>)
 
-    # 解析为一系列的字典
+    <span class="hljs-comment"># 解析为一系列的字典</span>
     l_of_d = json.loads(json_like_str)
 
-    # 当响应为空，即没有找到任何商品时
-    if l_of_d == [] and ideal == []:
-        return 1
+    <span class="hljs-comment"># 当响应为空，即没有找到任何商品时</span>
+    <span class="hljs-keyword">if</span> l_of_d == [] <span class="hljs-keyword">and</span> ideal == []:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>
 
-    # 另外一种异常情况是，标准答案数量与回复答案数量不匹配
-    elif l_of_d == [] or ideal == []:
-        return 0
+    <span class="hljs-comment"># 另外一种异常情况是，标准答案数量与回复答案数量不匹配</span>
+    <span class="hljs-keyword">elif</span> l_of_d == [] <span class="hljs-keyword">or</span> ideal == []:
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
 
-    # 统计正确答案数量
-    correct = 0    
+    <span class="hljs-comment"># 统计正确答案数量</span>
+    correct = <span class="hljs-number">0</span>    
 
-    if debug:
-        print("l_of_d is")
-        print(l_of_d)
+    <span class="hljs-keyword">if</span> debug:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"l_of_d is"</span>)
+        <span class="hljs-built_in">print</span>(l_of_d)
 
-    # 对每一个问答对  
-    for d in l_of_d:
+    <span class="hljs-comment"># 对每一个问答对  </span>
+    <span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> l_of_d:
 
-        # 获取产品和目录
-        cat = d.get('category')
-        prod_l = d.get('products')
-        # 有获取到产品和目录
-        if cat and prod_l:
-            # convert list to set for comparison
-            prod_set = set(prod_l)
-            # get ideal set of products
+        <span class="hljs-comment"># 获取产品和目录</span>
+        cat = d.get(<span class="hljs-string">'category'</span>)
+        prod_l = d.get(<span class="hljs-string">'products'</span>)
+        <span class="hljs-comment"># 有获取到产品和目录</span>
+        <span class="hljs-keyword">if</span> cat <span class="hljs-keyword">and</span> prod_l:
+            <span class="hljs-comment"># convert list to set for comparison</span>
+            prod_set = <span class="hljs-built_in">set</span>(prod_l)
+            <span class="hljs-comment"># get ideal set of products</span>
             ideal_cat = ideal.get(cat)
-            if ideal_cat:
-                prod_set_ideal = set(ideal.get(cat))
-            else:
-                if debug:
-                    print(f"没有在标准答案中找到目录 {cat}")
-                    print(f"标准答案: {ideal}")
-                continue
+            <span class="hljs-keyword">if</span> ideal_cat:
+                prod_set_ideal = <span class="hljs-built_in">set</span>(ideal.get(cat))
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-keyword">if</span> debug:
+                    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"没有在标准答案中找到目录 <span class="hljs-subst">{cat}</span>"</span>)
+                    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"标准答案: <span class="hljs-subst">{ideal}</span>"</span>)
+                <span class="hljs-keyword">continue</span>
 
-            if debug:
-                print("产品集合：\n",prod_set)
-                print()
-                print("标准答案的产品集合：\n",prod_set_ideal)
+            <span class="hljs-keyword">if</span> debug:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"产品集合：\n"</span>,prod_set)
+                <span class="hljs-built_in">print</span>()
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"标准答案的产品集合：\n"</span>,prod_set_ideal)
 
-            # 查找到的产品集合和标准的产品集合一致
-            if prod_set == prod_set_ideal:
-                if debug:
-                    print("正确")
-                correct +=1
-            else:
-                print("错误")
-                print(f"产品集合: {prod_set}")
-                print(f"标准的产品集合: {prod_set_ideal}")
-                if prod_set &lt;= prod_set_ideal:
-                    print("回答是标准答案的一个子集")
-                elif prod_set &gt;= prod_set_ideal:
-                    print("回答是标准答案的一个超集")
+            <span class="hljs-comment"># 查找到的产品集合和标准的产品集合一致</span>
+            <span class="hljs-keyword">if</span> prod_set == prod_set_ideal:
+                <span class="hljs-keyword">if</span> debug:
+                    <span class="hljs-built_in">print</span>(<span class="hljs-string">"正确"</span>)
+                correct +=<span class="hljs-number">1</span>
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"错误"</span>)
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">f"产品集合: <span class="hljs-subst">{prod_set}</span>"</span>)
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">f"标准的产品集合: <span class="hljs-subst">{prod_set_ideal}</span>"</span>)
+                <span class="hljs-keyword">if</span> prod_set &lt;= prod_set_ideal:
+                    <span class="hljs-built_in">print</span>(<span class="hljs-string">"回答是标准答案的一个子集"</span>)
+                <span class="hljs-keyword">elif</span> prod_set &gt;= prod_set_ideal:
+                    <span class="hljs-built_in">print</span>(<span class="hljs-string">"回答是标准答案的一个超集"</span>)
 
-    # 计算正确答案数
-    pc_correct = correct / len(l_of_d)
+    <span class="hljs-comment"># 计算正确答案数</span>
+    pc_correct = correct / <span class="hljs-built_in">len</span>(l_of_d)
 
-    return pc_correct
+    <span class="hljs-keyword">return</span> pc_correct
 </code></pre>
-<pre><code class="lang-pythonthon">print(f'用户提问: {msg_ideal_pairs_set[7]["customer_msg"]}')
-print(f'标准答案: {msg_ideal_pairs_set[7]["ideal_answer"]}')
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">f'用户提问: <span class="hljs-subst">{msg_ideal_pairs_set[<span class="hljs-number">7</span>][<span class="hljs-string">"customer_msg"</span>]}</span>'</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'标准答案: <span class="hljs-subst">{msg_ideal_pairs_set[<span class="hljs-number">7</span>][<span class="hljs-string">"ideal_answer"</span>]}</span>'</span>)
 </code></pre>
 <pre><code>用户提问: What Gaming consoles would be good for my friend who is into racing games?
 标准答案: {'Gaming Consoles and Accessories': {'ProGamer Racing Wheel', 'ProGamer Controller', 'GameSphere Y', 'GameSphere VR Headset', 'GameSphere X'}}
-</code></pre><pre><code class="lang-pythonthon">response = find_category_and_product_v2(msg_ideal_pairs_set[7]["customer_msg"],
+</code></pre><pre><code class="lang-python">response = find_category_and_product_v2(msg_ideal_pairs_set[<span class="hljs-number">7</span>][<span class="hljs-string">"customer_msg"</span>],
                                          products_and_category)
-print(f'回答: {response}')
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f'回答: <span class="hljs-subst">{response}</span>'</span>)
 
 eval_response_with_ideal(response,
-                              msg_ideal_pairs_set[7]["ideal_answer"])
+                              msg_ideal_pairs_set[<span class="hljs-number">7</span>][<span class="hljs-string">"ideal_answer"</span>])
 </code></pre>
 <pre><code>回答:  
     [{'category': 'Gaming Consoles and Accessories', 'products': ['GameSphere X', 'ProGamer Controller', 'GameSphere Y', 'ProGamer Racing Wheel', 'GameSphere VR Headset']}]
@@ -1651,31 +1651,31 @@ eval_response_with_ideal(response,
 
 1.0
 </code></pre><p><strong>9. 计算正确比例</strong></p>
-<pre><code class="lang-pythonthon">import time
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> time
 
-score_accum = 0
-for i, pair in enumerate(msg_ideal_pairs_set):
-    time.sleep(20)
-    print(f"示例 {i}")
+score_accum = <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> i, pair <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(msg_ideal_pairs_set):
+    time.sleep(<span class="hljs-number">20</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"示例 <span class="hljs-subst">{i}</span>"</span>)
 
-    customer_msg = pair['customer_msg']
-    ideal = pair['ideal_answer']
+    customer_msg = pair[<span class="hljs-string">'customer_msg'</span>]
+    ideal = pair[<span class="hljs-string">'ideal_answer'</span>]
 
-    # print("Customer message",customer_msg)
-    # print("ideal:",ideal)
+    <span class="hljs-comment"># print("Customer message",customer_msg)</span>
+    <span class="hljs-comment"># print("ideal:",ideal)</span>
     response = find_category_and_product_v2(customer_msg,
                                                       products_and_category)
 
 
-    # print("products_by_category",products_by_category)
-    score = eval_response_with_ideal(response,ideal,debug=False)
-    print(f"{i}: {score}")
+    <span class="hljs-comment"># print("products_by_category",products_by_category)</span>
+    score = eval_response_with_ideal(response,ideal,debug=<span class="hljs-literal">False</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"<span class="hljs-subst">{i}</span>: <span class="hljs-subst">{score}</span>"</span>)
     score_accum += score
 
 
-n_examples = len(msg_ideal_pairs_set)
+n_examples = <span class="hljs-built_in">len</span>(msg_ideal_pairs_set)
 fraction_correct = score_accum / n_examples
-print(f"正确比例为 {n_examples}: {fraction_correct}")
+<span class="hljs-built_in">print</span>(<span class="hljs-string">f"正确比例为 <span class="hljs-subst">{n_examples}</span>: <span class="hljs-subst">{fraction_correct}</span>"</span>)
 </code></pre>
 <pre><code>示例 0
 0: 1.0
@@ -1753,7 +1753,7 @@ print(f"正确比例为 {n_examples}: {fraction_correct}")
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"9. 评估（上）Evaluation-part1","level":"3.10","depth":1,"next":{"title":"10. 评估（下）Evaluation-part2","level":"3.11","depth":1,"path":"C2/10.-评估（下）Evaluation-part2.md","ref":"C2/10.-评估（下）Evaluation-part2.md","articles":[]},"previous":{"title":"8. 搭建一个带评估的端到端系统 Evaluation","level":"3.9","depth":1,"path":"C2/8.-搭建一个带评估的端到端问答系统-Evaluation.md","ref":"C2/8.-搭建一个带评估的端到端问答系统-Evaluation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/9.-评估（上）-Evaluation-part1.md","mtime":"2025-01-05T18:01:16.620Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-05T18:01:25.931Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"9. 评估（上）Evaluation-part1","level":"3.10","depth":1,"next":{"title":"10. 评估（下）Evaluation-part2","level":"3.11","depth":1,"path":"C2/10.-评估（下）Evaluation-part2.md","ref":"C2/10.-评估（下）Evaluation-part2.md","articles":[]},"previous":{"title":"8. 搭建一个带评估的端到端系统 Evaluation","level":"3.9","depth":1,"path":"C2/8.-搭建一个带评估的端到端问答系统-Evaluation.md","ref":"C2/8.-搭建一个带评估的端到端问答系统-Evaluation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/9.-评估（上）-Evaluation-part1.md","mtime":"2025-01-11T00:02:01.079Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-11T18:48:15.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1823,7 +1823,7 @@ print(f"正确比例为 {n_examples}: {fraction_correct}")
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

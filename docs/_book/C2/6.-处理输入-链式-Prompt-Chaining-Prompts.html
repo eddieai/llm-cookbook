@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -49,7 +49,7 @@
     
     
     <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
@@ -738,13 +738,13 @@
 <p>综上，链式提示通过将复杂任务进行科学拆分，实现了更高效、可靠的提示设计。它使语言模型集中处理单一子任务，减少认知负荷，同时保留了多步骤任务的能力。随着经验增长，开发者可以逐渐掌握运用链式提示的精髓。</p>
 <h2 id="一、-提取产品和类别">一、 提取产品和类别</h2>
 <p>我们所拆解的第一个子任务是，要求 LLM 从用户查询中提取产品和类别。</p>
-<pre><code class="lang-pythonthon">from tool import get_completion_from_messages
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> tool <span class="hljs-keyword">import</span> get_completion_from_messages
 
-delimiter = "####"
+delimiter = <span class="hljs-string">"####"</span>
 
-system_message = f"""
+system_message = <span class="hljs-string">f"""
 您将获得客户服务查询。
-客户服务查询将使用{delimiter}字符作为分隔符。
+客户服务查询将使用<span class="hljs-subst">{delimiter}</span>字符作为分隔符。
 请仅输出一个可解析的Python列表，列表每一个元素是一个JSON对象，每个对象具有以下格式：
 'category': &lt;包括以下几个类别：Computers and Laptops、Smartphones and Accessories、Televisions and Home Theater Systems、Gaming Consoles and Accessories、Audio Equipment、Cameras and Camcorders&gt;,
 以及
@@ -800,58 +800,58 @@ ZoomMaster Camcorder
 FotoSnap Instant Camera
 
 只输出对象列表，不包含其他内容。
-"""
+"""</span>
 
-user_message_1 = f"""
+user_message_1 = <span class="hljs-string">f"""
  请告诉我关于 smartx pro phone 和 the fotosnap camera 的信息。
- 另外，请告诉我关于你们的tvs的情况。 """
+ 另外，请告诉我关于你们的tvs的情况。 """</span>
 
-messages =  [{'role':'system', 'content': system_message},    
-             {'role':'user', 'content': f"{delimiter}{user_message_1}{delimiter}"}] 
+messages =  [{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},    
+             {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message_1}</span><span class="hljs-subst">{delimiter}</span>"</span>}] 
 
 category_and_product_response_1 = get_completion_from_messages(messages)
 
-print(category_and_product_response_1)
+<span class="hljs-built_in">print</span>(category_and_product_response_1)
 </code></pre>
 <pre><code>[{'category': 'Smartphones and Accessories', 'products': ['SmartX ProPhone']}, {'category': 'Cameras and Camcorders', 'products': ['FotoSnap DSLR Camera', 'FotoSnap Mirrorless Camera', 'FotoSnap Instant Camera']}, {'category': 'Televisions and Home Theater Systems', 'products': ['CineView 4K TV', 'CineView 8K TV', 'CineView OLED TV', 'SoundMax Home Theater', 'SoundMax Soundbar']}]
 </code></pre><p>可以看到，输出是一个对象列表，每个对象都有一个类别和一些产品。如 "SmartX ProPhone" 和 "Fotosnap DSLR Camera" 、"CineView 4K TV"。</p>
 <p>我们再来看一个例子。</p>
-<pre><code class="lang-pythonthon">user_message_2 = f"""我的路由器不工作了"""
-messages =  [{'role':'system','content': system_message},
-             {'role':'user','content': f"{delimiter}{user_message_2}{delimiter}"}] 
+<pre><code class="lang-python">user_message_2 = <span class="hljs-string">f"""我的路由器不工作了"""</span>
+messages =  [{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>,<span class="hljs-string">'content'</span>: system_message},
+             {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>,<span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message_2}</span><span class="hljs-subst">{delimiter}</span>"</span>}] 
 response = get_completion_from_messages(messages)
-print(response)
+<span class="hljs-built_in">print</span>(response)
 </code></pre>
 <pre><code>[]
 </code></pre><h2 id="二、检索详细信息">二、检索详细信息</h2>
 <p>我们提供大量的产品信息作为示例，要求模型提取产品和对应的详细信息。限于篇幅，我们产品信息存储在 products.json 中。</p>
 <p>首先，让我们通过 Python 代码读取产品信息。</p>
-<pre><code class="lang-pythonthon">import json
-# 读取产品信息
-with open("products_zh.json", "r") as file:
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> json
+<span class="hljs-comment"># 读取产品信息</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">"products_zh.json"</span>, <span class="hljs-string">"r"</span>) <span class="hljs-keyword">as</span> file:
     products = json.load(file)
 </code></pre>
 <p>接下来，定义 get_product_by_name 函数，是我们能够根据产品名称获取产品：</p>
-<pre><code class="lang-pythonthon">def get_product_by_name(name):
-    """
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_product_by_name</span>(<span class="hljs-params">name</span>):
+    <span class="hljs-string">"""
     根据产品名称获取产品
 
     参数:
     name: 产品名称
-    """
-    return products.get(name, None)
+    """</span>
+    <span class="hljs-keyword">return</span> products.get(name, <span class="hljs-literal">None</span>)
 
-def get_products_by_category(category):
-    """
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">get_products_by_category</span>(<span class="hljs-params">category</span>):
+    <span class="hljs-string">"""
     根据类别获取产品
 
     参数:
     category: 产品类别
-    """
-    return [product for product in products.values() if product["类别"] == category]
+    """</span>
+    <span class="hljs-keyword">return</span> [product <span class="hljs-keyword">for</span> product <span class="hljs-keyword">in</span> products.values() <span class="hljs-keyword">if</span> product[<span class="hljs-string">"类别"</span>] == category]
 </code></pre>
 <p>调用 get_product_by_name 函数，输入产品名称 “TechPro Ultrabook”： </p>
-<pre><code class="lang-pythonthon">get_product_by_name("TechPro Ultrabook")
+<pre><code class="lang-python">get_product_by_name(<span class="hljs-string">"TechPro Ultrabook"</span>)
 </code></pre>
 <pre><code>{'名称': 'TechPro 超极本',
  '类别': '电脑和笔记本',
@@ -863,7 +863,7 @@ def get_products_by_category(category):
  '描述': '一款时尚轻便的超极本，适合日常使用。',
  '价格': 799.99}
 </code></pre><p>接下来，我们再看一个例子，调用 get_product_by_name 函数，输入产品名称 “电脑和笔记本”： </p>
-<pre><code class="lang-pythonthon">get_products_by_category("电脑和笔记本")
+<pre><code class="lang-python">get_products_by_category(<span class="hljs-string">"电脑和笔记本"</span>)
 </code></pre>
 <pre><code>[{'名称': 'TechPro 超极本',
   '类别': '电脑和笔记本',
@@ -919,8 +919,8 @@ def get_products_by_category(category):
 </code></pre><h2 id="三、生成查询答案">三、生成查询答案</h2>
 <h3 id="31-解析输入字符串">3.1 解析输入字符串</h3>
 <p>定义一个 read_string_to_list 函数，将输入的字符串转换为 Python 列表</p>
-<pre><code class="lang-pythonthon">def read_string_to_list(input_string):
-    """
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_string_to_list</span>(<span class="hljs-params">input_string</span>):
+    <span class="hljs-string">"""
     将输入的字符串转换为 Python 列表。
 
     参数:
@@ -928,27 +928,27 @@ def get_products_by_category(category):
 
     返回:
     list 或 None: 如果输入字符串有效，则返回对应的 Python 列表，否则返回 None。
-    """
-    if input_string is None:
-        return None
+    """</span>
+    <span class="hljs-keyword">if</span> input_string <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
 
-    try:
-        # 将输入字符串中的单引号替换为双引号，以满足 JSON 格式的要求
-        input_string = input_string.replace("'", "\"")  
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-comment"># 将输入字符串中的单引号替换为双引号，以满足 JSON 格式的要求</span>
+        input_string = input_string.replace(<span class="hljs-string">"'"</span>, <span class="hljs-string">"\""</span>)  
         data = json.loads(input_string)
-        return data
-    except json.JSONDecodeError:
-        print("Error: Invalid JSON string")
-        return None   
+        <span class="hljs-keyword">return</span> data
+    <span class="hljs-keyword">except</span> json.JSONDecodeError:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"Error: Invalid JSON string"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>   
 
 category_and_product_list = read_string_to_list(category_and_product_response_1)
-print(category_and_product_list)
+<span class="hljs-built_in">print</span>(category_and_product_list)
 </code></pre>
 <pre><code>[{'category': 'Smartphones and Accessories', 'products': ['SmartX ProPhone']}, {'category': 'Cameras and Camcorders', 'products': ['FotoSnap DSLR Camera', 'FotoSnap Mirrorless Camera', 'FotoSnap Instant Camera']}, {'category': 'Televisions and Home Theater Systems', 'products': ['CineView 4K TV', 'CineView 8K TV', 'CineView OLED TV', 'SoundMax Home Theater', 'SoundMax Soundbar']}]
 </code></pre><h3 id="32-进行检索">3.2 进行检索</h3>
 <p>定义函数 generate_output_string 函数，根据输入的数据列表生成包含产品或类别信息的字符串：</p>
-<pre><code class="lang-pythonthon">def generate_output_string(data_list):
-    """
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_output_string</span>(<span class="hljs-params">data_list</span>):
+    <span class="hljs-string">"""
     根据输入的数据列表生成包含产品或类别信息的字符串。
 
     参数:
@@ -956,35 +956,35 @@ print(category_and_product_list)
 
     返回:
     output_string: 包含产品或类别信息的字符串。
-    """
-    output_string = ""
-    if data_list is None:
-        return output_string
+    """</span>
+    output_string = <span class="hljs-string">""</span>
+    <span class="hljs-keyword">if</span> data_list <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+        <span class="hljs-keyword">return</span> output_string
 
-    for data in data_list:
-        try:
-            if "products" in data and data["products"]:
-                products_list = data["products"]
-                for product_name in products_list:
+    <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> data_list:
+        <span class="hljs-keyword">try</span>:
+            <span class="hljs-keyword">if</span> <span class="hljs-string">"products"</span> <span class="hljs-keyword">in</span> data <span class="hljs-keyword">and</span> data[<span class="hljs-string">"products"</span>]:
+                products_list = data[<span class="hljs-string">"products"</span>]
+                <span class="hljs-keyword">for</span> product_name <span class="hljs-keyword">in</span> products_list:
                     product = get_product_by_name(product_name)
-                    if product:
-                        output_string += json.dumps(product, indent=4, ensure_ascii=False) + "\n"
-                    else:
-                        print(f"Error: Product '{product_name}' not found")
-            elif "category" in data:
-                category_name = data["category"]
+                    <span class="hljs-keyword">if</span> product:
+                        output_string += json.dumps(product, indent=<span class="hljs-number">4</span>, ensure_ascii=<span class="hljs-literal">False</span>) + <span class="hljs-string">"\n"</span>
+                    <span class="hljs-keyword">else</span>:
+                        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: Product '<span class="hljs-subst">{product_name}</span>' not found"</span>)
+            <span class="hljs-keyword">elif</span> <span class="hljs-string">"category"</span> <span class="hljs-keyword">in</span> data:
+                category_name = data[<span class="hljs-string">"category"</span>]
                 category_products = get_products_by_category(category_name)
-                for product in category_products:
-                    output_string += json.dumps(product, indent=4, ensure_ascii=False) + "\n"
-            else:
-                print("Error: Invalid object format")
-        except Exception as e:
-            print(f"Error: {e}")
+                <span class="hljs-keyword">for</span> product <span class="hljs-keyword">in</span> category_products:
+                    output_string += json.dumps(product, indent=<span class="hljs-number">4</span>, ensure_ascii=<span class="hljs-literal">False</span>) + <span class="hljs-string">"\n"</span>
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"Error: Invalid object format"</span>)
+        <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: <span class="hljs-subst">{e}</span>"</span>)
 
-    return output_string 
+    <span class="hljs-keyword">return</span> output_string 
 
 product_information_for_user_message_1 = generate_output_string(category_and_product_list)
-print(product_information_for_user_message_1)
+<span class="hljs-built_in">print</span>(product_information_for_user_message_1)
 </code></pre>
 <pre><code>{
     "名称": "SmartX ProPhone",
@@ -1131,25 +1131,25 @@ print(product_information_for_user_message_1)
     "价格": 199.99
 }
 </code></pre><h3 id="33-生成用户查询的答案">3.3 生成用户查询的答案</h3>
-<pre><code class="lang-pythonthon">system_message = f"""
+<pre><code class="lang-python">system_message = <span class="hljs-string">f"""
 您是一家大型电子商店的客服助理。
 请以友好和乐于助人的口吻回答问题，并尽量简洁明了。
 请确保向用户提出相关的后续问题。
-"""
+"""</span>
 
-user_message_1 = f"""
+user_message_1 = <span class="hljs-string">f"""
 请告诉我关于 smartx pro phone 和 the fotosnap camera 的信息。
 另外，请告诉我关于你们的tvs的情况。
-"""
+"""</span>
 
-messages =  [{'role':'system','content': system_message},
-             {'role':'user','content': user_message_1},  
-             {'role':'assistant',
-              'content': f"""相关产品信息:\n\
-              {product_information_for_user_message_1}"""}]
+messages =  [{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>,<span class="hljs-string">'content'</span>: system_message},
+             {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>,<span class="hljs-string">'content'</span>: user_message_1},  
+             {<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>,
+              <span class="hljs-string">'content'</span>: <span class="hljs-string">f"""相关产品信息:\n\
+              <span class="hljs-subst">{product_information_for_user_message_1}</span>"""</span>}]
 
 final_response = get_completion_from_messages(messages)
-print(final_response)
+<span class="hljs-built_in">print</span>(final_response)
 </code></pre>
 <pre><code>关于SmartX ProPhone和FotoSnap相机的信息如下：
 
@@ -1182,12 +1182,12 @@ FotoSnap相机有多个型号可供选择。其中包括DSLR相机、无反相�
 <p>在下一章中我们将讨论如何评估语言模型的输出。</p>
 <h2 id="五、英文版">五、英文版</h2>
 <p><strong>1.1 提取产品和类别</strong></p>
-<pre><code class="lang-pythonthon">delimiter = "####"
+<pre><code class="lang-python">delimiter = <span class="hljs-string">"####"</span>
 
-system_message = f"""
+system_message = <span class="hljs-string">f"""
 You will be provided with customer service queries. \
 The customer service query will be delimited with \
-{delimiter} characters.
+<span class="hljs-subst">{delimiter}</span> characters.
 Output a Python list of objects, where each object has \
 the following format:
     'category': &lt;one of Computers and Laptops, \
@@ -1252,46 +1252,46 @@ ZoomMaster Camcorder
 FotoSnap Instant Camera
 
 Only output the list of objects, with nothing else.
-"""
+"""</span>
 
-user_message_1 = f"""
+user_message_1 = <span class="hljs-string">f"""
  tell me about the smartx pro phone and \
  the fotosnap camera, the dslr one. \
- Also tell me about your tvs """
+ Also tell me about your tvs """</span>
 
 messages =  [  
-{'role':'system', 
- 'content': system_message},    
-{'role':'user', 
- 'content': f"{delimiter}{user_message_1}{delimiter}"},  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, 
+ <span class="hljs-string">'content'</span>: system_message},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, 
+ <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message_1}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
 ] 
 category_and_product_response_1 = get_completion_from_messages(messages)
 category_and_product_response_1
 </code></pre>
 <pre><code>"[{'category': 'Smartphones and Accessories', 'products': ['SmartX ProPhone']}, {'category': 'Cameras and Camcorders', 'products': ['FotoSnap DSLR Camera']}, {'category': 'Televisions and Home Theater Systems', 'products': []}]"
-</code></pre><pre><code class="lang-pythonthon">user_message_2 = f"""
-my router isn't working"""
+</code></pre><pre><code class="lang-python">user_message_2 = <span class="hljs-string">f"""
+my router isn't working"""</span>
 messages =  [  
-{'role':'system',
- 'content': system_message},    
-{'role':'user',
- 'content': f"{delimiter}{user_message_2}{delimiter}"},  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>,
+ <span class="hljs-string">'content'</span>: system_message},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>,
+ <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message_2}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
 ] 
 response = get_completion_from_messages(messages)
-print(response)
+<span class="hljs-built_in">print</span>(response)
 </code></pre>
 <pre><code>[]
 </code></pre><p><strong>2.1 检索详细信息</strong></p>
-<pre><code class="lang-pythonthon">with open("products.json", "r") as file:
+<pre><code class="lang-python"><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">"products.json"</span>, <span class="hljs-string">"r"</span>) <span class="hljs-keyword">as</span> file:
     products = josn.load(file)
 </code></pre>
-<pre><code class="lang-pythonthon">def get_product_by_name(name):
-    return products.get(name, None)
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_product_by_name</span>(<span class="hljs-params">name</span>):
+    <span class="hljs-keyword">return</span> products.get(name, <span class="hljs-literal">None</span>)
 
-def get_products_by_category(category):
-    return [product for product in products.values() if product["category"] == category]
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">get_products_by_category</span>(<span class="hljs-params">category</span>):
+    <span class="hljs-keyword">return</span> [product <span class="hljs-keyword">for</span> product <span class="hljs-keyword">in</span> products.values() <span class="hljs-keyword">if</span> product[<span class="hljs-string">"category"</span>] == category]
 </code></pre>
-<pre><code class="lang-pythonthon">get_product_by_name("TechPro Ultrabook")
+<pre><code class="lang-python">get_product_by_name(<span class="hljs-string">"TechPro Ultrabook"</span>)
 </code></pre>
 <pre><code>{'name': 'TechPro Ultrabook',
  'category': 'Computers and Laptops',
@@ -1305,7 +1305,7 @@ def get_products_by_category(category):
   'Intel Core i5 processor'],
  'description': 'A sleek and lightweight ultrabook for everyday use.',
  'price': 799.99}
-</code></pre><pre><code class="lang-pythonthon">get_products_by_category("Computers and Laptops")
+</code></pre><pre><code class="lang-python">get_products_by_category(<span class="hljs-string">"Computers and Laptops"</span>)
 </code></pre>
 <pre><code>[{'name': 'TechPro Ultrabook',
   'category': 'Computers and Laptops',
@@ -1365,8 +1365,8 @@ def get_products_by_category(category):
   'description': 'A compact and affordable Chromebook for everyday tasks.',
   'price': 249.99}]
 </code></pre><p><strong>3.1 解析输入字符串</strong></p>
-<pre><code class="lang-pythonthon">def read_string_to_list(input_string):
-    """
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_string_to_list</span>(<span class="hljs-params">input_string</span>):
+    <span class="hljs-string">"""
     将输入的字符串转换为 Python 列表。
 
     参数:
@@ -1374,26 +1374,26 @@ def get_products_by_category(category):
 
     返回:
     list 或 None: 如果输入字符串有效，则返回对应的 Python 列表，否则返回 None。
-    """
-    if input_string is None:
-        return None
+    """</span>
+    <span class="hljs-keyword">if</span> input_string <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
 
-    try:
-        # 将输入字符串中的单引号替换为双引号，以满足 JSON 格式的要求
-        input_string = input_string.replace("'", "\"")  
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-comment"># 将输入字符串中的单引号替换为双引号，以满足 JSON 格式的要求</span>
+        input_string = input_string.replace(<span class="hljs-string">"'"</span>, <span class="hljs-string">"\""</span>)  
         data = json.loads(input_string)
-        return data
-    except json.JSONDecodeError:
-        print("Error: Invalid JSON string")
-        return None
+        <span class="hljs-keyword">return</span> data
+    <span class="hljs-keyword">except</span> json.JSONDecodeError:
+        <span class="hljs-built_in">print</span>(<span class="hljs-string">"Error: Invalid JSON string"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
 </code></pre>
-<pre><code class="lang-pythonthon">category_and_product_list = read_string_to_list(category_and_product_response_1)
+<pre><code class="lang-python">category_and_product_list = read_string_to_list(category_and_product_response_1)
 category_and_product_list
 </code></pre>
 <pre><code>[{'category': 'Smartphones and Accessories', 'products': ['SmartX ProPhone']}, {'category': 'Cameras and Camcorders', 'products': ['FotoSnap DSLR Camera']}, {'category': 'Televisions and Home Theater Systems', 'products': []}]
 </code></pre><p><strong>3.2 进行检索</strong></p>
-<pre><code class="lang-pythonthon">def generate_output_string(data_list):
-    """
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_output_string</span>(<span class="hljs-params">data_list</span>):
+    <span class="hljs-string">"""
     根据输入的数据列表生成包含产品或类别信息的字符串。
 
     参数:
@@ -1401,35 +1401,35 @@ category_and_product_list
 
     返回:
     output_string: 包含产品或类别信息的字符串。
-    """
-    output_string = ""
-    if data_list is None:
-        return output_string
+    """</span>
+    output_string = <span class="hljs-string">""</span>
+    <span class="hljs-keyword">if</span> data_list <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+        <span class="hljs-keyword">return</span> output_string
 
-    for data in data_list:
-        try:
-            if "products" in data and data["products"]:
-                products_list = data["products"]
-                for product_name in products_list:
+    <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> data_list:
+        <span class="hljs-keyword">try</span>:
+            <span class="hljs-keyword">if</span> <span class="hljs-string">"products"</span> <span class="hljs-keyword">in</span> data <span class="hljs-keyword">and</span> data[<span class="hljs-string">"products"</span>]:
+                products_list = data[<span class="hljs-string">"products"</span>]
+                <span class="hljs-keyword">for</span> product_name <span class="hljs-keyword">in</span> products_list:
                     product = get_product_by_name(product_name)
-                    if product:
-                        output_string += json.dumps(product, indent=4, ensure_ascii=False) + "\n"
-                    else:
-                        print(f"Error: Product '{product_name}' not found")
-            elif "category" in data:
-                category_name = data["category"]
+                    <span class="hljs-keyword">if</span> product:
+                        output_string += json.dumps(product, indent=<span class="hljs-number">4</span>, ensure_ascii=<span class="hljs-literal">False</span>) + <span class="hljs-string">"\n"</span>
+                    <span class="hljs-keyword">else</span>:
+                        <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: Product '<span class="hljs-subst">{product_name}</span>' not found"</span>)
+            <span class="hljs-keyword">elif</span> <span class="hljs-string">"category"</span> <span class="hljs-keyword">in</span> data:
+                category_name = data[<span class="hljs-string">"category"</span>]
                 category_products = get_products_by_category(category_name)
-                for product in category_products:
-                    output_string += json.dumps(product, indent=4, ensure_ascii=False) + "\n"
-            else:
-                print("Error: Invalid object format")
-        except Exception as e:
-            print(f"Error: {e}")
+                <span class="hljs-keyword">for</span> product <span class="hljs-keyword">in</span> category_products:
+                    output_string += json.dumps(product, indent=<span class="hljs-number">4</span>, ensure_ascii=<span class="hljs-literal">False</span>) + <span class="hljs-string">"\n"</span>
+            <span class="hljs-keyword">else</span>:
+                <span class="hljs-built_in">print</span>(<span class="hljs-string">"Error: Invalid object format"</span>)
+        <span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:
+            <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Error: <span class="hljs-subst">{e}</span>"</span>)
 
-    return output_string
+    <span class="hljs-keyword">return</span> output_string
 </code></pre>
-<pre><code class="lang-pythonthon">product_information_for_user_message_1 = generate_output_string(category_and_product_list)
-print(product_information_for_user_message_1)
+<pre><code class="lang-python">product_information_for_user_message_1 = generate_output_string(category_and_product_list)
+<span class="hljs-built_in">print</span>(product_information_for_user_message_1)
 </code></pre>
 <pre><code>{
     "name": "SmartX ProPhone",
@@ -1544,24 +1544,24 @@ print(product_information_for_user_message_1)
     "price": 1499.99
 }
 </code></pre><p><strong>3.3 生成用户查询的答案</strong></p>
-<pre><code class="lang-pythonthon">system_message = f"""
+<pre><code class="lang-python">system_message = <span class="hljs-string">f"""
 You are a customer service assistant for a \
 large electronic store. \
 Respond in a friendly and helpful tone, \
 with very concise answers. \
 Make sure to ask the user relevant follow up questions.
-"""
-user_message_1 = f"""
+"""</span>
+user_message_1 = <span class="hljs-string">f"""
 tell me about the smartx pro phone and \
 the fotosnap camera, the dslr one. \
-Also tell me about your tvs"""
-messages =  [{'role':'system','content': system_message},   
-             {'role':'user','content': user_message_1},
-             {'role':'assistant',
-              'content': f"""Relevant product information:\n\
-              {product_information_for_user_message_1}"""}]
+Also tell me about your tvs"""</span>
+messages =  [{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>,<span class="hljs-string">'content'</span>: system_message},   
+             {<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>,<span class="hljs-string">'content'</span>: user_message_1},
+             {<span class="hljs-string">'role'</span>:<span class="hljs-string">'assistant'</span>,
+              <span class="hljs-string">'content'</span>: <span class="hljs-string">f"""Relevant product information:\n\
+              <span class="hljs-subst">{product_information_for_user_message_1}</span>"""</span>}]
 final_response = get_completion_from_messages(messages)
-print(final_response)
+<span class="hljs-built_in">print</span>(final_response)
 </code></pre>
 <pre><code>The SmartX ProPhone is a powerful smartphone with a 6.1-inch display, 128GB storage, a 12MP dual camera, and 5G capability. It is priced at $899.99 and comes with a 1-year warranty. 
 
@@ -1617,7 +1617,7 @@ Is there anything specific you would like to know about these products?
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"6. Prompt 链 Chaining Prompts","level":"3.7","depth":1,"next":{"title":"7. 检查结果 Check Outputs","level":"3.8","depth":1,"path":"C2/7.-检查结果-Check-Outputs.md","ref":"C2/7.-检查结果-Check-Outputs.md","articles":[]},"previous":{"title":"5. 思维链推理 Chain of Thought Reasoning","level":"3.6","depth":1,"path":"C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.md","ref":"C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/6.-处理输入-链式-Prompt-Chaining-Prompts.md","mtime":"2025-01-05T18:01:16.631Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-05T18:01:25.931Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"6. Prompt 链 Chaining Prompts","level":"3.7","depth":1,"next":{"title":"7. 检查结果 Check Outputs","level":"3.8","depth":1,"path":"C2/7.-检查结果-Check-Outputs.md","ref":"C2/7.-检查结果-Check-Outputs.md","articles":[]},"previous":{"title":"5. 思维链推理 Chain of Thought Reasoning","level":"3.6","depth":1,"path":"C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.md","ref":"C2/5.-处理输入-思维链推理-Chain-of-Thought-Reasoning.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/6.-处理输入-链式-Prompt-Chaining-Prompts.md","mtime":"2025-01-11T00:02:01.079Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-11T18:48:15.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1687,7 +1687,7 @@ Is there anything specific you would like to know about these products?
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

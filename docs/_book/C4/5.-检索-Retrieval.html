@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -49,7 +49,7 @@
     
     
     <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
@@ -734,14 +734,14 @@
 <p>使用基本的相似性搜索大概能解决你80%的相关检索工作，但对于那些相似性搜索失败的边缘情况该如何解决呢？这一章节我们将介绍几种检索方法，以及解决检索边缘情况的技巧，让我们一起开始学习吧！</p>
 <h2 id="一、向量数据库检索">一、向量数据库检索</h2>
 <p>本章节需要使用<code>lark</code>包，若环境中未安装过此包，请运行以下命令安装：</p>
-<pre><code class="lang-pythonthon">!pip install -Uq lark
+<pre><code class="lang-python">!pip install -Uq lark
 </code></pre>
 <h3 id="11-相似性检索（similarity-search）">1.1 相似性检索（Similarity Search）</h3>
 <p>以我们的流程为例，前面课程已经存储了向量数据库(<code>VectorDB</code>)，包含各文档的语义向量表示。首先将上节课所保存的向量数据库(<code>VectorDB</code>)加载进来：</p>
-<pre><code class="lang-pythonthon">from langchain.vectorstores import Chroma
-from langchain.embeddings.openai import OpenAIEmbeddings
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.vectorstores <span class="hljs-keyword">import</span> Chroma
+<span class="hljs-keyword">from</span> langchain.embeddings.openai <span class="hljs-keyword">import</span> OpenAIEmbeddings
 
-persist_directory_chinese = 'docs/chroma/matplotlib/'
+persist_directory_chinese = <span class="hljs-string">'docs/chroma/matplotlib/'</span>
 
 embedding = OpenAIEmbeddings()
 
@@ -750,25 +750,25 @@ vectordb_chinese = Chroma(
     embedding_function=embedding
 )
 
-print(vectordb_chinese._collection.count())
+<span class="hljs-built_in">print</span>(vectordb_chinese._collection.count())
 </code></pre>
 <pre><code>27
 </code></pre><p>下面我们来实现一下语义的相似度搜索，我们把三句话存入向量数据库Chroma中，然后我们提出问题让向量数据库根据问题来搜索相关答案：</p>
-<pre><code class="lang-pythonthon">texts_chinese = [
-    """毒鹅膏菌（Amanita phalloides）具有大型且引人注目的地上（epigeous）子实体（basidiocarp）""",
-    """一种具有大型子实体的蘑菇是毒鹅膏菌（Amanita phalloides）。某些品种全白。""",
-    """A. phalloides，又名死亡帽，是已知所有蘑菇中最有毒的一种。""",
+<pre><code class="lang-python">texts_chinese = [
+    <span class="hljs-string">"""毒鹅膏菌（Amanita phalloides）具有大型且引人注目的地上（epigeous）子实体（basidiocarp）"""</span>,
+    <span class="hljs-string">"""一种具有大型子实体的蘑菇是毒鹅膏菌（Amanita phalloides）。某些品种全白。"""</span>,
+    <span class="hljs-string">"""A. phalloides，又名死亡帽，是已知所有蘑菇中最有毒的一种。"""</span>,
 ]
 </code></pre>
 <p>我们可以看到前两句都是描述的是一种叫“鹅膏菌”的菌类，包括它们的特征：有较大的子实体，第三句描述的是“鬼笔甲”，一种已知的最毒的蘑菇，它的特征就是：含有剧毒。对于这个例子，我们将创建一个小数据库，我们可以作为一个示例来使用。</p>
-<pre><code class="lang-pythonthon">smalldb_chinese = Chroma.from_texts(texts_chinese, embedding=embedding)
+<pre><code class="lang-python">smalldb_chinese = Chroma.from_texts(texts_chinese, embedding=embedding)
 </code></pre>
 <pre><code>100%|██████████| 1/1 [00:00&lt;00:00,  1.51it/s]
 </code></pre><p>下面是我们对于这个示例所提出的问题：</p>
-<pre><code class="lang-pythonthon">question_chinese = "告诉我关于具有大型子实体的全白色蘑菇的信息"
+<pre><code class="lang-python">question_chinese = <span class="hljs-string">"告诉我关于具有大型子实体的全白色蘑菇的信息"</span>
 </code></pre>
 <p>现在，让针对上面问题进行<strong>相似性搜索</strong>，设置 k=2 ，只返回两个最相关的文档。</p>
-<pre><code class="lang-pythonthon">smalldb_chinese.similarity_search(question_chinese, k=2)
+<pre><code class="lang-python">smalldb_chinese.similarity_search(question_chinese, k=<span class="hljs-number">2</span>)
 </code></pre>
 <pre><code>[Document(page_content='一种具有大型子实体的蘑菇是毒鹅膏菌（Amanita phalloides）。某些品种全白。', metadata={}),
  Document(page_content='毒鹅膏菌（Amanita phalloides）具有大型且引人注目的地上（epigeous）子实体（basidiocarp）', metadata={})]
@@ -781,21 +781,21 @@ print(vectordb_chinese._collection.count())
 <p><strong>MMR 的基本思想是同时考量查询与文档的相关度，以及文档之间的相似度</strong>。相关度确保返回结果对查询高度相关，相似度则鼓励不同语义的文档被包含进结果集。具体来说，它计算每个候选文档与查询的相关度，并减去与已经选入结果集的文档的相似度。这样更不相似的文档会有更高的得分。</p>
 <p>总之，MMR 是解决检索冗余问题、提供多样性结果的一种简单高效的算法。它平衡了相关性和多样性，适用于对多样信息需求较强的应用场景。</p>
 <p>我们来看一个利用 MMR 从蘑菇知识库中检索信息的示例。首先加载有关蘑菇的文档，然后运行 MMR 算法，设置 fetch_k 参数，用来告诉向量数据库我们最终需要 k 个结果返回。fetch_k=3 ，也就是我们最初获取 3 个文档，k=2 表示返回最不同的 2 个文档。</p>
-<pre><code class="lang-pythonthon">smalldb_chinese.max_marginal_relevance_search(question_chinese,k=2, fetch_k=3)
+<pre><code class="lang-python">smalldb_chinese.max_marginal_relevance_search(question_chinese,k=<span class="hljs-number">2</span>, fetch_k=<span class="hljs-number">3</span>)
 </code></pre>
 <pre><code>[Document(page_content='一种具有大型子实体的蘑菇是毒鹅膏菌（Amanita phalloides）。某些品种全白。', metadata={}),
  Document(page_content='A. phalloides，又名死亡帽，是已知所有蘑菇中最有毒的一种。', metadata={})]
 </code></pre><p>这里我们看到 max_marginal_relevance_search（最大边际相关搜索） 返回了第二和第三句的文本，尽管第三句与我们的问题的相关性不太高，但是这样的结果其实应该是更加的合理，因为第一句和第二句文本本来就有着相似的含义，所以只需要返回其中的一句就可以了，另外再返回一个与问题相关性弱一点的答案(第三句文本)，这样似乎增强了答案的多样性，相信用户也会更加偏爱</p>
 <p>还记得在上一节中我们介绍了两种向量数据在查询时的失败场景吗？当向量数据库中存在相同的文档时，而用户的问题又与这些重复的文档高度相关时，向量数据库会出现返回重复文档的情况。现在我们就可以运用Langchain的   max_marginal_relevance_search 来解决这个问题：</p>
 <p>我们首先看看前两个文档，只看前几个字符，可以看到它们是相同的。</p>
-<pre><code class="lang-pythonthon">question_chinese = "Matplotlib是什么？"
-docs_ss_chinese = vectordb_chinese.similarity_search(question_chinese,k=3)
+<pre><code class="lang-python">question_chinese = <span class="hljs-string">"Matplotlib是什么？"</span>
+docs_ss_chinese = vectordb_chinese.similarity_search(question_chinese,k=<span class="hljs-number">3</span>)
 
-print("docs[0]: ")
-print(docs_ss_chinese[0].page_content[:100])
-print()
-print("docs[1]: ")
-print(docs_ss_chinese[1].page_content[:100])
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"docs[0]: "</span>)
+<span class="hljs-built_in">print</span>(docs_ss_chinese[<span class="hljs-number">0</span>].page_content[:<span class="hljs-number">100</span>])
+<span class="hljs-built_in">print</span>()
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"docs[1]: "</span>)
+<span class="hljs-built_in">print</span>(docs_ss_chinese[<span class="hljs-number">1</span>].page_content[:<span class="hljs-number">100</span>])
 </code></pre>
 <pre><code>docs[0]: 
 第⼀回：Matplotlib 初相识
@@ -807,17 +807,17 @@ docs[1]:
 ⼀、认识matplotlib
 Matplotlib 是⼀个 Python 2D 绘图库，能够以多种硬拷⻉格式和跨平台的交互式环境⽣成出版物质量的图形，⽤来绘制各种
 </code></pre><p>这里如果我们使用相似查询，会得到两个重复的结果，读者可以自己尝试一下，这里不再展示。我们可以使用 <code>MMR</code> 得到不一样的结果。</p>
-<pre><code class="lang-pythonthon">docs_mmr_chinese = vectordb_chinese.max_marginal_relevance_search(question_chinese,k=3)
+<pre><code class="lang-python">docs_mmr_chinese = vectordb_chinese.max_marginal_relevance_search(question_chinese,k=<span class="hljs-number">3</span>)
 </code></pre>
 <p>当我们运行 MMR 后得到结果时，我们可以看到第一个与之前的相同，因为那是最相似的。</p>
-<pre><code class="lang-pythonthon">print(docs_mmr_chinese[0].page_content[:100])
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(docs_mmr_chinese[<span class="hljs-number">0</span>].page_content[:<span class="hljs-number">100</span>])
 </code></pre>
 <pre><code>第⼀回：Matplotlib 初相识
 ⼀、认识matplotlib
 Matplotlib 是⼀个 Python 2D 绘图库，能够以多种硬拷⻉格式和跨平台的交互式环境⽣成出版物质量的图形，⽤来绘制各种
 </code></pre><p>但是当我们进行到第二个时，我们可以看到它是不同的。</p>
 <p>它在回应中获得了一些多样性。</p>
-<pre><code class="lang-pythonthon">print(docs_mmr_chinese[1].page_content[:100])
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(docs_mmr_chinese[<span class="hljs-number">1</span>].page_content[:<span class="hljs-number">100</span>])
 </code></pre>
 <pre><code>By Datawhale 数据可视化开源⼩组
 © Copyright © Copyright 2021.y轴分为左右两个，因此 tick1 对应左侧的轴； tick2 对应右侧的轴。
@@ -826,18 +826,18 @@ x轴分为上下两个
 <h3 id="13-解决特殊性：使用元数据">1.3 解决特殊性：使用元数据</h3>
 <p>在上一节课中，关于失败的应用场景我们还提出了一个问题，是询问了关于文档中某一讲的问题，但得到的结果中也包括了来自其他讲的结果。这是我们所不希望看到的结果，之所以产生这样的结果是因为当我们向向量数据库提出问题时，数据库并没有很好的理解问题的语义，所以返回的结果不如预期。要解决这个问题，我们可以通过过滤元数据的方式来实现精准搜索，当前很多向量数据库都支持对<code>元数据（metadata）</code>的操作：</p>
 <p><code>metadata</code>为每个嵌入的块(embedded chunk)提供上下文。</p>
-<pre><code class="lang-pythonthon">question_chinese = "他们在第二讲中对Figure说了些什么？"
+<pre><code class="lang-python">question_chinese = <span class="hljs-string">"他们在第二讲中对Figure说了些什么？"</span>
 </code></pre>
 <p>现在，我们以手动的方式来解决这个问题，我们会指定一个元数据过滤器<code>filter</code></p>
-<pre><code class="lang-pythonthon">docs_chinese = vectordb_chinese.similarity_search(
+<pre><code class="lang-python">docs_chinese = vectordb_chinese.similarity_search(
     question_chinese,
-    k=3,
-    filter={"source":"docs/matplotlib/第二回：艺术画笔见乾坤.pdf"}
+    k=<span class="hljs-number">3</span>,
+    <span class="hljs-built_in">filter</span>={<span class="hljs-string">"source"</span>:<span class="hljs-string">"docs/matplotlib/第二回：艺术画笔见乾坤.pdf"</span>}
 )
 </code></pre>
 <p>接下来，我们可以看到结果都来自对应的章节</p>
-<pre><code class="lang-pythonthon">for d in docs_chinese:
-    print(d.metadata)
+<pre><code class="lang-python"><span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> docs_chinese:
+    <span class="hljs-built_in">print</span>(d.metadata)
 </code></pre>
 <pre><code>{'source': 'docs/matplotlib/第二回：艺术画笔见乾坤.pdf', 'page': 9}
 {'source': 'docs/matplotlib/第二回：艺术画笔见乾坤.pdf', 'page': 10}
@@ -857,39 +857,39 @@ x轴分为上下两个
 
 
 <p>下面我们就来实现一下LLM辅助检索：</p>
-<pre><code class="lang-pythonthon">from langchain.llms import OpenAI
-from langchain.retrievers.self_query.base import SelfQueryRetriever
-from langchain.chains.query_constructor.base import AttributeInfo
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.llms <span class="hljs-keyword">import</span> OpenAI
+<span class="hljs-keyword">from</span> langchain.retrievers.self_query.base <span class="hljs-keyword">import</span> SelfQueryRetriever
+<span class="hljs-keyword">from</span> langchain.chains.query_constructor.base <span class="hljs-keyword">import</span> AttributeInfo
 
-llm = OpenAI(temperature=0)
+llm = OpenAI(temperature=<span class="hljs-number">0</span>)
 </code></pre>
 <p>这里我们首先定义了 metadata_field_info_chinese ，它包含了元数据的过滤条件 <code>source</code> 和 <code>page</code> , 其中 source 的作用是告诉 LLM 我们想要的数据来自于哪里， page 告诉 LLM 我们需要提取相关的内容在原始文档的哪一页。有了 metadata_field_info_chinese 信息后，LLM会自动从用户的问题中提取出上图中的 Filter 和 Search term 两项，然后向量数据库基于这两项去搜索相关的内容。下面我们看一下查询结果：</p>
-<pre><code class="lang-pythonthon">metadata_field_info_chinese = [
+<pre><code class="lang-python">metadata_field_info_chinese = [
     AttributeInfo(
-        name="source",
-        description="The lecture the chunk is from, should be one of `docs/matplotlib/第一回：Matplotlib初相识.pdf`, `docs/matplotlib/第二回：艺术画笔见乾坤.pdf`, or `docs/matplotlib/第三回：布局格式定方圆.pdf`",
-        type="string",
+        name=<span class="hljs-string">"source"</span>,
+        description=<span class="hljs-string">"The lecture the chunk is from, should be one of `docs/matplotlib/第一回：Matplotlib初相识.pdf`, `docs/matplotlib/第二回：艺术画笔见乾坤.pdf`, or `docs/matplotlib/第三回：布局格式定方圆.pdf`"</span>,
+        <span class="hljs-built_in">type</span>=<span class="hljs-string">"string"</span>,
     ),
     AttributeInfo(
-        name="page",
-        description="The page from the lecture",
-        type="integer",
+        name=<span class="hljs-string">"page"</span>,
+        description=<span class="hljs-string">"The page from the lecture"</span>,
+        <span class="hljs-built_in">type</span>=<span class="hljs-string">"integer"</span>,
     ),
 ]
 
-document_content_description_chinese = "Matplotlib 课堂讲义"
+document_content_description_chinese = <span class="hljs-string">"Matplotlib 课堂讲义"</span>
 retriever_chinese = SelfQueryRetriever.from_llm(
     llm,
     vectordb_chinese,
     document_content_description_chinese,
     metadata_field_info_chinese,
-    verbose=True
+    verbose=<span class="hljs-literal">True</span>
 )
 
-question_chinese = "他们在第二讲中对Figure做了些什么？"
+question_chinese = <span class="hljs-string">"他们在第二讲中对Figure做了些什么？"</span>
 </code></pre>
 <p>当你第一次执行下一行时，你会收到关于predict_and_parse已被弃用的<strong>警告</strong>。 这可以安全地忽略。</p>
-<pre><code class="lang-pythonthon">docs_chinese = retriever_chinese.get_relevant_documents(question_chinese)
+<pre><code class="lang-python">docs_chinese = retriever_chinese.get_relevant_documents(question_chinese)
 </code></pre>
 <pre><code>/root/autodl-tmp/env/gpt/lib/python3.10/site-packages/langchain/chains/llm.py:275: UserWarning: The predict_and_parse method is deprecated, instead pass an output parser directly to LLMChain.
   warnings.warn(
@@ -897,8 +897,8 @@ question_chinese = "他们在第二讲中对Figure做了些什么？"
 
 query='Figure' filter=Comparison(comparator=&lt;Comparator.EQ: 'eq'&gt;, attribute='source', value='docs/matplotlib/第二回：艺术画笔见乾坤.pdf') limit=None
 </code></pre><p>打印可以看到查询结果，基于子查询检索器，我们检索到的结果都是在第二回的文档中：</p>
-<pre><code class="lang-pythonthon">for d in docs_chinese:
-    print(d.metadata)
+<pre><code class="lang-python"><span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> docs_chinese:
+    <span class="hljs-built_in">print</span>(d.metadata)
 </code></pre>
 <pre><code>{'source': 'docs/matplotlib/第二回：艺术画笔见乾坤.pdf', 'page': 9}
 {'source': 'docs/matplotlib/第二回：艺术画笔见乾坤.pdf', 'page': 10}
@@ -910,22 +910,22 @@ query='Figure' filter=Comparison(comparator=&lt;Comparator.EQ: 'eq'&gt;, attribu
 <div align="center"> 图 4.5.4 压缩 </div>
 
 <p>从上图中我们看到，当向量数据库返回了所有与问题相关的所有文档块的全部内容后，会有一个Compression LLM来负责对这些返回的文档块的内容进行压缩，所谓压缩是指仅从文档块中提取出和用户问题相关的内容，并舍弃掉那些不相关的内容。</p>
-<pre><code class="lang-pythonthon">from langchain.retrievers import ContextualCompressionRetriever
-from langchain.retrievers.document_compressors import LLMChainExtractor
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.retrievers <span class="hljs-keyword">import</span> ContextualCompressionRetriever
+<span class="hljs-keyword">from</span> langchain.retrievers.document_compressors <span class="hljs-keyword">import</span> LLMChainExtractor
 
-def pretty_print_docs(docs):
-    print(f"\n{'-' * 100}\n".join([f"Document {i+1}:\n\n" + d.page_content for i, d in enumerate(docs)]))
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">pretty_print_docs</span>(<span class="hljs-params">docs</span>):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"\n<span class="hljs-subst">{<span class="hljs-string">'-'</span> * <span class="hljs-number">100</span>}</span>\n"</span>.join([<span class="hljs-string">f"Document <span class="hljs-subst">{i+<span class="hljs-number">1</span>}</span>:\n\n"</span> + d.page_content <span class="hljs-keyword">for</span> i, d <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(docs)]))
 
-llm = OpenAI(temperature=0)
-compressor = LLMChainExtractor.from_llm(llm)  # 压缩器
+llm = OpenAI(temperature=<span class="hljs-number">0</span>)
+compressor = LLMChainExtractor.from_llm(llm)  <span class="hljs-comment"># 压缩器</span>
 
 compression_retriever_chinese = ContextualCompressionRetriever(
     base_compressor=compressor,
     base_retriever=vectordb_chinese.as_retriever()
 )
-# 对源文档进行压缩
+<span class="hljs-comment"># 对源文档进行压缩</span>
 
-question_chinese = "Matplotlib是什么？"
+question_chinese = <span class="hljs-string">"Matplotlib是什么？"</span>
 compressed_docs_chinese = compression_retriever_chinese.get_relevant_documents(question_chinese)
 pretty_print_docs(compressed_docs_chinese)
 </code></pre>
@@ -945,12 +945,12 @@ Matplotlib 是⼀个 Python 2D 绘图库，能够以多种硬拷⻉格式和跨�
 <p>从上述例子中，我们可以发现这种压缩可以有效提升输出质量，同时节省通过长文档带来的计算资源浪费，降低成本。上下文相关的压缩检索技术，使得到的支持文档更严格匹配问题需求，是提升问答系统效率的重要手段。读者可以在实际应用中考虑这一技术。</p>
 <h2 id="二、结合各种技术">二、结合各种技术</h2>
 <p>为了去掉结果中的重复文档，我们在从向量数据库创建检索器时，可以将搜索类型设置为 MMR 。然后我们可以重新运行这个过程，可以看到我们返回的是一个过滤过的结果集，其中不包含任何重复的信息。</p>
-<pre><code class="lang-pythonthon">compression_retriever_chinese = ContextualCompressionRetriever(
+<pre><code class="lang-python">compression_retriever_chinese = ContextualCompressionRetriever(
     base_compressor=compressor,
-    base_retriever=vectordb_chinese.as_retriever(search_type = "mmr")
+    base_retriever=vectordb_chinese.as_retriever(search_type = <span class="hljs-string">"mmr"</span>)
 )
 
-question_chinese = "Matplotlib是什么？"
+question_chinese = <span class="hljs-string">"Matplotlib是什么？"</span>
 compressed_docs_chinese = compression_retriever_chinese.get_relevant_documents(question_chinese)
 pretty_print_docs(compressed_docs_chinese)
 </code></pre>
@@ -959,35 +959,35 @@ pretty_print_docs(compressed_docs_chinese)
 Matplotlib 是⼀个 Python 2D 绘图库，能够以多种硬拷⻉格式和跨平台的交互式环境⽣成出版物质量的图形，⽤来绘制各种静态，动态，交互式的图表。
 </code></pre><h2 id="三、其他类型的检索">三、其他类型的检索</h2>
 <p>值得注意的是，vetordb 并不是唯一一种检索文档的工具。<code>LangChain</code> 还提供了其他检索文档的方式，例如：<code>TF-IDF</code> 或 <code>SVM</code>。</p>
-<pre><code class="lang-pythonthon">from langchain.retrievers import SVMRetriever
-from langchain.retrievers import TFIDFRetriever
-from langchain.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.retrievers <span class="hljs-keyword">import</span> SVMRetriever
+<span class="hljs-keyword">from</span> langchain.retrievers <span class="hljs-keyword">import</span> TFIDFRetriever
+<span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> PyPDFLoader
+<span class="hljs-keyword">from</span> langchain.text_splitter <span class="hljs-keyword">import</span> RecursiveCharacterTextSplitter
 
-# 加载PDF
-loader_chinese = PyPDFLoader("docs/matplotlib/第一回：Matplotlib初相识.pdf")
+<span class="hljs-comment"># 加载PDF</span>
+loader_chinese = PyPDFLoader(<span class="hljs-string">"docs/matplotlib/第一回：Matplotlib初相识.pdf"</span>)
 pages_chinese = loader_chinese.load()
-all_page_text_chinese = [p.page_content for p in pages_chinese]
-joined_page_text_chinese = " ".join(all_page_text_chinese)
+all_page_text_chinese = [p.page_content <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> pages_chinese]
+joined_page_text_chinese = <span class="hljs-string">" "</span>.join(all_page_text_chinese)
 
-# 分割文本
-text_splitter_chinese = RecursiveCharacterTextSplitter(chunk_size = 1500,chunk_overlap = 150)
+<span class="hljs-comment"># 分割文本</span>
+text_splitter_chinese = RecursiveCharacterTextSplitter(chunk_size = <span class="hljs-number">1500</span>,chunk_overlap = <span class="hljs-number">150</span>)
 splits_chinese = text_splitter_chinese.split_text(joined_page_text_chinese)
 
-# 检索
+<span class="hljs-comment"># 检索</span>
 svm_retriever = SVMRetriever.from_texts(splits_chinese, embedding)
 tfidf_retriever = TFIDFRetriever.from_texts(splits_chinese)
 </code></pre>
 <p>这里我们定义了 SVMRetriever ，和 TFIDFRetriever 两个检索器，接下来我们分别测试 TF-IDF 检索以及 SVM 检索的效果：</p>
-<pre><code class="lang-pythonthon">question_chinese = "这门课的主要主题是什么？" 
+<pre><code class="lang-python">question_chinese = <span class="hljs-string">"这门课的主要主题是什么？"</span> 
 docs_svm_chinese = svm_retriever.get_relevant_documents(question_chinese)
-print(docs_svm_chinese[0])
+<span class="hljs-built_in">print</span>(docs_svm_chinese[<span class="hljs-number">0</span>])
 </code></pre>
 <pre><code>page_content='fig, ax = plt.subplots()  \n# step4 绘制图像，  这⼀模块的扩展参考第⼆章进⼀步学习\nax.plot(x, y, label=\'linear\')  \n# step5 添加标签，⽂字和图例，这⼀模块的扩展参考第四章进⼀步学习\nax.set_xlabel(\'x label\') \nax.set_ylabel(\'y label\') \nax.set_title("Simple Plot")  \nax.legend() ;\n思考题\n请思考两种绘图模式的优缺点和各⾃适合的使⽤场景\n在第五节绘图模板中我们是以 OO 模式作为例⼦展示的，请思考并写⼀个 pyplot 绘图模式的简单模板' metadata={}
 </code></pre><p>可以看出，SVM 检索的效果要差于 VectorDB。</p>
-<pre><code class="lang-pythonthon">question_chinese = "Matplotlib是什么？"
+<pre><code class="lang-python">question_chinese = <span class="hljs-string">"Matplotlib是什么？"</span>
 docs_tfidf_chinese = tfidf_retriever.get_relevant_documents(question_chinese)
-print(docs_tfidf_chinese[0])
+<span class="hljs-built_in">print</span>(docs_tfidf_chinese[<span class="hljs-number">0</span>])
 </code></pre>
 <pre><code>page_content='fig, ax = plt.subplots()  \n# step4 绘制图像，  这⼀模块的扩展参考第⼆章进⼀步学习\nax.plot(x, y, label=\'linear\')  \n# step5 添加标签，⽂字和图例，这⼀模块的扩展参考第四章进⼀步学习\nax.set_xlabel(\'x label\') \nax.set_ylabel(\'y label\') \nax.set_title("Simple Plot")  \nax.legend() ;\n思考题\n请思考两种绘图模式的优缺点和各⾃适合的使⽤场景\n在第五节绘图模板中我们是以 OO 模式作为例⼦展示的，请思考并写⼀个 pyplot 绘图模式的简单模板' metadata={}
 </code></pre><p>同样，TF-IDF 检索的效果也不尽如人意。</p>
@@ -1001,34 +1001,34 @@ print(docs_tfidf_chinese[0])
 <p>这些技术为我们构建可交互的语义搜索模块提供了重要支持。熟练掌握各检索算法的适用场景，将大大增强问答系统的智能水平。希望本节的教程能够对大家有所帮助!</p>
 <h2 id="五、英文版">五、英文版</h2>
 <p><strong>1.1 相似性检索</strong></p>
-<pre><code class="lang-pythonthon">from langchain.vectorstores import Chroma
-from langchain.embeddings.openai import OpenAIEmbeddings
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.vectorstores <span class="hljs-keyword">import</span> Chroma
+<span class="hljs-keyword">from</span> langchain.embeddings.openai <span class="hljs-keyword">import</span> OpenAIEmbeddings
 
-persist_directory = 'docs/chroma/cs229_lectures/'
+persist_directory = <span class="hljs-string">'docs/chroma/cs229_lectures/'</span>
 
 embedding = OpenAIEmbeddings()
 vectordb = Chroma(
     persist_directory=persist_directory,
     embedding_function=embedding
 )
-print(vectordb._collection.count())
+<span class="hljs-built_in">print</span>(vectordb._collection.count())
 </code></pre>
 <pre><code>209
 </code></pre><p>简单示例</p>
-<pre><code class="lang-pythonthon">texts = [
-    """The Amanita phalloides has a large and imposing epigeous (aboveground) fruiting body (basidiocarp).""",
-    """A mushroom with a large fruiting body is the Amanita phalloides. Some varieties are all-white.""",
-    """A. phalloides, a.k.a Death Cap, is one of the most poisonous of all known mushrooms.""",
+<pre><code class="lang-python">texts = [
+    <span class="hljs-string">"""The Amanita phalloides has a large and imposing epigeous (aboveground) fruiting body (basidiocarp)."""</span>,
+    <span class="hljs-string">"""A mushroom with a large fruiting body is the Amanita phalloides. Some varieties are all-white."""</span>,
+    <span class="hljs-string">"""A. phalloides, a.k.a Death Cap, is one of the most poisonous of all known mushrooms."""</span>,
 ]
 
 smalldb = Chroma.from_texts(texts, embedding=embedding)
 
-question = "Tell me about all-white mushrooms with large fruiting bodies"
+question = <span class="hljs-string">"Tell me about all-white mushrooms with large fruiting bodies"</span>
 
-print("相似性检索：")
-print(smalldb.similarity_search(question, k=2))
-print("MMR 检索：")
-print(smalldb_chinese.max_marginal_relevance_search(question,k=2, fetch_k=3))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"相似性检索："</span>)
+<span class="hljs-built_in">print</span>(smalldb.similarity_search(question, k=<span class="hljs-number">2</span>))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"MMR 检索："</span>)
+<span class="hljs-built_in">print</span>(smalldb_chinese.max_marginal_relevance_search(question,k=<span class="hljs-number">2</span>, fetch_k=<span class="hljs-number">3</span>))
 </code></pre>
 <pre><code>  0%|          | 0/1 [00:00&lt;?, ?it/s]100%|██████████| 1/1 [00:00&lt;00:00,  2.55it/s]
 
@@ -1038,25 +1038,25 @@ print(smalldb_chinese.max_marginal_relevance_search(question,k=2, fetch_k=3))
 MMR 检索：
 [Document(page_content='一种具有大型子实体的蘑菇是毒鹅膏菌（Amanita phalloides）。某些品种全白。', metadata={}), Document(page_content='A. phalloides，又名死亡帽，是已知所有蘑菇中最有毒的一种。', metadata={})]
 </code></pre><p><strong>1.2 最大边际相关性</strong></p>
-<pre><code class="lang-pythonthon">question = "what did they say about matlab?"
-docs_ss = vectordb.similarity_search(question,k=3)
+<pre><code class="lang-python">question = <span class="hljs-string">"what did they say about matlab?"</span>
+docs_ss = vectordb.similarity_search(question,k=<span class="hljs-number">3</span>)
 
-print("相似性检索：")
-print("docs[0]: ")
-print(docs_ss[0].page_content[:100])
-print()
-print("docs[1]: ")
-print(docs_ss[1].page_content[:100])
-print()
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"相似性检索："</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"docs[0]: "</span>)
+<span class="hljs-built_in">print</span>(docs_ss[<span class="hljs-number">0</span>].page_content[:<span class="hljs-number">100</span>])
+<span class="hljs-built_in">print</span>()
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"docs[1]: "</span>)
+<span class="hljs-built_in">print</span>(docs_ss[<span class="hljs-number">1</span>].page_content[:<span class="hljs-number">100</span>])
+<span class="hljs-built_in">print</span>()
 
-docs_mmr = vectordb.max_marginal_relevance_search(question,k=3)
-print("MMR 检索：")
-print("mmr[0]: ")
-print(docs_mmr[0].page_content[:100])
-print()
-print("MMR 检索：")
-print("mmr[1]: ")
-print(docs_mmr[1].page_content[:100])
+docs_mmr = vectordb.max_marginal_relevance_search(question,k=<span class="hljs-number">3</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"MMR 检索："</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"mmr[0]: "</span>)
+<span class="hljs-built_in">print</span>(docs_mmr[<span class="hljs-number">0</span>].page_content[:<span class="hljs-number">100</span>])
+<span class="hljs-built_in">print</span>()
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"MMR 检索："</span>)
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"mmr[1]: "</span>)
+<span class="hljs-built_in">print</span>(docs_mmr[<span class="hljs-number">1</span>].page_content[:<span class="hljs-number">100</span>])
 </code></pre>
 <pre><code>相似性检索：
 docs[0]: 
@@ -1077,55 +1077,55 @@ mmr[1]:
 algorithm then? So what’s different? How come  I was making all that noise earlier about 
 least squa
 </code></pre><p><strong>1.3 使用元数据</strong></p>
-<pre><code class="lang-pythonthon">question = "what did they say about regression in the third lecture?"
+<pre><code class="lang-python">question = <span class="hljs-string">"what did they say about regression in the third lecture?"</span>
 
 docs = vectordb.similarity_search(
     question,
-    k=3,
-    filter={"source":"docs/cs229_lectures/MachineLearning-Lecture03.pdf"}
+    k=<span class="hljs-number">3</span>,
+    <span class="hljs-built_in">filter</span>={<span class="hljs-string">"source"</span>:<span class="hljs-string">"docs/cs229_lectures/MachineLearning-Lecture03.pdf"</span>}
 )
 
-for d in docs:
-    print(d.metadata)
+<span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> docs:
+    <span class="hljs-built_in">print</span>(d.metadata)
 </code></pre>
 <pre><code>{'source': 'docs/cs229_lectures/MachineLearning-Lecture03.pdf', 'page': 0}
 {'source': 'docs/cs229_lectures/MachineLearning-Lecture03.pdf', 'page': 14}
 {'source': 'docs/cs229_lectures/MachineLearning-Lecture03.pdf', 'page': 4}
 </code></pre><p><strong>1.4 使用自查询检索器</strong></p>
-<pre><code class="lang-pythonthon">from langchain.llms import OpenAI
-from langchain.retrievers.self_query.base import SelfQueryRetriever
-from langchain.chains.query_constructor.base import AttributeInfo
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.llms <span class="hljs-keyword">import</span> OpenAI
+<span class="hljs-keyword">from</span> langchain.retrievers.self_query.base <span class="hljs-keyword">import</span> SelfQueryRetriever
+<span class="hljs-keyword">from</span> langchain.chains.query_constructor.base <span class="hljs-keyword">import</span> AttributeInfo
 
-llm = OpenAI(temperature=0)
+llm = OpenAI(temperature=<span class="hljs-number">0</span>)
 
 metadata_field_info = [
     AttributeInfo(
-        name="source",
-        description="The lecture the chunk is from, should be one of `docs/cs229_lectures/MachineLearning-Lecture01.pdf`, `docs/cs229_lectures/MachineLearning-Lecture02.pdf`, or `docs/cs229_lectures/MachineLearning-Lecture03.pdf`",
-        type="string",
+        name=<span class="hljs-string">"source"</span>,
+        description=<span class="hljs-string">"The lecture the chunk is from, should be one of `docs/cs229_lectures/MachineLearning-Lecture01.pdf`, `docs/cs229_lectures/MachineLearning-Lecture02.pdf`, or `docs/cs229_lectures/MachineLearning-Lecture03.pdf`"</span>,
+        <span class="hljs-built_in">type</span>=<span class="hljs-string">"string"</span>,
     ),
     AttributeInfo(
-        name="page",
-        description="The page from the lecture",
-        type="integer",
+        name=<span class="hljs-string">"page"</span>,
+        description=<span class="hljs-string">"The page from the lecture"</span>,
+        <span class="hljs-built_in">type</span>=<span class="hljs-string">"integer"</span>,
     ),
 ]
 
-document_content_description = "Lecture notes"
+document_content_description = <span class="hljs-string">"Lecture notes"</span>
 retriever = SelfQueryRetriever.from_llm(
     llm,
     vectordb,
     document_content_description,
     metadata_field_info,
-    verbose=True
+    verbose=<span class="hljs-literal">True</span>
 )
 
-question = "what did they say about regression in the third lecture?"
+question = <span class="hljs-string">"what did they say about regression in the third lecture?"</span>
 
 docs = retriever.get_relevant_documents(question)
 
-for d in docs:
-    print(d.metadata)
+<span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> docs:
+    <span class="hljs-built_in">print</span>(d.metadata)
 </code></pre>
 <pre><code>/root/autodl-tmp/env/gpt/lib/python3.10/site-packages/langchain/chains/llm.py:275: UserWarning: The predict_and_parse method is deprecated, instead pass an output parser directly to LLMChain.
   warnings.warn(
@@ -1137,21 +1137,21 @@ query='regression' filter=Comparison(comparator=&lt;Comparator.EQ: 'eq'&gt;, att
 {'source': 'docs/cs229_lectures/MachineLearning-Lecture03.pdf', 'page': 10}
 {'source': 'docs/cs229_lectures/MachineLearning-Lecture03.pdf', 'page': 10}
 </code></pre><p><strong>1.5 压缩</strong></p>
-<pre><code class="lang-pythonthon">from langchain.retrievers import ContextualCompressionRetriever
-from langchain.retrievers.document_compressors import LLMChainExtractor
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.retrievers <span class="hljs-keyword">import</span> ContextualCompressionRetriever
+<span class="hljs-keyword">from</span> langchain.retrievers.document_compressors <span class="hljs-keyword">import</span> LLMChainExtractor
 
-def pretty_print_docs(docs):
-    print(f"\n{'-' * 100}\n".join([f"Document {i+1}:\n\n" + d.page_content for i, d in enumerate(docs)]))
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">pretty_print_docs</span>(<span class="hljs-params">docs</span>):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"\n<span class="hljs-subst">{<span class="hljs-string">'-'</span> * <span class="hljs-number">100</span>}</span>\n"</span>.join([<span class="hljs-string">f"Document <span class="hljs-subst">{i+<span class="hljs-number">1</span>}</span>:\n\n"</span> + d.page_content <span class="hljs-keyword">for</span> i, d <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(docs)]))
 
-llm = OpenAI(temperature=0)
-compressor = LLMChainExtractor.from_llm(llm)  # 压缩器
+llm = OpenAI(temperature=<span class="hljs-number">0</span>)
+compressor = LLMChainExtractor.from_llm(llm)  <span class="hljs-comment"># 压缩器</span>
 
 compression_retriever = ContextualCompressionRetriever(
     base_compressor=compressor,
     base_retriever=vectordb.as_retriever()
 )
 
-question = "what did they say about matlab?"
+question = <span class="hljs-string">"what did they say about matlab?"</span>
 compressed_docs = compression_retriever.get_relevant_documents(question)
 pretty_print_docs(compressed_docs)
 </code></pre>
@@ -1171,12 +1171,12 @@ Document 4:
 
 "And the student said, "Oh, it was the MATLAB." So for those of you that don't know MATLAB yet, I hope you do learn it. It's not hard, and we'll actually have a short MATLAB tutorial in one of the discussion sections for those of you that don't know it."
 </code></pre><p><strong>2.1 结合各种技术</strong></p>
-<pre><code class="lang-pythonthon">compression_retriever = ContextualCompressionRetriever(
+<pre><code class="lang-python">compression_retriever = ContextualCompressionRetriever(
     base_compressor=compressor,
-    base_retriever=vectordb.as_retriever(search_type = "mmr")
+    base_retriever=vectordb.as_retriever(search_type = <span class="hljs-string">"mmr"</span>)
 )
 
-question = "what did they say about matlab?"
+question = <span class="hljs-string">"what did they say about matlab?"</span>
 compressed_docs = compression_retriever.get_relevant_documents(question)
 pretty_print_docs(compressed_docs)
 </code></pre>
@@ -1188,34 +1188,34 @@ Document 2:
 
 "And the student said, "Oh, it was the MATLAB." So for those of you that don't know MATLAB yet, I hope you do learn it. It's not hard, and we'll actually have a short MATLAB tutorial in one of the discussion sections for those of you that don't know it."
 </code></pre><p><strong>3.1 其他类型的检索</strong></p>
-<pre><code class="lang-pythonthon">from langchain.retrievers import SVMRetriever
-from langchain.retrievers import TFIDFRetriever
-from langchain.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.retrievers <span class="hljs-keyword">import</span> SVMRetriever
+<span class="hljs-keyword">from</span> langchain.retrievers <span class="hljs-keyword">import</span> TFIDFRetriever
+<span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> PyPDFLoader
+<span class="hljs-keyword">from</span> langchain.text_splitter <span class="hljs-keyword">import</span> RecursiveCharacterTextSplitter
 
-# 加载PDF
-loader = PyPDFLoader("docs/cs229_lectures/MachineLearning-Lecture01.pdf")
+<span class="hljs-comment"># 加载PDF</span>
+loader = PyPDFLoader(<span class="hljs-string">"docs/cs229_lectures/MachineLearning-Lecture01.pdf"</span>)
 pages = loader.load()
-all_page_text = [p.page_content for p in pages]
-joined_page_text = " ".join(all_page_text)
+all_page_text = [p.page_content <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> pages]
+joined_page_text = <span class="hljs-string">" "</span>.join(all_page_text)
 
-# 分割文本
-text_splitter = RecursiveCharacterTextSplitter(chunk_size = 1500,chunk_overlap = 150)
+<span class="hljs-comment"># 分割文本</span>
+text_splitter = RecursiveCharacterTextSplitter(chunk_size = <span class="hljs-number">1500</span>,chunk_overlap = <span class="hljs-number">150</span>)
 splits = text_splitter.split_text(joined_page_text)
 
-# 检索
+<span class="hljs-comment"># 检索</span>
 svm_retriever = SVMRetriever.from_texts(splits, embedding)
 tfidf_retriever = TFIDFRetriever.from_texts(splits)
 
-question = "What are major topics for this class?"  # 这门课的主要主题是什么？
-print("SVM:")
+question = <span class="hljs-string">"What are major topics for this class?"</span>  <span class="hljs-comment"># 这门课的主要主题是什么？</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"SVM:"</span>)
 docs_svm = svm_retriever.get_relevant_documents(question)
-print(docs_svm[0])
+<span class="hljs-built_in">print</span>(docs_svm[<span class="hljs-number">0</span>])
 
-question = "what did they say about matlab?"
-print("TF-IDF:")
+question = <span class="hljs-string">"what did they say about matlab?"</span>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"TF-IDF:"</span>)
 docs_tfidf = tfidf_retriever.get_relevant_documents(question)
-print(docs_tfidf[0])
+<span class="hljs-built_in">print</span>(docs_tfidf[<span class="hljs-number">0</span>])
 </code></pre>
 <pre><code>SVM:
 page_content="let me just check what questions you have righ t now. So if there are no questions, I'll just \nclose with two reminders, which are after class today or as you start to talk with other \npeople in this class, I just encourage you again to start to form project partners, to try to \nfind project partners to do your project with. And also, this is a good time to start forming \nstudy groups, so either talk to your friends  or post in the newsgroup, but we just \nencourage you to try to star t to do both of those today, okay? Form study groups, and try \nto find two other project partners.  \nSo thank you. I'm looking forward to teaching this class, and I'll see you in a couple of \ndays.   [End of Audio]  \nDuration: 69 minutes" metadata={}
@@ -1264,7 +1264,7 @@ page_content="Saxena and Min Sun here did, wh ich is given an image like this, r
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5. 检索 Retrieval","level":"5.6","depth":1,"next":{"title":"6. 问答 Question ANswering","level":"5.7","depth":1,"path":"C4/6.-问答-Question-Answering.md","ref":"C4/6.-问答-Question-Answering.md","articles":[]},"previous":{"title":"4. 向量数据库与词向量 Vectorstores and Embeddings","level":"5.5","depth":1,"path":"C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.md","ref":"C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C4/5.-检索-Retrieval.md","mtime":"2025-01-05T18:01:16.651Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-05T18:01:25.931Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"5. 检索 Retrieval","level":"5.6","depth":1,"next":{"title":"6. 问答 Question ANswering","level":"5.7","depth":1,"path":"C4/6.-问答-Question-Answering.md","ref":"C4/6.-问答-Question-Answering.md","articles":[]},"previous":{"title":"4. 向量数据库与词向量 Vectorstores and Embeddings","level":"5.5","depth":1,"path":"C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.md","ref":"C4/4.-向量数据库与词向量-Vectorstores-and-Embeddings.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C4/5.-检索-Retrieval.md","mtime":"2025-01-11T00:02:01.009Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-11T18:48:15.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1334,7 +1334,7 @@ page_content="Saxena and Min Sun here did, wh ich is given an image like this, r
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

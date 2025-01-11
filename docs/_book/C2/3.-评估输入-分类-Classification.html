@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -49,7 +49,7 @@
     
     
     <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
@@ -723,13 +723,13 @@
                                 <h1 id="第三章-评估输入——分类">第三章 评估输入——分类</h1>
 <p>在本章中，我们将重点探讨评估输入任务的重要性，这关乎到整个系统的质量和安全性。</p>
 <p>在处理不同情况下的多个独立指令集的任务时，首先对查询类型进行分类，并以此为基础确定要使用哪些指令，具有诸多优势。这可以通过定义固定类别和硬编码与处理特定类别任务相关的指令来实现。例如，在构建客户服务助手时，对查询类型进行分类并根据分类确定要使用的指令可能非常关键。具体来说，如果用户要求关闭其账户，那么二级指令可能是添加有关如何关闭账户的额外说明；如果用户询问特定产品信息，则二级指令可能会提供更多的产品信息。</p>
-<pre><code class="lang-pythonthon">delimiter = "####"
+<pre><code class="lang-python">delimiter = <span class="hljs-string">"####"</span>
 </code></pre>
 <p>在这个例子中，我们使用系统消息（system_message）作为整个系统的全局指导，并选择使用 “#” 作为分隔符。<code>分隔符是用来区分指令或输出中不同部分的工具</code>，它可以帮助模型更好地识别各个部分，从而提高系统在执行特定任务时的准确性和效率。 “#” 也是一个理想的分隔符，因为它可以被视为一个单独的 token 。</p>
 <p>这是我们定义的系统消息，我们正在以下面的方式询问模型。</p>
-<pre><code class="lang-pythonthon">system_message = f"""
+<pre><code class="lang-python">system_message = <span class="hljs-string">f"""
 你将获得客户服务查询。
-每个客户服务查询都将用{delimiter}字符分隔。
+每个客户服务查询都将用<span class="hljs-subst">{delimiter}</span>字符分隔。
 将每个查询分类到一个主要类别和一个次要类别中。
 以 JSON 格式提供你的输出，包含以下键：primary 和 secondary。
 
@@ -758,26 +758,26 @@
 反馈（Feedback）
 与人工对话（Speak to a human）
 
-"""
+"""</span>
 </code></pre>
 <p>了解了系统消息后，现在让我们来看一个用户消息（user message）的例子。</p>
-<pre><code class="lang-pythonthon">user_message = f"""\ 
-我希望你删除我的个人资料和所有用户数据。"""
+<pre><code class="lang-python">user_message = <span class="hljs-string">f"""\ 
+我希望你删除我的个人资料和所有用户数据。"""</span>
 </code></pre>
 <p>首先，将这个用户消息格式化为一个消息列表，并将系统消息和用户消息之间使用 "####" 进行分隔。</p>
-<pre><code class="lang-pythonthon">messages =  [  
-{'role':'system', 
- 'content': system_message},    
-{'role':'user', 
- 'content': f"{delimiter}{user_message}{delimiter}"},  
+<pre><code class="lang-python">messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, 
+ <span class="hljs-string">'content'</span>: system_message},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, 
+ <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
 ]
 </code></pre>
 <p>如果让你来判断，下面这句话属于哪个类别："我想让您删除我的个人资料。我们思考一下，这句话似乎看上去属于“账户管理（Account Management）”或者属于“关闭账户（Close account）”。 </p>
 <p>让我们看看模型是如何思考的：</p>
-<pre><code class="lang-pythonthon">from tool import get_completion_from_messages
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> tool <span class="hljs-keyword">import</span> get_completion_from_messages
 
 response = get_completion_from_messages(messages)
-print(response)
+<span class="hljs-built_in">print</span>(response)
 </code></pre>
 <pre><code>{
   "primary": "账户管理",
@@ -788,16 +788,16 @@ print(response)
 <p>下面让我们再看一个例子：</p>
 <pre><code>用户消息: “告诉我更多关于你们的平板电脑的信息”
 </code></pre><p>我们运用相同的消息列表来获取模型的响应，然后打印出来。</p>
-<pre><code class="lang-pythonthon">user_message = f"""\
-告诉我更多有关你们的平板电脑的信息"""
+<pre><code class="lang-python">user_message = <span class="hljs-string">f"""\
+告诉我更多有关你们的平板电脑的信息"""</span>
 messages =  [  
-{'role':'system', 
- 'content': system_message},    
-{'role':'user', 
- 'content': f"{delimiter}{user_message}{delimiter}"},  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, 
+ <span class="hljs-string">'content'</span>: system_message},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, 
+ <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
 ] 
 response = get_completion_from_messages(messages)
-print(response)
+<span class="hljs-built_in">print</span>(response)
 </code></pre>
 <pre><code>{
   "primary": "一般咨询",
@@ -806,10 +806,10 @@ print(response)
 </code></pre><p>这里返回了另一个分类结果，并且看起来似乎是正确的。因此，根据客户咨询的分类，我们现在可以提供一套更具体的指令来处理后续步骤。在这种情况下，我们可能会添加关于平板电脑的额外信息，而在其他情况下，我们可能希望提供关闭账户的链接或类似的内容。这里返回了另一个分类结果，并且看起来应该是正确的。</p>
 <p>在下一章中，我们将探讨更多关于评估输入的方法，特别是如何确保用户以负责任的方式使用系统。</p>
 <h2 id="英文版">英文版</h2>
-<pre><code class="lang-pythonthon">system_message = f"""
+<pre><code class="lang-python">system_message = <span class="hljs-string">f"""
 You will be provided with customer service queries. \
 The customer service query will be delimited with \
-{delimiter} characters.
+<span class="hljs-subst">{delimiter}</span> characters.
 Classify each query into a primary category \
 and a secondary category. 
 Provide your output in json format with the \
@@ -841,35 +841,35 @@ Pricing
 Feedback
 Speak to a human
 
-"""
+"""</span>
 </code></pre>
-<pre><code class="lang-pythonthon">user_message = f"""\ 
-I want you to delete my profile and all of my user data"""
+<pre><code class="lang-python">user_message = <span class="hljs-string">f"""\ 
+I want you to delete my profile and all of my user data"""</span>
 </code></pre>
-<pre><code class="lang-pythonthon">messages =  [  
-{'role':'system', 
- 'content': system_message},    
-{'role':'user', 
- 'content': f"{delimiter}{user_message}{delimiter}"},  
+<pre><code class="lang-python">messages =  [  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, 
+ <span class="hljs-string">'content'</span>: system_message},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, 
+ <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
 ]
 </code></pre>
-<pre><code class="lang-pythonthon">response = get_completion_from_messages(messages)
-print(response)
+<pre><code class="lang-python">response = get_completion_from_messages(messages)
+<span class="hljs-built_in">print</span>(response)
 </code></pre>
 <pre><code>{
   "primary": "Account Management",
   "secondary": "Close account"
 }
-</code></pre><pre><code class="lang-pythonthon">user_message = f"""\
-Tell me more about your flat screen tvs"""
+</code></pre><pre><code class="lang-python">user_message = <span class="hljs-string">f"""\
+Tell me more about your flat screen tvs"""</span>
 messages =  [  
-{'role':'system', 
- 'content': system_message},    
-{'role':'user', 
- 'content': f"{delimiter}{user_message}{delimiter}"},  
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'system'</span>, 
+ <span class="hljs-string">'content'</span>: system_message},    
+{<span class="hljs-string">'role'</span>:<span class="hljs-string">'user'</span>, 
+ <span class="hljs-string">'content'</span>: <span class="hljs-string">f"<span class="hljs-subst">{delimiter}</span><span class="hljs-subst">{user_message}</span><span class="hljs-subst">{delimiter}</span>"</span>},  
 ] 
 response = get_completion_from_messages(messages)
-print(response)
+<span class="hljs-built_in">print</span>(response)
 </code></pre>
 <pre><code>{
   "primary": "General Inquiry",
@@ -918,7 +918,7 @@ print(response)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3. 评估输入-分类 Classification","level":"3.4","depth":1,"next":{"title":"4. 检查输入-监督 Moderation","level":"3.5","depth":1,"path":"C2/4.-检查输入-监督-Moderation.md","ref":"C2/4.-检查输入-监督-Moderation.md","articles":[]},"previous":{"title":"2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens","level":"3.3","depth":1,"path":"C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.md","ref":"C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/3.-评估输入-分类-Classification.md","mtime":"2025-01-05T18:01:16.620Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-05T18:01:25.931Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3. 评估输入-分类 Classification","level":"3.4","depth":1,"next":{"title":"4. 检查输入-监督 Moderation","level":"3.5","depth":1,"path":"C2/4.-检查输入-监督-Moderation.md","ref":"C2/4.-检查输入-监督-Moderation.md","articles":[]},"previous":{"title":"2. 语言模型，提问范式与 Token Language Models, the Chat Format and Tokens","level":"3.3","depth":1,"path":"C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.md","ref":"C2/2.-语言模型，提问范式与-Token-Language-Models,-the-Chat-Format-and-Tokens.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/3.-评估输入-分类-Classification.md","mtime":"2025-01-11T00:02:01.069Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-11T18:48:15.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -988,7 +988,7 @@ print(response)
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -49,7 +49,7 @@
     
     
     <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
@@ -736,24 +736,24 @@
 <h2 id="一、对话缓存储存">一、对话缓存储存</h2>
 <h3 id="11-初始化对话模型">1.1 初始化对话模型</h3>
 <p>让我们先来初始化对话模型。</p>
-<pre><code class="lang-pythonthon">from langchain.chains import ConversationChain
-from langchain.chat_models import ChatOpenAI
-from langchain.memory import ConversationBufferMemory
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> ConversationChain
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI
+<span class="hljs-keyword">from</span> langchain.memory <span class="hljs-keyword">import</span> ConversationBufferMemory
 
-# 这里我们将参数temperature设置为0.0，从而减少生成答案的随机性。
-# 如果你想要每次得到不一样的有新意的答案，可以尝试增大该参数。
-llm = ChatOpenAI(temperature=0.0)  
+<span class="hljs-comment"># 这里我们将参数temperature设置为0.0，从而减少生成答案的随机性。</span>
+<span class="hljs-comment"># 如果你想要每次得到不一样的有新意的答案，可以尝试增大该参数。</span>
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)  
 memory = ConversationBufferMemory()
 
 
-# 新建一个 ConversationChain Class 实例
-# verbose参数设置为True时，程序会输出更详细的信息，以提供更多的调试或运行时信息。
-# 相反，当将verbose参数设置为False时，程序会以更简洁的方式运行，只输出关键的信息。
-conversation = ConversationChain(llm=llm, memory = memory, verbose=True )
+<span class="hljs-comment"># 新建一个 ConversationChain Class 实例</span>
+<span class="hljs-comment"># verbose参数设置为True时，程序会输出更详细的信息，以提供更多的调试或运行时信息。</span>
+<span class="hljs-comment"># 相反，当将verbose参数设置为False时，程序会以更简洁的方式运行，只输出关键的信息。</span>
+conversation = ConversationChain(llm=llm, memory = memory, verbose=<span class="hljs-literal">True</span> )
 </code></pre>
 <h3 id="12-第一轮对话">1.2 第一轮对话</h3>
 <p>当我们运行预测(predict)时，生成了一些提示，如下所见，他说“以下是人类和 AI 之间友好的对话，AI 健谈“等等，这实际上是 LangChain 生成的提示，以使系统进行希望和友好的对话，并且必须保存对话，并提示了当前已完成的模型链。</p>
-<pre><code class="lang-pythonthon">conversation.predict(input="你好, 我叫皮皮鲁")
+<pre><code class="lang-python">conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"你好, 我叫皮皮鲁"</span>)
 </code></pre>
 <pre><code>&gt; Entering new  chain...
 Prompt after formatting:
@@ -773,7 +773,7 @@ AI:
 '你好，皮皮鲁！很高兴认识你。我是一个AI助手，可以回答你的问题和提供帮助。有什么我可以帮你的吗？'
 </code></pre><h3 id="13-第二轮对话">1.3 第二轮对话</h3>
 <p>当我们进行第二轮对话时，它会保留上面的提示</p>
-<pre><code class="lang-pythonthon">conversation.predict(input="1+1等于多少？")
+<pre><code class="lang-python">conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"1+1等于多少？"</span>)
 </code></pre>
 <pre><code>&gt; Entering new ConversationChain chain...
 Prompt after formatting:
@@ -794,7 +794,7 @@ AI:
 '1+1等于2。'
 </code></pre><h3 id="14-第三轮对话">1.4 第三轮对话</h3>
 <p>为了验证他是否记忆了前面的对话内容，我们让他回答前面已经说过的内容（我的名字），可以看到他确实输出了正确的名字，因此这个对话链随着往下进行会越来越长。</p>
-<pre><code class="lang-pythonthon">conversation.predict(input="我叫什么名字？")
+<pre><code class="lang-python">conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"我叫什么名字？"</span>)
 </code></pre>
 <pre><code>&gt; Entering new ConversationChain chain...
 Prompt after formatting:
@@ -817,7 +817,7 @@ AI:
 '你叫皮皮鲁。'
 </code></pre><h3 id="15-查看储存缓存">1.5 查看储存缓存</h3>
 <p>储存缓存(buffer)，即储存了当前为止所有的对话信息</p>
-<pre><code class="lang-pythonthon">print(memory.buffer)
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(memory.buffer)
 </code></pre>
 <pre><code>Human: 你好, 我叫皮皮鲁
 AI: 你好，皮皮鲁！很高兴认识你。我是一个AI助手，可以回答你的问题和提供帮助。有什么我可以帮你的吗？
@@ -826,18 +826,18 @@ AI: 1+1等于2。
 Human: 我叫什么名字？
 AI: 你叫皮皮鲁。
 </code></pre><p>也可以通过<code>load_memory_variables({})</code>打印缓存中的历史消息。这里的<code>{}</code>是一个空字典，有一些更高级的功能，使用户可以使用更复杂的输入，具体可以通过 LangChain 的官方文档查询更高级的用法。</p>
-<pre><code class="lang-pythonthon">print(memory.load_memory_variables({}))
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(memory.load_memory_variables({}))
 </code></pre>
 <pre><code>{'history': 'Human: 你好, 我叫皮皮鲁\nAI: 你好，皮皮鲁！很高兴认识你。我是一个AI助手，可以回答你的问题和提供帮助。有什么我可以帮你的吗？\nHuman: 1+1等于多少？\nAI: 1+1等于2。\nHuman: 我叫什么名字？\nAI: 你叫皮皮鲁。'}
 </code></pre><h3 id="16-直接添加内容到储存缓存">1.6 直接添加内容到储存缓存</h3>
 <p>我们可以使用<code>save_context</code>来直接添加内容到<code>buffer</code>中。</p>
-<pre><code class="lang-pythonthon">memory = ConversationBufferMemory()
-memory.save_context({"input": "你好，我叫皮皮鲁"}, {"output": "你好啊，我叫鲁西西"})
+<pre><code class="lang-python">memory = ConversationBufferMemory()
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"你好，我叫皮皮鲁"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"你好啊，我叫鲁西西"</span>})
 memory.load_memory_variables({})
 </code></pre>
 <pre><code>{'history': 'Human: 你好，我叫皮皮鲁\nAI: 你好啊，我叫鲁西西'}
 </code></pre><p>继续添加新的内容</p>
-<pre><code class="lang-pythonthon">memory.save_context({"input": "很高兴和你成为朋友！"}, {"output": "是的，让我们一起去冒险吧！"})
+<pre><code class="lang-python">memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"很高兴和你成为朋友！"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"是的，让我们一起去冒险吧！"</span>})
 memory.load_memory_variables({})
 </code></pre>
 <pre><code>{'history': 'Human: 你好，我叫皮皮鲁\nAI: 你好啊，我叫鲁西西\nHuman: 很高兴和你成为朋友！\nAI: 是的，让我们一起去冒险吧！'}
@@ -848,30 +848,30 @@ memory.load_memory_variables({})
 <p>针对以上问题，LangChain也提供了几种方便的储存方式来保存历史对话。其中，对话缓存窗口储存只保留一个窗口大小的对话。它只使用最近的n次交互。这可以用于保持最近交互的滑动窗口，以便缓冲区不会过大。</p>
 <h3 id="21-添加两轮对话到窗口储存">2.1 添加两轮对话到窗口储存</h3>
 <p>我们先来尝试一下使用<code>ConversationBufferWindowMemory</code>来实现交互的滑动窗口，并设置<code>k=1</code>，表示只保留一个对话记忆。接下来我们手动添加两轮对话到窗口储存中，然后查看储存的对话。</p>
-<pre><code class="lang-pythonthon">from langchain.memory import ConversationBufferWindowMemory
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.memory <span class="hljs-keyword">import</span> ConversationBufferWindowMemory
 
-# k=1表明只保留一个对话记忆
-memory = ConversationBufferWindowMemory(k=1)  
-memory.save_context({"input": "你好，我叫皮皮鲁"}, {"output": "你好啊，我叫鲁西西"})
-memory.save_context({"input": "很高兴和你成为朋友！"}, {"output": "是的，让我们一起去冒险吧！"})
+<span class="hljs-comment"># k=1表明只保留一个对话记忆</span>
+memory = ConversationBufferWindowMemory(k=<span class="hljs-number">1</span>)  
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"你好，我叫皮皮鲁"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"你好啊，我叫鲁西西"</span>})
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"很高兴和你成为朋友！"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"是的，让我们一起去冒险吧！"</span>})
 memory.load_memory_variables({})
 </code></pre>
 <pre><code>{'history': 'Human: 很高兴和你成为朋友！\nAI: 是的，让我们一起去冒险吧！'}
 </code></pre><p>通过结果，我们可以看到窗口储存中只有最后一轮的聊天记录。</p>
 <h3 id="22-在对话链中应用窗口储存">2.2 在对话链中应用窗口储存</h3>
 <p>接下来，让我们来看看如何在<code>ConversationChain</code>中运用<code>ConversationBufferWindowMemory</code>吧！</p>
-<pre><code class="lang-pythonthon">llm = ChatOpenAI(temperature=0.0)
-memory = ConversationBufferWindowMemory(k=1)
-conversation = ConversationChain(llm=llm, memory=memory, verbose=False  )
+<pre><code class="lang-python">llm = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)
+memory = ConversationBufferWindowMemory(k=<span class="hljs-number">1</span>)
+conversation = ConversationChain(llm=llm, memory=memory, verbose=<span class="hljs-literal">False</span>  )
 
-print("第一轮对话：")
-print(conversation.predict(input="你好, 我叫皮皮鲁"))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第一轮对话："</span>)
+<span class="hljs-built_in">print</span>(conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"你好, 我叫皮皮鲁"</span>))
 
-print("第二轮对话：")
-print(conversation.predict(input="1+1等于多少？"))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第二轮对话："</span>)
+<span class="hljs-built_in">print</span>(conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"1+1等于多少？"</span>))
 
-print("第三轮对话：")
-print(conversation.predict(input="我叫什么名字？"))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第三轮对话："</span>)
+<span class="hljs-built_in">print</span>(conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"我叫什么名字？"</span>))
 </code></pre>
 <pre><code>第一轮对话：
 你好，皮皮鲁！很高兴认识你。我是一个AI助手，可以回答你的问题和提供帮助。有什么我可以帮你的吗？
@@ -884,11 +884,11 @@ print(conversation.predict(input="我叫什么名字？"))
 <p>使用对话字符缓存记忆，内存将限制保存的token数量。如果字符数量超出指定数目，它会切掉这个对话的早期部分
 以保留与最近的交流相对应的字符数量，但不超过字符限制。</p>
 <p>添加对话到Token缓存储存,限制token数量，进行测试</p>
-<pre><code class="lang-pythonthon">from langchain.llms import OpenAI
-from langchain.memory import ConversationTokenBufferMemory
-memory = ConversationTokenBufferMemory(llm=llm, max_token_limit=30)
-memory.save_context({"input": "朝辞白帝彩云间，"}, {"output": "千里江陵一日还。"})
-memory.save_context({"input": "两岸猿声啼不住，"}, {"output": "轻舟已过万重山。"})
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.llms <span class="hljs-keyword">import</span> OpenAI
+<span class="hljs-keyword">from</span> langchain.memory <span class="hljs-keyword">import</span> ConversationTokenBufferMemory
+memory = ConversationTokenBufferMemory(llm=llm, max_token_limit=<span class="hljs-number">30</span>)
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"朝辞白帝彩云间，"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"千里江陵一日还。"</span>})
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"两岸猿声啼不住，"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"轻舟已过万重山。"</span>})
 memory.load_memory_variables({})
 </code></pre>
 <pre><code>{'history': 'AI: 轻舟已过万重山。'}
@@ -898,32 +898,32 @@ memory.load_memory_variables({})
 <p>对话摘要缓存储存，<strong>使用 LLM 对到目前为止历史对话自动总结摘要</strong>，并将其保存下来。</p>
 <h3 id="41-使用对话摘要缓存储存">4.1 使用对话摘要缓存储存</h3>
 <p>我们创建了一个长字符串，其中包含某人的日程安排。</p>
-<pre><code class="lang-pythonthon">from langchain.chains import ConversationChain
-from langchain.chat_models import ChatOpenAI
-from langchain.memory import ConversationSummaryBufferMemory
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> ConversationChain
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI
+<span class="hljs-keyword">from</span> langchain.memory <span class="hljs-keyword">import</span> ConversationSummaryBufferMemory
 
-# 创建一个长字符串
-schedule = "在八点你和你的产品团队有一个会议。 \
+<span class="hljs-comment"># 创建一个长字符串</span>
+schedule = <span class="hljs-string">"在八点你和你的产品团队有一个会议。 \
 你需要做一个PPT。 \
 上午9点到12点你需要忙于LangChain。\
 Langchain是一个有用的工具，因此你的项目进展的非常快。\
 中午，在意大利餐厅与一位开车来的顾客共进午餐 \
 走了一个多小时的路程与你见面，只为了解最新的 AI。 \
-确保你带了笔记本电脑可以展示最新的 LLM 样例."
+确保你带了笔记本电脑可以展示最新的 LLM 样例."</span>
 
-llm = ChatOpenAI(temperature=0.0)
-memory = ConversationSummaryBufferMemory(llm=llm, max_token_limit=100)
-memory.save_context({"input": "你好，我叫皮皮鲁"}, {"output": "你好啊，我叫鲁西西"})
-memory.save_context({"input": "很高兴和你成为朋友！"}, {"output": "是的，让我们一起去冒险吧！"})
-memory.save_context({"input": "今天的日程安排是什么？"}, {"output": f"{schedule}"})
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)
+memory = ConversationSummaryBufferMemory(llm=llm, max_token_limit=<span class="hljs-number">100</span>)
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"你好，我叫皮皮鲁"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"你好啊，我叫鲁西西"</span>})
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"很高兴和你成为朋友！"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"是的，让我们一起去冒险吧！"</span>})
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"今天的日程安排是什么？"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">f"<span class="hljs-subst">{schedule}</span>"</span>})
 
-print(memory.load_memory_variables({})['history'])
+<span class="hljs-built_in">print</span>(memory.load_memory_variables({})[<span class="hljs-string">'history'</span>])
 </code></pre>
 <pre><code>System: The human introduces themselves as Pipilu and the AI introduces themselves as Luxixi. They express happiness at becoming friends and decide to go on an adventure together. The human asks about the schedule for the day. The AI informs them that they have a meeting with their product team at 8 o'clock and need to prepare a PowerPoint presentation. From 9 am to 12 pm, they will be busy with LangChain, a useful tool that helps their project progress quickly. At noon, they will have lunch with a customer who has driven for over an hour just to learn about the latest AI. The AI advises the human to bring their laptop to showcase the latest LLM samples.
 </code></pre><h3 id="42-基于对话摘要缓存储存的对话链">4.2 基于对话摘要缓存储存的对话链</h3>
 <p>基于上面的对话摘要缓存储存，我们新建一个对话链。</p>
-<pre><code class="lang-pythonthon">conversation = ConversationChain(llm=llm, memory=memory, verbose=True)
-conversation.predict(input="展示什么样的样例最好呢？")
+<pre><code class="lang-python">conversation = ConversationChain(llm=llm, memory=memory, verbose=<span class="hljs-literal">True</span>)
+conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"展示什么样的样例最好呢？"</span>)
 </code></pre>
 <pre><code>&gt; Entering new ConversationChain chain...
 Prompt after formatting:
@@ -941,29 +941,29 @@ AI:
 
 
 '展示一些具有多样性和创新性的样例可能是最好的选择。你可以展示一些不同领域的应用，比如自然语言处理、图像识别、语音合成等。另外，你也可以展示一些具有实际应用价值的样例，比如智能客服、智能推荐等。总之，选择那些能够展示出我们AI技术的强大和多样性的样例会给客户留下深刻的印象。'
-</code></pre><pre><code class="lang-pythonthon">print(memory.load_memory_variables({}))  # 摘要记录更新了
+</code></pre><pre><code class="lang-python"><span class="hljs-built_in">print</span>(memory.load_memory_variables({}))  <span class="hljs-comment"># 摘要记录更新了</span>
 </code></pre>
 <pre><code>{'history': "System: The human introduces themselves as Pipilu and the AI introduces themselves as Luxixi. They express happiness at becoming friends and decide to go on an adventure together. The human asks about the schedule for the day. The AI informs them that they have a meeting with their product team at 8 o'clock and need to prepare a PowerPoint presentation. From 9 am to 12 pm, they will be busy with LangChain, a useful tool that helps their project progress quickly. At noon, they will have lunch with a customer who has driven for over an hour just to learn about the latest AI. The AI advises the human to bring their laptop to showcase the latest LLM samples. The human asks what kind of samples would be best to showcase. The AI suggests that showcasing diverse and innovative samples would be the best choice. They recommend demonstrating applications in different fields such as natural language processing, image recognition, and speech synthesis. Additionally, they suggest showcasing practical examples like intelligent customer service and personalized recommendations to impress the customer with the power and versatility of their AI technology."}
 </code></pre><p>通过对比上一次输出，发现摘要记录更新了，添加了最新一次对话的内容总结。</p>
 <h2 id="英文版提示">英文版提示</h2>
 <p><strong>1.对话缓存储存</strong></p>
-<pre><code class="lang-pythonthon">from langchain.chains import ConversationChain
-from langchain.chat_models import ChatOpenAI
-from langchain.memory import ConversationBufferMemory
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> ConversationChain
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI
+<span class="hljs-keyword">from</span> langchain.memory <span class="hljs-keyword">import</span> ConversationBufferMemory
 
 
-llm = ChatOpenAI(temperature=0.0)  
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)  
 memory = ConversationBufferMemory()
-conversation = ConversationChain(llm=llm, memory = memory, verbose=True )
+conversation = ConversationChain(llm=llm, memory = memory, verbose=<span class="hljs-literal">True</span> )
 
-print("第一轮对话：")
-conversation.predict(input="Hi, my name is Andrew")
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第一轮对话："</span>)
+conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"Hi, my name is Andrew"</span>)
 
-print("第二轮对话：")
-conversation.predict(input="What is 1+1?")
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第二轮对话："</span>)
+conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"What is 1+1?"</span>)
 
-print("第三轮对话：")
-conversation.predict(input="What is my name?")
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第三轮对话："</span>)
+conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"What is my name?"</span>)
 </code></pre>
 <pre><code>第一轮对话：
 
@@ -1014,22 +1014,22 @@ AI:
 
 
 'Your name is Andrew.'
-</code></pre><pre><code class="lang-pythonthon">print("查看储存缓存方式一：")
-print(memory.buffer) 
+</code></pre><pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">"查看储存缓存方式一："</span>)
+<span class="hljs-built_in">print</span>(memory.buffer) 
 
-print("查看储存缓存方式二：")
-print(memory.load_memory_variables({}))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"查看储存缓存方式二："</span>)
+<span class="hljs-built_in">print</span>(memory.load_memory_variables({}))
 
-print("向缓存区添加指定对话的输入输出, 并查看")
-memory = ConversationBufferMemory()  # 新建一个空的对话缓存记忆
-memory.save_context({"input": "Hi"}, {"output": "What's up"})  # 向缓存区添加指定对话的输入输出
-print(memory.buffer)  # 查看缓存区结果
-print(memory.load_memory_variables({}))# 再次加载记忆变量
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"向缓存区添加指定对话的输入输出, 并查看"</span>)
+memory = ConversationBufferMemory()  <span class="hljs-comment"># 新建一个空的对话缓存记忆</span>
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"Hi"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"What's up"</span>})  <span class="hljs-comment"># 向缓存区添加指定对话的输入输出</span>
+<span class="hljs-built_in">print</span>(memory.buffer)  <span class="hljs-comment"># 查看缓存区结果</span>
+<span class="hljs-built_in">print</span>(memory.load_memory_variables({}))<span class="hljs-comment"># 再次加载记忆变量</span>
 
-print("继续向向缓存区添加指定对话的输入输出, 并查看")
-memory.save_context({"input": "Not much, just hanging"}, {"output": "Cool"})
-print(memory.buffer)  # 查看缓存区结果
-print(memory.load_memory_variables({}))# 再次加载记忆变量
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"继续向向缓存区添加指定对话的输入输出, 并查看"</span>)
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"Not much, just hanging"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"Cool"</span>})
+<span class="hljs-built_in">print</span>(memory.buffer)  <span class="hljs-comment"># 查看缓存区结果</span>
+<span class="hljs-built_in">print</span>(memory.load_memory_variables({}))<span class="hljs-comment"># 再次加载记忆变量</span>
 </code></pre>
 <pre><code>查看储存缓存方式一：
 Human: Hi, my name is Andrew
@@ -1051,32 +1051,32 @@ Human: Not much, just hanging
 AI: Cool
 {'history': "Human: Hi\nAI: What's up\nHuman: Not much, just hanging\nAI: Cool"}
 </code></pre><p><strong>2. 对话缓存窗口储存</strong></p>
-<pre><code class="lang-pythonthon">from langchain.memory import ConversationBufferWindowMemory
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.memory <span class="hljs-keyword">import</span> ConversationBufferWindowMemory
 
-# k 为窗口参数，k=1表明只保留一个对话记忆
-memory = ConversationBufferWindowMemory(k=1)  
+<span class="hljs-comment"># k 为窗口参数，k=1表明只保留一个对话记忆</span>
+memory = ConversationBufferWindowMemory(k=<span class="hljs-number">1</span>)  
 
-# 向memory添加两轮对话
-memory.save_context({"input": "Hi"}, {"output": "What's up"})
-memory.save_context({"input": "Not much, just hanging"}, {"output": "Cool"})
+<span class="hljs-comment"># 向memory添加两轮对话</span>
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"Hi"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"What's up"</span>})
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"Not much, just hanging"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"Cool"</span>})
 
-# 并查看记忆变量当前的记录
+<span class="hljs-comment"># 并查看记忆变量当前的记录</span>
 memory.load_memory_variables({})
 
 
-llm = ChatOpenAI(temperature=0.0)
-memory = ConversationBufferWindowMemory(k=1)
-conversation = ConversationChain(llm=llm, memory=memory, verbose=False  )
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)
+memory = ConversationBufferWindowMemory(k=<span class="hljs-number">1</span>)
+conversation = ConversationChain(llm=llm, memory=memory, verbose=<span class="hljs-literal">False</span>  )
 
 
-print("第一轮对话：")
-print(conversation.predict(input="Hi, my name is Andrew"))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第一轮对话："</span>)
+<span class="hljs-built_in">print</span>(conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"Hi, my name is Andrew"</span>))
 
-print("第二轮对话：")
-print(conversation.predict(input="What is 1+1?"))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第二轮对话："</span>)
+<span class="hljs-built_in">print</span>(conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"What is 1+1?"</span>))
 
-print("第三轮对话：")
-print(conversation.predict(input="What is my name?"))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"第三轮对话："</span>)
+<span class="hljs-built_in">print</span>(conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"What is my name?"</span>))
 </code></pre>
 <pre><code>第一轮对话：
 Hello Andrew! It's nice to meet you. How can I assist you today?
@@ -1085,46 +1085,46 @@ Hello Andrew! It's nice to meet you. How can I assist you today?
 第三轮对话：
 I'm sorry, but I don't have access to personal information.
 </code></pre><p><strong>3. 对话字符缓存储存</strong></p>
-<pre><code class="lang-pythonthon">from langchain.llms import OpenAI
-from langchain.memory import ConversationTokenBufferMemory
-memory = ConversationTokenBufferMemory(llm=llm, max_token_limit=30)
-memory.save_context({"input": "AI is what?!"}, {"output": "Amazing!"})
-memory.save_context({"input": "Backpropagation is what?"}, {"output": "Beautiful!"})
-memory.save_context({"input": "Chatbots are what?"}, {"output": "Charming!"})
-print(memory.load_memory_variables({}))
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.llms <span class="hljs-keyword">import</span> OpenAI
+<span class="hljs-keyword">from</span> langchain.memory <span class="hljs-keyword">import</span> ConversationTokenBufferMemory
+memory = ConversationTokenBufferMemory(llm=llm, max_token_limit=<span class="hljs-number">30</span>)
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"AI is what?!"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"Amazing!"</span>})
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"Backpropagation is what?"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"Beautiful!"</span>})
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"Chatbots are what?"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"Charming!"</span>})
+<span class="hljs-built_in">print</span>(memory.load_memory_variables({}))
 </code></pre>
 <pre><code>{'history': 'AI: Beautiful!\nHuman: Chatbots are what?\nAI: Charming!'}
 </code></pre><p><strong>4. 对话摘要缓存储存</strong></p>
-<pre><code class="lang-pythonthon">from langchain.chains import ConversationChain
-from langchain.chat_models import ChatOpenAI
-from langchain.memory import ConversationSummaryBufferMemory
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> ConversationChain
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI
+<span class="hljs-keyword">from</span> langchain.memory <span class="hljs-keyword">import</span> ConversationSummaryBufferMemory
 
-# 创建一个长字符串
-schedule = "There is a meeting at 8am with your product team. \
+<span class="hljs-comment"># 创建一个长字符串</span>
+schedule = <span class="hljs-string">"There is a meeting at 8am with your product team. \
 You will need your powerpoint presentation prepared. \
 9am-12pm have time to work on your LangChain \
 project which will go quickly because Langchain is such a powerful tool. \
 At Noon, lunch at the italian resturant with a customer who is driving \
 from over an hour away to meet you to understand the latest in AI. \
-Be sure to bring your laptop to show the latest LLM demo."
+Be sure to bring your laptop to show the latest LLM demo."</span>
 
-# 使用对话摘要缓存
-llm = ChatOpenAI(temperature=0.0)
-memory = ConversationSummaryBufferMemory(llm=llm, max_token_limit=100) 
-memory.save_context({"input": "Hello"}, {"output": "What's up"})
-memory.save_context({"input": "Not much, just hanging"}, {"output": "Cool"})
-memory.save_context({"input": "What is on the schedule today?"}, {"output": f"{schedule}"})
+<span class="hljs-comment"># 使用对话摘要缓存</span>
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)
+memory = ConversationSummaryBufferMemory(llm=llm, max_token_limit=<span class="hljs-number">100</span>) 
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"Hello"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"What's up"</span>})
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"Not much, just hanging"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">"Cool"</span>})
+memory.save_context({<span class="hljs-string">"input"</span>: <span class="hljs-string">"What is on the schedule today?"</span>}, {<span class="hljs-string">"output"</span>: <span class="hljs-string">f"<span class="hljs-subst">{schedule}</span>"</span>})
 
-print("查看对话摘要缓存储存")
-print(memory.load_memory_variables({})['history'])
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"查看对话摘要缓存储存"</span>)
+<span class="hljs-built_in">print</span>(memory.load_memory_variables({})[<span class="hljs-string">'history'</span>])
 
-conversation = ConversationChain(llm=llm, memory=memory, verbose=True)
+conversation = ConversationChain(llm=llm, memory=memory, verbose=<span class="hljs-literal">True</span>)
 
-print("基于对话摘要缓存储存的对话链")
-conversation.predict(input="What would be a good demo to show?")
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"基于对话摘要缓存储存的对话链"</span>)
+conversation.predict(<span class="hljs-built_in">input</span>=<span class="hljs-string">"What would be a good demo to show?"</span>)
 
-print("再次查看对话摘要缓存储存")
-print(memory.load_memory_variables({})['history'])
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"再次查看对话摘要缓存储存"</span>)
+<span class="hljs-built_in">print</span>(memory.load_memory_variables({})[<span class="hljs-string">'history'</span>])
 </code></pre>
 <pre><code>查看对话摘要缓存储存
 System: The human and AI exchange greetings. The human asks about the schedule for the day. The AI provides a detailed schedule, including a meeting with the product team, work on the LangChain project, and a lunch meeting with a customer interested in AI. The AI emphasizes the importance of bringing a laptop to showcase the latest LLM demo during the lunch meeting.
@@ -1186,7 +1186,7 @@ System: The human and AI exchange greetings and discuss the schedule for the day
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3. 储存 Memory","level":"4.4","depth":1,"next":{"title":"4. 模型链 Chains","level":"4.5","depth":1,"path":"C3/4.-模型链-Chains.md","ref":"C3/4.-模型链-Chains.md","articles":[]},"previous":{"title":"2. 模型、提示和解析器 Models, Prompts and Parsers","level":"4.3","depth":1,"path":"C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.md","ref":"C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C3/3.-储存-Memory.md","mtime":"2025-01-05T18:01:16.620Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-05T18:01:25.931Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3. 储存 Memory","level":"4.4","depth":1,"next":{"title":"4. 模型链 Chains","level":"4.5","depth":1,"path":"C3/4.-模型链-Chains.md","ref":"C3/4.-模型链-Chains.md","articles":[]},"previous":{"title":"2. 模型、提示和解析器 Models, Prompts and Parsers","level":"4.3","depth":1,"path":"C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.md","ref":"C3/2.-模型、提示和解析器-Models,-Prompts-and-Output-Parsers.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C3/3.-储存-Memory.md","mtime":"2025-01-11T00:02:01.079Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-11T18:48:15.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1256,7 +1256,7 @@ System: The human and AI exchange greetings and discuss the schedule for the day
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

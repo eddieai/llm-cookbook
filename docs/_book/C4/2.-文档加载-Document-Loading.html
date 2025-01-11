@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -49,7 +49,7 @@
     
     
     <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
@@ -726,37 +726,37 @@
 <h2 id="一、pdf-文档">一、PDF 文档</h2>
 <p>首先，我们将从以下链接加载一个<a href="https://datawhalechina.github.io/fantastic-matplotlib/" target="_blank">PDF文档</a>。这是 DataWhale 提供的开源教程，名为《Fantastic Matplotlib》。值得注意的是，在英文版本中，吴恩达教授使用的是他<a href="https://see.stanford.edu/materials/aimlcs229/transcripts/MachineLearning-Lecture01.pdf" target="_blank">2009年的机器学习课程字幕文件</a>作为示例。为了更适合中文读者，我们选择了上述中文教程作为示例。不过，在英文原版代码中，你仍可以找到吴恩达教授的机器学习课程文件作为参考。后续的代码实践也会遵循这一调整。</p>
 <p>注意，要运行以下代码，你需要安装第三方库 pypdf：</p>
-<pre><code class="lang-pythonthon">!pip install -q pypdf
+<pre><code class="lang-python">!pip install -q pypdf
 </code></pre>
 <h3 id="11-加载pdf文档">1.1 加载PDF文档</h3>
 <p>首先，我们将利用 <code>PyPDFLoader</code> 来对 PDF 文件进行读取和加载。</p>
-<pre><code class="lang-pythonthon">from langchain.document_loaders import PyPDFLoader
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> PyPDFLoader
 
-# 创建一个 PyPDFLoader Class 实例，输入为待加载的pdf文档路径
-loader = PyPDFLoader("docs/matplotlib/第一回：Matplotlib初相识.pdf")
+<span class="hljs-comment"># 创建一个 PyPDFLoader Class 实例，输入为待加载的pdf文档路径</span>
+loader = PyPDFLoader(<span class="hljs-string">"docs/matplotlib/第一回：Matplotlib初相识.pdf"</span>)
 
-# 调用 PyPDFLoader Class 的函数 load对pdf文件进行加载
+<span class="hljs-comment"># 调用 PyPDFLoader Class 的函数 load对pdf文件进行加载</span>
 pages = loader.load()
 </code></pre>
 <h3 id="12-探索加载的数据">1.2 探索加载的数据</h3>
 <p>一旦文档被加载，它会被存储在名为<code>pages</code>的变量里。此外，<code>pages</code>的数据结构是一个<code>List</code>类型。为了确认其类型，我们可以借助Python内建的<code>type</code>函数来查看<code>pages</code>的确切数据类型。</p>
-<pre><code class="lang-pythonthon">print(type(pages))
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(pages))
 </code></pre>
 <pre><code>&lt;class 'list'&gt;
 </code></pre><p>通过输出 <code>pages</code> 的长度，我们可以轻松地了解该PDF文件包含的总页数。</p>
-<pre><code class="lang-pythonthon">print(len(pages))
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(pages))
 </code></pre>
 <pre><code>3
 </code></pre><p>在<code>page</code>变量中，每一个元素都代表一个文档，它们的数据类型是<code>langchain.schema.Document</code>。</p>
-<pre><code class="lang-pythonthon">page = pages[0]
-print(type(page))
+<pre><code class="lang-python">page = pages[<span class="hljs-number">0</span>]
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(page))
 </code></pre>
 <pre><code>&lt;class 'langchain.schema.document.Document'&gt;
 </code></pre><p><code>langchain.schema.Document</code>类型包含两个属性：</p>
 <ol>
 <li><code>page_content</code>：包含该文档页面的内容。</li>
 </ol>
-<pre><code class="lang-pythonthon">print(page.page_content[0:500])
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(page.page_content[<span class="hljs-number">0</span>:<span class="hljs-number">500</span>])
 </code></pre>
 <pre><code>第⼀回：Matplotlib 初相识
 ⼀、认识matplotlib
@@ -772,7 +772,7 @@ Matplotlib 的图像是画在 figure （如 windows ， jupyter 窗体）上的�
 </code></pre><ol>
 <li><code>meta_data</code>：为文档页面相关的描述性数据。</li>
 </ol>
-<pre><code class="lang-pythonthon">print(page.metadata)
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(page.metadata)
 </code></pre>
 <pre><code>{'source': 'docs/matplotlib/第一回：Matplotlib初相识.pdf', 'page': 0}
 </code></pre><h2 id="二、youtube音频">二、YouTube音频</h2>
@@ -782,28 +782,28 @@ Matplotlib 的图像是画在 figure （如 windows ， jupyter 窗体）上的�
 <li>通过<code>OpenAIWhisperPaser</code>工具，将这些音频文件转化为可读的文本内容</li>
 </ul>
 <p>注意，要运行以下代码，你需要安装如下两个第三方库：</p>
-<pre><code class="lang-pythonthon">!pip -q install yt_dlp
+<pre><code class="lang-python">!pip -q install yt_dlp
 !pip -q install pydub
 </code></pre>
 <h3 id="21-加载youtube音频文档">2.1 加载Youtube音频文档</h3>
 <p>首先，我们将构建一个 <code>GenericLoader</code> 实例来对 Youtube 视频的下载到本地并加载。</p>
-<pre><code class="lang-pythonthon">from langchain.document_loaders.generic import GenericLoader
-from langchain.document_loaders.parsers import OpenAIWhisperParser
-from langchain.document_loaders.blob_loaders.youtube_audio import YoutubeAudioLoader
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.document_loaders.generic <span class="hljs-keyword">import</span> GenericLoader
+<span class="hljs-keyword">from</span> langchain.document_loaders.parsers <span class="hljs-keyword">import</span> OpenAIWhisperParser
+<span class="hljs-keyword">from</span> langchain.document_loaders.blob_loaders.youtube_audio <span class="hljs-keyword">import</span> YoutubeAudioLoader
 
-url="https://www.youtube.com/watch?v=_PHdzsQaDgw"
-save_dir="docs/youtube-zh/"
+url=<span class="hljs-string">"https://www.youtube.com/watch?v=_PHdzsQaDgw"</span>
+save_dir=<span class="hljs-string">"docs/youtube-zh/"</span>
 
-# 创建一个 GenericLoader Class 实例
+<span class="hljs-comment"># 创建一个 GenericLoader Class 实例</span>
 loader = GenericLoader(
-    #将链接url中的Youtube视频的音频下载下来,存在本地路径save_dir
+    <span class="hljs-comment">#将链接url中的Youtube视频的音频下载下来,存在本地路径save_dir</span>
     YoutubeAudioLoader([url],save_dir), 
 
-    #使用OpenAIWhisperPaser解析器将音频转化为文本
+    <span class="hljs-comment">#使用OpenAIWhisperPaser解析器将音频转化为文本</span>
     OpenAIWhisperParser()
 )
 
-# 调用 GenericLoader Class 的函数 load对视频的音频文件进行加载
+<span class="hljs-comment"># 调用 GenericLoader Class 的函数 load对视频的音频文件进行加载</span>
 pages = loader.load()
 </code></pre>
 <pre><code>[youtube] Extracting URL: https://www.youtube.com/watch?v=_PHdzsQaDgw
@@ -823,13 +823,13 @@ WARNING: [youtube] Failed to download m3u8 information: HTTP Error 429: Too Many
 Transcribing part 1!
 </code></pre><h3 id="22-探索加载的数据">2.2 探索加载的数据</h3>
 <p>Youtube 音频文件加载得到的变量同上文类似，此处不再一一解释，通过类似代码可以展示加载数据：</p>
-<pre><code class="lang-pythonthon">print("Type of pages: ", type(pages))
-print("Length of pages: ", len(pages))
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of pages: "</span>, <span class="hljs-built_in">type</span>(pages))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Length of pages: "</span>, <span class="hljs-built_in">len</span>(pages))
 
-page = pages[0]
-print("Type of page: ", type(page))
-print("Page_content: ", page.page_content[:500])
-print("Meta Data: ", page.metadata)
+page = pages[<span class="hljs-number">0</span>]
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of page: "</span>, <span class="hljs-built_in">type</span>(page))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Page_content: "</span>, page.page_content[:<span class="hljs-number">500</span>])
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Meta Data: "</span>, page.metadata)
 </code></pre>
 <pre><code>Type of pages:  &lt;class 'list'&gt;
 Length of pages:  1
@@ -841,29 +841,29 @@ Meta Data:  {'source': 'docs/youtube-zh/【2023年7月最新】ChatGPT注册教�
 <p>本部分，我们将研究如何处理网页链接（URLs）。为此，我们会以 GitHub 上的一个markdown格式文档为例，学习如何对其进行加载。</p>
 <h3 id="31-加载网页文档">3.1 加载网页文档</h3>
 <p>首先，我们将构建一个<code>WebBaseLoader</code>实例来对网页进行加载。</p>
-<pre><code class="lang-pythonthon">from langchain.document_loaders import WebBaseLoader
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> WebBaseLoader
 
 
-# 创建一个 WebBaseLoader Class 实例
-url = "https://github.com/datawhalechina/d2l-ai-solutions-manual/blob/master/docs/README.md"
-header = {'User-Agent': 'python-requests/2.27.1', 
-          'Accept-Encoding': 'gzip, deflate, br', 
-          'Accept': '*/*',
-          'Connection': 'keep-alive'}
+<span class="hljs-comment"># 创建一个 WebBaseLoader Class 实例</span>
+url = <span class="hljs-string">"https://github.com/datawhalechina/d2l-ai-solutions-manual/blob/master/docs/README.md"</span>
+header = {<span class="hljs-string">'User-Agent'</span>: <span class="hljs-string">'python-requests/2.27.1'</span>, 
+          <span class="hljs-string">'Accept-Encoding'</span>: <span class="hljs-string">'gzip, deflate, br'</span>, 
+          <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'*/*'</span>,
+          <span class="hljs-string">'Connection'</span>: <span class="hljs-string">'keep-alive'</span>}
 loader = WebBaseLoader(web_path=url,header_template=header)
 
-# 调用 WebBaseLoader Class 的函数 load对文件进行加载
+<span class="hljs-comment"># 调用 WebBaseLoader Class 的函数 load对文件进行加载</span>
 pages = loader.load()
 </code></pre>
 <h3 id="32-探索加载的数据">3.2 探索加载的数据</h3>
 <p>同理我们通过上文代码可以展示加载数据：</p>
-<pre><code class="lang-pythonthon">print("Type of pages: ", type(pages))
-print("Length of pages: ", len(pages))
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of pages: "</span>, <span class="hljs-built_in">type</span>(pages))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Length of pages: "</span>, <span class="hljs-built_in">len</span>(pages))
 
-page = pages[0]
-print("Type of page: ", type(page))
-print("Page_content: ", page.page_content[:500])
-print("Meta Data: ", page.metadata)
+page = pages[<span class="hljs-number">0</span>]
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of page: "</span>, <span class="hljs-built_in">type</span>(page))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Page_content: "</span>, page.page_content[:<span class="hljs-number">500</span>])
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Meta Data: "</span>, page.metadata)
 </code></pre>
 <pre><code>Type of pages:  &lt;class 'list'&gt;
 Length of pages:  1
@@ -871,10 +871,10 @@ Type of page:  &lt;class 'langchain.schema.document.Document'&gt;
 Page_content:  {"payload":{"allShortcutsEnabled":false,"fileTree":{"docs":{"items":[{"name":"ch02","path":"docs/ch02","contentType":"directory"},{"name":"ch03","path":"docs/ch03","contentType":"directory"},{"name":"ch05","path":"docs/ch05","contentType":"directory"},{"name":"ch06","path":"docs/ch06","contentType":"directory"},{"name":"ch08","path":"docs/ch08","contentType":"directory"},{"name":"ch09","path":"docs/ch09","contentType":"directory"},{"name":"ch10","path":"docs/ch10","contentType":"directory"},{"na
 Meta Data:  {'source': 'https://github.com/datawhalechina/d2l-ai-solutions-manual/blob/master/docs/README.md'}
 </code></pre><p>可以看到上面的文档内容包含许多冗余的信息。通常来讲，我们需要进行对这种数据进行进一步处理(Post Processing)。</p>
-<pre><code class="lang-pythonthon">import json
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> json
 convert_to_json = json.loads(page.page_content)
-extracted_markdow = convert_to_json['payload']['blob']['richText']
-print(extracted_markdow)
+extracted_markdow = convert_to_json[<span class="hljs-string">'payload'</span>][<span class="hljs-string">'blob'</span>][<span class="hljs-string">'richText'</span>]
+<span class="hljs-built_in">print</span>(extracted_markdow)
 </code></pre>
 <pre><code>动手学深度学习习题解答 {docsify-ignore-all}
   李沐老师的《动手学深度学习》是入门深度学习的经典书籍，这本书基于深度学习框架来介绍深度学习，书中代码可以做到“所学即所用”。对于一般的初学者来说想要把书中课后习题部分独立解答还是比较困难。本项目对《动手学深度学习》习题部分进行解答，作为该书的习题手册，帮助初学者快速理解书中内容。
@@ -912,19 +912,19 @@ LICENSE
 </ul>
 <h3 id="41-加载notion-markdown文档">4.1 加载Notion Markdown文档</h3>
 <p>首先，我们将使用<code>NotionDirectoryLoader</code>来对Notion Markdown文档进行加载。</p>
-<pre><code class="lang-pythonthon">from langchain.document_loaders import NotionDirectoryLoader
-loader = NotionDirectoryLoader("docs/Notion_DB")
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> NotionDirectoryLoader
+loader = NotionDirectoryLoader(<span class="hljs-string">"docs/Notion_DB"</span>)
 pages = loader.load()
 </code></pre>
 <h3 id="42-探索加载的数据">4.2 探索加载的数据</h3>
 <p>同理，使用上文代码：</p>
-<pre><code class="lang-pythonthon">print("Type of pages: ", type(pages))
-print("Length of pages: ", len(pages))
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of pages: "</span>, <span class="hljs-built_in">type</span>(pages))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Length of pages: "</span>, <span class="hljs-built_in">len</span>(pages))
 
-page = pages[0]
-print("Type of page: ", type(page))
-print("Page_content: ", page.page_content[:500])
-print("Meta Data: ", page.metadata)
+page = pages[<span class="hljs-number">0</span>]
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of page: "</span>, <span class="hljs-built_in">type</span>(page))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Page_content: "</span>, page.page_content[:<span class="hljs-number">500</span>])
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Meta Data: "</span>, page.metadata)
 </code></pre>
 <pre><code>Type of pages:  &lt;class 'list'&gt;
 Length of pages:  51
@@ -945,22 +945,22 @@ So let’s get this conversation going.
 Meta Data:  {'source': 'docs/Notion_DB/#letstalkaboutstress 64040a0733074994976118bbe0acc7fb.md'}
 </code></pre><h2 id="五、英文版">五、英文版</h2>
 <p><strong>1.1 加载 PDF 文档</strong></p>
-<pre><code class="lang-pythonthon">from langchain.document_loaders import PyPDFLoader
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> PyPDFLoader
 
-# 创建一个 PyPDFLoader Class 实例，输入为待加载的pdf文档路径
-loader = PyPDFLoader("docs/cs229_lectures/MachineLearning-Lecture01.pdf")
+<span class="hljs-comment"># 创建一个 PyPDFLoader Class 实例，输入为待加载的pdf文档路径</span>
+loader = PyPDFLoader(<span class="hljs-string">"docs/cs229_lectures/MachineLearning-Lecture01.pdf"</span>)
 
-# 调用 PyPDFLoader Class 的函数 load对pdf文件进行加载
+<span class="hljs-comment"># 调用 PyPDFLoader Class 的函数 load对pdf文件进行加载</span>
 pages = loader.load()
 </code></pre>
 <p><strong>1.2 探索加载的数据</strong></p>
-<pre><code class="lang-pythonthon">print("Type of pages: ", type(pages))
-print("Length of pages: ", len(pages))
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of pages: "</span>, <span class="hljs-built_in">type</span>(pages))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Length of pages: "</span>, <span class="hljs-built_in">len</span>(pages))
 
-page = pages[0]
-print("Type of page: ", type(page))
-print("Page_content: ", page.page_content[:500])
-print("Meta Data: ", page.metadata)
+page = pages[<span class="hljs-number">0</span>]
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of page: "</span>, <span class="hljs-built_in">type</span>(page))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Page_content: "</span>, page.page_content[:<span class="hljs-number">500</span>])
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Meta Data: "</span>, page.metadata)
 </code></pre>
 <pre><code>Type of pages:  &lt;class 'list'&gt;
 Length of pages:  22
@@ -974,59 +974,59 @@ I personally work in machine learning, and I' ve worked on it for about 15 years
 I actually think that machine learning i
 Meta Data:  {'source': 'docs/cs229_lectures/MachineLearning-Lecture01.pdf', 'page': 0}
 </code></pre><p><strong>2.1 加载 Youtube 音频</strong></p>
-<pre><code class="lang-pythonthon"># 注：由于该视频较长，容易出现网络问题，此处没有运行，读者可自行运行探索
+<pre><code class="lang-python"><span class="hljs-comment"># 注：由于该视频较长，容易出现网络问题，此处没有运行，读者可自行运行探索</span>
 
-from langchain.document_loaders.generic import GenericLoader
-from langchain.document_loaders.parsers import OpenAIWhisperParser
-from langchain.document_loaders.blob_loaders.youtube_audio import YoutubeAudioLoader
+<span class="hljs-keyword">from</span> langchain.document_loaders.generic <span class="hljs-keyword">import</span> GenericLoader
+<span class="hljs-keyword">from</span> langchain.document_loaders.parsers <span class="hljs-keyword">import</span> OpenAIWhisperParser
+<span class="hljs-keyword">from</span> langchain.document_loaders.blob_loaders.youtube_audio <span class="hljs-keyword">import</span> YoutubeAudioLoader
 
-url="https://www.youtube.com/watch?v=jGwO_UgTS7I"
-save_dir="docs/youtube/"
+url=<span class="hljs-string">"https://www.youtube.com/watch?v=jGwO_UgTS7I"</span>
+save_dir=<span class="hljs-string">"docs/youtube/"</span>
 
-# 创建一个 GenericLoader Class 实例
+<span class="hljs-comment"># 创建一个 GenericLoader Class 实例</span>
 loader = GenericLoader(
-    #将链接url中的Youtube视频的音频下载下来,存在本地路径save_dir
+    <span class="hljs-comment">#将链接url中的Youtube视频的音频下载下来,存在本地路径save_dir</span>
     YoutubeAudioLoader([url],save_dir), 
 
-    #使用OpenAIWhisperPaser解析器将音频转化为文本
+    <span class="hljs-comment">#使用OpenAIWhisperPaser解析器将音频转化为文本</span>
     OpenAIWhisperParser()
 )
 
-# 调用 GenericLoader Class 的函数 load对视频的音频文件进行加载
+<span class="hljs-comment"># 调用 GenericLoader Class 的函数 load对视频的音频文件进行加载</span>
 docs = loader.load()
 </code></pre>
 <p><strong>2.2 探索加载的数据</strong></p>
-<pre><code class="lang-pythonthon">print("Type of pages: ", type(pages))
-print("Length of pages: ", len(pages))
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of pages: "</span>, <span class="hljs-built_in">type</span>(pages))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Length of pages: "</span>, <span class="hljs-built_in">len</span>(pages))
 
-page = pages[0]
-print("Type of page: ", type(page))
-print("Page_content: ", page.page_content[:500])
-print("Meta Data: ", page.metadata)
+page = pages[<span class="hljs-number">0</span>]
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of page: "</span>, <span class="hljs-built_in">type</span>(page))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Page_content: "</span>, page.page_content[:<span class="hljs-number">500</span>])
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Meta Data: "</span>, page.metadata)
 </code></pre>
 <p><strong>3.1 加载网页文档</strong></p>
-<pre><code class="lang-pythonthon">from langchain.document_loaders import WebBaseLoader
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> WebBaseLoader
 
 
-# 创建一个 WebBaseLoader Class 实例
-url = "https://github.com/basecamp/handbook/blob/master/37signals-is-you.md"
-header = {'User-Agent': 'python-requests/2.27.1', 
-          'Accept-Encoding': 'gzip, deflate, br', 
-          'Accept': '*/*',
-          'Connection': 'keep-alive'}
+<span class="hljs-comment"># 创建一个 WebBaseLoader Class 实例</span>
+url = <span class="hljs-string">"https://github.com/basecamp/handbook/blob/master/37signals-is-you.md"</span>
+header = {<span class="hljs-string">'User-Agent'</span>: <span class="hljs-string">'python-requests/2.27.1'</span>, 
+          <span class="hljs-string">'Accept-Encoding'</span>: <span class="hljs-string">'gzip, deflate, br'</span>, 
+          <span class="hljs-string">'Accept'</span>: <span class="hljs-string">'*/*'</span>,
+          <span class="hljs-string">'Connection'</span>: <span class="hljs-string">'keep-alive'</span>}
 loader = WebBaseLoader(web_path=url,header_template=header)
 
-# 调用 WebBaseLoader Class 的函数 load对文件进行加载
+<span class="hljs-comment"># 调用 WebBaseLoader Class 的函数 load对文件进行加载</span>
 pages = loader.load()
 </code></pre>
 <p><strong>3.2 探索加载的数据</strong></p>
-<pre><code class="lang-pythonthon">print("Type of pages: ", type(pages))
-print("Length of pages: ", len(pages))
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of pages: "</span>, <span class="hljs-built_in">type</span>(pages))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Length of pages: "</span>, <span class="hljs-built_in">len</span>(pages))
 
-page = pages[0]
-print("Type of page: ", type(page))
-print("Page_content: ", page.page_content[:500])
-print("Meta Data: ", page.metadata)
+page = pages[<span class="hljs-number">0</span>]
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of page: "</span>, <span class="hljs-built_in">type</span>(page))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Page_content: "</span>, page.page_content[:<span class="hljs-number">500</span>])
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Meta Data: "</span>, page.metadata)
 </code></pre>
 <pre><code>Type of pages:  &lt;class 'list'&gt;
 Length of pages:  1
@@ -1034,10 +1034,10 @@ Type of page:  &lt;class 'langchain.schema.document.Document'&gt;
 Page_content:  {"payload":{"allShortcutsEnabled":false,"fileTree":{"":{"items":[{"name":"37signals-is-you.md","path":"37signals-is-you.md","contentType":"file"},{"name":"LICENSE.md","path":"LICENSE.md","contentType":"file"},{"name":"README.md","path":"README.md","contentType":"file"},{"name":"benefits-and-perks.md","path":"benefits-and-perks.md","contentType":"file"},{"name":"code-of-conduct.md","path":"code-of-conduct.md","contentType":"file"},{"name":"faq.md","path":"faq.md","contentType":"file"},{"name":"ge
 Meta Data:  {'source': 'https://github.com/basecamp/handbook/blob/master/37signals-is-you.md'}
 </code></pre><p>进行进一步处理</p>
-<pre><code class="lang-pythonthon">import json
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> json
 convert_to_json = json.loads(page.page_content)
-extracted_markdow = convert_to_json['payload']['blob']['richText']
-print(extracted_markdow)
+extracted_markdow = convert_to_json[<span class="hljs-string">'payload'</span>][<span class="hljs-string">'blob'</span>][<span class="hljs-string">'richText'</span>]
+<span class="hljs-built_in">print</span>(extracted_markdow)
 </code></pre>
 <pre><code>37signals Is You
 Everyone working at 37signals represents 37signals. When a customer gets a response from Merissa on support, Merissa is 37signals. When a customer reads a tweet by Eron that our systems are down, Eron is 37signals. In those situations, all the other stuff we do to cultivate our best image is secondary. What’s right in front of someone in a time of need is what they’ll remember.
@@ -1046,18 +1046,18 @@ The vast majority of our customers come from word of mouth and much of that word
 This goes for tools and techniques as much as it goes for prose. 37signals not only tries to out-teach the competition, but also out-share and out-collaborate. We’re prolific open source contributors through Ruby on Rails, Trix, Turbolinks, Stimulus, and many other projects. Extracting the common infrastructure that others could use as well is satisfying, important work, and we should continue to do that.
 It’s also worth mentioning that joining 37signals can be all-consuming. We’ve seen it happen. You dig 37signals, so you feel pressure to contribute, maybe overwhelmingly so. The people who work here are some of the best and brightest in our industry, so the self-imposed burden to be exceptional is real. But here’s the thing: stop it. Settle in. We’re glad you love this job because we all do too, but at the end of the day it’s a job. Do your best work, collaborate with your team, write, read, learn, and then turn off your computer and play with your dog. We’ll all be better for it.
 </code></pre><p><strong>4.1 加载 Notion 文档</strong></p>
-<pre><code class="lang-pythonthon">from langchain.document_loaders import NotionDirectoryLoader
-loader = NotionDirectoryLoader("docs/Notion_DB")
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> NotionDirectoryLoader
+loader = NotionDirectoryLoader(<span class="hljs-string">"docs/Notion_DB"</span>)
 pages = loader.load()
 </code></pre>
 <p><strong>4.2 探索加载的数据</strong></p>
-<pre><code class="lang-pythonthon">print("Type of pages: ", type(pages))
-print("Length of pages: ", len(pages))
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of pages: "</span>, <span class="hljs-built_in">type</span>(pages))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Length of pages: "</span>, <span class="hljs-built_in">len</span>(pages))
 
-page = pages[0]
-print("Type of page: ", type(page))
-print("Page_content: ", page.page_content[:500])
-print("Meta Data: ", page.metadata)
+page = pages[<span class="hljs-number">0</span>]
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Type of page: "</span>, <span class="hljs-built_in">type</span>(page))
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Page_content: "</span>, page.page_content[:<span class="hljs-number">500</span>])
+<span class="hljs-built_in">print</span>(<span class="hljs-string">"Meta Data: "</span>, page.metadata)
 </code></pre>
 <pre><code>Type of pages:  &lt;class 'list'&gt;
 Length of pages:  51
@@ -1119,7 +1119,7 @@ Meta Data:  {'source': 'docs/Notion_DB/#letstalkaboutstress 64040a07330749949761
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2. 文档加载 Document Loading","level":"5.3","depth":1,"next":{"title":"3. 文档分割 Splitting","level":"5.4","depth":1,"path":"C4/3.-文档分割-Splitting.md","ref":"C4/3.-文档分割-Splitting.md","articles":[]},"previous":{"title":"1. 简介 Introduction","level":"5.2","depth":1,"path":"C4/1.-简介-Introduction.md","ref":"C4/1.-简介-Introduction.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C4/2.-文档加载-Document-Loading.md","mtime":"2025-01-05T18:01:16.651Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-05T18:01:25.931Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"2. 文档加载 Document Loading","level":"5.3","depth":1,"next":{"title":"3. 文档分割 Splitting","level":"5.4","depth":1,"path":"C4/3.-文档分割-Splitting.md","ref":"C4/3.-文档分割-Splitting.md","articles":[]},"previous":{"title":"1. 简介 Introduction","level":"5.2","depth":1,"path":"C4/1.-简介-Introduction.md","ref":"C4/1.-简介-Introduction.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C4/2.-文档加载-Document-Loading.md","mtime":"2025-01-11T00:02:01.009Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-11T18:48:15.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1189,7 +1189,7 @@ Meta Data:  {'source': 'docs/Notion_DB/#letstalkaboutstress 64040a07330749949761
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

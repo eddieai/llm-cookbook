@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -49,7 +49,7 @@
     
     
     <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
@@ -725,26 +725,26 @@
 <p>然而，如果我们想要使用 LLM 来生成文本，而不仅仅是用于解决分类问题，我们又应该如何评估其回答准确率呢？在本章，我们将讨论如何评估LLM在这种应用场景中的输出的质量。</p>
 <h2 id="一、运行问答系统获得一个复杂回答">一、运行问答系统获得一个复杂回答</h2>
 <p>我们首先运行在之前章节搭建的问答系统来获得一个复杂的、不存在一个简单正确答案的回答：</p>
-<pre><code class="lang-pythonthon">import utils_zh
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> utils_zh
 
-'''
+<span class="hljs-string">'''
 注意：限于模型对中文理解能力较弱，中文 Prompt 可能会随机出现不成功，可以多次运行；也非常欢迎同学探究更稳定的中文 Prompt
-'''
-# 用户消息
-customer_msg = f"""
+'''</span>
+<span class="hljs-comment"># 用户消息</span>
+customer_msg = <span class="hljs-string">f"""
 告诉我有关 the smartx pro phone 和 the fotosnap camera, the dslr one 的信息。
-另外，你们这有什么 TVs ？"""
+另外，你们这有什么 TVs ？"""</span>
 
-# 从问题中抽取商品名
+<span class="hljs-comment"># 从问题中抽取商品名</span>
 products_by_category = utils_zh.get_products_from_query(customer_msg)
-# 将商品名转化为列表
+<span class="hljs-comment"># 将商品名转化为列表</span>
 category_and_product_list = utils_zh.read_string_to_list(products_by_category)
-# 查找商品对应的信息
+<span class="hljs-comment"># 查找商品对应的信息</span>
 product_info = utils_zh.get_mentioned_product_info(category_and_product_list)
-# 由信息生成回答
+<span class="hljs-comment"># 由信息生成回答</span>
 assistant_answer = utils_zh.answer_user_msg(user_msg=customer_msg, product_info=product_info)
 
-print(assistant_answer)
+<span class="hljs-built_in">print</span>(assistant_answer)
 </code></pre>
 <pre><code>关于SmartX Pro手机和FotoSnap DSLR相机的信息：
 
@@ -762,42 +762,42 @@ print(assistant_answer)
 请问您对以上产品有任何特别的要求或其他问题吗？
 </code></pre><h2 id="二、使用-gpt-评估回答是否正确">二、使用 GPT 评估回答是否正确</h2>
 <p>我们希望您能从中学到一个设计模式，即当您可以指定一个评估 LLM 输出的标准列表时，您实际上可以使用另一个 API 调用来评估您的第一个 LLM 输出。</p>
-<pre><code class="lang-pythonthon">from tool import get_completion_from_messages
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> tool <span class="hljs-keyword">import</span> get_completion_from_messages
 
-# 问题、上下文
+<span class="hljs-comment"># 问题、上下文</span>
 cust_prod_info = {
-    'customer_msg': customer_msg,
-    'context': product_info
+    <span class="hljs-string">'customer_msg'</span>: customer_msg,
+    <span class="hljs-string">'context'</span>: product_info
 }
 
-def eval_with_rubric(test_set, assistant_answer):
-    """
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">eval_with_rubric</span>(<span class="hljs-params">test_set, assistant_answer</span>):
+    <span class="hljs-string">"""
     使用 GPT API 评估生成的回答
 
     参数：
     test_set: 测试集
     assistant_answer: 助手的回复
-    """
+    """</span>
 
-    cust_msg = test_set['customer_msg']
-    context = test_set['context']
+    cust_msg = test_set[<span class="hljs-string">'customer_msg'</span>]
+    context = test_set[<span class="hljs-string">'context'</span>]
     completion = assistant_answer
 
-    # 人设
-    system_message = """\
+    <span class="hljs-comment"># 人设</span>
+    system_message = <span class="hljs-string">"""\
     你是一位助理，通过查看客户服务代理使用的上下文来评估客户服务代理回答用户问题的情况。
-    """
+    """</span>
 
-    # 具体指令
-    user_message = f"""\
+    <span class="hljs-comment"># 具体指令</span>
+    user_message = <span class="hljs-string">f"""\
     你正在根据代理使用的上下文评估对问题的提交答案。以下是数据：
     [开始]
     ************
-    [用户问题]: {cust_msg}
+    [用户问题]: <span class="hljs-subst">{cust_msg}</span>
     ************
-    [使用的上下文]: {context}
+    [使用的上下文]: <span class="hljs-subst">{context}</span>
     ************
-    [客户代理的回答]: {completion}
+    [客户代理的回答]: <span class="hljs-subst">{completion}</span>
     ************
     [结束]
 
@@ -813,18 +813,18 @@ def eval_with_rubric(test_set, assistant_answer):
     ...
     问题N：（是或否）
     在提出的问题数量中，有多少个问题在回答中得到了回应？（输出一个数字）
-"""
+"""</span>
 
     messages = [
-        {'role': 'system', 'content': system_message},
-        {'role': 'user', 'content': user_message}
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: user_message}
     ]
 
     response = get_completion_from_messages(messages)
-    return response
+    <span class="hljs-keyword">return</span> response
 
 evaluation_output = eval_with_rubric(cust_prod_info, assistant_answer)
-print(evaluation_output)
+<span class="hljs-built_in">print</span>(evaluation_output)
 </code></pre>
 <pre><code>助手的回应只基于所提供的上下文。是
 回答中不包含上下文中未提供的信息。是
@@ -837,11 +837,11 @@ print(evaluation_output)
 </code></pre><h2 id="三、评估生成回答与标准回答的差距">三、评估生成回答与标准回答的差距</h2>
 <p>在经典的自然语言处理技术中，有一些传统的度量标准用于衡量 LLM 输出与人类专家编写的输出的相似度。例如，BLUE 分数可用于衡量两段文本的相似程度。</p>
 <p>实际上有一种更好的方法，即使用 Prompt。您可以指定 Prompt，使用 Prompt 来比较由 LLM 自动生成的客户服务代理响应与人工理想响应的匹配程度。</p>
-<pre><code class="lang-pythonthon">'''基于中文Prompt的验证集'''
+<pre><code class="lang-python"><span class="hljs-string">'''基于中文Prompt的验证集'''</span>
 test_set_ideal = {
-    'customer_msg': """\
-告诉我有关 the Smartx Pro 手机 和 FotoSnap DSLR相机, the dslr one 的信息。\n另外，你们这有什么电视 ？""",
-    'ideal_answer':"""\
+    <span class="hljs-string">'customer_msg'</span>: <span class="hljs-string">"""\
+告诉我有关 the Smartx Pro 手机 和 FotoSnap DSLR相机, the dslr one 的信息。\n另外，你们这有什么电视 ？"""</span>,
+    <span class="hljs-string">'ideal_answer'</span>:<span class="hljs-string">"""\
 SmartX Pro手机是一款功能强大的智能手机，拥有6.1英寸显示屏、128GB存储空间、12MP双摄像头和5G网络支持。价格为899.99美元，保修期为1年。
 FotoSnap DSLR相机是一款多功能的单反相机，拥有24.2MP传感器、1080p视频拍摄、3英寸液晶屏和可更换镜头。价格为599.99美元，保修期为1年。
 
@@ -849,37 +849,37 @@ FotoSnap DSLR相机是一款多功能的单反相机，拥有24.2MP传感器、1
 1. CineView 4K电视（型号：CV-4K55）- 55英寸显示屏，4K分辨率，支持HDR和智能电视功能。价格为599.99美元，保修期为2年。
 2. CineView 8K电视（型号：CV-8K65）- 65英寸显示屏，8K分辨率，支持HDR和智能电视功能。价格为2999.99美元，保修期为2年。
 3. CineView OLED电视（型号：CV-OLED55）- 55英寸OLED显示屏，4K分辨率，支持HDR和智能电视功能。价格为1499.99美元，保修期为2年。
-    """
+    """</span>
 }
 </code></pre>
 <p>我们首先在上文中定义了一个验证集，其包括一个用户指令与一个标准回答。</p>
 <p>接着我们可以实现一个评估函数，该函数利用 LLM 的理解能力，要求 LLM 评估生成回答与标准回答是否一致。</p>
-<pre><code class="lang-pythonthon">def eval_vs_ideal(test_set, assistant_answer):
-    """
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">eval_vs_ideal</span>(<span class="hljs-params">test_set, assistant_answer</span>):
+    <span class="hljs-string">"""
     评估回复是否与理想答案匹配
 
     参数：
     test_set: 测试集
     assistant_answer: 助手的回复
-    """
-    cust_msg = test_set['customer_msg']
-    ideal = test_set['ideal_answer']
+    """</span>
+    cust_msg = test_set[<span class="hljs-string">'customer_msg'</span>]
+    ideal = test_set[<span class="hljs-string">'ideal_answer'</span>]
     completion = assistant_answer
 
-    system_message = """\
+    system_message = <span class="hljs-string">"""\
     您是一位助理，通过将客户服务代理的回答与理想（专家）回答进行比较，评估客户服务代理对用户问题的回答质量。
     请输出一个单独的字母（A 、B、C、D、E），不要包含其他内容。 
-    """
+    """</span>
 
-    user_message = f"""\
+    user_message = <span class="hljs-string">f"""\
     您正在比较一个给定问题的提交答案和专家答案。数据如下:
     [开始]
     ************
-    [问题]: {cust_msg}
+    [问题]: <span class="hljs-subst">{cust_msg}</span>
     ************
-    [专家答案]: {ideal}
+    [专家答案]: <span class="hljs-subst">{ideal}</span>
     ************
-    [提交答案]: {completion}
+    [提交答案]: <span class="hljs-subst">{completion}</span>
     ************
     [结束]
 
@@ -892,21 +892,21 @@ FotoSnap DSLR相机是一款多功能的单反相机，拥有24.2MP传感器、1
     （D）提交的答案与专家答案存在分歧。
     （E）答案存在差异，但从事实的角度来看这些差异并不重要。
     选项：ABCDE
-"""
+"""</span>
 
     messages = [
-        {'role': 'system', 'content': system_message},
-        {'role': 'user', 'content': user_message}
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: user_message}
     ]
 
     response = get_completion_from_messages(messages)
-    return response
+    <span class="hljs-keyword">return</span> response
 </code></pre>
 <p>这个评分标准来自于 OpenAI 开源评估框架，这是一个非常棒的框架，其中包含了许多评估方法，既有 OpenAI 开发人员的贡献，也有更广泛的开源社区的贡献。</p>
 <p>在这个评分标准中，我们要求 LLM 针对提交答案与专家答案进行信息内容的比较，并忽略其风格、语法和标点符号等方面的差异，但关键是我们要求它进行比较，并输出从A到E的分数，具体取决于提交的答案是否是专家答案的子集、超集或完全一致，这可能意味着它虚构或编造了一些额外的事实。</p>
 <p>LLM 将选择其中最合适的描述。</p>
 <p>LLM 生成的回答为：</p>
-<pre><code class="lang-pythonthon">print(assistant_answer)
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(assistant_answer)
 </code></pre>
 <pre><code>关于SmartX Pro手机和FotoSnap DSLR相机的信息：
 
@@ -922,11 +922,11 @@ FotoSnap DSLR相机是一款多功能的单反相机，拥有24.2MP传感器、1
 3. CineView OLED电视（型号：CV-OLED55）- 55英寸OLED显示屏，4K分辨率，支持HDR和智能电视功能。价格为1499.99美元，保修期为2年。
 
 请问您对以上产品有任何进一步的问题或者需要了解其他产品吗？
-</code></pre><pre><code class="lang-pythonthon">eval_vs_ideal(test_set_ideal, assistant_answer)
+</code></pre><pre><code class="lang-python">eval_vs_ideal(test_set_ideal, assistant_answer)
 </code></pre>
 <pre><code>'C'
 </code></pre><p>对于该生成回答，GPT 判断生成内容与标准答案一致</p>
-<pre><code class="lang-pythonthon">assistant_answer_2 = "life is like a box of chocolates"
+<pre><code class="lang-python">assistant_answer_2 = <span class="hljs-string">"life is like a box of chocolates"</span>
 
 eval_vs_ideal(test_set_ideal, assistant_answer_2)
 </code></pre>
@@ -942,23 +942,23 @@ eval_vs_ideal(test_set_ideal, assistant_answer_2)
 <p>希望这可以帮助您评估 LLM 系统的输出，以便在开发期间持续监测系统的性能，并使用这些工具不断评估和改进系统的性能。</p>
 <h2 id="四、英文版">四、英文版</h2>
 <p><strong>1. 对问答系统提问</strong></p>
-<pre><code class="lang-pythonthon">import utils_en
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> utils_en
 
-# 用户消息
-customer_msg = f"""
+<span class="hljs-comment"># 用户消息</span>
+customer_msg = <span class="hljs-string">f"""
 tell me about the smartx pro phone and the fotosnap camera, the dslr one.
-Also, what TVs or TV related products do you have?"""
+Also, what TVs or TV related products do you have?"""</span>
 
-# 从问题中抽取商品名
+<span class="hljs-comment"># 从问题中抽取商品名</span>
 products_by_category = utils_en.get_products_from_query(customer_msg)
-# 将商品名转化为列表
+<span class="hljs-comment"># 将商品名转化为列表</span>
 category_and_product_list = utils_en.read_string_to_list(products_by_category)
-# 查找商品对应的信息
+<span class="hljs-comment"># 查找商品对应的信息</span>
 product_info = utils_en.get_mentioned_product_info(category_and_product_list)
-# 由信息生成回答
+<span class="hljs-comment"># 由信息生成回答</span>
 assistant_answer = utils_en.answer_user_msg(user_msg=customer_msg, product_info=product_info)
 </code></pre>
-<pre><code class="lang-pythonthon">print(assistant_answer)
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(assistant_answer)
 </code></pre>
 <pre><code>Sure! Let me provide you with some information about the SmartX ProPhone and the FotoSnap DSLR Camera.
 
@@ -968,44 +968,44 @@ The FotoSnap DSLR Camera is a versatile camera that allows you to capture stunni
 
 As for TVs and TV-related products, we have a range of options available. Some of our popular TV models include the CineView 4K TV, CineView 8K TV, and CineView OLED TV. We also have home theater systems like the SoundMax Home Theater and SoundMax Soundbar. Could you please let me know your specific requirements or preferences so that I can assist you better?
 </code></pre><p><strong>2. 使用GPT评估</strong></p>
-<pre><code class="lang-pythonthon"># 问题、上下文
+<pre><code class="lang-python"><span class="hljs-comment"># 问题、上下文</span>
 cust_prod_info = {
-    'customer_msg': customer_msg,
-    'context': product_info
+    <span class="hljs-string">'customer_msg'</span>: customer_msg,
+    <span class="hljs-string">'context'</span>: product_info
 }
 </code></pre>
-<pre><code class="lang-pythonthon">def eval_with_rubric(test_set, assistant_answer):
-    """
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">eval_with_rubric</span>(<span class="hljs-params">test_set, assistant_answer</span>):
+    <span class="hljs-string">"""
     使用 GPT API 评估生成的回答
 
     参数：
     test_set: 测试集
     assistant_answer: 助手的回复
-    """
+    """</span>
 
-    cust_msg = test_set['customer_msg']
-    context = test_set['context']
+    cust_msg = test_set[<span class="hljs-string">'customer_msg'</span>]
+    context = test_set[<span class="hljs-string">'context'</span>]
     completion = assistant_answer
 
-    # 要求 GPT 作为一个助手评估回答正确性
-    system_message = """\
+    <span class="hljs-comment"># 要求 GPT 作为一个助手评估回答正确性</span>
+    system_message = <span class="hljs-string">"""\
     You are an assistant that evaluates how well the customer service agent \
     answers a user question by looking at the context that the customer service \
     agent is using to generate its response. 
-    """
+    """</span>
 
-    # 具体指令
-    user_message = f"""\
+    <span class="hljs-comment"># 具体指令</span>
+    user_message = <span class="hljs-string">f"""\
 You are evaluating a submitted answer to a question based on the context \
 that the agent uses to answer the question.
 Here is the data:
     [BEGIN DATA]
     ************
-    [Question]: {cust_msg}
+    [Question]: <span class="hljs-subst">{cust_msg}</span>
     ************
-    [Context]: {context}
+    [Context]: <span class="hljs-subst">{context}</span>
     ************
-    [Submission]: {completion}
+    [Submission]: <span class="hljs-subst">{completion}</span>
     ************
     [END DATA]
 
@@ -1022,18 +1022,18 @@ Answer the following questions:
       ...
       Question N: (Y or N)
     - Of the number of questions asked, how many of these questions were addressed by the answer? (output a number)
-"""
+"""</span>
 
     messages = [
-        {'role': 'system', 'content': system_message},
-        {'role': 'user', 'content': user_message}
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: user_message}
     ]
 
     response = get_completion_from_messages(messages)
-    return response
+    <span class="hljs-keyword">return</span> response
 </code></pre>
-<pre><code class="lang-pythonthon">evaluation_output = eval_with_rubric(cust_prod_info, assistant_answer)
-print(evaluation_output)
+<pre><code class="lang-python">evaluation_output = eval_with_rubric(cust_prod_info, assistant_answer)
+<span class="hljs-built_in">print</span>(evaluation_output)
 </code></pre>
 <pre><code>- Is the Assistant response based only on the context provided? (Y or N)
 Y
@@ -1054,11 +1054,11 @@ Question 2: Y
 - Of the number of questions asked, how many of these questions were addressed by the answer? (output a number)
 2
 </code></pre><p><strong>3. 评估生成回答与标准回答的差距</strong></p>
-<pre><code class="lang-pythonthon">test_set_ideal = {
-    'customer_msg': """\
+<pre><code class="lang-python">test_set_ideal = {
+    <span class="hljs-string">'customer_msg'</span>: <span class="hljs-string">"""\
 tell me about the smartx pro phone and the fotosnap camera, the dslr one.
-Also, what TVs or TV related products do you have?""",
-    'ideal_answer':"""\
+Also, what TVs or TV related products do you have?"""</span>,
+    <span class="hljs-string">'ideal_answer'</span>:<span class="hljs-string">"""\
 Of course!  The SmartX ProPhone is a powerful \
 smartphone with advanced camera features. \
 For instance, it has a 12MP dual camera. \
@@ -1102,36 +1102,36 @@ It's priced at 199.99
 Are there any questions additional you may have about these products \
 that you mentioned here?
 Or may do you have other questions I can help you with?
-    """
+    """</span>
 }
 </code></pre>
-<pre><code class="lang-pythonthon">def eval_vs_ideal(test_set, assistant_answer):
-    """
+<pre><code class="lang-python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">eval_vs_ideal</span>(<span class="hljs-params">test_set, assistant_answer</span>):
+    <span class="hljs-string">"""
     评估回复是否与理想答案匹配
 
     参数：
     test_set: 测试集
     assistant_answer: 助手的回复
-    """
-    cust_msg = test_set['customer_msg']
-    ideal = test_set['ideal_answer']
+    """</span>
+    cust_msg = test_set[<span class="hljs-string">'customer_msg'</span>]
+    ideal = test_set[<span class="hljs-string">'ideal_answer'</span>]
     completion = assistant_answer
 
-    system_message = """\
+    system_message = <span class="hljs-string">"""\
     You are an assistant that evaluates how well the customer service agent \
     answers a user question by comparing the response to the ideal (expert) response
     Output a single letter and nothing else. 
-    """
+    """</span>
 
-    user_message = f"""\
+    user_message = <span class="hljs-string">f"""\
 You are comparing a submitted answer to an expert answer on a given question. Here is the data:
     [BEGIN DATA]
     ************
-    [Question]: {cust_msg}
+    [Question]: <span class="hljs-subst">{cust_msg}</span>
     ************
-    [Expert]: {ideal}
+    [Expert]: <span class="hljs-subst">{ideal}</span>
     ************
-    [Submission]: {completion}
+    [Submission]: <span class="hljs-subst">{completion}</span>
     ************
     [END DATA]
 
@@ -1144,17 +1144,17 @@ Compare the factual content of the submitted answer with the expert answer. Igno
     (D) There is a disagreement between the submitted answer and the expert answer.
     (E) The answers differ, but these differences don't matter from the perspective of factuality.
   choice_strings: ABCDE
-"""
+"""</span>
 
     messages = [
-        {'role': 'system', 'content': system_message},
-        {'role': 'user', 'content': user_message}
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'system'</span>, <span class="hljs-string">'content'</span>: system_message},
+        {<span class="hljs-string">'role'</span>: <span class="hljs-string">'user'</span>, <span class="hljs-string">'content'</span>: user_message}
     ]
 
     response = get_completion_from_messages(messages)
-    return response
+    <span class="hljs-keyword">return</span> response
 </code></pre>
-<pre><code class="lang-pythonthon">print(assistant_answer)
+<pre><code class="lang-python"><span class="hljs-built_in">print</span>(assistant_answer)
 </code></pre>
 <pre><code>Sure! Let me provide you with some information about the SmartX ProPhone and the FotoSnap DSLR Camera.
 
@@ -1163,14 +1163,14 @@ The SmartX ProPhone is a powerful smartphone with advanced camera features. It h
 The FotoSnap DSLR Camera is a versatile camera that allows you to capture stunning photos and videos. It features a 24.2MP sensor, 1080p video recording, a 3-inch LCD screen, and supports interchangeable lenses. The FotoSnap DSLR Camera is priced at $599.99 and also comes with a 1-year warranty.
 
 As for TVs and TV-related products, we have a range of options available. Some of our popular TV models include the CineView 4K TV, CineView 8K TV, and CineView OLED TV. We also have home theater systems like the SoundMax Home Theater and SoundMax Soundbar. Could you please let me know your specific requirements or preferences so that I can assist you better?
-</code></pre><pre><code class="lang-pythonthon"># 由于模型的更新，目前在原有 Prompt 上不再能够正确判断
+</code></pre><pre><code class="lang-python"><span class="hljs-comment"># 由于模型的更新，目前在原有 Prompt 上不再能够正确判断</span>
 eval_vs_ideal(test_set_ideal, assistant_answer)
 </code></pre>
 <pre><code>'D'
-</code></pre><pre><code class="lang-pythonthon">assistant_answer_2 = "life is like a box of chocolates"
+</code></pre><pre><code class="lang-python">assistant_answer_2 = <span class="hljs-string">"life is like a box of chocolates"</span>
 </code></pre>
-<pre><code class="lang-pythonthon">eval_vs_ideal(test_set_ideal, assistant_answer_2)
-# 对于明显异常答案，GPT 判断为不一致
+<pre><code class="lang-python">eval_vs_ideal(test_set_ideal, assistant_answer_2)
+<span class="hljs-comment"># 对于明显异常答案，GPT 判断为不一致</span>
 </code></pre>
 <pre><code>'D'
 </code></pre>
@@ -1216,7 +1216,7 @@ eval_vs_ideal(test_set_ideal, assistant_answer)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"10. 评估（下）Evaluation-part2","level":"3.11","depth":1,"next":{"title":"11. 总结 Conclusion","level":"3.12","depth":1,"path":"C2/11.总结-conclusion.md","ref":"C2/11.总结-conclusion.md","articles":[]},"previous":{"title":"9. 评估（上）Evaluation-part1","level":"3.10","depth":1,"path":"C2/9.-评估（上）-Evaluation-part1.md","ref":"C2/9.-评估（上）-Evaluation-part1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/10.-评估（下）Evaluation-part2.md","mtime":"2025-01-05T18:01:16.631Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-05T18:01:25.931Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"10. 评估（下）Evaluation-part2","level":"3.11","depth":1,"next":{"title":"11. 总结 Conclusion","level":"3.12","depth":1,"path":"C2/11.总结-conclusion.md","ref":"C2/11.总结-conclusion.md","articles":[]},"previous":{"title":"9. 评估（上）Evaluation-part1","level":"3.10","depth":1,"path":"C2/9.-评估（上）-Evaluation-part1.md","ref":"C2/9.-评估（上）-Evaluation-part1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C2/10.-评估（下）Evaluation-part2.md","mtime":"2025-01-11T00:02:01.079Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-11T18:48:15.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1286,7 +1286,7 @@ eval_vs_ideal(test_set_ideal, assistant_answer)
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

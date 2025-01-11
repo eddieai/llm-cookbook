@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -49,7 +49,7 @@
     
     
     <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
@@ -728,11 +728,11 @@
 <p>在这个客户邮件自动生成的示例中，我们<strong>将根据客户的评价和其中的情感倾向，使用大语言模型针对性地生成回复邮件</strong>。</p>
 <p>具体来说，我们先输入客户的评论文本和对应的情感分析结果(正面或者负面)。然后构造一个 Prompt，要求大语言模型基于这些信息来生成一封定制的回复电子邮件。</p>
 <p>下面先给出一个实例，包括一条客户评价和这个评价表达的情感。这为后续的语言模型生成回复邮件提供了关键输入信息。通过输入客户反馈的具体内容和情感态度，语言模型可以生成针对这个特定客户、考虑其具体情感因素的个性化回复。这种<strong>针对个体客户特点的邮件生成方式，将大大提升客户满意度</strong>。</p>
-<pre><code class="lang-pythonthon"># 我们可以在推理那章学习到如何对一个评论判断其情感倾向
-sentiment = "消极的"
+<pre><code class="lang-python"><span class="hljs-comment"># 我们可以在推理那章学习到如何对一个评论判断其情感倾向</span>
+sentiment = <span class="hljs-string">"消极的"</span>
 
-# 一个产品的评价
-review = f"""
+<span class="hljs-comment"># 一个产品的评价</span>
+review = <span class="hljs-string">f"""
 他们在11月份的季节性销售期间以约49美元的价格出售17件套装，折扣约为一半。\
 但由于某些原因（可能是价格欺诈），到了12月第二周，同样的套装价格全都涨到了70美元到89美元不等。\
 11件套装的价格也上涨了大约10美元左右。\
@@ -746,21 +746,21 @@ review = f"""
 大约一年后，电机发出奇怪的噪音，我打电话给客服，但保修已经过期了，所以我不得不再买一个。\
 总的来说，这些产品的总体质量已经下降，因此它们依靠品牌认可和消费者忠诚度来维持销售。\
 货物在两天内到达。
-"""
+"""</span>
 </code></pre>
 <p>在这个例子中，我们已经利用前面章节学到的方法，从客户评价中提取出其表达的情感倾向。这里是一条关于搅拌机的评论。现在我们要基于这条评论中的情感倾向，使用大语言模型自动生成一封回复邮件。</p>
 <p>以下述 Prompt 为例：首先明确大语言模型的身份是客户服务 AI 助手；它任务是为客户发送电子邮件回复；然后在三个反引号间给出具体的客户评论；最后要求语言模型根据这条反馈邮件生成一封回复，以感谢客户的评价。</p>
-<pre><code class="lang-pythonthon">from tool import get_completion
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> tool <span class="hljs-keyword">import</span> get_completion
 
-prompt = f"""
+prompt = <span class="hljs-string">f"""
 你是一位客户服务的AI助手。
 你的任务是给一位重要客户发送邮件回复。
 根据客户通过“```”分隔的评价，生成回复以感谢客户的评价。提醒模型使用评价中的具体细节
 用简明而专业的语气写信。
 作为“AI客户代理”签署电子邮件。
 客户评论：
-```{review}
-</code></pre>
+```<span class="hljs-subst">{review}</span>
+</span></code></pre>
 <p>评论情感：{sentiment}
 """
 response = get_completion(prompt)
@@ -799,7 +799,7 @@ print(response)</p>
 在下面例子中，针对同一段来信，我们提醒语言模型使用用户来信中的详细信息，并设置一个较高的 temperature ，运行两次，比较他们的结果有何差异。
 
 
-```pythonthon
+```python
 # 第一次运行
 prompt = f"""
 你是一名客户服务的AI助手。
@@ -838,7 +838,7 @@ print(response)</p>
 第二次运行输出结果会发生变化：
 
 
-```pythonthon
+```python
 # 第二次运行
 prompt = f"""
 你是一名客户服务的AI助手。
@@ -884,7 +884,7 @@ print(response)</p>
 **1.1 定制客户邮件**
 
 
-```pythonthon
+```python
 # given the sentiment from the lesson on "inferring",
 # and the original customer message, customize the email
 sentiment = "negative"
@@ -922,7 +922,7 @@ they are kind of counting on brand recognition and \
 consumer loyalty to maintain sales. Got it in about \
 two days.
 """
-</code></pre><pre><code class="lang-pythonthon">prompt = f"""
+</code></pre><pre><code class="lang-python">prompt = <span class="hljs-string">f"""
 You are a customer service AI assistant.
 Your task is to send an email reply to a valued customer.
 Given the customer email delimited by ```, \
@@ -934,8 +934,8 @@ they can reach out to customer service.
 Make sure to use specific details from the review.
 Write in a concise and professional tone.
 Sign the email as `AI customer agent`.
-Customer review: ```{review}
-</code></pre>
+Customer review: ```<span class="hljs-subst">{review}</span>
+</span></code></pre>
 <p>Review sentiment: {sentiment}
 """
 response = get_completion(prompt)
@@ -961,7 +961,7 @@ print(response)</p>
 **2.1 引入温度系数**
 
 
-```pythonthon
+```python
 prompt = f"""
 You are a customer service AI assistant.
 Your task is to send an email reply to a valued customer.
@@ -1038,7 +1038,7 @@ AI customer agent
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"7. 文本扩展 Expanding","level":"2.8","depth":1,"next":{"title":"8. 聊天机器人 Chatbot","level":"2.9","depth":1,"path":"C1/8.-聊天机器人-Chatbot.md","ref":"C1/8.-聊天机器人-Chatbot.md","articles":[]},"previous":{"title":"6. 文本转换 Transforming","level":"2.7","depth":1,"path":"C1/6.-文本转换-Transforming.md","ref":"C1/6.-文本转换-Transforming.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C1/7.-文本扩展-Expanding.md","mtime":"2025-01-05T18:01:16.641Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-05T18:01:25.931Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"7. 文本扩展 Expanding","level":"2.8","depth":1,"next":{"title":"8. 聊天机器人 Chatbot","level":"2.9","depth":1,"path":"C1/8.-聊天机器人-Chatbot.md","ref":"C1/8.-聊天机器人-Chatbot.md","articles":[]},"previous":{"title":"6. 文本转换 Transforming","level":"2.7","depth":1,"path":"C1/6.-文本转换-Transforming.md","ref":"C1/6.-文本转换-Transforming.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C1/7.-文本扩展-Expanding.md","mtime":"2025-01-11T00:02:01.029Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-11T18:48:15.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1108,7 +1108,7 @@ AI customer agent
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

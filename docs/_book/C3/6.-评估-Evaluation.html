@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -49,7 +49,7 @@
     
     
     <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
@@ -729,19 +729,19 @@
 <p>基本的思路就是利用语言模型本身和链本身，来辅助评估其他的语言模型、链和应用程序。我们还是以上一章节的文档问答应用为例，在本章节中讨论如何在 LangChain 中处理和考虑评估的内容。</p>
 <h2 id="一、-创建llm应用">一、 创建LLM应用</h2>
 <p>首先，按照 langchain 链的方式构建一个 LLM 的文档问答应用</p>
-<pre><code class="lang-pythonthon">from langchain.chains import RetrievalQA #检索QA链，在文档上进行检索
-from langchain.chat_models import ChatOpenAI #openai模型
-from langchain.document_loaders import CSVLoader #文档加载器，采用csv格式存储
-from langchain.indexes import VectorstoreIndexCreator #导入向量存储索引创建器
-from langchain.vectorstores import DocArrayInMemorySearch #向量存储
-#加载中文数据
-file = '../data/product_data.csv'
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> RetrievalQA <span class="hljs-comment">#检索QA链，在文档上进行检索</span>
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI <span class="hljs-comment">#openai模型</span>
+<span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> CSVLoader <span class="hljs-comment">#文档加载器，采用csv格式存储</span>
+<span class="hljs-keyword">from</span> langchain.indexes <span class="hljs-keyword">import</span> VectorstoreIndexCreator <span class="hljs-comment">#导入向量存储索引创建器</span>
+<span class="hljs-keyword">from</span> langchain.vectorstores <span class="hljs-keyword">import</span> DocArrayInMemorySearch <span class="hljs-comment">#向量存储</span>
+<span class="hljs-comment">#加载中文数据</span>
+file = <span class="hljs-string">'../data/product_data.csv'</span>
 loader = CSVLoader(file_path=file)
 data = loader.load()
 
-#查看数据
-import pandas as pd
-test_data = pd.read_csv(file,skiprows=0)
+<span class="hljs-comment">#查看数据</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+test_data = pd.read_csv(file,skiprows=<span class="hljs-number">0</span>)
 display(test_data.head())
 </code></pre>
 <div>
@@ -798,22 +798,22 @@ display(test_data.head())
 
 
 
-<pre><code class="lang-pythonthon"># 将指定向量存储类,创建完成后，我们将从加载器中调用,通过文档记载器列表加载
+<pre><code class="lang-python"><span class="hljs-comment"># 将指定向量存储类,创建完成后，我们将从加载器中调用,通过文档记载器列表加载</span>
 
 index = VectorstoreIndexCreator(
     vectorstore_cls=DocArrayInMemorySearch
 ).from_loaders([loader])
 
 
-#通过指定语言模型、链类型、检索器和我们要打印的详细程度来创建检索QA链
-llm = ChatOpenAI(temperature = 0.0)
+<span class="hljs-comment">#通过指定语言模型、链类型、检索器和我们要打印的详细程度来创建检索QA链</span>
+llm = ChatOpenAI(temperature = <span class="hljs-number">0.0</span>)
 qa = RetrievalQA.from_chain_type(
     llm=llm, 
-    chain_type="stuff", 
+    chain_type=<span class="hljs-string">"stuff"</span>, 
     retriever=index.vectorstore.as_retriever(), 
-    verbose=True,
+    verbose=<span class="hljs-literal">True</span>,
     chain_type_kwargs = {
-        "document_separator": "&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;"
+        <span class="hljs-string">"document_separator"</span>: <span class="hljs-string">"&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;"</span>
     }
 )
 </code></pre>
@@ -821,39 +821,39 @@ qa = RetrievalQA.from_chain_type(
 <h3 id="11-设置测试的数据">1.1 设置测试的数据</h3>
 <p>我们查看一下经过档加载器 CSVLoad 加载后生成的 data 内的信息，这里我们抽取 data 中的第九条和第十条数据，看看它们的主要内容：</p>
 <p>第九条数据：</p>
-<pre><code class="lang-pythonthon">data[10]
+<pre><code class="lang-python">data[<span class="hljs-number">10</span>]
 </code></pre>
 <pre><code>Document(page_content="product_name: 高清电视机\ndescription: 规格:\n尺寸：50''。\n\n为什么我们热爱它:\n我们的高清电视机拥有出色的画质和强大的音效，带来沉浸式的观看体验。\n\n材质与护理:\n使用干布清洁。\n\n构造:\n由塑料、金属和电子元件制成。\n\n其他特性:\n支持网络连接，可以在线观看视频。\n配备遥控器。\n在韩国制造。\n\n有问题？请随时联系我们的客户服务团队，他们会解答您的所有问题。", metadata={'source': '../data/product_data.csv', 'row': 10})
 </code></pre><p>第十条数据：</p>
-<pre><code class="lang-pythonthon">data[11]
+<pre><code class="lang-python">data[<span class="hljs-number">11</span>]
 </code></pre>
 <pre><code>Document(page_content="product_name: 旅行背包\ndescription: 规格:\n尺寸：18'' x 12'' x 6''。\n\n为什么我们热爱它:\n我们的旅行背包拥有多个实用的内外袋，轻松装下您的必需品，是短途旅行的理想选择。\n\n材质与护理:\n可以手洗，自然晾干。\n\n构造:\n由防水尼龙制成。\n\n其他特性:\n附带可调节背带和安全锁。\n在中国制造。\n\n有问题？请随时联系我们的客户服务团队，他们会解答您的所有问题。", metadata={'source': '../data/product_data.csv', 'row': 11})
 </code></pre><p>看上面的第一个文档中有高清电视机，第二个文档中有旅行背包，从这些细节中，我们可以创建一些例子查询和答案</p>
 <h3 id="12-手动创建测试数据">1.2 手动创建测试数据</h3>
 <p>需要说明的是这里我们的文档是 csv 文件，所以我们使用的是文档加载器是 CSVLoader ，CSVLoader 会对 csv 文件中的每一行数据进行分割，所以这里看到的 data[10], data[11]的内容则是 csv 文件中的第10条，第11条数据的内容。下面我们根据这两条数据手动设置两条“问答对”，每一个“问答对”中包含一个 query ，一个 answer ：</p>
-<pre><code class="lang-pythonthon">examples = [
+<pre><code class="lang-python">examples = [
     {
-        "query": "高清电视机怎么进行护理？",
-        "answer": "使用干布清洁。"
+        <span class="hljs-string">"query"</span>: <span class="hljs-string">"高清电视机怎么进行护理？"</span>,
+        <span class="hljs-string">"answer"</span>: <span class="hljs-string">"使用干布清洁。"</span>
     },
     {
-        "query": "旅行背包有内外袋吗？",
-        "answer": "有。"
+        <span class="hljs-string">"query"</span>: <span class="hljs-string">"旅行背包有内外袋吗？"</span>,
+        <span class="hljs-string">"answer"</span>: <span class="hljs-string">"有。"</span>
     }
 ]
 </code></pre>
 <h3 id="13-通过llm生成测试用例">1.3 通过LLM生成测试用例</h3>
 <p>在前面的内容中，我们使用的方法都是通过手动的方法来构建测试数据集，比如说我们手动创建10个问题和10个答案，然后让 LLM 回答这10个问题，再将 LLM 给出的答案与我们准备好的答案做比较，最后再给 LLM 打分，评估的流程大概就是这样。但是这里有一个问题，就是我们需要手动去创建所有的问题集和答案集，那会是一个非常耗费时间和人力的成本。那有没有一种可以自动创建大量问答测试集的方法呢？那当然是有的，今天我们就来介绍 Langchain 提供的方法：<code>QAGenerateChain</code>，我们可以通过<code>QAGenerateChain</code>来为我们的文档自动创建问答集：</p>
 <p>由于<code>QAGenerateChain</code>类中使用的<code>PROMPT</code>是英文，故我们继承<code>QAGenerateChain</code>类，将<code>PROMPT</code>加上“请使用中文输出”。下面是<code>generate_chain.py</code>文件中的<code>QAGenerateChain</code>类的源码</p>
-<pre><code class="lang-pythonthon">from langchain.evaluation.qa import QAGenerateChain #导入QA生成链，它将接收文档，并从每个文档中创建一个问题答案对
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.evaluation.qa <span class="hljs-keyword">import</span> QAGenerateChain <span class="hljs-comment">#导入QA生成链，它将接收文档，并从每个文档中创建一个问题答案对</span>
 
-# 下面是langchain.evaluation.qa.generate_prompt中的源码，在template的最后加上“请使用中文输出”
-from langchain.output_parsers.regex import RegexParser
-from langchain.prompts import PromptTemplate
-from langchain.base_language import BaseLanguageModel
-from typing import Any
+<span class="hljs-comment"># 下面是langchain.evaluation.qa.generate_prompt中的源码，在template的最后加上“请使用中文输出”</span>
+<span class="hljs-keyword">from</span> langchain.output_parsers.regex <span class="hljs-keyword">import</span> RegexParser
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> PromptTemplate
+<span class="hljs-keyword">from</span> langchain.base_language <span class="hljs-keyword">import</span> BaseLanguageModel
+<span class="hljs-keyword">from</span> typing <span class="hljs-keyword">import</span> <span class="hljs-type">Any</span>
 
-template = """You are a teacher coming up with questions to ask on a quiz. 
+template = <span class="hljs-string">"""You are a teacher coming up with questions to ask on a quiz. 
 Given the following document, please generate a question and answer based on that document.
 
 Example Format:
@@ -869,29 +869,29 @@ These questions should be detailed and be based explicitly on information in the
 {doc}
 &lt;End Document&gt;
 请使用中文输出
-"""
+"""</span>
 output_parser = RegexParser(
-    regex=r"QUESTION: (.*?)\nANSWER: (.*)", output_keys=["query", "answer"]
+    regex=<span class="hljs-string">r"QUESTION: (.*?)\nANSWER: (.*)"</span>, output_keys=[<span class="hljs-string">"query"</span>, <span class="hljs-string">"answer"</span>]
 )
 PROMPT = PromptTemplate(
-    input_variables=["doc"], template=template, output_parser=output_parser
+    input_variables=[<span class="hljs-string">"doc"</span>], template=template, output_parser=output_parser
 )
 
-# 继承QAGenerateChain
-class ChineseQAGenerateChain(QAGenerateChain):
-    """LLM Chain specifically for generating examples for question answering."""
+<span class="hljs-comment"># 继承QAGenerateChain</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ChineseQAGenerateChain</span>(<span class="hljs-title class_ inherited__">QAGenerateChain</span>):
+    <span class="hljs-string">"""LLM Chain specifically for generating examples for question answering."""</span>
 
-    @classmethod
-    def from_llm(cls, llm: BaseLanguageModel, **kwargs: Any) -&gt; QAGenerateChain:
-        """Load QA Generate Chain from LLM."""
-        return cls(llm=llm, prompt=PROMPT, **kwargs)
+<span class="hljs-meta">    @classmethod</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">from_llm</span>(<span class="hljs-params">cls, llm: BaseLanguageModel, **kwargs: <span class="hljs-type">Any</span></span>) -&gt; QAGenerateChain:
+        <span class="hljs-string">"""Load QA Generate Chain from LLM."""</span>
+        <span class="hljs-keyword">return</span> cls(llm=llm, prompt=PROMPT, **kwargs)
 
 
 
-example_gen_chain = ChineseQAGenerateChain.from_llm(ChatOpenAI())#通过传递chat open AI语言模型来创建这个链
-new_examples = example_gen_chain.apply([{"doc": t} for t in data[:5]]) 
+example_gen_chain = ChineseQAGenerateChain.from_llm(ChatOpenAI())<span class="hljs-comment">#通过传递chat open AI语言模型来创建这个链</span>
+new_examples = example_gen_chain.apply([{<span class="hljs-string">"doc"</span>: t} <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> data[:<span class="hljs-number">5</span>]]) 
 
-#查看用例数据
+<span class="hljs-comment">#查看用例数据</span>
 new_examples
 </code></pre>
 <pre><code>[{'qa_pairs': {'query': '这款全自动咖啡机的尺寸是多少？',
@@ -902,19 +902,19 @@ new_examples
    'answer': "该无线蓝牙耳机的尺寸为1.5'' x 1.3''。"}},
  {'qa_pairs': {'query': '这款瑜伽垫的尺寸是多少？', 'answer': "这款瑜伽垫的尺寸是24'' x 68''。"}}]
 </code></pre><p>在上面的代码中，我们创建了一个<code>QAGenerateChain</code>，然后我们应用了<code>QAGenerateChain</code>的 apply 方法对 data 中的前5条数据创建了5个“问答对”，由于创建问答集是由 LLM 来自动完成的，因此会涉及到 token 成本的问题，所以我们这里出于演示的目的，只对 data 中的前5条数据创建问答集。</p>
-<pre><code class="lang-pythonthon">new_examples[0]
+<pre><code class="lang-python">new_examples[<span class="hljs-number">0</span>]
 </code></pre>
 <pre><code>{'qa_pairs': {'query': '这款全自动咖啡机的尺寸是多少？',
   'answer': "大型尺寸为13.8'' x 17.3''，中型尺寸为11.5'' x 15.2''。"}}
 </code></pre><p>源数据：</p>
-<pre><code class="lang-pythonthon">data[0]
+<pre><code class="lang-python">data[<span class="hljs-number">0</span>]
 </code></pre>
 <pre><code>Document(page_content="product_name: 全自动咖啡机\ndescription: 规格:\n大型 - 尺寸：13.8'' x 17.3''。\n中型 - 尺寸：11.5'' x 15.2''。\n\n为什么我们热爱它:\n这款全自动咖啡机是爱好者的理想选择。 一键操作，即可研磨豆子并沏制出您喜爱的咖啡。它的耐用性和一致性使它成为家庭和办公室的理想选择。\n\n材质与护理:\n清洁时只需轻擦。\n\n构造:\n由高品质不锈钢制成。\n\n其他特性:\n内置研磨器和滤网。\n预设多种咖啡模式。\n在中国制造。\n\n有问题？ 请随时联系我们的客户服务团队，他们会解答您的所有问题。", metadata={'source': '../data/product_data.csv', 'row': 0})
 </code></pre><h3 id="14-整合测试集">1.4 整合测试集</h3>
 <p>还记得我们前面手动创建的两个问答集吗？现在我们需要将之前手动创建的问答集合并到<code>QAGenerateChain</code>创建的问答集中，这样在答集中既有手动创建的例子又有 llm 自动创建的例子，这会使我们的测试集更加完善。</p>
 <p>接下来我们就需要让之前创建的文档问答链<code>qa</code>来回答这个测试集里的问题，来看看 LLM 是怎么回答的吧：</p>
-<pre><code class="lang-pythonthon">examples += [ v for item in new_examples for k,v in item.items()]
-qa.run(examples[0]["query"])
+<pre><code class="lang-python">examples += [ v <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> new_examples <span class="hljs-keyword">for</span> k,v <span class="hljs-keyword">in</span> item.items()]
+qa.run(examples[<span class="hljs-number">0</span>][<span class="hljs-string">"query"</span>])
 </code></pre>
 <pre><code>&gt; Entering new RetrievalQA chain...
 
@@ -928,11 +928,11 @@ qa.run(examples[0]["query"])
 </code></pre><p>这里我们看到<code>qa</code>回答了第0个问题："高清电视机怎么进行护理？" ，这里的第0个问题就是先前我们手动创建的第一个问题，并且我们手动创建的 answer 是："使用干布清洁。" 这里我们发现问答链<code>qa</code>回答的也是“您只需要使用干布清洁即可”，只是它比我们的答案还多了一段说明：“高清电视机的护理非常简单。您只需要使用干布清洁即可。避免使用湿布或化学清洁剂，以免损坏电视机的表面。”。</p>
 <h2 id="二、-人工评估">二、 人工评估</h2>
 <p>你想知道<code>qa</code>是怎么找到问题的答案的吗？下面让我们打开<code>debug</code>，看看<code>qa</code>是如何找到问题的答案！</p>
-<pre><code class="lang-pythonthon">import langchain
-langchain.debug = True
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> langchain
+langchain.debug = <span class="hljs-literal">True</span>
 
-#重新运行与上面相同的示例，可以看到它开始打印出更多的信息
-qa.run(examples[0]["query"])
+<span class="hljs-comment">#重新运行与上面相同的示例，可以看到它开始打印出更多的信息</span>
+qa.run(examples[<span class="hljs-number">0</span>][<span class="hljs-string">"query"</span>])
 </code></pre>
 <pre><code>[chain/start] [1:chain:RetrievalQA] Entering Chain run with input:
 {
@@ -1021,19 +1021,19 @@ qa.run(examples[0]["query"])
 </ul>
 <p>具体来说，第一个语言模型负责回答问题。第二个语言模型链用来进行答案判定。最后我们可以收集判断结果，得到语言模型在这一任务上的效果分数。需要注意的是，回答问题的语言模型链和答案判断链是分开的，职责不同。这避免了同一个模型对自己结果的主观判断。</p>
 <p>总之,语言模型可以自动完成构建测试集、回答问题和判定答案等全流程，使评估过程更加智能化和自动化。我们只需要提供文档并解析最终结果即可。</p>
-<pre><code class="lang-pythonthon">langchain.debug = False
+<pre><code class="lang-python">langchain.debug = <span class="hljs-literal">False</span>
 
-#为所有不同的示例创建预测
+<span class="hljs-comment">#为所有不同的示例创建预测</span>
 predictions = qa.apply(examples) 
 
-# 对预测的结果进行评估，导入QA问题回答，评估链，通过语言模型创建此链
-from langchain.evaluation.qa import QAEvalChain #导入QA问题回答，评估链
+<span class="hljs-comment"># 对预测的结果进行评估，导入QA问题回答，评估链，通过语言模型创建此链</span>
+<span class="hljs-keyword">from</span> langchain.evaluation.qa <span class="hljs-keyword">import</span> QAEvalChain <span class="hljs-comment">#导入QA问题回答，评估链</span>
 
-#通过调用chatGPT进行评估
-llm = ChatOpenAI(temperature=0)
+<span class="hljs-comment">#通过调用chatGPT进行评估</span>
+llm = ChatOpenAI(temperature=<span class="hljs-number">0</span>)
 eval_chain = QAEvalChain.from_llm(llm)
 
-#在此链上调用evaluate，进行评估
+<span class="hljs-comment">#在此链上调用evaluate，进行评估</span>
 graded_outputs = eval_chain.evaluate(examples, predictions)
 </code></pre>
 <pre><code>&gt; Entering new RetrievalQA chain...
@@ -1069,14 +1069,14 @@ graded_outputs = eval_chain.evaluate(examples, predictions)
 &gt; Entering new RetrievalQA chain...
 
 &gt; Finished chain.
-</code></pre><pre><code class="lang-pythonthon">#我们将传入示例和预测，得到一堆分级输出，循环遍历它们打印答案
-for i, eg in enumerate(examples):
-    print(f"Example {i}:")
-    print("Question: " + predictions[i]['query'])
-    print("Real Answer: " + predictions[i]['answer'])
-    print("Predicted Answer: " + predictions[i]['result'])
-    print("Predicted Grade: " + graded_outputs[i]['results'])
-    print()
+</code></pre><pre><code class="lang-python"><span class="hljs-comment">#我们将传入示例和预测，得到一堆分级输出，循环遍历它们打印答案</span>
+<span class="hljs-keyword">for</span> i, eg <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(examples):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Example <span class="hljs-subst">{i}</span>:"</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Question: "</span> + predictions[i][<span class="hljs-string">'query'</span>])
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Real Answer: "</span> + predictions[i][<span class="hljs-string">'answer'</span>])
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Predicted Answer: "</span> + predictions[i][<span class="hljs-string">'result'</span>])
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Predicted Grade: "</span> + graded_outputs[i][<span class="hljs-string">'results'</span>])
+    <span class="hljs-built_in">print</span>()
 </code></pre>
 <pre><code>Example 0:
 Question: 高清电视机怎么进行护理？
@@ -1127,24 +1127,24 @@ Predicted Grade: CORRECT
 <p>总之，自动评估是 LangChain 框架的一大优势，它将极大地降低问答系统开发的门槛，使任何人都可以轻松训练出性能强大的问答模型。</p>
 <h2 id="英文版提示">英文版提示</h2>
 <p><strong>1.  创建LLM应用</strong></p>
-<pre><code class="lang-pythonthon">from langchain.chains import RetrievalQA 
-from langchain.chat_models import ChatOpenAI 
-from langchain.document_loaders import CSVLoader 
-from langchain.indexes import VectorstoreIndexCreator 
-from langchain.vectorstores import DocArrayInMemorySearch 
-from langchain.evaluation.qa import QAGenerateChain 
-import pandas as pd
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> RetrievalQA 
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI 
+<span class="hljs-keyword">from</span> langchain.document_loaders <span class="hljs-keyword">import</span> CSVLoader 
+<span class="hljs-keyword">from</span> langchain.indexes <span class="hljs-keyword">import</span> VectorstoreIndexCreator 
+<span class="hljs-keyword">from</span> langchain.vectorstores <span class="hljs-keyword">import</span> DocArrayInMemorySearch 
+<span class="hljs-keyword">from</span> langchain.evaluation.qa <span class="hljs-keyword">import</span> QAGenerateChain 
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
 
-file = '../data/OutdoorClothingCatalog_1000.csv'
+file = <span class="hljs-string">'../data/OutdoorClothingCatalog_1000.csv'</span>
 loader = CSVLoader(file_path=file)
 data = loader.load()
 
 
 
-test_data = pd.read_csv(file,skiprows=0,usecols=[1,2])
+test_data = pd.read_csv(file,skiprows=<span class="hljs-number">0</span>,usecols=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>])
 display(test_data.head())
 
-llm = ChatOpenAI(temperature = 0.0)
+llm = ChatOpenAI(temperature = <span class="hljs-number">0.0</span>)
 
 index = VectorstoreIndexCreator(
     vectorstore_cls=DocArrayInMemorySearch
@@ -1152,25 +1152,25 @@ index = VectorstoreIndexCreator(
 
 qa = RetrievalQA.from_chain_type(
     llm=llm, 
-    chain_type="stuff", 
+    chain_type=<span class="hljs-string">"stuff"</span>, 
     retriever=index.vectorstore.as_retriever(), 
-    verbose=True,
+    verbose=<span class="hljs-literal">True</span>,
     chain_type_kwargs = {
-        "document_separator": "&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;"
+        <span class="hljs-string">"document_separator"</span>: <span class="hljs-string">"&lt;&lt;&lt;&lt;&gt;&gt;&gt;&gt;&gt;"</span>
     }
 )
 
-print(data[10],"\n")
-print(data[11],"\n")
+<span class="hljs-built_in">print</span>(data[<span class="hljs-number">10</span>],<span class="hljs-string">"\n"</span>)
+<span class="hljs-built_in">print</span>(data[<span class="hljs-number">11</span>],<span class="hljs-string">"\n"</span>)
 
 examples = [
     {
-        "query": "Do the Cozy Comfort Pullover Set have side pockets?",
-        "answer": "Yes"
+        <span class="hljs-string">"query"</span>: <span class="hljs-string">"Do the Cozy Comfort Pullover Set have side pockets?"</span>,
+        <span class="hljs-string">"answer"</span>: <span class="hljs-string">"Yes"</span>
     },
     {
-        "query": "What collection is the Ultra-Lofty 850 Stretch Down Hooded Jacket from?",
-        "answer": "The DownTek collection"
+        <span class="hljs-string">"query"</span>: <span class="hljs-string">"What collection is the Ultra-Lofty 850 Stretch Down Hooded Jacket from?"</span>,
+        <span class="hljs-string">"answer"</span>: <span class="hljs-string">"The DownTek collection"</span>
     }
 ]
 
@@ -1178,15 +1178,15 @@ examples = [
 example_gen_chain = QAGenerateChain.from_llm(ChatOpenAI())
 
 
-from langchain.evaluation.qa import QAGenerateChain #导入QA生成链，它将接收文档，并从每个文档中创建一个问题答案对
-example_gen_chain = QAGenerateChain.from_llm(ChatOpenAI())#通过传递chat open AI语言模型来创建这个链
-new_examples = example_gen_chain.apply([{"doc": t} for t in data[:5]]) 
+<span class="hljs-keyword">from</span> langchain.evaluation.qa <span class="hljs-keyword">import</span> QAGenerateChain <span class="hljs-comment">#导入QA生成链，它将接收文档，并从每个文档中创建一个问题答案对</span>
+example_gen_chain = QAGenerateChain.from_llm(ChatOpenAI())<span class="hljs-comment">#通过传递chat open AI语言模型来创建这个链</span>
+new_examples = example_gen_chain.apply([{<span class="hljs-string">"doc"</span>: t} <span class="hljs-keyword">for</span> t <span class="hljs-keyword">in</span> data[:<span class="hljs-number">5</span>]]) 
 
-#查看用例数据
-print(new_examples) 
+<span class="hljs-comment">#查看用例数据</span>
+<span class="hljs-built_in">print</span>(new_examples) 
 
-examples += [ v for item in new_examples for k,v in item.items()]
-qa.run(examples[0]["query"])
+examples += [ v <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> new_examples <span class="hljs-keyword">for</span> k,v <span class="hljs-keyword">in</span> item.items()]
+qa.run(examples[<span class="hljs-number">0</span>][<span class="hljs-string">"query"</span>])
 </code></pre>
 <div>
 <style scoped="">
@@ -1258,13 +1258,13 @@ page_content=': 11\nname: Ultra-Lofty 850 Stretch Down Hooded Jacket\ndescriptio
 
 'Yes, the Cozy Comfort Pullover Set does have side pockets.'
 </code></pre><p><strong>2. 人工评估</strong></p>
-<pre><code class="lang-pythonthon">import langchain
-langchain.debug = True
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> langchain
+langchain.debug = <span class="hljs-literal">True</span>
 
-#重新运行与上面相同的示例，可以看到它开始打印出更多的信息
-qa.run(examples[0]["query"])
+<span class="hljs-comment">#重新运行与上面相同的示例，可以看到它开始打印出更多的信息</span>
+qa.run(examples[<span class="hljs-number">0</span>][<span class="hljs-string">"query"</span>])
 
-langchain.debug = False
+langchain.debug = <span class="hljs-literal">False</span>
 </code></pre>
 <pre><code>[chain/start] [1:chain:RetrievalQA] Entering Chain run with input:
 {
@@ -1332,29 +1332,29 @@ langchain.debug = False
   "result": "Yes, the Cozy Comfort Pullover Set does have side pockets."
 }
 </code></pre><p><strong>3. 通过LLM进行评估实例</strong></p>
-<pre><code class="lang-pythonthon">langchain.debug = False
+<pre><code class="lang-python">langchain.debug = <span class="hljs-literal">False</span>
 
-#为所有不同的示例创建预测
+<span class="hljs-comment">#为所有不同的示例创建预测</span>
 predictions = qa.apply(examples) 
 
-# 对预测的结果进行评估，导入QA问题回答，评估链，通过语言模型创建此链
-from langchain.evaluation.qa import QAEvalChain #导入QA问题回答，评估链
+<span class="hljs-comment"># 对预测的结果进行评估，导入QA问题回答，评估链，通过语言模型创建此链</span>
+<span class="hljs-keyword">from</span> langchain.evaluation.qa <span class="hljs-keyword">import</span> QAEvalChain <span class="hljs-comment">#导入QA问题回答，评估链</span>
 
-#通过调用chatGPT进行评估
-llm = ChatOpenAI(temperature=0)
+<span class="hljs-comment">#通过调用chatGPT进行评估</span>
+llm = ChatOpenAI(temperature=<span class="hljs-number">0</span>)
 eval_chain = QAEvalChain.from_llm(llm)
 
-#在此链上调用evaluate，进行评估
+<span class="hljs-comment">#在此链上调用evaluate，进行评估</span>
 graded_outputs = eval_chain.evaluate(examples, predictions)
 
-#我们将传入示例和预测，得到一堆分级输出，循环遍历它们打印答案
-for i, eg in enumerate(examples):
-    print(f"Example {i}:")
-    print("Question: " + predictions[i]['query'])
-    print("Real Answer: " + predictions[i]['answer'])
-    print("Predicted Answer: " + predictions[i]['result'])
-    print("Predicted Grade: " + graded_outputs[i]['results'])
-    print()
+<span class="hljs-comment">#我们将传入示例和预测，得到一堆分级输出，循环遍历它们打印答案</span>
+<span class="hljs-keyword">for</span> i, eg <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(examples):
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f"Example <span class="hljs-subst">{i}</span>:"</span>)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Question: "</span> + predictions[i][<span class="hljs-string">'query'</span>])
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Real Answer: "</span> + predictions[i][<span class="hljs-string">'answer'</span>])
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Predicted Answer: "</span> + predictions[i][<span class="hljs-string">'result'</span>])
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Predicted Grade: "</span> + graded_outputs[i][<span class="hljs-string">'results'</span>])
+    <span class="hljs-built_in">print</span>()
 </code></pre>
 <pre><code>&gt; Entering new RetrievalQA chain...
 
@@ -1482,7 +1482,7 @@ Predicted Grade: CORRECT
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"6. 评估 Evaluation","level":"4.7","depth":1,"next":{"title":"7. 代理 Agent","level":"4.8","depth":1,"path":"C3/7.-代理-Agent.md","ref":"C3/7.-代理-Agent.md","articles":[]},"previous":{"title":"5. 基于文档的问答 Question and Answer","level":"4.6","depth":1,"path":"C3/5.-基于文档的问答-Question-and-Answer.md","ref":"C3/5.-基于文档的问答-Question-and-Answer.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C3/6.-评估-Evaluation.md","mtime":"2025-01-05T18:01:16.620Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-05T18:01:25.931Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"6. 评估 Evaluation","level":"4.7","depth":1,"next":{"title":"7. 代理 Agent","level":"4.8","depth":1,"path":"C3/7.-代理-Agent.md","ref":"C3/7.-代理-Agent.md","articles":[]},"previous":{"title":"5. 基于文档的问答 Question and Answer","level":"4.6","depth":1,"path":"C3/5.-基于文档的问答-Question-and-Answer.md","ref":"C3/5.-基于文档的问答-Question-and-Answer.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C3/6.-评估-Evaluation.md","mtime":"2025-01-11T00:02:01.079Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-11T18:48:15.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1552,7 +1552,7 @@ Predicted Grade: CORRECT
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 

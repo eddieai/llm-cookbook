@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
                 
             
         
@@ -49,7 +49,7 @@
     
     
     <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
@@ -725,59 +725,59 @@
 <h2 id="一、大语言模型链">一、大语言模型链</h2>
 <p>大语言模型链（LLMChain）是一个简单但非常强大的链，也是后面我们将要介绍的许多链的基础。</p>
 <h3 id="11-初始化语言模型">1.1 初始化语言模型</h3>
-<pre><code class="lang-pythonthon">import warnings
-warnings.filterwarnings('ignore')
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> warnings
+warnings.filterwarnings(<span class="hljs-string">'ignore'</span>)
 
-from langchain.chat_models import ChatOpenAI 
-from langchain.prompts import ChatPromptTemplate  
-from langchain.chains import LLMChain   
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI 
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate  
+<span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> LLMChain   
 
-# 这里我们将参数temperature设置为0.0，从而减少生成答案的随机性。
-# 如果你想要每次得到不一样的有新意的答案，可以尝试调整该参数。
-llm = ChatOpenAI(temperature=0.0)
+<span class="hljs-comment"># 这里我们将参数temperature设置为0.0，从而减少生成答案的随机性。</span>
+<span class="hljs-comment"># 如果你想要每次得到不一样的有新意的答案，可以尝试调整该参数。</span>
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)
 </code></pre>
 <h3 id="12-初始化提示模版">1.2 初始化提示模版</h3>
 <p>初始化提示，这个提示将接受一个名为product的变量。该prompt将要求LLM生成一个描述制造该产品的公司的最佳名称</p>
-<pre><code class="lang-pythonthon">prompt = ChatPromptTemplate.from_template("描述制造{product}的一个公司的最佳名称是什么?")
+<pre><code class="lang-python">prompt = ChatPromptTemplate.from_template(<span class="hljs-string">"描述制造{product}的一个公司的最佳名称是什么?"</span>)
 </code></pre>
 <h3 id="13-构建大语言模型链">1.3 构建大语言模型链</h3>
 <p>将大语言模型(LLM)和提示（Prompt）组合成链。这个大语言模型链非常简单，可以让我们以一种顺序的方式去通过运行提示并且结合到大语言模型中。</p>
-<pre><code class="lang-pythonthon">chain = LLMChain(llm=llm, prompt=prompt)
+<pre><code class="lang-python">chain = LLMChain(llm=llm, prompt=prompt)
 </code></pre>
 <h3 id="14-运行大语言模型链">1.4 运行大语言模型链</h3>
 <p>因此，如果我们有一个名为"Queen Size Sheet Set"的产品，我们可以通过使用<code>chain.run</code>将其通过这个链运行</p>
-<pre><code class="lang-pythonthon">product = "大号床单套装"
+<pre><code class="lang-python">product = <span class="hljs-string">"大号床单套装"</span>
 chain.run(product)
 </code></pre>
 <pre><code>'"豪华床纺"'
 </code></pre><p>您可以输入任何产品描述，然后查看链将输出什么结果。</p>
 <h2 id="二、简单顺序链">二、简单顺序链</h2>
 <p>顺序链（SequentialChains）是按预定义顺序执行其链接的链。具体来说，我们将使用简单顺序链（SimpleSequentialChain），这是顺序链的最简单类型，其中每个步骤都有一个输入/输出，一个步骤的输出是下一个步骤的输入。</p>
-<pre><code class="lang-pythonthon">from langchain.chains import SimpleSequentialChain
-llm = ChatOpenAI(temperature=0.9)
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> SimpleSequentialChain
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.9</span>)
 </code></pre>
 <h3 id="21-创建两个子链">2.1 创建两个子链</h3>
-<pre><code class="lang-pythonthon"># 提示模板 1 ：这个提示将接受产品并返回最佳名称来描述该公司
+<pre><code class="lang-python"><span class="hljs-comment"># 提示模板 1 ：这个提示将接受产品并返回最佳名称来描述该公司</span>
 first_prompt = ChatPromptTemplate.from_template(   
-    "描述制造{product}的一个公司的最好的名称是什么"
+    <span class="hljs-string">"描述制造{product}的一个公司的最好的名称是什么"</span>
 )
 chain_one = LLMChain(llm=llm, prompt=first_prompt)
 
-# 提示模板 2 ：接受公司名称，然后输出该公司的长为20个单词的描述
+<span class="hljs-comment"># 提示模板 2 ：接受公司名称，然后输出该公司的长为20个单词的描述</span>
 second_prompt = ChatPromptTemplate.from_template(   
-    "写一个20字的描述对于下面这个\
-    公司：{company_name}的"
+    <span class="hljs-string">"写一个20字的描述对于下面这个\
+    公司：{company_name}的"</span>
 )
 chain_two = LLMChain(llm=llm, prompt=second_prompt)
 </code></pre>
 <h3 id="22-构建简单顺序链">2.2 构建简单顺序链</h3>
 <p>现在我们可以组合两个LLMChain，以便我们可以在一个步骤中创建公司名称和描述</p>
-<pre><code class="lang-pythonthon">overall_simple_chain = SimpleSequentialChain(chains=[chain_one, chain_two],
-                                             verbose=True)
+<pre><code class="lang-python">overall_simple_chain = SimpleSequentialChain(chains=[chain_one, chain_two],
+                                             verbose=<span class="hljs-literal">True</span>)
 </code></pre>
 <p>给一个输入，然后运行上面的链</p>
 <h3 id="23-运行简单顺序链">2.3 运行简单顺序链</h3>
-<pre><code class="lang-pythonthon">product = "大号床单套装"
+<pre><code class="lang-python">product = <span class="hljs-string">"大号床单套装"</span>
 overall_simple_chain.run(product)
 </code></pre>
 <pre><code>&gt; Entering new SimpleSequentialChain chain...
@@ -793,66 +793,66 @@ overall_simple_chain.run(product)
 '优床制造公司是一家专注于生产高品质床具的公司。'
 </code></pre><h2 id="三、-顺序链">三、 顺序链</h2>
 <p>当只有一个输入和一个输出时，简单顺序链（SimpleSequentialChain）即可实现。当有多个输入或多个输出时，我们则需要使用顺序链（SequentialChain）来实现。</p>
-<pre><code class="lang-pythonthon">import pandas as pd
-from langchain.chains import SequentialChain
-from langchain.chat_models import ChatOpenAI    #导入OpenAI模型
-from langchain.prompts import ChatPromptTemplate   #导入聊天提示模板
-from langchain.chains import LLMChain    #导入LLM链。
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> SequentialChain
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI    <span class="hljs-comment">#导入OpenAI模型</span>
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate   <span class="hljs-comment">#导入聊天提示模板</span>
+<span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> LLMChain    <span class="hljs-comment">#导入LLM链。</span>
 
-llm = ChatOpenAI(temperature=0.9)
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.9</span>)
 </code></pre>
 <p>接下来我们将创建一系列的链，然后一个接一个使用他们</p>
 <h3 id="31-创建四个子链">3.1 创建四个子链</h3>
-<pre><code class="lang-pythonthon">#子链1
-# prompt模板 1: 翻译成英语（把下面的review翻译成英语）
+<pre><code class="lang-python"><span class="hljs-comment">#子链1</span>
+<span class="hljs-comment"># prompt模板 1: 翻译成英语（把下面的review翻译成英语）</span>
 first_prompt = ChatPromptTemplate.from_template(
-    "把下面的评论review翻译成英文:"
-    "\n\n{Review}"
+    <span class="hljs-string">"把下面的评论review翻译成英文:"</span>
+    <span class="hljs-string">"\n\n{Review}"</span>
 )
-# chain 1: 输入：Review    输出：英文的 Review
-chain_one = LLMChain(llm=llm, prompt=first_prompt, output_key="English_Review")
+<span class="hljs-comment"># chain 1: 输入：Review    输出：英文的 Review</span>
+chain_one = LLMChain(llm=llm, prompt=first_prompt, output_key=<span class="hljs-string">"English_Review"</span>)
 
-#子链2
-# prompt模板 2: 用一句话总结下面的 review
+<span class="hljs-comment">#子链2</span>
+<span class="hljs-comment"># prompt模板 2: 用一句话总结下面的 review</span>
 second_prompt = ChatPromptTemplate.from_template(
-    "请你用一句话来总结下面的评论review:"
-    "\n\n{English_Review}"
+    <span class="hljs-string">"请你用一句话来总结下面的评论review:"</span>
+    <span class="hljs-string">"\n\n{English_Review}"</span>
 )
-# chain 2: 输入：英文的Review   输出：总结
-chain_two = LLMChain(llm=llm, prompt=second_prompt, output_key="summary")
+<span class="hljs-comment"># chain 2: 输入：英文的Review   输出：总结</span>
+chain_two = LLMChain(llm=llm, prompt=second_prompt, output_key=<span class="hljs-string">"summary"</span>)
 
 
-#子链3
-# prompt模板 3: 下面review使用的什么语言
+<span class="hljs-comment">#子链3</span>
+<span class="hljs-comment"># prompt模板 3: 下面review使用的什么语言</span>
 third_prompt = ChatPromptTemplate.from_template(
-    "下面的评论review使用的什么语言:\n\n{Review}"
+    <span class="hljs-string">"下面的评论review使用的什么语言:\n\n{Review}"</span>
 )
-# chain 3: 输入：Review  输出：语言
-chain_three = LLMChain(llm=llm, prompt=third_prompt, output_key="language")
+<span class="hljs-comment"># chain 3: 输入：Review  输出：语言</span>
+chain_three = LLMChain(llm=llm, prompt=third_prompt, output_key=<span class="hljs-string">"language"</span>)
 
 
-#子链4
-# prompt模板 4: 使用特定的语言对下面的总结写一个后续回复
+<span class="hljs-comment">#子链4</span>
+<span class="hljs-comment"># prompt模板 4: 使用特定的语言对下面的总结写一个后续回复</span>
 fourth_prompt = ChatPromptTemplate.from_template(
-    "使用特定的语言对下面的总结写一个后续回复:"
-    "\n\n总结: {summary}\n\n语言: {language}"
+    <span class="hljs-string">"使用特定的语言对下面的总结写一个后续回复:"</span>
+    <span class="hljs-string">"\n\n总结: {summary}\n\n语言: {language}"</span>
 )
-# chain 4: 输入： 总结, 语言    输出： 后续回复
-chain_four = LLMChain(llm=llm, prompt=fourth_prompt, output_key="followup_message")
+<span class="hljs-comment"># chain 4: 输入： 总结, 语言    输出： 后续回复</span>
+chain_four = LLMChain(llm=llm, prompt=fourth_prompt, output_key=<span class="hljs-string">"followup_message"</span>)
 </code></pre>
 <h3 id="32-对四个子链进行组合">3.2 对四个子链进行组合</h3>
-<pre><code class="lang-pythonthon">#输入：review    
-#输出：英文review，总结，后续回复 
+<pre><code class="lang-python"><span class="hljs-comment">#输入：review    </span>
+<span class="hljs-comment">#输出：英文review，总结，后续回复 </span>
 overall_chain = SequentialChain(
     chains=[chain_one, chain_two, chain_three, chain_four],
-    input_variables=["Review"],
-    output_variables=["English_Review", "summary","followup_message"],
-    verbose=True
+    input_variables=[<span class="hljs-string">"Review"</span>],
+    output_variables=[<span class="hljs-string">"English_Review"</span>, <span class="hljs-string">"summary"</span>,<span class="hljs-string">"followup_message"</span>],
+    verbose=<span class="hljs-literal">True</span>
 )
 </code></pre>
 <p>让我们选择一篇评论并通过整个链传递它，可以发现，原始review是法语，可以把英文review看做是一种翻译，接下来是根据英文review得到的总结，最后输出的是用法语原文进行的续写信息。</p>
-<pre><code class="lang-pythonthon">df = pd.read_csv('../data/Data.csv')
-review = df.Review[5]
+<pre><code class="lang-python">df = pd.read_csv(<span class="hljs-string">'../data/Data.csv'</span>)
+review = df.Review[<span class="hljs-number">5</span>]
 overall_chain(review)
 </code></pre>
 <pre><code>&gt; Entering new SequentialChain chain...
@@ -875,47 +875,47 @@ overall_chain(review)
 <li>destination_chains：路由器链可以路由到的链</li>
 </ul>
 <p>举一个具体的例子，让我们看一下我们在不同类型的链之间路由的地方，我们在这里有不同的prompt:  </p>
-<pre><code class="lang-pythonthon">from langchain.chains.router import MultiPromptChain  #导入多提示链
-from langchain.chains.router.llm_router import LLMRouterChain,RouterOutputParser
-from langchain.prompts import PromptTemplate
-llm = ChatOpenAI(temperature=0)
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains.router <span class="hljs-keyword">import</span> MultiPromptChain  <span class="hljs-comment">#导入多提示链</span>
+<span class="hljs-keyword">from</span> langchain.chains.router.llm_router <span class="hljs-keyword">import</span> LLMRouterChain,RouterOutputParser
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> PromptTemplate
+llm = ChatOpenAI(temperature=<span class="hljs-number">0</span>)
 </code></pre>
 <h3 id="41-定义提示模板">4.1 定义提示模板</h3>
 <p>首先，我们定义提示适用于不同场景下的提示模板。</p>
-<pre><code class="lang-pythonthon"># 中文
-#第一个提示适合回答物理问题
-physics_template = """你是一个非常聪明的物理专家。 \
+<pre><code class="lang-python"><span class="hljs-comment"># 中文</span>
+<span class="hljs-comment">#第一个提示适合回答物理问题</span>
+physics_template = <span class="hljs-string">"""你是一个非常聪明的物理专家。 \
 你擅长用一种简洁并且易于理解的方式去回答问题。\
 当你不知道问题的答案时，你承认\
 你不知道.
 
 这是一个问题:
-{input}"""
+{input}"""</span>
 
 
-#第二个提示适合回答数学问题
-math_template = """你是一个非常优秀的数学家。 \
+<span class="hljs-comment">#第二个提示适合回答数学问题</span>
+math_template = <span class="hljs-string">"""你是一个非常优秀的数学家。 \
 你擅长回答数学问题。 \
 你之所以如此优秀， \
 是因为你能够将棘手的问题分解为组成部分，\
 回答组成部分，然后将它们组合在一起，回答更广泛的问题。
 
 这是一个问题：
-{input}"""
+{input}"""</span>
 
 
-#第三个适合回答历史问题
-history_template = """你是以为非常优秀的历史学家。 \
+<span class="hljs-comment">#第三个适合回答历史问题</span>
+history_template = <span class="hljs-string">"""你是以为非常优秀的历史学家。 \
 你对一系列历史时期的人物、事件和背景有着极好的学识和理解\
 你有能力思考、反思、辩证、讨论和评估过去。\
 你尊重历史证据，并有能力利用它来支持你的解释和判断。
 
 这是一个问题:
-{input}"""
+{input}"""</span>
 
 
-#第四个适合回答计算机问题
-computerscience_template = """ 你是一个成功的计算机科学专家。\
+<span class="hljs-comment">#第四个适合回答计算机问题</span>
+computerscience_template = <span class="hljs-string">""" 你是一个成功的计算机科学专家。\
 你有创造力、协作精神、\
 前瞻性思维、自信、解决问题的能力、\
 对理论和算法的理解以及出色的沟通技巧。\
@@ -925,31 +925,31 @@ computerscience_template = """ 你是一个成功的计算机科学专家。\
 并且你知道如何选择在时间复杂性和空间复杂性之间取得良好平衡的解决方案。
 
 这还是一个输入：
-{input}"""
+{input}"""</span>
 </code></pre>
 <h3 id="42-对提示模版进行命名和描述">4.2 对提示模版进行命名和描述</h3>
 <p>在定义了这些提示模板后，我们可以为每个模板命名，并给出具体描述。例如，第一个物理学的描述适合回答关于物理学的问题，这些信息将传递给路由链，然后由路由链决定何时使用此子链。</p>
-<pre><code class="lang-pythonthon"># 中文
+<pre><code class="lang-python"><span class="hljs-comment"># 中文</span>
 prompt_infos = [
     {
-        "名字": "物理学", 
-        "描述": "擅长回答关于物理学的问题", 
-        "提示模板": physics_template
+        <span class="hljs-string">"名字"</span>: <span class="hljs-string">"物理学"</span>, 
+        <span class="hljs-string">"描述"</span>: <span class="hljs-string">"擅长回答关于物理学的问题"</span>, 
+        <span class="hljs-string">"提示模板"</span>: physics_template
     },
     {
-        "名字": "数学", 
-        "描述": "擅长回答数学问题", 
-        "提示模板": math_template
+        <span class="hljs-string">"名字"</span>: <span class="hljs-string">"数学"</span>, 
+        <span class="hljs-string">"描述"</span>: <span class="hljs-string">"擅长回答数学问题"</span>, 
+        <span class="hljs-string">"提示模板"</span>: math_template
     },
     {
-        "名字": "历史", 
-        "描述": "擅长回答历史问题", 
-        "提示模板": history_template
+        <span class="hljs-string">"名字"</span>: <span class="hljs-string">"历史"</span>, 
+        <span class="hljs-string">"描述"</span>: <span class="hljs-string">"擅长回答历史问题"</span>, 
+        <span class="hljs-string">"提示模板"</span>: history_template
     },
     {
-        "名字": "计算机科学", 
-        "描述": "擅长回答计算机科学问题", 
-        "提示模板": computerscience_template
+        <span class="hljs-string">"名字"</span>: <span class="hljs-string">"计算机科学"</span>, 
+        <span class="hljs-string">"描述"</span>: <span class="hljs-string">"擅长回答计算机科学问题"</span>, 
+        <span class="hljs-string">"提示模板"</span>: computerscience_template
     }
 ]
 </code></pre>
@@ -958,20 +958,20 @@ prompt_infos = [
 <p>这里我们要实现的几个类是大模型路由器链。这个类本身使用语言模型来在不同的子链之间进行路由。这就是上面提供的描述和名称将被使用的地方。</p>
 <h3 id="43-基于提示模版信息创建相应目标链">4.3 基于提示模版信息创建相应目标链</h3>
 <p>目标链是由路由链调用的链，每个目标链都是一个语言模型链</p>
-<pre><code class="lang-pythonthon">destination_chains = {}
-for p_info in prompt_infos:
-    name = p_info["名字"]
-    prompt_template = p_info["提示模板"]
+<pre><code class="lang-python">destination_chains = {}
+<span class="hljs-keyword">for</span> p_info <span class="hljs-keyword">in</span> prompt_infos:
+    name = p_info[<span class="hljs-string">"名字"</span>]
+    prompt_template = p_info[<span class="hljs-string">"提示模板"</span>]
     prompt = ChatPromptTemplate.from_template(template=prompt_template)
     chain = LLMChain(llm=llm, prompt=prompt)
     destination_chains[name] = chain  
 
-destinations = [f"{p['名字']}: {p['描述']}" for p in prompt_infos]
-destinations_str = "\n".join(destinations)
+destinations = [<span class="hljs-string">f"<span class="hljs-subst">{p[<span class="hljs-string">'名字'</span>]}</span>: <span class="hljs-subst">{p[<span class="hljs-string">'描述'</span>]}</span>"</span> <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> prompt_infos]
+destinations_str = <span class="hljs-string">"\n"</span>.join(destinations)
 </code></pre>
 <h3 id="44-创建默认目标链">4.4 创建默认目标链</h3>
 <p>除了目标链之外，我们还需要一个默认目标链。这是一个当路由器无法决定使用哪个子链时调用的链。在上面的示例中，当输入问题与物理、数学、历史或计算机科学无关时，可能会调用它。</p>
-<pre><code class="lang-pythonthon">default_prompt = ChatPromptTemplate.from_template("{input}")
+<pre><code class="lang-python">default_prompt = ChatPromptTemplate.from_template(<span class="hljs-string">"{input}"</span>)
 default_chain = LLMChain(llm=llm, prompt=default_prompt)
 </code></pre>
 <h3 id="45-定义不同链之间的路由模板">4.5 定义不同链之间的路由模板</h3>
@@ -986,8 +986,8 @@ default_chain = LLMChain(llm=llm, prompt=default_prompt)
     <span class="hljs-string">"next_inputs"</span>: string \ a potentially modified version <span class="hljs-keyword">of</span> the original input
 }}}}
 </code></pre>
-<pre><code class="lang-pythonthon"># 多提示路由模板
-MULTI_PROMPT_ROUTER_TEMPLATE = """给语言模型一个原始文本输入，\
+<pre><code class="lang-python"><span class="hljs-comment"># 多提示路由模板</span>
+MULTI_PROMPT_ROUTER_TEMPLATE = <span class="hljs-string">"""给语言模型一个原始文本输入，\
 让其选择最适合输入的模型提示。\
 系统将为您提供可用提示的名称以及最适合改提示的描述。\
 如果你认为修改原始输入最终会导致语言模型做出更好的响应，\
@@ -1028,35 +1028,35 @@ MULTI_PROMPT_ROUTER_TEMPLATE = """给语言模型一个原始文本输入，\
     "next_inputs": 字符串 \ 原始输入的改进版本
 }}}}
 
-"""
+"""</span>
 </code></pre>
 <h3 id="46-构建路由链">4.6 构建路由链</h3>
 <p>首先，我们通过格式化上面定义的目标创建完整的路由器模板。这个模板可以适用许多不同类型的目标。
 因此，在这里，您可以添加一个不同的学科，如英语或拉丁语，而不仅仅是物理、数学、历史和计算机科学。</p>
 <p>接下来，我们从这个模板创建提示模板。</p>
 <p>最后，通过传入llm和整个路由提示来创建路由链。需要注意的是这里有路由输出解析，这很重要，因为它将帮助这个链路决定在哪些子链路之间进行路由。</p>
-<pre><code class="lang-pythonthon">router_template = MULTI_PROMPT_ROUTER_TEMPLATE.format(
+<pre><code class="lang-python">router_template = MULTI_PROMPT_ROUTER_TEMPLATE.<span class="hljs-built_in">format</span>(
     destinations=destinations_str
 )
 router_prompt = PromptTemplate(
     template=router_template,
-    input_variables=["input"],
+    input_variables=[<span class="hljs-string">"input"</span>],
     output_parser=RouterOutputParser(),
 )
 
 router_chain = LLMRouterChain.from_llm(llm, router_prompt)
 </code></pre>
 <h3 id="47-创建整体链路">4.7 创建整体链路</h3>
-<pre><code class="lang-pythonthon">#多提示链
-chain = MultiPromptChain(router_chain=router_chain,    #l路由链路
-                         destination_chains=destination_chains,   #目标链路
-                         default_chain=default_chain,      #默认链路
-                         verbose=True   
+<pre><code class="lang-python"><span class="hljs-comment">#多提示链</span>
+chain = MultiPromptChain(router_chain=router_chain,    <span class="hljs-comment">#l路由链路</span>
+                         destination_chains=destination_chains,   <span class="hljs-comment">#目标链路</span>
+                         default_chain=default_chain,      <span class="hljs-comment">#默认链路</span>
+                         verbose=<span class="hljs-literal">True</span>   
                         )
 </code></pre>
 <h3 id="48-进行提问">4.8 进行提问</h3>
 <p>如果我们问一个物理问题，我们希望看到他被路由到物理链路。</p>
-<pre><code class="lang-pythonthon">chain.run("什么是黑体辐射？")
+<pre><code class="lang-python">chain.run(<span class="hljs-string">"什么是黑体辐射？"</span>)
 </code></pre>
 <pre><code>&gt; Entering new MultiPromptChain chain...
 物理学: {'input': '什么是黑体辐射？'}
@@ -1068,7 +1068,7 @@ chain = MultiPromptChain(router_chain=router_chain,    #l路由链路
 
 '黑体辐射是指一个理想化的物体，它能够完全吸收并且以最高效率地辐射出所有入射到它上面的电磁辐射。这种辐射的特点是它的辐射强度与波长有关，且在不同波长下的辐射强度符合普朗克辐射定律。黑体辐射在物理学中有广泛的应用，例如研究热力学、量子力学和宇宙学等领域。'
 </code></pre><p>如果我们问一个数学问题，我们希望看到他被路由到数学链路。</p>
-<pre><code class="lang-pythonthon">chain.run("2+2等于多少？")
+<pre><code class="lang-python">chain.run(<span class="hljs-string">"2+2等于多少？"</span>)
 </code></pre>
 <pre><code>&gt; Entering new MultiPromptChain chain...
 数学: {'input': '2+2等于多少？'}
@@ -1081,7 +1081,7 @@ chain = MultiPromptChain(router_chain=router_chain,    #l路由链路
 '2+2等于4。'
 </code></pre><p>如果我们传递一个与任何子链路都无关的问题时，会发生什么呢？</p>
 <p>这里，我们问了一个关于生物学的问题，我们可以看到它选择的链路是无。这意味着它将被<strong>传递到默认链路，它本身只是对语言模型的通用调用</strong>。语言模型幸运地对生物学知道很多，所以它可以帮助我们。</p>
-<pre><code class="lang-pythonthon">chain.run("为什么我们身体里的每个细胞都包含DNA？")
+<pre><code class="lang-python">chain.run(<span class="hljs-string">"为什么我们身体里的每个细胞都包含DNA？"</span>)
 </code></pre>
 <pre><code>&gt; Entering new MultiPromptChain chain...
 物理学: {'input': '为什么我们身体里的每个细胞都包含DNA？'}
@@ -1094,47 +1094,47 @@ chain = MultiPromptChain(router_chain=router_chain,    #l路由链路
 '我们身体里的每个细胞都包含DNA，因为DNA是遗传信息的载体。DNA是由四种碱基（腺嘌呤、胸腺嘧啶、鸟嘌呤和胞嘧啶）组成的长链状分子，它存储了我们的遗传信息，包括我们的基因和遗传特征。每个细胞都需要这些遗传信息来执行其特定的功能和任务。所以，DNA存在于每个细胞中，以确保我们的身体正常运作。'
 </code></pre><h2 id="英文版提示">英文版提示</h2>
 <p><strong>1.大语言模型链</strong></p>
-<pre><code class="lang-pythonthon">from langchain.chat_models import ChatOpenAI 
-from langchain.prompts import ChatPromptTemplate  
-from langchain.chains import LLMChain   
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI 
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate  
+<span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> LLMChain   
 
 
-llm = ChatOpenAI(temperature=0.0)  
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)  
 
 prompt = ChatPromptTemplate.from_template(   
-    "What is the best name to describe \
-    a company that makes {product}?"
+    <span class="hljs-string">"What is the best name to describe \
+    a company that makes {product}?"</span>
 )
 
 chain = LLMChain(llm=llm, prompt=prompt)
 
-product = "Queen Size Sheet Set"
+product = <span class="hljs-string">"Queen Size Sheet Set"</span>
 chain.run(product)
 </code></pre>
 <pre><code>'Royal Comfort Linens'
 </code></pre><p><strong>2.简单顺序链</strong></p>
-<pre><code class="lang-pythonthon">from langchain.chains import SimpleSequentialChain
-llm = ChatOpenAI(temperature=0.9)
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> SimpleSequentialChain
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.9</span>)
 
 
 first_prompt = ChatPromptTemplate.from_template(
-    "What is the best name to describe \
-    a company that makes {product}?"
+    <span class="hljs-string">"What is the best name to describe \
+    a company that makes {product}?"</span>
 )
 
-# Chain 1
+<span class="hljs-comment"># Chain 1</span>
 chain_one = LLMChain(llm=llm, prompt=first_prompt)
 
 second_prompt = ChatPromptTemplate.from_template(
-    "Write a 20 words description for the following \
-    company:{company_name}"
+    <span class="hljs-string">"Write a 20 words description for the following \
+    company:{company_name}"</span>
 )
-# chain 2
+<span class="hljs-comment"># chain 2</span>
 chain_two = LLMChain(llm=llm, prompt=second_prompt)
 
 
-overall_simple_chain = SimpleSequentialChain(chains=[chain_one, chain_two], verbose=True)
-product = "Queen Size Sheet Set"
+overall_simple_chain = SimpleSequentialChain(chains=[chain_one, chain_two], verbose=<span class="hljs-literal">True</span>)
+product = <span class="hljs-string">"Queen Size Sheet Set"</span>
 overall_simple_chain.run(product)
 </code></pre>
 <pre><code>&gt; Entering new SimpleSequentialChain chain...
@@ -1149,51 +1149,51 @@ Royal Comfort Beddings is a reputable company that offers luxurious and comforta
 
 'Royal Comfort Beddings is a reputable company that offers luxurious and comfortable bedding options fit for royalty.'
 </code></pre><p><strong>3. 顺序链</strong></p>
-<pre><code class="lang-pythonthon">from langchain.chains import SequentialChain
-from langchain.chat_models import ChatOpenAI    
-from langchain.prompts import ChatPromptTemplate   
-from langchain.chains import LLMChain    
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> SequentialChain
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI    
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate   
+<span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> LLMChain    
 
-llm = ChatOpenAI(temperature=0.9)
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.9</span>)
 
 first_prompt = ChatPromptTemplate.from_template(
-    "Translate the following review to english:"
-    "\n\n{Review}"
+    <span class="hljs-string">"Translate the following review to english:"</span>
+    <span class="hljs-string">"\n\n{Review}"</span>
 )
 
-chain_one = LLMChain(llm=llm, prompt=first_prompt, output_key="English_Review")
+chain_one = LLMChain(llm=llm, prompt=first_prompt, output_key=<span class="hljs-string">"English_Review"</span>)
 
 
 second_prompt = ChatPromptTemplate.from_template(
-    "Can you summarize the following review in 1 sentence:"
-    "\n\n{English_Review}"
+    <span class="hljs-string">"Can you summarize the following review in 1 sentence:"</span>
+    <span class="hljs-string">"\n\n{English_Review}"</span>
 )
 
-chain_two = LLMChain(llm=llm, prompt=second_prompt, output_key="summary")
+chain_two = LLMChain(llm=llm, prompt=second_prompt, output_key=<span class="hljs-string">"summary"</span>)
 
 third_prompt = ChatPromptTemplate.from_template(
-    "What language is the following review:\n\n{Review}"
+    <span class="hljs-string">"What language is the following review:\n\n{Review}"</span>
 )
 
-chain_three = LLMChain(llm=llm, prompt=third_prompt, output_key="language")
+chain_three = LLMChain(llm=llm, prompt=third_prompt, output_key=<span class="hljs-string">"language"</span>)
 
 fourth_prompt = ChatPromptTemplate.from_template(
-    "Write a follow up response to the following "
-    "summary in the specified language:"
-    "\n\nSummary: {summary}\n\nLanguage: {language}"
+    <span class="hljs-string">"Write a follow up response to the following "</span>
+    <span class="hljs-string">"summary in the specified language:"</span>
+    <span class="hljs-string">"\n\nSummary: {summary}\n\nLanguage: {language}"</span>
 )
 
-chain_four = LLMChain(llm=llm, prompt=fourth_prompt, output_key="followup_message")
+chain_four = LLMChain(llm=llm, prompt=fourth_prompt, output_key=<span class="hljs-string">"followup_message"</span>)
 
 
 overall_chain = SequentialChain(
     chains=[chain_one, chain_two, chain_three, chain_four],
-    input_variables=["Review"],
-    output_variables=["English_Review", "summary","followup_message"],
-    verbose=True
+    input_variables=[<span class="hljs-string">"Review"</span>],
+    output_variables=[<span class="hljs-string">"English_Review"</span>, <span class="hljs-string">"summary"</span>,<span class="hljs-string">"followup_message"</span>],
+    verbose=<span class="hljs-literal">True</span>
 )
 
-review = df.Review[5]
+review = df.Review[<span class="hljs-number">5</span>]
 overall_chain(review)
 </code></pre>
 <pre><code>&gt; Entering new SequentialChain chain...
@@ -1209,25 +1209,25 @@ overall_chain(review)
  'summary': 'The reviewer is disappointed with the poor taste and lack of foam in the product, suspecting it to be either an old batch or a counterfeit.',
  'followup_message': "Réponse de suivi:\n\nCher(e) critique,\n\nNous sommes vraiment désolés d'apprendre que vous avez été déçu(e) par le mauvais goût et l'absence de mousse de notre produit. Nous comprenons votre frustration et souhaitons rectifier cette situation.\n\nTout d'abord, nous tenons à vous assurer que nous ne vendons que des produits authentiques et de haute qualité. Chaque lot de notre produit est soigneusement contrôlé avant d'être mis sur le marché.\n\nCependant, il est possible qu'un incident se soit produit dans votre cas. Nous vous invitons donc à nous contacter directement afin que nous puissions mieux comprendre la situation et résoudre ce problème. Nous accorderons une attention particulière à la fraîcheur et à la mousse de notre produit pour garantir votre satisfaction.\n\nNous tenons à vous remercier pour vos commentaires, car ils nous aident à améliorer continuellement notre produit. Votre satisfaction est notre priorité absolue et nous ferons tout notre possible pour rectifier cette situation.\n\nNous espérons avoir l'opportunité de vous fournir une expérience agréable avec notre produit à l'avenir.\n\nCordialement,\nL'équipe du service client"}
 </code></pre><p><strong>4. 路由链</strong></p>
-<pre><code class="lang-pythonthon">from langchain.chains import LLMChain   
-from langchain.chat_models import ChatOpenAI 
-from langchain.prompts import ChatPromptTemplate 
-from langchain.chains.router import MultiPromptChain 
-from langchain.chains.router.llm_router import LLMRouterChain,RouterOutputParser
-from langchain.prompts import PromptTemplate
-llm = ChatOpenAI(temperature=0.0)  
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> langchain.chains <span class="hljs-keyword">import</span> LLMChain   
+<span class="hljs-keyword">from</span> langchain.chat_models <span class="hljs-keyword">import</span> ChatOpenAI 
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> ChatPromptTemplate 
+<span class="hljs-keyword">from</span> langchain.chains.router <span class="hljs-keyword">import</span> MultiPromptChain 
+<span class="hljs-keyword">from</span> langchain.chains.router.llm_router <span class="hljs-keyword">import</span> LLMRouterChain,RouterOutputParser
+<span class="hljs-keyword">from</span> langchain.prompts <span class="hljs-keyword">import</span> PromptTemplate
+llm = ChatOpenAI(temperature=<span class="hljs-number">0.0</span>)  
 
-physics_template = """You are a very smart physics professor. \
+physics_template = <span class="hljs-string">"""You are a very smart physics professor. \
 You are great at answering questions about physics in a concise\
 and easy to understand manner. \
 When you don't know the answer to a question you admit\
 that you don't know.
 
 Here is a question:
-{input}"""
+{input}"""</span>
 
 
-math_template = """You are a very good mathematician. \
+math_template = <span class="hljs-string">"""You are a very good mathematician. \
 You are great at answering math questions. \
 You are so good because you are able to break down \
 hard problems into their component parts, 
@@ -1235,9 +1235,9 @@ answer the component parts, and then put them together\
 to answer the broader question.
 
 Here is a question:
-{input}"""
+{input}"""</span>
 
-history_template = """You are a very good historian. \
+history_template = <span class="hljs-string">"""You are a very good historian. \
 You have an excellent knowledge of and understanding of people,\
 events and contexts from a range of historical periods. \
 You have the ability to think, reflect, debate, discuss and \
@@ -1246,10 +1246,10 @@ and the ability to make use of it to support your explanations \
 and judgements.
 
 Here is a question:
-{input}"""
+{input}"""</span>
 
 
-computerscience_template = """ You are a successful computer scientist.\
+computerscience_template = <span class="hljs-string">""" You are a successful computer scientist.\
 You have a passion for creativity, collaboration,\
 forward-thinking, confidence, strong problem-solving capabilities,\
 understanding of theories and algorithms, and excellent communication \
@@ -1261,48 +1261,48 @@ choose a solution that has a good balance between \
 time complexity and space complexity. 
 
 Here is a question:
-{input}"""
+{input}"""</span>
 
 prompt_infos = [
     {
-        "name": "physics", 
-        "description": "Good for answering questions about physics", 
-        "prompt_template": physics_template
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"physics"</span>, 
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Good for answering questions about physics"</span>, 
+        <span class="hljs-string">"prompt_template"</span>: physics_template
     },
     {
-        "name": "math", 
-        "description": "Good for answering math questions", 
-        "prompt_template": math_template
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"math"</span>, 
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Good for answering math questions"</span>, 
+        <span class="hljs-string">"prompt_template"</span>: math_template
     },
     {
-        "name": "History", 
-        "description": "Good for answering history questions", 
-        "prompt_template": history_template
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"History"</span>, 
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Good for answering history questions"</span>, 
+        <span class="hljs-string">"prompt_template"</span>: history_template
     },
     {
-        "name": "computer science", 
-        "description": "Good for answering computer science questions", 
-        "prompt_template": computerscience_template
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"computer science"</span>, 
+        <span class="hljs-string">"description"</span>: <span class="hljs-string">"Good for answering computer science questions"</span>, 
+        <span class="hljs-string">"prompt_template"</span>: computerscience_template
     }
 ]
 
 
 destination_chains = {}
-for p_info in prompt_infos:
-    name = p_info["name"]
-    prompt_template = p_info["prompt_template"]
+<span class="hljs-keyword">for</span> p_info <span class="hljs-keyword">in</span> prompt_infos:
+    name = p_info[<span class="hljs-string">"name"</span>]
+    prompt_template = p_info[<span class="hljs-string">"prompt_template"</span>]
     prompt = ChatPromptTemplate.from_template(template=prompt_template)
     chain = LLMChain(llm=llm, prompt=prompt)
     destination_chains[name] = chain  
 
-destinations = [f"{p['name']}: {p['description']}" for p in prompt_infos]
-destinations_str = "\n".join(destinations)
+destinations = [<span class="hljs-string">f"<span class="hljs-subst">{p[<span class="hljs-string">'name'</span>]}</span>: <span class="hljs-subst">{p[<span class="hljs-string">'description'</span>]}</span>"</span> <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> prompt_infos]
+destinations_str = <span class="hljs-string">"\n"</span>.join(destinations)
 
-default_prompt = ChatPromptTemplate.from_template("{input}")
+default_prompt = ChatPromptTemplate.from_template(<span class="hljs-string">"{input}"</span>)
 default_chain = LLMChain(llm=llm, prompt=default_prompt)
 
 
-MULTI_PROMPT_ROUTER_TEMPLATE = """Given a raw text input to a \
+MULTI_PROMPT_ROUTER_TEMPLATE = <span class="hljs-string">"""Given a raw text input to a \
 language model select the model prompt best suited for the input. \
 You will be given the names of the available prompts and a \
 description of what the prompt is best suited for. \
@@ -1316,7 +1316,7 @@ Return a markdown code snippet with a JSON object formatted to look like:
     "destination": string \ name of the prompt to use or "DEFAULT"
     "next_inputs": string \ a potentially modified version of the original input
 }}}}
-</code></pre>
+</span></code></pre>
 <p>REMEMBER: "destination" MUST be one of the candidate prompt \
 names specified below OR it can be "DEFAULT" if the input is not\
 well suited for any of the candidate prompts.
@@ -1412,7 +1412,7 @@ Every cell in our body contains DNA because DNA is the genetic material that car
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"4. 模型链 Chains","level":"4.5","depth":1,"next":{"title":"5. 基于文档的问答 Question and Answer","level":"4.6","depth":1,"path":"C3/5.-基于文档的问答-Question-and-Answer.md","ref":"C3/5.-基于文档的问答-Question-and-Answer.md","articles":[]},"previous":{"title":"3. 储存 Memory","level":"4.4","depth":1,"path":"C3/3.-储存-Memory.md","ref":"C3/3.-储存-Memory.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C3/4.-模型链-Chains.md","mtime":"2025-01-05T18:01:16.610Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-05T18:01:25.931Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"4. 模型链 Chains","level":"4.5","depth":1,"next":{"title":"5. 基于文档的问答 Question and Answer","level":"4.6","depth":1,"path":"C3/5.-基于文档的问答-Question-and-Answer.md","ref":"C3/5.-基于文档的问答-Question-and-Answer.md","articles":[]},"previous":{"title":"3. 储存 Memory","level":"4.4","depth":1,"path":"C3/3.-储存-Memory.md","ref":"C3/3.-储存-Memory.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"C3/4.-模型链-Chains.md","mtime":"2025-01-11T00:02:01.079Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-01-11T18:48:15.839Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1482,7 +1482,7 @@ Every cell in our body contains DNA because DNA is the genetic material that car
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
         
     
 
